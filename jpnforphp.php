@@ -18,7 +18,7 @@ class JpnForPhp {
      * @return
      *  TRUE if it contains at least one kanji, otherwise FALSE.
      */
-    static function has_kanji($str) {
+    public static function has_kanji($str) {
         return preg_match('/[\x{4E00}-\x{9FBF}]/u', $str) > 0;
     }
 
@@ -30,7 +30,7 @@ class JpnForPhp {
      * @return
      *  TRUE if it contains at least one hiragana, otherwise FALSE.
      */
-    static function has_hiragana($str) {
+    public static function has_hiragana($str) {
         return preg_match('/[\x{3040}-\x{309F}]/u', $str) > 0;
     }
 
@@ -42,7 +42,7 @@ class JpnForPhp {
      * @return
      *  TRUE if it contains at least one katakana, otherwise FALSE.
      */
-    static function has_katakana($str) {
+    public static function has_katakana($str) {
         return preg_match('/[\x{30A0}-\x{30FF}]/u', $str) > 0;
     }
 
@@ -58,8 +58,8 @@ class JpnForPhp {
      * @return
      *  TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
      */
-    static function is_japanese($str) {
-        return JpnForPhp::has_kanji($str) || JpnForPhp::has_hiragana($str) || JpnForPhp::has_katakana($str);
+    public static function is_japanese($str) {
+        return self::has_kanji($str) || self::has_hiragana($str) || self::has_katakana($str);
     }
 
     /**
@@ -69,10 +69,10 @@ class JpnForPhp {
      * @return
      *  Converted string into hiragana.
      */
-    static function romaji_to_hiragana($romaji) {
+    public static function romaji_to_hiragana($romaji) {
 
         $romaji = strtolower($romaji);
-
+        $output = self::convert_chiisai_tsu($romaji);
         $table = array(
             'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
             'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
@@ -103,13 +103,14 @@ class JpnForPhp {
             'dja' => 'ぢゃ', 'dya' => 'ぢゃ', 'dju' => 'ぢゅ', 'dyu' => 'ぢゅ', 'djo' => 'ぢょ', 'dyo' => 'ぢょ',
             'bya' => 'びゃ', 'byu' => 'びゅ', 'byo' => 'びょ',
             'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pyo' => 'ぴょ',
-                //@todo FINISH IT!!!!!!!
+            ' ' => '　',
         );
-        return strtr($romaji, $table);
+        $output = strtr($output, $table);
+        return $output;
     }
 
     
-    static function tsu($str){
+    private static function convert_chiisai_tsu($str){
         $new_str = $str;
         $length = strlen($str);
         
