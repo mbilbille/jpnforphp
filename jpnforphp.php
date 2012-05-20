@@ -6,7 +6,7 @@
  *
  * @author      Matthieu Bilbille
  * @link	https://github.com/mbilbille/jpnforphp
- * @version	0.0.1
+ * @version	0.1
  */
 class JpnForPhp {
 
