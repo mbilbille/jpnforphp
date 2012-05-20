@@ -74,6 +74,16 @@
             </tr>
             <?php print unit('romaji_to_katakana', 'furansu', 'フランス'); ?>
             <?php print unit('romaji_to_katakana', 'watashi ha furansujin desu', 'ワタシ　ハ　フランスジン　デス'); ?>
+            <tr>
+                <td colspan="3" class="heading">Function hiragana_romaji()</td>
+            </tr>
+            <?php print unit('hiragana_to_romaji', 'がっこう', 'gakkou'); ?>
+            <?php print unit('hiragana_to_romaji', 'かいしゃ　に　います', 'kaisha ni imasu'); ?>
+            <?php print unit('hiragana_to_romaji', '会社にいます', '会社niimasu'); ?>
+            <tr>
+                <td colspan="3" class="heading">Function split()</td>
+            </tr>
+            <?php print unit('split', 'がっこう', array('が','っ','こ','う')); ?>
         </table>
     </body>
 </html>

@@ -114,7 +114,7 @@ class JpnForPhp {
 
     /**
      * Convert a given string in romaji into katakana.
-     * @param $katakana 
+     * @param $romaji 
      *  The string to be converted.
      * @return
      *  Converted string into katakana.
@@ -161,10 +161,69 @@ class JpnForPhp {
     }
 
     /**
-     *
-     * @param type $str
-     * @param type $alpha
-     * @return type 
+     * Convert a given string in hiragana into romaji.
+     * @param $hiragana 
+     *  The string to be converted.
+     * @return
+     *  Converted string into romaji.
+     */
+    public static function hiragana_to_romaji($hiragana) {
+
+        $table = array(
+            'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
+            'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
+            'さ' => 'sa', 'し' => 'shi', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
+            'た' => 'ta', 'ち' => 'chi', 'つ' => 'tsu', 'て' => 'te', 'と' => 'to',
+            'な' => 'na', 'に' => 'ni', 'ぬ' => 'nu', 'ね' => 'ne', 'の' => 'no',
+            'は' => 'ha', 'ひ' => 'hi', 'ふ' => 'fu', 'へ' => 'he', 'ほ' => 'ho',
+            'ま' => 'ma', 'み' => 'mi', 'む' => 'mu', 'め' => 'me', 'も' => 'mo',
+            'ら' => 'ra', 'り' => 'ri', 'る' => 'ru', 'れ' => 're', 'ろ' => 'ro',
+            'や' => 'ya', 'ゆ' => 'yu', 'よ' => 'yo',
+            'わ' => 'wa', 'ゐ' => 'wi', 'ゑ' => 'we', 'を' => 'wo',
+            'が' => 'ga', 'ぎ' => 'gi', 'ぐ' => 'gu', 'げ' => 'ge', 'ご' => 'go',
+            'ざ' => 'za', 'じ' => 'ji', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
+            'だ' => 'da', 'ぢ' => 'dji', 'づ' => 'du', 'で' => 'de', 'ど' => 'do',
+            'ば' => 'ba', 'び' => 'bi', 'ぶ' => 'bu', 'べ' => 'be', 'ぼ' => 'bo',
+            'ぱ' => 'pa', 'ぴ' => 'pi', 'ぷ' => 'pu', 'ぺ' => 'pe', 'ぽ' => 'po',
+            'ゔ' => 'vu',
+            'きゃ' => 'kya', 'きゅ' => 'kyu', 'きょ' => 'kyo',
+            'しゃ' => 'sha', 'しゅ' => 'shu', 'しょ' => 'sho',
+            'ちゃ' => 'cha', 'ちゅ' => 'chu', 'ちょ' => 'cho',
+            'にゃ' => 'nya', 'にゅ' => 'nyu', 'にょ' => 'nyo',
+            'ひゃ' => 'hya', 'ひゅ' => 'hyu', 'ひょ' => 'hyo',
+            'みゃ' => 'mya', 'みゅ' => 'myu', 'みょ' => 'myo',
+            'りゃ' => 'rya', 'りゅ' => 'ryu', 'りょ' => 'ryo',
+            'ぎゃ' => 'gya', 'ぎゅ' => 'gyu', 'ぎょ' => 'gyo',
+            'じゃ' => 'ja', 'じゅ' => 'ju', 'じょ' => 'jo',
+            'ぢゃ' => 'dja', 'ぢゅ' => 'dju', 'ぢょ' => 'djo',
+            'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
+            'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
+            '　' => ' ',
+        );
+        $output = strtr($hiragana, $table);
+        $output = self::translate_chiisai_tsu($output);
+        return $output;
+    }
+
+    public static function split($str, $length = 1) {
+        $chrs = array();
+        $str_length = mb_strlen($str, 'UTF-8');
+        for ($i = 0; $i < $str_length; $i++) {
+            $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
+        }
+        return $chrs;
+    }
+
+    /**
+     * Look into a given string to identify and convert potential sets of 
+     * characters into small tsu characters.
+     * 
+     * @param $str
+     *  String to look into.
+     * @param $syllabary
+     *  Syllabary to be used ; either Hiragana or Katakana.
+     * @return
+     *  Converted string.
      */
     private static function convert_chiisai_tsu($str, $syllabary) {
         $new_str = $str;
@@ -178,12 +237,38 @@ class JpnForPhp {
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
         for ($i = 1; $i < $length; $i++) {
-            $char = substr($str, $i - 1, 1);
-            if (!in_array($char, $skip) && $char === substr($str, $i, 1)) {
+            $previous_char = substr($str, $i - 1, 1);
+            if (!in_array($previous_char, $skip) && $previous_char === substr($str, $i, 1)) {
                 $new_str = substr_replace($str, $chiisai_tsu, $i - 1, 1);
             }
         }
+        return $new_str;
+    }
 
+    /**
+     * Translate any small tsu characters into its equivalent in romaji.
+     * 
+     * @param $str
+     *  String to be translated.
+     * @return
+     *  Translated string.
+     */
+    private static function translate_chiisai_tsu($str) {
+        $new_str = $str;
+
+        $chrs = self::split($str);
+        $length = count($chrs);
+
+        //No need to go further.
+        if ($length < 2)
+            return $new_str;
+
+        for ($i = 0; $i < $length - 1; $i++) {
+            if ($chrs[$i] === 'っ' || $chrs[$i] === 'ッ') {
+                $chrs[$i] = $chrs[$i + 1];
+            }
+        }
+        $new_str = implode($chrs);
         return $new_str;
     }
 
