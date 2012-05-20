@@ -37,9 +37,9 @@
         <h1>JpnForPhp library - Unit tests</h1>
         <table>
             <tr>
-                <th>Input(s)</th>
-                <th>Expected result</th>
-                <th>Result</th>
+                <th>Inputs</th>
+                <th>Expected results</th>
+                <th>Results</th>
             </tr>
             <tr>
                 <td colspan="3" class="heading">Function has_kanji()</td>
@@ -69,10 +69,14 @@
             </tr>
             <?php print unit('romaji_to_hiragana', 'gakkou', 'がっこう'); ?>
             <?php print unit('romaji_to_hiragana', 'watashi ha gakusei desu', 'わたし　は　がくせい　です'); ?>
+            <tr>
+                <td colspan="3" class="heading">Function romaji_to_katakana()</td>
+            </tr>
+            <?php print unit('romaji_to_katakana', 'furansu', 'フランス'); ?>
+            <?php print unit('romaji_to_katakana', 'watashi ha furansujin desu', 'ワタシ　ハ　フランスジン　デス'); ?>
         </table>
     </body>
 </html>
-
 <?php
 
 function unit($function, $input, $expected_result) {
