@@ -81,6 +81,12 @@
             <?php print unit('hiragana_to_romaji', 'かいしゃ　に　います', 'kaisha ni imasu'); ?>
             <?php print unit('hiragana_to_romaji', '会社にいます', '会社niimasu'); ?>
             <tr>
+            <tr>
+                <td colspan="3" class="heading">Function katakana_romaji()</td>
+            </tr>
+            <?php print unit('katakana_to_romaji', 'ガッコウ', 'gakkou'); ?>
+            <?php print unit('katakana_to_romaji', 'カイシャニイマス', 'kaishaniimasu'); ?>
+            <tr>
                 <td colspan="3" class="heading">Function split()</td>
             </tr>
             <?php print unit('split', 'がっこう', array('が','っ','こ','う')); ?>
