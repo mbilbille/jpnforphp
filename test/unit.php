@@ -69,7 +69,6 @@
             </tr>
             <?php print unit('romaji_to_hiragana', 'gakkou', 'がっこう'); ?>
             <?php print unit('romaji_to_hiragana', 'watashi ha gakusei desu', 'わたし　は　がくせい　です'); ?>
-            <?php print unit('romaji_to_hiragana', 'watashi ha gakusei', 'わたし　は　がくせい　です'); ?>
         </table>
     </body>
 </html>
