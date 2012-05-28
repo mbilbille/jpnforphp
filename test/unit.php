@@ -1,4 +1,20 @@
-<?php include_once '../jpnforphp.php'; ?>
+<?php
+include_once '../jpnforphp.php';
+
+function unit($function, $input, $expected_result)
+{
+    $result = JpnForPhp::$function($input);
+    $css = ($result === $expected_result) ? "pass" : "fail";
+    $output = '<tr>
+    <td>' . $input . '</td>
+    <td>' . var_export($expected_result, true) . '</td>
+    <td>' . var_export($result, true) . '</td>
+    <td class="' . $css . '"></td>
+    </tr>';
+
+    return $output;
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -89,21 +105,7 @@
             <tr>
                 <td colspan="3" class="heading">Function split()</td>
             </tr>
-            <?php print unit('split', 'がっこう', array('が','っ','こ','う')); ?>
+            <?php print unit('split', 'がっこう', array('が', 'っ', 'こ', 'う')); ?>
         </table>
     </body>
 </html>
-<?php
-
-function unit($function, $input, $expected_result) {
-
-    $result = JpnForPhp::$function($input);
-    $css = ($result === $expected_result) ? "pass" : "fail";
-    $output = '<tr>
-    <td>' . $input . '</td>
-    <td>' . var_export($expected_result, true) . '</td>
-    <td>' . var_export($result, true) . '</td>
-    <td class="' . $css . '"></td>
-    </tr>';
-    return $output;
-}
