@@ -58,50 +58,50 @@ function unit($function, $input, $expected_result)
                 <th>Results</th>
             </tr>
             <tr>
-                <td colspan="3" class="heading">Function has_kanji()</td>
+                <td colspan="3" class="heading">Function hasKanji()</td>
             </tr>
-            <?php print unit('has_kanji', '学校', TRUE); ?>
-            <?php print unit('has_kanji', 'がっこう ガッコウ gakkou', FALSE); ?>
+            <?php print unit('hasKanji', '学校', TRUE); ?>
+            <?php print unit('hasKanji', 'がっこう ガッコウ gakkou', FALSE); ?>
             <tr>
-                <td colspan="3" class="heading">Function has_hiragana()</td>
+                <td colspan="3" class="heading">Function hasHiragana()</td>
             </tr>
-            <?php print unit('has_hiragana', 'がっこう', TRUE); ?>
-            <?php print unit('has_hiragana', '学校　ガッコウ gakkou', FALSE); ?>
+            <?php print unit('hasHiragana', 'がっこう', TRUE); ?>
+            <?php print unit('hasHiragana', '学校　ガッコウ gakkou', FALSE); ?>
             <tr>
-                <td colspan="3" class="heading">Function has_katakana()</td>
+                <td colspan="3" class="heading">Function hasKatakana()</td>
             </tr>
-            <?php print unit('has_katakana', 'ガッコウ', TRUE); ?>
-            <?php print unit('has_katakana', '学校　がっこう gakkou', FALSE); ?>
+            <?php print unit('hasKatakana', 'ガッコウ', TRUE); ?>
+            <?php print unit('hasKatakana', '学校　がっこう gakkou', FALSE); ?>
             <tr>
-                <td colspan="3" class="heading">Function is_japanese()</td>
+                <td colspan="3" class="heading">Function isJapanese()</td>
             </tr>
-            <?php print unit('is_japanese', '学校', TRUE); ?>
-            <?php print unit('is_japanese', 'がっこう', TRUE); ?>
-            <?php print unit('is_japanese', 'ガッコウ', TRUE); ?>
-            <?php print unit('is_japanese', '私は学生です', TRUE); ?>
-            <?php print unit('is_japanese', 'gakkou', FALSE); ?>
+            <?php print unit('isJapanese', '学校', TRUE); ?>
+            <?php print unit('isJapanese', 'がっこう', TRUE); ?>
+            <?php print unit('isJapanese', 'ガッコウ', TRUE); ?>
+            <?php print unit('isJapanese', '私は学生です', TRUE); ?>
+            <?php print unit('isJapanese', 'gakkou', FALSE); ?>
             <tr>
-                <td colspan="3" class="heading">Function romaji_to_hiragana()</td>
+                <td colspan="3" class="heading">Function romajiToHiragana()</td>
             </tr>
-            <?php print unit('romaji_to_hiragana', 'gakkou', 'がっこう'); ?>
-            <?php print unit('romaji_to_hiragana', 'watashi ha gakusei desu', 'わたし　は　がくせい　です'); ?>
+            <?php print unit('romajiToHiragana', 'gakkou', 'がっこう'); ?>
+            <?php print unit('romajiToHiragana', 'watashi ha gakusei desu', 'わたし　は　がくせい　です'); ?>
             <tr>
-                <td colspan="3" class="heading">Function romaji_to_katakana()</td>
+                <td colspan="3" class="heading">Function romajiToKatakana()</td>
             </tr>
-            <?php print unit('romaji_to_katakana', 'furansu', 'フランス'); ?>
-            <?php print unit('romaji_to_katakana', 'watashi ha furansujin desu', 'ワタシ　ハ　フランスジン　デス'); ?>
+            <?php print unit('romajiToKatakana', 'furansu', 'フランス'); ?>
+            <?php print unit('romajiToKatakana', 'watashi ha furansujin desu', 'ワタシ　ハ　フランスジン　デス'); ?>
             <tr>
-                <td colspan="3" class="heading">Function hiragana_romaji()</td>
+                <td colspan="3" class="heading">Function hiraganaToRomaji()</td>
             </tr>
-            <?php print unit('hiragana_to_romaji', 'がっこう', 'gakkou'); ?>
-            <?php print unit('hiragana_to_romaji', 'かいしゃ　に　います', 'kaisha ni imasu'); ?>
-            <?php print unit('hiragana_to_romaji', '会社にいます', '会社niimasu'); ?>
+            <?php print unit('hiraganaToRomaji', 'がっこう', 'gakkou'); ?>
+            <?php print unit('hiraganaToRomaji', 'かいしゃ　に　います', 'kaisha ni imasu'); ?>
+            <?php print unit('hiraganaToRomaji', '会社にいます', '会社niimasu'); ?>
             <tr>
             <tr>
-                <td colspan="3" class="heading">Function katakana_romaji()</td>
+                <td colspan="3" class="heading">Function katakanaToRomaji()</td>
             </tr>
-            <?php print unit('katakana_to_romaji', 'ガッコウ', 'gakkou'); ?>
-            <?php print unit('katakana_to_romaji', 'カイシャニイマス', 'kaishaniimasu'); ?>
+            <?php print unit('katakanaToRomaji', 'ガッコウ', 'gakkou'); ?>
+            <?php print unit('katakanaToRomaji', 'カイシャニイマス', 'kaishaniimasu'); ?>
             <tr>
                 <td colspan="3" class="heading">Function split()</td>
             </tr>

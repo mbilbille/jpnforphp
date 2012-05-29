@@ -66,7 +66,7 @@ class JpnForPhp
      */
     public static function isJapanese($str)
     {
-        return self::has_kanji($str) || self::has_hiragana($str) || self::has_katakana($str);
+        return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str);
     }
 
     /**
@@ -79,7 +79,7 @@ class JpnForPhp
     public static function romajiToHiragana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convert_chiisai_tsu($romaji, self::HIRAGANA);
+        $output = self::convertChiisaiTsu($romaji, self::HIRAGANA);
         $table = array(
             'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
             'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
@@ -127,7 +127,7 @@ class JpnForPhp
     public static function romajiToKatakana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convert_chiisai_tsu($romaji, self::KATAKANA);
+        $output = self::convertChiisaiTsu($romaji, self::KATAKANA);
         $table = array(
             'a' => 'ア', 'i' => 'イ', 'u' => 'ウ', 'e' => 'エ', 'o' => 'オ',
             'ka' => 'カ', 'ki' => 'キ', 'ku' => 'ク', 'ke' => 'ケ', 'ko' => 'コ',
@@ -207,7 +207,7 @@ class JpnForPhp
             '　' => ' ',
         );
         $output = strtr($hiragana, $table);
-        $output = self::translate_chiisai_tsu($output);
+        $output = self::translateChiisaiTsu($output);
 
         return $output;
     }
@@ -253,7 +253,7 @@ class JpnForPhp
             '　' => ' ',
         );
         $output = strtr($katakana, $table);
-        $output = self::translate_chiisai_tsu($output);
+        $output = self::translateChiisaiTsu($output);
 
         return $output;
     }
