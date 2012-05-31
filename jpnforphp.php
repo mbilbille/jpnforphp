@@ -110,7 +110,7 @@ class JpnForPhp
             'dja' => 'ぢゃ', 'dya' => 'ぢゃ', 'dju' => 'ぢゅ', 'dyu' => 'ぢゅ', 'djo' => 'ぢょ', 'dyo' => 'ぢょ',
             'bya' => 'びゃ', 'byu' => 'びゅ', 'byo' => 'びょ',
             'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pyo' => 'ぴょ',
-            ' ' => '　',
+            ' ' => '　', ',' => '、', ', ' => '、',
         );
         $output = strtr($output, $table);
 
@@ -158,7 +158,7 @@ class JpnForPhp
             'dja' => 'ヂャ', 'dya' => 'ヂャ', 'dju' => 'ヂュ', 'dyu' => 'ヂュ', 'djo' => 'ヂョ', 'dyo' => 'ヂョ',
             'bya' => 'ビャ', 'byu' => 'ビュ', 'byo' => 'ビョ',
             'pya' => 'ピャ', 'pyu' => 'ピュ', 'pyo' => 'ピョ',
-            ' ' => '　',
+            ' ' => '　', ',' => '、', ', ' => '、',
                 //@todo handle small characters like ぁ　ぃ　ぅ　ぇ　ぉ
         );
         $output = strtr($output, $table);
@@ -204,7 +204,7 @@ class JpnForPhp
             'ぢゃ' => 'dja', 'ぢゅ' => 'dju', 'ぢょ' => 'djo',
             'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
             'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
-            '　' => ' ',
+            '　' => ' ', '、' => ',　',
         );
         $output = strtr($hiragana, $table);
         $output = self::translateChiisaiTsu($output);
@@ -250,7 +250,7 @@ class JpnForPhp
             'ヂャ' => 'dja', 'ヂュ' => 'dju', 'ヂョ' => 'djo',
             'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
             'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
-            '　' => ' ',
+            '　' => ' ', '、' => ',　',
         );
         $output = strtr($katakana, $table);
         $output = self::translateChiisaiTsu($output);
