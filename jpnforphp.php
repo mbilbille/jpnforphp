@@ -6,20 +6,161 @@
  *
  * @author      Matthieu Bilbille
  * @link	https://github.com/mbilbille/jpnforphp
- * @version	0.1
+ * @version	0.2
+ */
+
+/**
+ * JpnForPhp main class
  */
 class JpnForPhp
 {
-    const HIRAGANA = 0;
-    const KATAKANA = 1;
+    /**
+     * JpnForPhp constants
+     * Highly recommended to use these constant names rather than raw values.
+     */
+
+    const JPNFORPHP_HIRAGANA = 0; // Hiragana
+    const JPNFORPHP_KATAKANA = 1; // Katakana
 
     /**
-     * Looks for kanji within a given string.
+     * Get string length.
+     * @see http://fr.php.net/manual/en/function.mb-strlen.php
      *
      * @param $str
-     *  The string to process.
+     *   The string being measured for length.
      * @return
-     *  TRUE if it contains at least one kanji, otherwise FALSE.
+     *   An integer.
+     */
+
+    public static function length($str)
+    {
+        return mb_strlen($str, 'UTF-8');
+    }
+
+    /**
+     * Enhance default splitter function to handle
+     * UTF-8 characters.
+     *
+     * @param $str
+     *   String to split.
+     * @param $length (optional)
+     *   Define an optional substring length. Default to 1.
+     * @return
+     *   An array of strings.
+     */
+    public static function split($str, $length = 1)
+    {
+        $chrs = array();
+        $str_length = self::length($str);
+        for ($i = 0; $i < $str_length; $i++) {
+            $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
+        }
+
+        return $chrs;
+    }
+
+    /**
+     * Returns the character at the specified index.
+     *
+     * @param $str
+     *   String to look into.
+     * @param $index
+     *   The index of the character to return (0 based indexing).
+     * @return
+     *   The character at the specified index.
+     */
+    public static function charAt($str, $index)
+    {
+        return mb_substr($str, $index, 1, 'UTF-8');
+    }
+
+    /**
+     * Inspects a given string and returns usefull
+     * details about it.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An associative array containing the
+     *   following items:
+     *   - "length" : string length.
+     *   - "kanji" : number of kanji within this string.
+     *   - "hiragana" : number of hiragana within this string.
+     *   - "katakana" : number of katakana within this string.
+     */
+    public static function inspect($str)
+    {
+        $result = array(
+            'length' => 0,
+            'kanji' => 0,
+            'hiragana' => 0,
+            'katakana' => 0,
+        );
+
+        $result['length'] = self::length($str);
+        $result['kanji'] = self::countKanji($str);
+        $result['hiragana'] = self::countHiragana($str);
+        $result['katakana'] = self::countKatakana($str);
+
+        return $result;
+    }
+
+    /**
+     * Count number of kanji within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countKanji($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{4E00}-\x{9FBF}]/u', $str, $matches);
+    }
+
+    /**
+     * Count number of hiragana within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countHiragana($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{3040}-\x{309F}]/u', $str, $matches);
+    }
+
+    /**
+     * Count number of katakana within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countKatakana($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{30A0}-\x{30FF}]/u', $str, $matches);
+    }
+
+    /**
+     * Determines whether the given string contains
+     * kanji characters.
+     *
+     * @param $str
+     *   String to inspect.
+     * @return
+     *   TRUE if it contains at least one kanji, otherwise FALSE.
      */
     public static function hasKanji($str)
     {
@@ -27,12 +168,13 @@ class JpnForPhp
     }
 
     /**
-     * Looks for hiragana within the specified string.
+     * Determines whether the given string contains
+     * hiragana characters.
      *
      * @param $str
-     *  The string to process.
+     *   String to inspect.
      * @return
-     *  TRUE if it contains at least one hiragana, otherwise FALSE.
+     *   TRUE if it contains at least one hiragana, otherwise FALSE.
      */
     public static function hasHiragana($str)
     {
@@ -40,12 +182,13 @@ class JpnForPhp
     }
 
     /**
-     * Looks for katakana within the specified string.
+     * Determines whether the given string contains
+     * katakana characters.
      *
      * @param $str
-     *  The string to process.
+     *   String to inspect.
      * @return
-     *  TRUE if it contains at least one katakana, otherwise FALSE.
+     *   TRUE if it contains at least one katakana, otherwise FALSE.
      */
     public static function hasKatakana($str)
     {
@@ -53,33 +196,30 @@ class JpnForPhp
     }
 
     /**
-     * Check if the specified string uses Japanese characters
-     */
-
-    /**
-     * Looks for Japanese characters within a given string.
+     * Determines whether the given string contains
+     * Japanese characters (kanji, hiragana or katakana).
      *
-     * @param $str
-     *  The string to process.
      * @return
-     *  TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
+     *   TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
      */
-    public static function isJapanese($str)
+    public static function hasJapaneseChars($str)
     {
         return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str);
     }
 
     /**
-     * Convert a given string in romaji into hiragana.
+     * Convert the specified string from romaji
+     * to hiragana.
+     *
      * @param $romaji
-     *  The string to be converted.
+     *   The string to be converted.
      * @return
-     *  Converted string into hiragana.
+     *   Converted string into hiragana.
      */
     public static function romajiToHiragana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convertChiisaiTsu($romaji, self::HIRAGANA);
+        $output = self::convertChiisaiTsu($romaji, self::JPNFORPHP_HIRAGANA);
         $table = array(
             'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
             'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
@@ -118,16 +258,18 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in romaji into katakana.
+     * Convert the specified string from romaji
+     * to katakana.
+     *
      * @param $romaji
-     *  The string to be converted.
+     *   The string to be converted.
      * @return
-     *  Converted string into katakana.
+     *   Converted string into katakana.
      */
     public static function romajiToKatakana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convertChiisaiTsu($romaji, self::KATAKANA);
+        $output = self::convertChiisaiTsu($romaji, self::JPNFORPHP_KATAKANA);
         $table = array(
             'a' => 'ア', 'i' => 'イ', 'u' => 'ウ', 'e' => 'エ', 'o' => 'オ',
             'ka' => 'カ', 'ki' => 'キ', 'ku' => 'ク', 'ke' => 'ケ', 'ko' => 'コ',
@@ -167,11 +309,13 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in hiragana into romaji.
+     * Convert the specified string from hiragana
+     * to romaji.
+     *
      * @param $hiragana
-     *  The string to be converted.
+     *   The string to be converted.
      * @return
-     *  Converted string into romaji.
+     *   Converted string into romaji.
      */
     public static function hiraganaToRomaji($hiragana)
     {
@@ -213,11 +357,13 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in katakana into romaji.
+     * Convert the specified string from katakana
+     * to romaji.
+     *
      * @param $katakana
-     *  The string to be converted.
+     *   The string to be converted.
      * @return
-     *  Converted string into romaji.
+     *   Converted string into romaji.
      */
     public static function katakanaToRomaji($katakana)
     {
@@ -258,39 +404,28 @@ class JpnForPhp
         return $output;
     }
 
-    public static function split($str, $length = 1)
-    {
-        $chrs = array();
-        $str_length = mb_strlen($str, 'UTF-8');
-        for ($i = 0; $i < $str_length; $i++) {
-            $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
-        }
-
-        return $chrs;
-    }
-
     /**
-     * Look into a given string to identify and convert potential sets of
-     * characters into small tsu characters.
+     * Look into the specified string to identify and convert
+     * potential sets of characters into small tsu characters.
      *
      * @param $str
-     *  String to look into.
+     *   String to look into.
      * @param $syllabary
-     *  Syllabary to be used ; either Hiragana or Katakana.
+     *   Syllabary to be used ; either Hiragana or Katakana.
      * @return
-     *  Converted string.
+     *   Converted string.
      */
     private static function convertChiisaiTsu($str, $syllabary)
     {
         $new_str = $str;
-        $length = strlen($str);
+        $length = self::length($str);
 
         //No need to go further.
-        if ($length < 2)
-
+        if ($length < 2) {
             return $new_str;
+        }
 
-        $chiisai_tsu = ($syllabary == self::HIRAGANA) ? 'っ' : 'ッ';
+        $chiisai_tsu = ($syllabary == self::JPNFORPHP_HIRAGANA) ? 'っ' : 'ッ';
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
         for ($i = 1; $i < $length; $i++) {
@@ -307,9 +442,9 @@ class JpnForPhp
      * Translate any small tsu characters into its equivalent in romaji.
      *
      * @param $str
-     *  String to be translated.
+     *   String to be translated.
      * @return
-     *  Translated string.
+     *   Translated string.
      */
     private static function translateChiisaiTsu($str)
     {
@@ -319,9 +454,9 @@ class JpnForPhp
         $length = count($chrs);
 
         //No need to go further.
-        if ($length < 2)
-
+        if ($length < 2) {
             return $new_str;
+        }
 
         for ($i = 0; $i < $length - 1; $i++) {
             if ($chrs[$i] === 'っ' || $chrs[$i] === 'ッ') {
@@ -334,5 +469,3 @@ class JpnForPhp
     }
 
 }
-
-?>
