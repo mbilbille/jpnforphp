@@ -75,7 +75,8 @@ class JpnForPhp
     }
 
     /**
-     * Inspects kanji characters.
+     * Determines whether the given string contains
+     * kanji characters.
      *
      * @param $str
      *   String to inspect.
@@ -88,7 +89,8 @@ class JpnForPhp
     }
 
     /**
-     * Inspects hiragana characters.
+     * Determines whether the given string contains
+     * hiragana characters.
      *
      * @param $str
      *   String to inspect.
@@ -101,7 +103,8 @@ class JpnForPhp
     }
 
     /**
-     * Inspects katakana characters.
+     * Determines whether the given string contains
+     * katakana characters.
      *
      * @param $str
      *   String to inspect.
@@ -114,12 +117,13 @@ class JpnForPhp
     }
 
     /**
-     * Looks for Japanese characters within a given string.
+     * Determines whether the given string contains
+     * Japanese characters (kanji, hiragana or katakana).
      *
      * @return
      *   TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
      */
-    public static function isJapanese($str)
+    public static function hasJapaneseChars($str)
     {
         return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str);
     }
@@ -382,5 +386,3 @@ class JpnForPhp
     }
 
 }
-
-?>

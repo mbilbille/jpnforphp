@@ -73,13 +73,13 @@ function unit($function, $inputs, $expected_result)
             <?php print unit('hasKatakana', array('ガッコウ'), TRUE); ?>
             <?php print unit('hasKatakana', array('学校　がっこう gakkou'), FALSE); ?>
             <tr>
-                <td colspan="3" class="heading">Function isJapanese()</td>
+                <td colspan="3" class="heading">Function hasJapaneseChars()</td>
             </tr>
-            <?php print unit('isJapanese', array('学校'), TRUE); ?>
-            <?php print unit('isJapanese', array('がっこう'), TRUE); ?>
-            <?php print unit('isJapanese', array('ガッコウ'), TRUE); ?>
-            <?php print unit('isJapanese', array('私は学生です'), TRUE); ?>
-            <?php print unit('isJapanese', array('gakkou'), FALSE); ?>
+            <?php print unit('hasJapaneseChars', array('学校'), TRUE); ?>
+            <?php print unit('hasJapaneseChars', array('がっこう'), TRUE); ?>
+            <?php print unit('hasJapaneseChars', array('ガッコウ'), TRUE); ?>
+            <?php print unit('hasJapaneseChars', array('私は学生です'), TRUE); ?>
+            <?php print unit('hasJapaneseChars', array('gakkou'), FALSE); ?>
             <tr>
                 <td colspan="3" class="heading">Function romajiToHiragana()</td>
             </tr>
