@@ -107,10 +107,10 @@ function unit($function, $inputs, $expected_result)
             </tr>
             <?php print unit('split', array('がっこう'), array('が', 'っ', 'こ', 'う')); ?>
             <tr>
-                <td colspan="3" class="heading">Function length()</td>
+                <td colspan="3" class="heading">Function strlen()</td>
             </tr>
-            <?php print unit('length', array('がっこう'), 4); ?>
-            <?php print unit('length', array('会社にいます'), 6); ?>
+            <?php print unit('strlen', array('がっこう'), 4); ?>
+            <?php print unit('strlen', array('会社にいます'), 6); ?>
             <tr>
                 <td colspan="3" class="heading">Function charAt()</td>
             </tr>
