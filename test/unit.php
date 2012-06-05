@@ -14,6 +14,7 @@ function unit($function, $inputs, $expected_result)
 
     return $output;
 }
+$time_start = microtime(true);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,7 @@ function unit($function, $inputs, $expected_result)
             body {
                 font-family: sans-serif;
                 font-size: 12px;
+                background: #f2f2f2;
             }
             table {
                 border: 1px solid #bbb;
@@ -34,18 +36,29 @@ function unit($function, $inputs, $expected_result)
             }
             td, th{
                 border: 1px solid #bbb;
-                width: 33%;
+                background: #fff;
+                width: 31%;
+                padding: 5px;
             }
             td.heading{
                 background: #e4e4e4;
                 font-weight: bold;
                 padding: 10px;
+                border-top-width: 3px;
+            }
+            td.pass,
+            td.fail{
+                width: 6%;
             }
             td.fail{
                 background: #CF4425;
             }
             td.pass{
                 background: #52964F;
+            }
+            p.info{
+                color: #888;
+                font-style: italic;
             }
         </style>
     </head>
@@ -57,6 +70,23 @@ function unit($function, $inputs, $expected_result)
                 <th>Expected results</th>
                 <th>Results</th>
             </tr>
+            <tr>
+                <td colspan="3" class="heading">Function countKanji()</td>
+            </tr>
+            <?php print unit('countKanji', array('中学校'), 3); ?>
+            <?php print unit('countKanji', array('車'), 1); ?>
+            <?php print unit('countKanji', array('食べる'), 1); ?>
+            <tr>
+                <td colspan="3" class="heading">Function countHiragana()</td>
+            </tr>
+            <?php print unit('countHiragana', array('がっこう'), 4); ?>
+            <?php print unit('countHiragana', array('でんき'), 3); ?>
+            <?php print unit('countHiragana', array('食べる'), 2); ?>
+            <tr>
+                <td colspan="3" class="heading">Function countKatakana()</td>
+            </tr>
+            <?php print unit('countKatakana', array('ビール'), 3); ?>
+            <?php print unit('countKatakana', array('サッカー'), 4); ?>
             <tr>
                 <td colspan="3" class="heading">Function hasKanji()</td>
             </tr>
@@ -107,15 +137,22 @@ function unit($function, $inputs, $expected_result)
             </tr>
             <?php print unit('split', array('がっこう'), array('が', 'っ', 'こ', 'う')); ?>
             <tr>
-                <td colspan="3" class="heading">Function strlen()</td>
+                <td colspan="3" class="heading">Function length()</td>
             </tr>
-            <?php print unit('strlen', array('がっこう'), 4); ?>
-            <?php print unit('strlen', array('会社にいます'), 6); ?>
+            <?php print unit('length', array('がっこう'), 4); ?>
+            <?php print unit('length', array('会社にいます'), 6); ?>
             <tr>
                 <td colspan="3" class="heading">Function charAt()</td>
             </tr>
             <?php print unit('charAt', array('がっこう', 2), 'こ'); ?>
             <?php print unit('charAt', array('会社にいます', 0), '会'); ?>
+            <tr>
+                <td colspan="3" class="heading">Function inspect()</td>
+            </tr>
+            <?php print unit('inspect', array('がっこう'), array('length' => 4,'kanji' => 0,'hiragana' => 4,'katakana' => 0)); ?>
+            <?php print unit('inspect', array('私はマテューです。'), array('length' => 9,'kanji' => 1,'hiragana' => 3,'katakana' => 4)); ?>
         </table>
+        <?php $time_end = microtime(true);?>
+        <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>
     </body>
 </html>

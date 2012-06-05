@@ -32,7 +32,7 @@ class JpnForPhp
      *   An integer.
      */
 
-    public static function strlen($str)
+    public static function length($str)
     {
         return mb_strlen($str, 'UTF-8');
     }
@@ -51,7 +51,7 @@ class JpnForPhp
     public static function split($str, $length = 1)
     {
         $chrs = array();
-        $str_length = mb_strlen($str, 'UTF-8');
+        $str_length = self::length($str);
         for ($i = 0; $i < $str_length; $i++) {
             $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
         }
@@ -72,6 +72,85 @@ class JpnForPhp
     public static function charAt($str, $index)
     {
         return mb_substr($str, $index, 1, 'UTF-8');
+    }
+
+    /**
+     * Inspects a given string and returns usefull
+     * details about it.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An associative array containing the
+     *   following items:
+     *   - "length" : string length.
+     *   - "kanji" : number of kanji within this string.
+     *   - "hiragana" : number of hiragana within this string.
+     *   - "katakana" : number of katakana within this string.
+     */
+    public static function inspect($str)
+    {
+        $result = array(
+            'length' => 0,
+            'kanji' => 0,
+            'hiragana' => 0,
+            'katakana' => 0,
+        );
+
+        $result['length'] = self::length($str);
+        $result['kanji'] = self::countKanji($str);
+        $result['hiragana'] = self::countHiragana($str);
+        $result['katakana'] = self::countKatakana($str);
+
+        return $result;
+    }
+
+    /**
+     * Count number of kanji within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countKanji($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{4E00}-\x{9FBF}]/u', $str, $matches);
+    }
+
+    /**
+     * Count number of hiragana within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countHiragana($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{3040}-\x{309F}]/u', $str, $matches);
+    }
+
+    /**
+     * Count number of katakana within the specified
+     * string.
+     *
+     * @param $str
+     *   String to be inspected.
+     * @return
+     *   An integer.
+     */
+    public static function countKatakana($str)
+    {
+        $matches = array();
+
+        return preg_match_all('/[\x{30A0}-\x{30FF}]/u', $str, $matches);
     }
 
     /**
@@ -129,7 +208,8 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in romaji into hiragana.
+     * Convert the specified string from romaji
+     * to hiragana.
      *
      * @param $romaji
      *   The string to be converted.
@@ -178,7 +258,8 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in romaji into katakana.
+     * Convert the specified string from romaji
+     * to katakana.
      *
      * @param $romaji
      *   The string to be converted.
@@ -228,7 +309,8 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in hiragana into romaji.
+     * Convert the specified string from hiragana
+     * to romaji.
      *
      * @param $hiragana
      *   The string to be converted.
@@ -275,7 +357,8 @@ class JpnForPhp
     }
 
     /**
-     * Convert a given string in katakana into romaji.
+     * Convert the specified string from katakana
+     * to romaji.
      *
      * @param $katakana
      *   The string to be converted.
@@ -322,8 +405,8 @@ class JpnForPhp
     }
 
     /**
-     * Look into a given string to identify and convert potential sets of
-     * characters into small tsu characters.
+     * Look into the specified string to identify and convert
+     * potential sets of characters into small tsu characters.
      *
      * @param $str
      *   String to look into.
@@ -335,7 +418,7 @@ class JpnForPhp
     private static function convertChiisaiTsu($str, $syllabary)
     {
         $new_str = $str;
-        $length = strlen($str);
+        $length = self::length($str);
 
         //No need to go further.
         if ($length < 2) {
