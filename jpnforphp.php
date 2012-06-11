@@ -59,11 +59,28 @@ class JpnForPhp
         return $chrs;
     }
 
+	 /**
+     * Returns a new string that is a substring of the given string.
+     *
+     * @param $str
+     *   The input string.
+     * @param $begin
+     *   The beginning index, inclusive.
+	 * @param $end
+	 *   The ending index, exclusive.
+     * @return
+     *   A substring
+     */
+    public static function subString($str, $begin, $end)
+    {
+        return mb_substr($str, $begin, $end, 'UTF-8');
+    }
+	
     /**
      * Returns the character at the specified index.
      *
      * @param $str
-     *   String to look into.
+     *   The input string.
      * @param $index
      *   The index of the character to return (0 based indexing).
      * @return
@@ -71,7 +88,7 @@ class JpnForPhp
      */
     public static function charAt($str, $index)
     {
-        return mb_substr($str, $index, 1, 'UTF-8');
+        return self::subString($str, $index, 1);
     }
 
     /**

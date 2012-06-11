@@ -147,6 +147,11 @@ $time_start = microtime(true);
             <?php print unit('charAt', array('がっこう', 2), 'こ'); ?>
             <?php print unit('charAt', array('会社にいます', 0), '会'); ?>
             <tr>
+                <td colspan="3" class="heading">Function subString()</td>
+            </tr>
+            <?php print unit('subString', array('がっこう', 2, 4), 'こう'); ?>
+            <?php print unit('subString', array('会社にいます', 0, 3), '会社に'); ?>
+            <tr>
                 <td colspan="3" class="heading">Function inspect()</td>
             </tr>
             <?php print unit('inspect', array('がっこう'), array('length' => 4,'kanji' => 0,'hiragana' => 4,'katakana' => 0)); ?>
