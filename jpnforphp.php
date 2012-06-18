@@ -6,7 +6,7 @@
  *
  * @author      Matthieu Bilbille
  * @link	https://github.com/mbilbille/jpnforphp
- * @version	0.2
+ * @version	0.2.1
  */
 
 /**
