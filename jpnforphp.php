@@ -59,23 +59,23 @@ class JpnForPhp
         return $chrs;
     }
 
-	 /**
+    /**
      * Returns a new string that is a substring of the given string.
      *
      * @param $str
      *   The input string.
      * @param $begin
      *   The beginning index, inclusive.
-	 * @param $end
-	 *   The ending index, exclusive.
+     * @param $len
+     *   Maximum number of characters to use from str.
      * @return
      *   A substring
      */
-    public static function subString($str, $begin, $end)
+    public static function subString($str, $begin, $len)
     {
-        return mb_substr($str, $begin, $end, 'UTF-8');
+        return mb_substr($str, $begin, $len, 'UTF-8');
     }
-	
+
     /**
      * Returns the character at the specified index.
      *
