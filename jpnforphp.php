@@ -28,10 +28,9 @@ class JpnForPhp
      *
      * @param $str
      *   The string being measured for length.
-     * @return
+     * @return int
      *   An integer.
      */
-
     public static function length($str)
     {
         return mb_strlen($str, 'UTF-8');
@@ -45,7 +44,7 @@ class JpnForPhp
      *   String to split.
      * @param $length (optional)
      *   Define an optional substring length. Default to 1.
-     * @return
+     * @return array
      *   An array of strings.
      */
     public static function split($str, $length = 1)
@@ -68,7 +67,7 @@ class JpnForPhp
      *   The beginning index, inclusive.
 	 * @param $end
 	 *   The ending index, exclusive.
-     * @return
+     * @return string
      *   A substring
      */
     public static function subString($str, $begin, $end)
@@ -83,7 +82,7 @@ class JpnForPhp
      *   The input string.
      * @param $index
      *   The index of the character to return (0 based indexing).
-     * @return
+     * @return int
      *   The character at the specified index.
      */
     public static function charAt($str, $index)
@@ -97,7 +96,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to be inspected.
-     * @return
+     * @return array
      *   An associative array containing the
      *   following items:
      *   - "length" : string length.
@@ -128,7 +127,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to be inspected.
-     * @return
+     * @return int
      *   An integer.
      */
     public static function countKanji($str)
@@ -144,7 +143,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to be inspected.
-     * @return
+     * @return int
      *   An integer.
      */
     public static function countHiragana($str)
@@ -160,7 +159,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to be inspected.
-     * @return
+     * @return int
      *   An integer.
      */
     public static function countKatakana($str)
@@ -176,7 +175,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to inspect.
-     * @return
+     * @return bool
      *   TRUE if it contains at least one kanji, otherwise FALSE.
      */
     public static function hasKanji($str)
@@ -190,7 +189,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to inspect.
-     * @return
+     * @return bool
      *   TRUE if it contains at least one hiragana, otherwise FALSE.
      */
     public static function hasHiragana($str)
@@ -204,7 +203,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to inspect.
-     * @return
+     * @return bool
      *   TRUE if it contains at least one katakana, otherwise FALSE.
      */
     public static function hasKatakana($str)
@@ -215,8 +214,10 @@ class JpnForPhp
     /**
      * Determines whether the given string contains
      * Japanese characters (kanji, hiragana or katakana).
-     *
-     * @return
+	 *
+	 * @param $str
+	 *   String to inspect.
+     * @return bool
      *   TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
      */
     public static function hasJapaneseChars($str)
@@ -230,7 +231,7 @@ class JpnForPhp
      *
      * @param $romaji
      *   The string to be converted.
-     * @return
+     * @return string
      *   Converted string into hiragana.
      */
     public static function romajiToHiragana($romaji)
@@ -280,7 +281,7 @@ class JpnForPhp
      *
      * @param $romaji
      *   The string to be converted.
-     * @return
+     * @return string
      *   Converted string into katakana.
      */
     public static function romajiToKatakana($romaji)
@@ -331,7 +332,7 @@ class JpnForPhp
      *
      * @param $hiragana
      *   The string to be converted.
-     * @return
+     * @return string
      *   Converted string into romaji.
      */
     public static function hiraganaToRomaji($hiragana)
@@ -379,7 +380,7 @@ class JpnForPhp
      *
      * @param $katakana
      *   The string to be converted.
-     * @return
+     * @return string
      *   Converted string into romaji.
      */
     public static function katakanaToRomaji($katakana)
@@ -427,7 +428,7 @@ class JpnForPhp
 	 *
 	 * @param $str
 	 * 	String to look into
-	 * @return String
+	 * @return string
 	 *	Cleaned string
 	 */
 	public static function removeLTRM($str)
@@ -456,7 +457,7 @@ class JpnForPhp
      *   String to look into.
      * @param $syllabary
      *   Syllabary to be used ; either Hiragana or Katakana.
-     * @return
+     * @return string
      *   Converted string.
      */
     private static function convertChiisaiTsu($str, $syllabary)
@@ -487,7 +488,7 @@ class JpnForPhp
      *
      * @param $str
      *   String to be translated.
-     * @return
+     * @return string
      *   Translated string.
      */
     private static function translateChiisaiTsu($str)
