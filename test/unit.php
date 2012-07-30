@@ -170,7 +170,8 @@ $time_start = microtime(true);
 			<?php print unit('removeDiacritics', array('Kyōto'), 'Kyoto'); ?>
 			<?php print unit('removeDiacritics', array('Chūō-Sōbu'), 'Chuo-Sobu'); ?>
 			<?php print unit('removeDiacritics', array('Noël, Pâques, Été, Cachaça, Háček'), 'Noel, Paques, Ete, Cachaca, Hacek'); ?>
-            <?php print unit('removeDiacritics', array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'), 'AAAAAACEEEEEIIIINOOOOOUUUUYY');?>
+            <?php print unit('removeDiacritics', array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'), 'AAAAAACEEEEIIIINOOOOOUUUUYY');?>
+            <?php print unit('removeDiacritics', array('áàâäãåçéèêëíìîïñóòôöõúùûüýÿ'), 'aaaaaaceeeeiiiinooooouuuuyy');?>
         </table>
         <?php $time_end = microtime(true);?>
         <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>

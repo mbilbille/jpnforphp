@@ -456,7 +456,7 @@ class JpnForPhp
 			foreach($chars as $char) {
 				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
 				if($newChar != $char) {
-					$newChar = preg_replace('/\p{P}|\^|\`/u', '', $newChar);
+					$newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
 				}
 				$newChars[] = $newChar;
 			}
