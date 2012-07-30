@@ -74,7 +74,7 @@ class JpnForPhp
     {
         return mb_substr($str, $begin, $end, 'UTF-8');
     }
-	
+
     /**
      * Returns the character at the specified index.
      *
@@ -446,7 +446,18 @@ class JpnForPhp
 	 */
 	public static function removeDiacritics($str)
 	{
-		return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
+		$newChars = array();
+		$chars = self::split($str);
+		if(!empty($chars)) {
+			foreach($chars as $char) {
+				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
+				if($newChar != $char) {
+					$newChar = preg_replace('/\p{P}|\^/u', '', $newChar);
+				}
+				$newChars[] = $newChar;
+			}
+		}
+		return implode('',$newChars);
 	}
 
 	/**
