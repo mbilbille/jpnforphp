@@ -439,18 +439,29 @@ class JpnForPhp
             return preg_replace('/\xe2\x80\x8e/', '', $str);
     }
 
-    /**
-     * Remove diacritics from the specified string
-     *
-     * @param $str
-     * 	String to look into
-     * @return string
-     * 	Cleaned string
-     */
-    public static function removeDiacritics($str)
-    {
-            return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
-    }
+	/**
+	 * Remove diacritics from the specified string
+	 *
+	 * @param $str
+	 * 	String to look into
+	 * @return string
+	 * 	Cleaned string
+	 */
+	public static function removeDiacritics($str)
+	{
+		$newChars = array();
+		$chars = self::split($str);
+		if(!empty($chars)) {
+			foreach($chars as $char) {
+				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
+				if($newChar != $char) {
+					$newChar = preg_replace('/\p{P}|\^/u', '', $newChar);
+				}
+				$newChars[] = $newChar;
+			}
+		}
+		return implode('',$newChars);
+	}
 
     /**
      * Look into the specified string to identify and convert

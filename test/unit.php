@@ -29,7 +29,7 @@ $time_start = microtime(true);
             }
             table {
                 border: 1px solid #bbb;
-                width: 600px;
+                width: 90%;
                 margin: 30px auto 0 auto;
                 border-collapse: collapse;
                 border-spacing: 0;
@@ -164,7 +164,9 @@ $time_start = microtime(true);
             </tr>
             <?php print unit('removeDiacritics', array('Kyōto'), 'Kyoto'); ?>
             <?php print unit('removeDiacritics', array('Chūō-Sōbu'), 'Chuo-Sobu'); ?>
-            <?php print unit('removeDiacritics', array('Noël, Pâques, la Trinité'), 'Noel, Paques, la Trinite'); ?>
+            <?php print unit('removeDiacritics', array('Noël, Pâques, la Trinité'), 'Noel, Paques, la Trinite');?>
+            <?php print unit('removeDiacritics', array('áàâäãåçéèêëíìîïñóòôöõúùûüýÿ'), 'aaaaaaceeeeiiiinooooouuuuyy');?>
+            <?php print unit('removeDiacritics', array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'), 'AAAAAACEEEEEIIIINOOOOOUUUUYY');?>
         </table>
         <?php $time_end = microtime(true);?>
         <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>
