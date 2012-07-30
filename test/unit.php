@@ -156,6 +156,15 @@ $time_start = microtime(true);
             </tr>
             <?php print unit('inspect', array('がっこう'), array('length' => 4,'kanji' => 0,'hiragana' => 4,'katakana' => 0)); ?>
             <?php print unit('inspect', array('私はマテューです。'), array('length' => 9,'kanji' => 1,'hiragana' => 3,'katakana' => 4)); ?>
+            <tr>
+                    <td colspan="3" class="heading">Function removeLTRM()</td>
+            </tr>
+            <tr>
+                    <td colspan="3" class="heading">Function removeDiacritics()</td>
+            </tr>
+            <?php print unit('removeDiacritics', array('Kyōto'), 'Kyoto'); ?>
+            <?php print unit('removeDiacritics', array('Chūō-Sōbu'), 'Chuo-Sobu'); ?>
+            <?php print unit('removeDiacritics', array('Noël, Pâques, la Trinité'), 'Noel, Paques, la Trinite'); ?>
         </table>
         <?php $time_end = microtime(true);?>
         <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>
