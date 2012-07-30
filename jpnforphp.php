@@ -421,7 +421,34 @@ class JpnForPhp
         return $output;
     }
 
-    /**
+	/**
+	 * Remove hidden LTR Mark character. trim() and variant
+	 * will ignore it
+	 *
+	 * @param $str
+	 * 	String to look into
+	 * @return String
+	 *	Cleaned string
+	 */
+	public static function removeLTRM($str)
+	{
+		return preg_replace('/\xe2\x80\x8e/', '', $str);
+	}
+
+	/**
+	 * Remove diacritics from the specified string
+	 *
+	 * @param $str
+	 * 	String to look into
+	 * @return string
+	 * 	Cleaned string
+	 */
+	public static function removeDiacritics($str)
+	{
+		return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
+	}
+
+	/**
      * Look into the specified string to identify and convert
      * potential sets of characters into small tsu characters.
      *
