@@ -1,7 +1,7 @@
 <?php
 
 /**
- * JpnForPhp library, brings some usefull tools and functionalities
+ * JpnForPhp library, brings some useful tools and functionalities
  * to interact with Japanese characters.
  *
  * @author      Matthieu Bilbille
