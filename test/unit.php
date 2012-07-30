@@ -81,12 +81,16 @@ $time_start = microtime(true);
             </tr>
             <?php print unit('countHiragana', array('がっこう'), 4); ?>
             <?php print unit('countHiragana', array('でんき'), 3); ?>
-            <?php print unit('countHiragana', array('食べる'), 2); ?>
-            <tr>
+			<?php print unit('countHiragana', array('食べる'), 2); ?>
+			<?php print unit('countHiragana', array('ぁぃぅぇぉ'), 5); ?>
+			<tr>
                 <td colspan="3" class="heading">Function countKatakana()</td>
             </tr>
             <?php print unit('countKatakana', array('ビール'), 3); ?>
             <?php print unit('countKatakana', array('サッカー'), 4); ?>
+			<?php print unit('countKatakana', array('ｶｷｸｹｺ'), 5); ?>
+			<?php print unit('countKatakana', array('㋐'), 1); ?>
+			<?php print unit('countKatakana', array('㌒㌕'), 2); ?>
             <tr>
                 <td colspan="3" class="heading">Function hasKanji()</td>
             </tr>
@@ -159,12 +163,13 @@ $time_start = microtime(true);
 			<tr>
 				<td colspan="3" class="heading">Function removeLTRM()</td>
 			</tr>
+			<?php print unit('removeLTRM', array("Kyōto\xe2\x80\x8e"), 'Kyōto'); ?>
 			<tr>
 				<td colspan="3" class="heading">Function removeDiacritics()</td>
 			</tr>
 			<?php print unit('removeDiacritics', array('Kyōto'), 'Kyoto'); ?>
 			<?php print unit('removeDiacritics', array('Chūō-Sōbu'), 'Chuo-Sobu'); ?>
-			<?php print unit('removeDiacritics', array('Noël, Pâques, la Trinité'), 'Noel, Paques, la Trinite'); ?>
+			<?php print unit('removeDiacritics', array('Noël, Pâques, Été, Cachaça, Háček'), 'Noel, Paques, Ete, Cachaca, Hacek'); ?>
         </table>
         <?php $time_end = microtime(true);?>
         <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>

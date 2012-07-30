@@ -91,7 +91,7 @@ class JpnForPhp
     }
 
     /**
-     * Inspects a given string and returns usefull
+     * Inspects a given string and returns useful
      * details about it.
      *
      * @param $str
@@ -134,7 +134,7 @@ class JpnForPhp
     {
         $matches = array();
 
-        return preg_match_all('/[\x{4E00}-\x{9FBF}]/u', $str, $matches);
+        return preg_match_all('/\p{Han}/u', $str, $matches);
     }
 
     /**
@@ -150,12 +150,13 @@ class JpnForPhp
     {
         $matches = array();
 
-        return preg_match_all('/[\x{3040}-\x{309F}]/u', $str, $matches);
+        return preg_match_all('/\p{Hiragana}/u', $str, $matches);
     }
 
     /**
      * Count number of katakana within the specified
-     * string.
+     * string. Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) is
+	 * considered as Katakana here.
      *
      * @param $str
      *   String to be inspected.
@@ -166,7 +167,7 @@ class JpnForPhp
     {
         $matches = array();
 
-        return preg_match_all('/[\x{30A0}-\x{30FF}]/u', $str, $matches);
+        return preg_match_all('/\p{Katakana}|ー/u', $str, $matches);
     }
 
     /**
@@ -180,7 +181,7 @@ class JpnForPhp
      */
     public static function hasKanji($str)
     {
-        return preg_match('/[\x{4E00}-\x{9FBF}]/u', $str) > 0;
+        return preg_match('/\p{Han}/u', $str) > 0;
     }
 
     /**
@@ -194,7 +195,7 @@ class JpnForPhp
      */
     public static function hasHiragana($str)
     {
-        return preg_match('/[\x{3040}-\x{309F}]/u', $str) > 0;
+        return preg_match('/\p{Hiragana}/u', $str) > 0;
     }
 
     /**
@@ -208,7 +209,7 @@ class JpnForPhp
      */
     public static function hasKatakana($str)
     {
-        return preg_match('/[\x{30A0}-\x{30FF}]/u', $str) > 0;
+        return preg_match('/\p{Katakana}/u', $str) > 0;
     }
 
     /**
@@ -452,7 +453,7 @@ class JpnForPhp
 			foreach($chars as $char) {
 				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
 				if($newChar != $char) {
-					$newChar = preg_replace('/\p{P}|\^/u', '', $newChar);
+					$newChar = preg_replace('/\p{P}|\^|\`/u', '', $newChar);
 				}
 				$newChars[] = $newChar;
 			}
