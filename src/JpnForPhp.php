@@ -156,7 +156,7 @@ class JpnForPhp
     /**
      * Count number of katakana within the specified
      * string. Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) is
-	 * considered as Katakana here.
+     * considered as Katakana here.
      *
      * @param $str
      *   String to be inspected.
@@ -215,9 +215,9 @@ class JpnForPhp
     /**
      * Determines whether the given string contains
      * Japanese characters (kanji, hiragana or katakana).
-	 *
-	 * @param $str
-	 *   String to inspect.
+     *
+     * @param $str
+     *   String to inspect.
      * @return bool
      *   TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
      */
@@ -321,7 +321,7 @@ class JpnForPhp
             'pya' => 'ピャ', 'pyu' => 'ピュ', 'pyo' => 'ピョ',
             ' ' => '　', ',' => '、', ', ' => '、',
             //@todo handle small characters like ぁ　ぃ　ぅ　ぇ　ぉ
-            
+
         );
         $output = strtr($output, $table);
 
@@ -440,29 +440,30 @@ class JpnForPhp
             return preg_replace('/\xe2\x80\x8e/', '', $str);
     }
 
-	/**
-	 * Remove diacritics from the specified string
-	 *
-	 * @param $str
-	 * 	String to look into
-	 * @return string
-	 * 	Cleaned string
-	 */
-	public static function removeDiacritics($str)
-	{
-		$newChars = array();
-		$chars = self::split($str);
-		if(!empty($chars)) {
-			foreach($chars as $char) {
-				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
-				if($newChar != $char) {
-					$newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
-				}
-				$newChars[] = $newChar;
-			}
-		}
-		return implode('',$newChars);
-	}
+    /**
+     * Remove diacritics from the specified string
+     *
+     * @param $str
+     * 	String to look into
+     * @return string
+     * 	Cleaned string
+     */
+    public static function removeDiacritics($str)
+    {
+        $newChars = array();
+        $chars = self::split($str);
+        if (!empty($chars)) {
+            foreach ($chars as $char) {
+                $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
+                if ($newChar != $char) {
+                    $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
+                }
+                $newChars[] = $newChar;
+            }
+        }
+
+        return implode('',$newChars);
+    }
 
     /**
      * Look into the specified string to identify and convert
