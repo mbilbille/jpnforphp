@@ -450,11 +450,18 @@ class JpnForPhp
 	 */
 	public static function removeDiacritics($str)
 	{
-		if(function_exists('iconv')) {
-			$str = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
+		$newChars = array();
+		$chars = self::split($str);
+		if(!empty($chars)) {
+			foreach($chars as $char) {
+				$newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
+				if($newChar != $char) {
+					$newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
+				}
+				$newChars[] = $newChar;
+			}
 		}
-		$str = preg_replace('/[\^`~"\']+/u', '', $str);
-		return $str;
+		return implode('',$newChars);
 	}
 
     /**
