@@ -11,6 +11,7 @@ Provides nice functions & wrappers to interact with Japanese language.
 * Enhance default PHP splitter to properly split Japanese (ie: UTF-8) string.
 * Inspect a string to get various information about it.
 * Convert string from hiragana or katakana into romaji (and vice versa)
+* Remove LTR mark character and diacritics
 
 ##Integration
 
