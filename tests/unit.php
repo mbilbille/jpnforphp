@@ -1,5 +1,5 @@
 <?php
-include_once '../jpnforphp.php';
+include_once '../src/jpnforphp.php';
 
 function unit($function, $inputs, $expected_result)
 {
