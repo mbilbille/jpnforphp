@@ -21,6 +21,9 @@ class JpnForPhp
 
     const JPNFORPHP_HIRAGANA = 0; // Hiragana
     const JPNFORPHP_KATAKANA = 1; // Katakana
+    const JPNFORPHP_SOKUON_HIRAGANA =  'っ';
+    const JPNFORPHP_SOKUON_KATAKANA = 'ッ';
+    const JPNFORPHP_CHOONPU = 'ー';
 
     /**
      * Get string length.
@@ -31,7 +34,6 @@ class JpnForPhp
      * @return int
      *   An integer.
      */
-
     public static function length($str)
     {
         return mb_strlen($str, 'UTF-8');
@@ -163,7 +165,7 @@ class JpnForPhp
     {
         $matches = array();
 
-        return preg_match_all('/\p{Katakana}|ー/u', $str, $matches);
+        return preg_match_all('/\p{Katakana}|' . self::JPNFORPHP_CHOONPU . '/u', $str, $matches);
     }
 
     /**
@@ -544,15 +546,18 @@ class JpnForPhp
             return $new_str;
         }
 
-        $chiisai_tsu = ($syllabary == self::JPNFORPHP_HIRAGANA) ? 'っ' : 'ッ';
+        $sokuon = ($syllabary == self::JPNFORPHP_HIRAGANA) ? self::JPNFORPHP_SOKUON_HIRAGANA : self::JPNFORPHP_SOKUON_KATAKANA;
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
         for ($i = 1; $i < $length; $i++)
         {
-            $previous_char = substr($str, $i - 1, 1);
-            if (!in_array($previous_char, $skip) && $previous_char === substr($str, $i, 1))
+            $prev_char = substr($str, $i - 1, 1);
+            if (!in_array($prev_char, $skip))
             {
-                $new_str = substr_replace($str, $chiisai_tsu, $i - 1, 1);
+                if ($prev_char === substr($str, $i, 1) || ($prev_char === 't' && substr($str, $i, 2) === 'ch'))
+                {
+                    $new_str = substr_replace($str, $sokuon, $i - 1, 1);
+                }
             }
         }
 
@@ -583,9 +588,15 @@ class JpnForPhp
 
         for ($i = 0; $i < $length - 1; $i++)
         {
-            if ($chrs[$i] === 'っ' || $chrs[$i] === 'ッ')
+            if ($chrs[$i] === self::JPNFORPHP_SOKUON_HIRAGANA || $chrs[$i] === self::JPNFORPHP_SOKUON_KATAKANA)
             {
-                $chrs[$i] = $chrs[$i + 1];
+                if ($i < $length - 2 && $chrs[$i + 1].$chrs[$i + 2] === 'ch')
+                {
+                    $chrs[$i] = 't';
+                } else
+                {
+                    $chrs[$i] = $chrs[$i + 1];
+                }
             }
         }
         $new_str = implode($chrs);

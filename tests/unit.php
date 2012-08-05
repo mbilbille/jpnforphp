@@ -118,23 +118,30 @@ $time_start = microtime(true);
                 <td colspan="3" class="heading">Function romajiToHiragana()</td>
             </tr>
             <?php print unit('romajiToHiragana', array('gakkou'), 'がっこう'); ?>
-            <?php print unit('romajiToHiragana', array('watashi ha gakusei desu'), 'わたし　は　がくせい　です'); ?>
+            <?php print unit('romajiToHiragana', array('matcha'), 'まっちゃ'); ?>
+            <?php print unit('romajiToHiragana', array('maccha'), 'まっちゃ'); ?>
+            <?php print unit('romajiToHiragana', array('kekka'), 'けっか'); ?>
             <tr>
                 <td colspan="3" class="heading">Function romajiToKatakana()</td>
             </tr>
             <?php print unit('romajiToKatakana', array('furansu'), 'フランス'); ?>
-            <?php print unit('romajiToKatakana', array('watashi ha furansujin desu'), 'ワタシ　ハ　フランスジン　デス'); ?>
+            <?php print unit('romajiToKatakana', array('matcha'), 'マッチャ'); ?>
+            <?php print unit('romajiToKatakana', array('maccha'), 'マッチャ'); ?>
+            <?php print unit('romajiToKatakana', array('kekka'), 'ケッカ'); ?>
             <tr>
                 <td colspan="3" class="heading">Function hiraganaToRomaji()</td>
             </tr>
             <?php print unit('hiraganaToRomaji', array('がっこう'), 'gakkou'); ?>
-            <?php print unit('hiraganaToRomaji', array('かいしゃ　に　います'), 'kaisha ni imasu'); ?>
+            <?php print unit('hiraganaToRomaji', array('まっちゃ'), 'matcha'); ?>
+            <?php print unit('hiraganaToRomaji', array('けっか'), 'kekka'); ?>
             <?php print unit('hiraganaToRomaji', array('会社にいます'), '会社niimasu'); ?>
             <tr>
             <tr>
                 <td colspan="3" class="heading">Function katakanaToRomaji()</td>
             </tr>
             <?php print unit('katakanaToRomaji', array('ガッコウ'), 'gakkou'); ?>
+            <?php print unit('katakanaToRomaji', array('マッチャ'), 'matcha'); ?>            
+            <?php print unit('katakanaToRomaji', array('ケッカ'), 'kekka'); ?>            
             <?php print unit('katakanaToRomaji', array('カイシャニイマス'), 'kaishaniimasu'); ?>
             <tr>
                 <td colspan="3" class="heading">Function split()</td>
