@@ -21,7 +21,7 @@ class JpnForPhp
 
     const JPNFORPHP_HIRAGANA = 0; // Hiragana
     const JPNFORPHP_KATAKANA = 1; // Katakana
-    const JPNFORPHP_SOKUON_HIRAGANA =  'っ';
+    const JPNFORPHP_SOKUON_HIRAGANA = 'っ';
     const JPNFORPHP_SOKUON_KATAKANA = 'ッ';
     const JPNFORPHP_CHOONPU = 'ー';
 
@@ -223,17 +223,17 @@ class JpnForPhp
     }
 
     /**
-     * Convert the specified string from romaji to hiragana.
+     * Transliterate a string from romaji to hiragana.
      *
-     * @param $romaji
+     * @param $str
      *   The string to be converted.
      * @return string
      *   Converted string into hiragana.
      */
-    public static function romajiToHiragana($romaji)
+    public static function romajiToHiragana($str)
     {
-        $romaji = strtolower($romaji);
-        $output = self::convertSokuon($romaji, self::JPNFORPHP_HIRAGANA);
+        $str = self::prepareKanaTransliteration($str);
+        $str = self::convertSokuon($str, self::JPNFORPHP_HIRAGANA);
         $table = array(
             'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
             'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
@@ -266,23 +266,23 @@ class JpnForPhp
             'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pyo' => 'ぴょ',
             ' ' => '　', ',' => '、', ', ' => '、',
         );
-        $output = strtr($output, $table);
+        $output = strtr($str, $table);
 
         return $output;
     }
 
     /**
-     * Convert the specified string from romaji to katakana.
+     * Transliterate a string from romaji to katakana.
      *
-     * @param $romaji
+     * @param $str
      *   The string to be converted.
      * @return string
      *   Converted string into katakana.
      */
-    public static function romajiToKatakana($romaji)
+    public static function romajiToKatakana($str)
     {
-        $romaji = strtolower($romaji);
-        $output = self::convertSokuon($romaji, self::JPNFORPHP_KATAKANA);
+        $str = self::prepareKanaTransliteration($str);
+        $str = self::convertSokuon($str, self::JPNFORPHP_KATAKANA);
         $table = array(
             'a' => 'ア', 'i' => 'イ', 'u' => 'ウ', 'e' => 'エ', 'o' => 'オ',
             'ka' => 'カ', 'ki' => 'キ', 'ku' => 'ク', 'ke' => 'ケ', 'ko' => 'コ',
@@ -354,7 +354,7 @@ class JpnForPhp
     }
 
     /**
-     * Convert the specified string from hiragana to romaji.
+     * Transliterate a string from hiragana to romaji.
      *
      * @param $hiragana
      *   The string to be converted.
@@ -396,13 +396,13 @@ class JpnForPhp
             '　' => ' ', '、' => ',　',
         );
         $output = strtr($hiragana, $table);
-        $output = self::translateSokuon($output);
+        $output = self::transliterateSokuon($output);
 
         return $output;
     }
 
     /**
-     * Convert the specified string from katakana to romaji.
+     * Transliterate a string from katakana to romaji.
      *
      * @param $katakana
      *   The string to be converted.
@@ -477,7 +477,7 @@ class JpnForPhp
             'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
         );
         $output = strtr($katakana, $table);
-        $output = self::translateSokuon($output);
+        $output = self::transliterateSokuon($output);
 
         return $output;
     }
@@ -525,8 +525,8 @@ class JpnForPhp
     }
 
     /**
-     * Parse a specified string to identify and convert potential Sokuon 
-     * characters (http://en.wikipedia.org/wiki/Sokuon).
+     * Parse a string to identify and convert Sokuon characters 
+     * (http://en.wikipedia.org/wiki/Sokuon).
      *
      * @param $str
      *   String to look into.
@@ -565,7 +565,7 @@ class JpnForPhp
     }
 
     /**
-     * Translate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into 
+     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into 
      * its equivalent in romaji.
      *
      * @param $str
@@ -573,7 +573,7 @@ class JpnForPhp
      * @return string
      *   Translated string.
      */
-    private static function translateSokuon($str)
+    private static function transliterateSokuon($str)
     {
         $new_str = $str;
 
@@ -590,7 +590,7 @@ class JpnForPhp
         {
             if ($chrs[$i] === self::JPNFORPHP_SOKUON_HIRAGANA || $chrs[$i] === self::JPNFORPHP_SOKUON_KATAKANA)
             {
-                if ($i < $length - 2 && $chrs[$i + 1].$chrs[$i + 2] === 'ch')
+                if ($i < $length - 2 && $chrs[$i + 1] . $chrs[$i + 2] === 'ch')
                 {
                     $chrs[$i] = 't';
                 } else
@@ -602,6 +602,28 @@ class JpnForPhp
         $new_str = implode($chrs);
 
         return $new_str;
+    }
+
+    /**
+     * Prepare a string for its transliteration in kana (ie: Hiragana or 
+     * Katakana).
+     * 
+     * @param $str
+     *   String to be prepared.
+     * @return string
+     *   Prepared string.
+     * 
+     * @see romajiToHiragana()
+     * @see romajiToKatakana()
+     */
+    private static function prepareKanaTransliteration($str)
+    {
+        $str = mb_strtolower($str, 'UTF-8');
+        $table = array(
+            'ā' => 'aa', 'ī' => 'ii', 'ū' => 'uu', 'ē' => 'ee', 'ō' => 'ou',
+        );
+        $prepared_s = strtr($str, $table);
+        return $prepared_s;
     }
 
 }

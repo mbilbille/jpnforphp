@@ -121,6 +121,8 @@ $time_start = microtime(true);
             <?php print unit('romajiToHiragana', array('matcha'), 'まっちゃ'); ?>
             <?php print unit('romajiToHiragana', array('maccha'), 'まっちゃ'); ?>
             <?php print unit('romajiToHiragana', array('kekka'), 'けっか'); ?>
+            <?php print unit('romajiToHiragana', array('obāsan'), 'おばあさん'); ?>
+            <?php print unit('romajiToHiragana', array('gakkō'), 'がっこう'); ?>
             <tr>
                 <td colspan="3" class="heading">Function romajiToKatakana()</td>
             </tr>
