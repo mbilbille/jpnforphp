@@ -144,7 +144,8 @@ $time_start = microtime(true);
             <?php print unit('katakanaToRomaji', array('ガッコウ'), 'gakkou'); ?>
             <?php print unit('katakanaToRomaji', array('マッチャ'), 'matcha'); ?>            
             <?php print unit('katakanaToRomaji', array('ケッカ'), 'kekka'); ?>            
-            <?php print unit('katakanaToRomaji', array('カイシャニイマス'), 'kaishaniimasu'); ?>
+            <?php print unit('katakanaToRomaji', array('タクシー'), 'takushī'); ?>
+            <?php print unit('katakanaToRomaji', array('パーティー'), 'pātī'); ?>
             <tr>
                 <td colspan="3" class="heading">Function split()</td>
             </tr>

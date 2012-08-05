@@ -348,7 +348,7 @@ class JpnForPhp
             'la' => 'ラ゜', 'li' => 'リ゜', 'lu' => 'ル゜', 'le' => 'レ゜', 'lo' => 'ロ゜',
                 //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ', 
         );
-        $output = strtr($output, $table);
+        $output = strtr($str, $table);
 
         return $output;
     }
@@ -478,6 +478,7 @@ class JpnForPhp
         );
         $output = strtr($katakana, $table);
         $output = self::transliterateSokuon($output);
+        $output = self::transliterateChoonpu($output);
 
         return $output;
     }
@@ -569,39 +570,40 @@ class JpnForPhp
      * its equivalent in romaji.
      *
      * @param $str
-     *   String to be translated.
+     *   String to be transliterated.
      * @return string
-     *   Translated string.
+     *   Transliterated string.
      */
     private static function transliterateSokuon($str)
     {
-        $new_str = $str;
-
-        $chrs = self::split($str);
-        $length = count($chrs);
-
-        //No need to go further.
-        if ($length < 2)
-        {
-            return $new_str;
-        }
-
-        for ($i = 0; $i < $length - 1; $i++)
-        {
-            if ($chrs[$i] === self::JPNFORPHP_SOKUON_HIRAGANA || $chrs[$i] === self::JPNFORPHP_SOKUON_KATAKANA)
-            {
-                if ($i < $length - 2 && $chrs[$i + 1] . $chrs[$i + 2] === 'ch')
-                {
-                    $chrs[$i] = 't';
-                } else
-                {
-                    $chrs[$i] = $chrs[$i + 1];
-                }
-            }
-        }
-        $new_str = implode($chrs);
+        $new_str = preg_replace('/['.self::JPNFORPHP_SOKUON_HIRAGANA.self::JPNFORPHP_SOKUON_KATAKANA.'](.)/u', '${1}${1}', $str);
+        
+        // As per Hepburn system ch > tch
+        // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
+        $new_str = preg_replace('/cch/', 'tch', $new_str);
 
         return $new_str;
+    }
+
+    /**
+     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character into 
+     * its equivalent in romaji.
+     *
+     * @param $str
+     *   String to be transliterated.
+     * @return string
+     *   Transliterated string.
+     */
+    private static function transliterateChoonpu($str)
+    {
+        $macrons = array(
+            'a' => 'ā',
+            'i' => 'ī',
+            'u' => 'ū',
+            'e' => 'ē',
+            'o' => 'ō',
+        );
+        return preg_replace('/(.)'.self::JPNFORPHP_CHOONPU.'/ue', '$macrons[\'${1}\']', $str);
     }
 
     /**
