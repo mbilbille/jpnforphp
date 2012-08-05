@@ -1,12 +1,12 @@
 <?php
 
 /**
- * JpnForPhp library, brings some useful tools and functionalities
- * to interact with Japanese characters.
+ * JpnForPhp library, brings some useful tools and functionalities to interact 
+ * with Japanese characters.
  *
  * @author      Matthieu Bilbille
  * @link	https://github.com/mbilbille/jpnforphp
- * @version	0.2.1
+ * @version	0.3.1
  */
 
 /**
@@ -31,14 +31,14 @@ class JpnForPhp
      * @return int
      *   An integer.
      */
+
     public static function length($str)
     {
         return mb_strlen($str, 'UTF-8');
     }
 
     /**
-     * Enhance default splitter function to handle
-     * UTF-8 characters.
+     * Enhance default splitter function to handle UTF-8 characters.
      *
      * @param $str
      *   String to split.
@@ -51,7 +51,8 @@ class JpnForPhp
     {
         $chrs = array();
         $str_length = self::length($str);
-        for ($i = 0; $i < $str_length; $i++) {
+        for ($i = 0; $i < $str_length; $i++)
+        {
             $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
         }
 
@@ -91,14 +92,12 @@ class JpnForPhp
     }
 
     /**
-     * Inspects a given string and returns useful
-     * details about it.
+     * Inspects a given string and returns useful details about it.
      *
      * @param $str
      *   String to be inspected.
      * @return array
-     *   An associative array containing the
-     *   following items:
+     *   An associative array containing the following items:
      *   - "length" : string length.
      *   - "kanji" : number of kanji within this string.
      *   - "hiragana" : number of hiragana within this string.
@@ -122,8 +121,7 @@ class JpnForPhp
     }
 
     /**
-     * Count number of kanji within the specified
-     * string.
+     * Count number of kanji within the specified string.
      *
      * @param $str
      *   String to be inspected.
@@ -138,8 +136,7 @@ class JpnForPhp
     }
 
     /**
-     * Count number of hiragana within the specified
-     * string.
+     * Count number of hiragana within the specified string.
      *
      * @param $str
      *   String to be inspected.
@@ -154,9 +151,8 @@ class JpnForPhp
     }
 
     /**
-     * Count number of katakana within the specified
-     * string. Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) is
-     * considered as Katakana here.
+     * Count number of katakana within the specified string. Chōonpu 
+     * (http://en.wikipedia.org/wiki/Chōonpu) is considered as Katakana here.
      *
      * @param $str
      *   String to be inspected.
@@ -171,8 +167,7 @@ class JpnForPhp
     }
 
     /**
-     * Determines whether the given string contains
-     * kanji characters.
+     * Determines whether the given string contains kanji characters.
      *
      * @param $str
      *   String to inspect.
@@ -185,8 +180,7 @@ class JpnForPhp
     }
 
     /**
-     * Determines whether the given string contains
-     * hiragana characters.
+     * Determines whether the given string contains hiragana characters.
      *
      * @param $str
      *   String to inspect.
@@ -199,8 +193,7 @@ class JpnForPhp
     }
 
     /**
-     * Determines whether the given string contains
-     * katakana characters.
+     * Determines whether the given string contains katakana characters.
      *
      * @param $str
      *   String to inspect.
@@ -219,7 +212,8 @@ class JpnForPhp
      * @param $str
      *   String to inspect.
      * @return bool
-     *   TRUE if it contains either kanji, hiragana or katakana, otherwise FALSE.
+     *   TRUE if it contains either kanji, hiragana or katakana, otherwise 
+     *   FALSE.
      */
     public static function hasJapaneseChars($str)
     {
@@ -227,8 +221,7 @@ class JpnForPhp
     }
 
     /**
-     * Convert the specified string from romaji
-     * to hiragana.
+     * Convert the specified string from romaji to hiragana.
      *
      * @param $romaji
      *   The string to be converted.
@@ -238,7 +231,7 @@ class JpnForPhp
     public static function romajiToHiragana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convertChiisaiTsu($romaji, self::JPNFORPHP_HIRAGANA);
+        $output = self::convertSokuon($romaji, self::JPNFORPHP_HIRAGANA);
         $table = array(
             'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
             'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
@@ -277,8 +270,7 @@ class JpnForPhp
     }
 
     /**
-     * Convert the specified string from romaji
-     * to katakana.
+     * Convert the specified string from romaji to katakana.
      *
      * @param $romaji
      *   The string to be converted.
@@ -288,7 +280,7 @@ class JpnForPhp
     public static function romajiToKatakana($romaji)
     {
         $romaji = strtolower($romaji);
-        $output = self::convertChiisaiTsu($romaji, self::JPNFORPHP_KATAKANA);
+        $output = self::convertSokuon($romaji, self::JPNFORPHP_KATAKANA);
         $table = array(
             'a' => 'ア', 'i' => 'イ', 'u' => 'ウ', 'e' => 'エ', 'o' => 'オ',
             'ka' => 'カ', 'ki' => 'キ', 'ku' => 'ク', 'ke' => 'ケ', 'ko' => 'コ',
@@ -321,39 +313,38 @@ class JpnForPhp
             'pya' => 'ピャ', 'pyu' => 'ピュ', 'pyo' => 'ピョ',
             ' ' => '　', ',' => '、', ', ' => '、',
             'yi' => 'イィ', 'ye' => 'イェ',
-			//'wa' => 'ウァ', 'wi' => 'ウィ', 'wu' => 'ウゥ', 'we' => 'ウェ', 'wo' => 'ウォ',
-			'wya' => 'ウュ', 
-			'va' => 'ヴァ', 'vi' => 'ヴィ', 'vu' => 'ヴ', 've' => 'ヴェ', 'vo' => 'ヴォ',
-			'vya' => 'ヴャ', 'vyu' => 'ヴュ', 'vye' => 'ヴィェ', 'vyo' => 'ヴョ', 
-			'kye' => 'キェ', 
-			'gye' => 'ギェ', 
-			'kwa' => 'クァ', 'kwi' => 'クィ', 'kwe' => 'クェ', 'kwo' => 'クォ', 
-			//'kwa' => 'クヮ', 
-			'gwa' => 'グァ', 'gwi' => 'グィ', 'gwe' => 'グェ', 'gwo' => 'グォ', 
-			//'gwa' => 'グヮ', 
-			'she' => 'シェ', 
-			'je' => 'ジェ', 
-			//'si' => 'スィ', 
-			//'zi' => 'ズィ', 
-			'che' => 'チェ', 
-			'tsa' => 'ツァ', 'tsi' => 'ツィ', 'tse' => 'ツェ', 'tso' => 'ツォ', 
-			'tsyu' => 'ツュ',
-			//'ti' => 'ティ', 'tu' => 'テゥ', 
-			'tyu' => 'テュ', 
-			//'di' => 'ディ', 'du' => 'デゥ', 
-			//'dyu' => 'デュ', 
-			'nye' => 'ニェ', 
-			'hye' => 'ヒェ', 
-			'bye' => 'ビェ', 
-			'pye' => 'ピェ', 
-			'fa' => 'ファ', 'fi' => 'フィ', 'fe' => 'フェ', 'fo' => 'フォ', 
-			'fya' => 'フャ', 'fyu' => 'フュ', 'fye' => 'フィェ', 'fyo' => 'フョ', 
-			//'hu' => 'ホゥ', 
-			'mye' => 'ミェ', 
-			'rye' => 'リェ', 
-			'la' => 'ラ゜', 'li' => 'リ゜', 'lu' => 'ル゜', 'le' => 'レ゜', 'lo' => 'ロ゜', 
-			//'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ', 
-
+            //'wa' => 'ウァ', 'wi' => 'ウィ', 'wu' => 'ウゥ', 'we' => 'ウェ', 'wo' => 'ウォ',
+            'wya' => 'ウュ',
+            'va' => 'ヴァ', 'vi' => 'ヴィ', 'vu' => 'ヴ', 've' => 'ヴェ', 'vo' => 'ヴォ',
+            'vya' => 'ヴャ', 'vyu' => 'ヴュ', 'vye' => 'ヴィェ', 'vyo' => 'ヴョ',
+            'kye' => 'キェ',
+            'gye' => 'ギェ',
+            'kwa' => 'クァ', 'kwi' => 'クィ', 'kwe' => 'クェ', 'kwo' => 'クォ',
+            //'kwa' => 'クヮ', 
+            'gwa' => 'グァ', 'gwi' => 'グィ', 'gwe' => 'グェ', 'gwo' => 'グォ',
+            //'gwa' => 'グヮ', 
+            'she' => 'シェ',
+            'je' => 'ジェ',
+            //'si' => 'スィ', 
+            //'zi' => 'ズィ', 
+            'che' => 'チェ',
+            'tsa' => 'ツァ', 'tsi' => 'ツィ', 'tse' => 'ツェ', 'tso' => 'ツォ',
+            'tsyu' => 'ツュ',
+            //'ti' => 'ティ', 'tu' => 'テゥ', 
+            'tyu' => 'テュ',
+            //'di' => 'ディ', 'du' => 'デゥ', 
+            //'dyu' => 'デュ', 
+            'nye' => 'ニェ',
+            'hye' => 'ヒェ',
+            'bye' => 'ビェ',
+            'pye' => 'ピェ',
+            'fa' => 'ファ', 'fi' => 'フィ', 'fe' => 'フェ', 'fo' => 'フォ',
+            'fya' => 'フャ', 'fyu' => 'フュ', 'fye' => 'フィェ', 'fyo' => 'フョ',
+            //'hu' => 'ホゥ', 
+            'mye' => 'ミェ',
+            'rye' => 'リェ',
+            'la' => 'ラ゜', 'li' => 'リ゜', 'lu' => 'ル゜', 'le' => 'レ゜', 'lo' => 'ロ゜',
+                //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ', 
         );
         $output = strtr($output, $table);
 
@@ -361,8 +352,7 @@ class JpnForPhp
     }
 
     /**
-     * Convert the specified string from hiragana
-     * to romaji.
+     * Convert the specified string from hiragana to romaji.
      *
      * @param $hiragana
      *   The string to be converted.
@@ -404,14 +394,13 @@ class JpnForPhp
             '　' => ' ', '、' => ',　',
         );
         $output = strtr($hiragana, $table);
-        $output = self::translateChiisaiTsu($output);
+        $output = self::translateSokuon($output);
 
         return $output;
     }
 
     /**
-     * Convert the specified string from katakana
-     * to romaji.
+     * Convert the specified string from katakana to romaji.
      *
      * @param $katakana
      *   The string to be converted.
@@ -451,42 +440,42 @@ class JpnForPhp
             'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
             'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
             '　' => ' ', '、' => ',　',
-			'イィ' => 'yi', 'イェ' => 'ye',
-			'ウァ' => 'wa', 'ウィ' => 'wi', 'ウゥ' => 'wu', 'ウェ' => 'we', 'ウォ' => 'wo',
-			'ウュ' => 'wya', 
-			'ヴァ' => 'va', 'ヴィ' => 'vi', 'ヴ' => 'vu', 'ヴェ' => 've', 'ヴォ' => 'vo',
-			'ヴャ' => 'vya', 'ヴュ' => 'vyu', 'ヴィェ' => 'vye', 'ヴョ' => 'vyo', 
-			'キェ' => 'kye', 
-			'ギェ' => 'gye', 
-			'クァ' => 'kwa', 'クィ' => 'kwi', 'クェ' => 'kwe', 'クォ' => 'kwo', 
-			'クヮ' => 'kwa', 
-			'グァ' => 'gwa', 'グィ' => 'gwi', 'グェ' => 'gwe', 'グォ' => 'gwo', 
-			'グヮ' => 'gwa', 
-			'シェ' => 'she', 
-			'ジェ' => 'je', 
-			'スィ' => 'si', 
-			'ズィ' => 'zi', 
-			'チェ' => 'che', 
-			'ツァ' => 'tsa', 'ツィ' => 'tsi', 'ツェ' => 'tse', 'ツォ' => 'tso', 
-			'ツュ' => 'tsyu',
-			'ティ' => 'ti', 'テゥ' => 'tu', 
-			'テュ' => 'tyu', 
-			'ディ' => 'di', 'デゥ' => 'du', 
-			'デュ' => 'dyu', 
-			'ニェ' => 'nye', 
-			'ヒェ' => 'hye', 
-			'ビェ' => 'bye', 
-			'ピェ' => 'pye', 
-			'ファ' => 'fa', 'フィ' => 'fi', 'フェ' => 'fe', 'フォ' => 'fo', 
-			'フャ' => 'fya', 'フュ' => 'fyu', 'フィェ' => 'fye', 'フョ' => 'fyo', 
-			'ホゥ' => 'hu', 
-			'ミェ' => 'mye', 
-			'リェ' => 'rye', 
-			'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo', 
-			'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo', 
+            'イィ' => 'yi', 'イェ' => 'ye',
+            'ウァ' => 'wa', 'ウィ' => 'wi', 'ウゥ' => 'wu', 'ウェ' => 'we', 'ウォ' => 'wo',
+            'ウュ' => 'wya',
+            'ヴァ' => 'va', 'ヴィ' => 'vi', 'ヴ' => 'vu', 'ヴェ' => 've', 'ヴォ' => 'vo',
+            'ヴャ' => 'vya', 'ヴュ' => 'vyu', 'ヴィェ' => 'vye', 'ヴョ' => 'vyo',
+            'キェ' => 'kye',
+            'ギェ' => 'gye',
+            'クァ' => 'kwa', 'クィ' => 'kwi', 'クェ' => 'kwe', 'クォ' => 'kwo',
+            'クヮ' => 'kwa',
+            'グァ' => 'gwa', 'グィ' => 'gwi', 'グェ' => 'gwe', 'グォ' => 'gwo',
+            'グヮ' => 'gwa',
+            'シェ' => 'she',
+            'ジェ' => 'je',
+            'スィ' => 'si',
+            'ズィ' => 'zi',
+            'チェ' => 'che',
+            'ツァ' => 'tsa', 'ツィ' => 'tsi', 'ツェ' => 'tse', 'ツォ' => 'tso',
+            'ツュ' => 'tsyu',
+            'ティ' => 'ti', 'テゥ' => 'tu',
+            'テュ' => 'tyu',
+            'ディ' => 'di', 'デゥ' => 'du',
+            'デュ' => 'dyu',
+            'ニェ' => 'nye',
+            'ヒェ' => 'hye',
+            'ビェ' => 'bye',
+            'ピェ' => 'pye',
+            'ファ' => 'fa', 'フィ' => 'fi', 'フェ' => 'fe', 'フォ' => 'fo',
+            'フャ' => 'fya', 'フュ' => 'fyu', 'フィェ' => 'fye', 'フョ' => 'fyo',
+            'ホゥ' => 'hu',
+            'ミェ' => 'mye',
+            'リェ' => 'rye',
+            'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo',
+            'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
         );
         $output = strtr($katakana, $table);
-        $output = self::translateChiisaiTsu($output);
+        $output = self::translateSokuon($output);
 
         return $output;
     }
@@ -498,11 +487,11 @@ class JpnForPhp
      * @param $str
      * 	String to look into
      * @return string
-     *	Cleaned string
+     * 	Cleaned string
      */
     public static function removeLTRM($str)
     {
-            return preg_replace('/\xe2\x80\x8e/', '', $str);
+        return preg_replace('/\xe2\x80\x8e/', '', $str);
     }
 
     /**
@@ -517,22 +506,25 @@ class JpnForPhp
     {
         $newChars = array();
         $chars = self::split($str);
-        if (!empty($chars)) {
-            foreach ($chars as $char) {
+        if (!empty($chars))
+        {
+            foreach ($chars as $char)
+            {
                 $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
-                if ($newChar != $char) {
+                if ($newChar != $char)
+                {
                     $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
                 }
                 $newChars[] = $newChar;
             }
         }
 
-        return implode('',$newChars);
+        return implode('', $newChars);
     }
 
     /**
-     * Look into the specified string to identify and convert
-     * potential sets of characters into small tsu characters.
+     * Parse a specified string to identify and convert potential Sokuon 
+     * characters (http://en.wikipedia.org/wiki/Sokuon).
      *
      * @param $str
      *   String to look into.
@@ -541,22 +533,25 @@ class JpnForPhp
      * @return string
      *   Converted string.
      */
-    private static function convertChiisaiTsu($str, $syllabary)
+    private static function convertSokuon($str, $syllabary)
     {
         $new_str = $str;
         $length = self::length($str);
 
         //No need to go further.
-        if ($length < 2) {
+        if ($length < 2)
+        {
             return $new_str;
         }
 
         $chiisai_tsu = ($syllabary == self::JPNFORPHP_HIRAGANA) ? 'っ' : 'ッ';
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
-        for ($i = 1; $i < $length; $i++) {
+        for ($i = 1; $i < $length; $i++)
+        {
             $previous_char = substr($str, $i - 1, 1);
-            if (!in_array($previous_char, $skip) && $previous_char === substr($str, $i, 1)) {
+            if (!in_array($previous_char, $skip) && $previous_char === substr($str, $i, 1))
+            {
                 $new_str = substr_replace($str, $chiisai_tsu, $i - 1, 1);
             }
         }
@@ -565,14 +560,15 @@ class JpnForPhp
     }
 
     /**
-     * Translate any small tsu characters into its equivalent in romaji.
+     * Translate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into 
+     * its equivalent in romaji.
      *
      * @param $str
      *   String to be translated.
      * @return string
      *   Translated string.
      */
-    private static function translateChiisaiTsu($str)
+    private static function translateSokuon($str)
     {
         $new_str = $str;
 
@@ -580,12 +576,15 @@ class JpnForPhp
         $length = count($chrs);
 
         //No need to go further.
-        if ($length < 2) {
+        if ($length < 2)
+        {
             return $new_str;
         }
 
-        for ($i = 0; $i < $length - 1; $i++) {
-            if ($chrs[$i] === 'っ' || $chrs[$i] === 'ッ') {
+        for ($i = 0; $i < $length - 1; $i++)
+        {
+            if ($chrs[$i] === 'っ' || $chrs[$i] === 'ッ')
+            {
                 $chrs[$i] = $chrs[$i + 1];
             }
         }
