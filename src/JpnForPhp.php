@@ -22,8 +22,8 @@ class JpnForPhp
      * JpnForPhp constants
      * Highly recommended to use these constant names rather than raw values.
      */
+    
     // Syllabaries
-
     const JPNFORPHP_HIRAGANA = 0;                   // Hiragana
     const JPNFORPHP_KATAKANA = 1;                   // Katakana
     // Romanization systems
@@ -63,8 +63,7 @@ class JpnForPhp
     {
         $chrs = array();
         $str_length = self::length($str);
-        for ($i = 0; $i < $str_length; $i++)
-        {
+        for ($i = 0; $i < $str_length; $i++) {
             $chrs[] = mb_substr($str, $i, $length, 'UTF-8');
         }
 
@@ -258,13 +257,10 @@ class JpnForPhp
     {
         $newChars = array();
         $chars = self::split($str);
-        if (!empty($chars))
-        {
-            foreach ($chars as $char)
-            {
+        if (!empty($chars)) {
+            foreach ($chars as $char) {
                 $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
-                if ($newChar != $char)
-                {
+                if ($newChar != $char) {
                     $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
                 }
                 $newChars[] = $newChar;
@@ -411,69 +407,49 @@ class JpnForPhp
      *
      * @param $hiragana
      *   The string to be converted.
+     * @param $transliterator
+     *   (Optional) Transliterator class name, set by default to Hepburn.
      * @param $syllabary
      *   (Optional) Force source syllabary.
      * @return string
      *   Converted string into romaji.
-     * 
-     * @see JPNFORPHP_HIRAGANA
-     * @see JPNFORPHP_KATAKANA
      */
-    public static function toRomaji($str, $syllabary = '', $system = self::JPNFORPHP_HEPBURN)
+    public static function toRomaji($str, $transliterator = self::JPNFORPHP_HEPBURN, $syllabary = '')
     {
         $output = $str;
 
         // Get a transliterator object as per the specified system.
-        if (class_exists($system))
-        {
-            $transliterator = new $system();
-        }
-        else
-        {
+        if (class_exists($transliterator)) {
+            $transliterator = new $transliterator();
+        } else {
             return $output;
         }
 
         // Force source syllabary
-        if ($syllabary !== '')
-        {
-            if ($syllabary === self::JPNFORPHP_HIRAGANA)
-            {
+        if ($syllabary !== '') {
+            if ($syllabary === self::JPNFORPHP_HIRAGANA) {
                 $output = $transliterator->fromHiragana($str);
-            }
-            elseif ($syllabary === self::JPNFORPHP_KATAKANA)
-            {
+            } elseif ($syllabary === self::JPNFORPHP_KATAKANA) {
                 $output = $transliterator->fromKatakana($str);
             }
-        }
-        else
-        {
+        } else {
             // It first tries to transliterate word by word, if not possible
             // character by character.
             mb_regex_encoding('UTF-8');
             mb_internal_encoding("UTF-8");
             $words = mb_split("[\s　]", $str);
-            foreach ($words as $i => $word)
-            {
+            foreach ($words as $i => $word) {
                 $length = self::length($word);
-                if ($length === self::countHiragana($word))
-                {
+                if ($length === self::countHiragana($word)) {
                     $words[$i] = $transliterator->fromHiragana($word);
-                }
-                elseif ($length === self::countKatakana($word))
-                {
+                } elseif ($length === self::countKatakana($word)) {
                     $words[$i] = $transliterator->fromKatakana($word);
-                }
-                else
-                {
+                } else {
                     $chars = self::split($word);
-                    foreach ($chars as $j => $char)
-                    {
-                        if (self::hasHiragana($char))
-                        {
+                    foreach ($chars as $j => $char) {
+                        if (self::hasHiragana($char)) {
                             $chars[$j] = $transliterator->fromHiragana($char);
-                        }
-                        elseif (self::hasKatakana($char))
-                        {
+                        } elseif (self::hasKatakana($char)) {
                             $chars[$j] = $transliterator->fromKatakana($char);
                         }
                     }
@@ -506,21 +482,17 @@ class JpnForPhp
         $length = self::length($str);
 
         //No need to go further.
-        if ($length < 2)
-        {
+        if ($length < 2) {
             return $new_str;
         }
 
         $sokuon = ($syllabary === self::JPNFORPHP_HIRAGANA) ? self::JPNFORPHP_SOKUON_HIRAGANA : self::JPNFORPHP_SOKUON_KATAKANA;
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
-        for ($i = 1; $i < $length; $i++)
-        {
+        for ($i = 1; $i < $length; $i++) {
             $prev_char = substr($str, $i - 1, 1);
-            if (!in_array($prev_char, $skip))
-            {
-                if ($prev_char === substr($str, $i, 1) || ($prev_char === 't' && substr($str, $i, 2) === 'ch'))
-                {
+            if (!in_array($prev_char, $skip)) {
+                if ($prev_char === substr($str, $i, 1) || ($prev_char === 't' && substr($str, $i, 2) === 'ch')) {
                     $new_str = substr_replace($str, $sokuon, $i - 1, 1);
                 }
             }
