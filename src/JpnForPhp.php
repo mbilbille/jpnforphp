@@ -1,5 +1,9 @@
 <?php
 
+require_once 'Transliterator/Hepburn.php';
+//require_once 'Transliterator/KunreiShiki.php';
+//require_once 'Transliterator/NihonShiki.php';
+
 /**
  * JpnForPhp library, brings some useful tools and functionalities to interact 
  * with Japanese characters.
@@ -18,9 +22,15 @@ class JpnForPhp
      * JpnForPhp constants
      * Highly recommended to use these constant names rather than raw values.
      */
+    // Syllabaries
 
-    const JPNFORPHP_HIRAGANA = 0; // Hiragana
-    const JPNFORPHP_KATAKANA = 1; // Katakana
+    const JPNFORPHP_HIRAGANA = 0;                   // Hiragana
+    const JPNFORPHP_KATAKANA = 1;                   // Katakana
+    // Romanization systems
+    const JPNFORPHP_HEPBURN = 'Hepburn';            // Hepburn romanization
+    const JPNFORPHP_KUNREISHIKI = 'KunreiShiki';    // Kunrei-shiki Romaji
+    const JPNFORPHP_NIHONSHIKI = 'NihonShiki';      // Nihon-shiki Romaji
+    // Special characters
     const JPNFORPHP_SOKUON_HIRAGANA = 'っ';
     const JPNFORPHP_SOKUON_KATAKANA = 'ッ';
     const JPNFORPHP_CHOONPU = 'ー';
@@ -223,6 +233,48 @@ class JpnForPhp
     }
 
     /**
+     * Remove hidden LTR Mark character. trim() and variant
+     * will ignore it
+     *
+     * @param $str
+     * 	String to look into
+     * @return string
+     * 	Cleaned string
+     */
+    public static function removeLTRM($str)
+    {
+        return preg_replace('/\xe2\x80\x8e/', '', $str);
+    }
+
+    /**
+     * Remove diacritics from the specified string
+     *
+     * @param $str
+     * 	String to look into
+     * @return string
+     * 	Cleaned string
+     */
+    public static function removeDiacritics($str)
+    {
+        $newChars = array();
+        $chars = self::split($str);
+        if (!empty($chars))
+        {
+            foreach ($chars as $char)
+            {
+                $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
+                if ($newChar != $char)
+                {
+                    $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
+                }
+                $newChars[] = $newChar;
+            }
+        }
+
+        return implode('', $newChars);
+    }
+
+    /**
      * Transliterate a string from romaji to hiragana.
      *
      * @param $str
@@ -354,175 +406,87 @@ class JpnForPhp
     }
 
     /**
-     * Transliterate a string from hiragana to romaji.
+     * Wrap all transliteration functions and perform intelligente verification 
+     * to properly convert a given string into romaji.
      *
      * @param $hiragana
      *   The string to be converted.
+     * @param $syllabary
+     *   (Optional) Force source syllabary.
      * @return string
      *   Converted string into romaji.
+     * 
+     * @see JPNFORPHP_HIRAGANA
+     * @see JPNFORPHP_KATAKANA
      */
-    public static function hiraganaToRomaji($hiragana)
+    public static function toRomaji($str, $syllabary = '', $system = self::JPNFORPHP_HEPBURN)
     {
-        $table = array(
-            'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
-            'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
-            'さ' => 'sa', 'し' => 'shi', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
-            'た' => 'ta', 'ち' => 'chi', 'つ' => 'tsu', 'て' => 'te', 'と' => 'to',
-            'な' => 'na', 'に' => 'ni', 'ぬ' => 'nu', 'ね' => 'ne', 'の' => 'no',
-            'は' => 'ha', 'ひ' => 'hi', 'ふ' => 'fu', 'へ' => 'he', 'ほ' => 'ho',
-            'ま' => 'ma', 'み' => 'mi', 'む' => 'mu', 'め' => 'me', 'も' => 'mo',
-            'ら' => 'ra', 'り' => 'ri', 'る' => 'ru', 'れ' => 're', 'ろ' => 'ro',
-            'や' => 'ya', 'ゆ' => 'yu', 'よ' => 'yo',
-            'わ' => 'wa', 'ゐ' => 'wi', 'ゑ' => 'we', 'を' => 'wo',
-            'ん' => 'n',
-            'が' => 'ga', 'ぎ' => 'gi', 'ぐ' => 'gu', 'げ' => 'ge', 'ご' => 'go',
-            'ざ' => 'za', 'じ' => 'ji', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
-            'だ' => 'da', 'ぢ' => 'di', 'づ' => 'du', 'で' => 'de', 'ど' => 'do',
-            'ば' => 'ba', 'び' => 'bi', 'ぶ' => 'bu', 'べ' => 'be', 'ぼ' => 'bo',
-            'ぱ' => 'pa', 'ぴ' => 'pi', 'ぷ' => 'pu', 'ぺ' => 'pe', 'ぽ' => 'po',
-            'ゔ' => 'vu',
-            'きゃ' => 'kya', 'きゅ' => 'kyu', 'きょ' => 'kyo',
-            'しゃ' => 'sha', 'しゅ' => 'shu', 'しょ' => 'sho',
-            'ちゃ' => 'cha', 'ちゅ' => 'chu', 'ちょ' => 'cho',
-            'にゃ' => 'nya', 'にゅ' => 'nyu', 'にょ' => 'nyo',
-            'ひゃ' => 'hya', 'ひゅ' => 'hyu', 'ひょ' => 'hyo',
-            'みゃ' => 'mya', 'みゅ' => 'myu', 'みょ' => 'myo',
-            'りゃ' => 'rya', 'りゅ' => 'ryu', 'りょ' => 'ryo',
-            'ぎゃ' => 'gya', 'ぎゅ' => 'gyu', 'ぎょ' => 'gyo',
-            'じゃ' => 'ja', 'じゅ' => 'ju', 'じょ' => 'jo',
-            'ぢゃ' => 'dja', 'ぢゅ' => 'dju', 'ぢょ' => 'djo',
-            'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
-            'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
-            '　' => ' ', '、' => ',　',
-        );
-        $output = strtr($hiragana, $table);
-        $output = self::transliterateSokuon($output);
+        $output = $str;
 
-        return $output;
-    }
-
-    /**
-     * Transliterate a string from katakana to romaji.
-     *
-     * @param $katakana
-     *   The string to be converted.
-     * @return string
-     *   Converted string into romaji.
-     */
-    public static function katakanaToRomaji($katakana)
-    {
-        $table = array(
-            'ア' => 'a', 'イ' => 'i', 'ウ' => 'u', 'エ' => 'e', 'オ' => 'o',
-            'カ' => 'ka', 'キ' => 'ki', 'ク' => 'ku', 'ケ' => 'ke', 'コ' => 'ko',
-            'サ' => 'sa', 'シ' => 'shi', 'ス' => 'su', 'セ' => 'se', 'ソ' => 'so',
-            'タ' => 'ta', 'チ' => 'chi', 'ツ' => 'tsu', 'テ' => 'te', 'ト' => 'to',
-            'ナ' => 'na', 'ニ' => 'ni', 'ヌ' => 'nu', 'ネ' => 'ne', 'ノ' => 'no',
-            'ハ' => 'ha', 'ヒ' => 'hi', 'フ' => 'fu', 'ヘ' => 'he', 'ホ' => 'ho',
-            'マ' => 'ma', 'ミ' => 'mi', 'ム' => 'mu', 'メ' => 'me', 'モ' => 'mo',
-            'ラ' => 'ra', 'リ' => 'ri', 'ル' => 'ru', 'レ' => 're', 'ロ' => 'ro',
-            'ヤ' => 'ya', 'ユ' => 'yu', 'ヨ' => 'yo',
-            'ワ' => 'wa', 'ヰ' => 'wi', 'ヱ' => 'we', 'ヲ' => 'wo',
-            'ン' => 'n',
-            'ガ' => 'ga', 'ギ' => 'gi', 'グ' => 'gu', 'ゲ' => 'ge', 'ゴ' => 'go',
-            'ザ' => 'za', 'ジ' => 'ji', 'ズ' => 'zu', 'ゼ' => 'ze', 'ゾ' => 'zo',
-            'ダ' => 'da', 'ヂ' => 'di', 'ヅ' => 'du', 'デ' => 'de', 'ド' => 'do',
-            'バ' => 'ba', 'ビ' => 'bi', 'ブ' => 'bu', 'ベ' => 'be', 'ボ' => 'bo',
-            'パ' => 'pa', 'ピ' => 'pi', 'プ' => 'pu', 'ペ' => 'pe', 'ポ' => 'po',
-            'ヴ' => 'vu',
-            'キャ' => 'kya', 'キュ' => 'kyu', 'キョ' => 'kyo',
-            'シャ' => 'sha', 'シュ' => 'shu', 'ショ' => 'sho',
-            'チャ' => 'cha', 'チュ' => 'chu', 'チョ' => 'cho',
-            'ニャ' => 'nya', 'ニュ' => 'nyu', 'ニョ' => 'nyo',
-            'ヒャ' => 'hya', 'ヒュ' => 'hyu', 'ヒョ' => 'hyo',
-            'ミャ' => 'mya', 'ミュ' => 'myu', 'ミョ' => 'myo',
-            'リャ' => 'rya', 'リュ' => 'ryu', 'リョ' => 'ryo',
-            'ギャ' => 'gya', 'ギュ' => 'gyu', 'ギョ' => 'gyo',
-            'ジャ' => 'ja', 'ジュ' => 'ju', 'ジョ' => 'jo',
-            'ヂャ' => 'dja', 'ヂュ' => 'dju', 'ヂョ' => 'djo',
-            'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
-            'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
-            '　' => ' ', '、' => ',　',
-            'イィ' => 'yi', 'イェ' => 'ye',
-            'ウァ' => 'wa', 'ウィ' => 'wi', 'ウゥ' => 'wu', 'ウェ' => 'we', 'ウォ' => 'wo',
-            'ウュ' => 'wya',
-            'ヴァ' => 'va', 'ヴィ' => 'vi', 'ヴ' => 'vu', 'ヴェ' => 've', 'ヴォ' => 'vo',
-            'ヴャ' => 'vya', 'ヴュ' => 'vyu', 'ヴィェ' => 'vye', 'ヴョ' => 'vyo',
-            'キェ' => 'kye',
-            'ギェ' => 'gye',
-            'クァ' => 'kwa', 'クィ' => 'kwi', 'クェ' => 'kwe', 'クォ' => 'kwo',
-            'クヮ' => 'kwa',
-            'グァ' => 'gwa', 'グィ' => 'gwi', 'グェ' => 'gwe', 'グォ' => 'gwo',
-            'グヮ' => 'gwa',
-            'シェ' => 'she',
-            'ジェ' => 'je',
-            'スィ' => 'si',
-            'ズィ' => 'zi',
-            'チェ' => 'che',
-            'ツァ' => 'tsa', 'ツィ' => 'tsi', 'ツェ' => 'tse', 'ツォ' => 'tso',
-            'ツュ' => 'tsyu',
-            'ティ' => 'ti', 'テゥ' => 'tu',
-            'テュ' => 'tyu',
-            'ディ' => 'di', 'デゥ' => 'du',
-            'デュ' => 'dyu',
-            'ニェ' => 'nye',
-            'ヒェ' => 'hye',
-            'ビェ' => 'bye',
-            'ピェ' => 'pye',
-            'ファ' => 'fa', 'フィ' => 'fi', 'フェ' => 'fe', 'フォ' => 'fo',
-            'フャ' => 'fya', 'フュ' => 'fyu', 'フィェ' => 'fye', 'フョ' => 'fyo',
-            'ホゥ' => 'hu',
-            'ミェ' => 'mye',
-            'リェ' => 'rye',
-            'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo',
-            'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
-        );
-        $output = strtr($katakana, $table);
-        $output = self::transliterateSokuon($output);
-        $output = self::transliterateChoonpu($output);
-
-        return $output;
-    }
-
-    /**
-     * Remove hidden LTR Mark character. trim() and variant
-     * will ignore it
-     *
-     * @param $str
-     * 	String to look into
-     * @return string
-     * 	Cleaned string
-     */
-    public static function removeLTRM($str)
-    {
-        return preg_replace('/\xe2\x80\x8e/', '', $str);
-    }
-
-    /**
-     * Remove diacritics from the specified string
-     *
-     * @param $str
-     * 	String to look into
-     * @return string
-     * 	Cleaned string
-     */
-    public static function removeDiacritics($str)
-    {
-        $newChars = array();
-        $chars = self::split($str);
-        if (!empty($chars))
+        // Get a transliterator object as per the specified system.
+        if (class_exists($system))
         {
-            foreach ($chars as $char)
+            $transliterator = new $system();
+        }
+        else
+        {
+            return $output;
+        }
+
+        // Force source syllabary
+        if ($syllabary !== '')
+        {
+            if ($syllabary === self::JPNFORPHP_HIRAGANA)
             {
-                $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
-                if ($newChar != $char)
+                $output = $transliterator->fromHiragana($str);
+            }
+            elseif ($syllabary === self::JPNFORPHP_KATAKANA)
+            {
+                $output = $transliterator->fromKatakana($str);
+            }
+        }
+        else
+        {
+            // It first tries to transliterate word by word, if not possible
+            // character by character.
+            mb_regex_encoding('UTF-8');
+            mb_internal_encoding("UTF-8");
+            $words = mb_split("[\s　]", $str);
+            foreach ($words as $i => $word)
+            {
+                $length = self::length($word);
+                if ($length === self::countHiragana($word))
                 {
-                    $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
+                    $words[$i] = $transliterator->fromHiragana($word);
                 }
-                $newChars[] = $newChar;
+                elseif ($length === self::countKatakana($word))
+                {
+                    $words[$i] = $transliterator->fromKatakana($word);
+                }
+                else
+                {
+                    $chars = self::split($word);
+                    foreach ($chars as $j => $char)
+                    {
+                        if (self::hasHiragana($char))
+                        {
+                            $chars[$j] = $transliterator->fromHiragana($char);
+                        }
+                        elseif (self::hasKatakana($char))
+                        {
+                            $chars[$j] = $transliterator->fromKatakana($char);
+                        }
+                    }
+                    $words[$i] = implode('', $chars);
+                    $words[$i] = $transliterator->fromHiragana($words[$i]);
+                    $words[$i] = $transliterator->fromKatakana($words[$i]);
+                }
+                $output = implode(' ', $words);
             }
         }
 
-        return implode('', $newChars);
+
+        return $output;
     }
 
     /**
@@ -547,7 +511,7 @@ class JpnForPhp
             return $new_str;
         }
 
-        $sokuon = ($syllabary == self::JPNFORPHP_HIRAGANA) ? self::JPNFORPHP_SOKUON_HIRAGANA : self::JPNFORPHP_SOKUON_KATAKANA;
+        $sokuon = ($syllabary === self::JPNFORPHP_HIRAGANA) ? self::JPNFORPHP_SOKUON_HIRAGANA : self::JPNFORPHP_SOKUON_KATAKANA;
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
 
         for ($i = 1; $i < $length; $i++)
@@ -563,47 +527,6 @@ class JpnForPhp
         }
 
         return $new_str;
-    }
-
-    /**
-     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into 
-     * its equivalent in romaji.
-     *
-     * @param $str
-     *   String to be transliterated.
-     * @return string
-     *   Transliterated string.
-     */
-    private static function transliterateSokuon($str)
-    {
-        $new_str = preg_replace('/['.self::JPNFORPHP_SOKUON_HIRAGANA.self::JPNFORPHP_SOKUON_KATAKANA.'](.)/u', '${1}${1}', $str);
-        
-        // As per Hepburn system ch > tch
-        // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
-        $new_str = preg_replace('/cch/', 'tch', $new_str);
-
-        return $new_str;
-    }
-
-    /**
-     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character into 
-     * its equivalent in romaji.
-     *
-     * @param $str
-     *   String to be transliterated.
-     * @return string
-     *   Transliterated string.
-     */
-    private static function transliterateChoonpu($str)
-    {
-        $macrons = array(
-            'a' => 'ā',
-            'i' => 'ī',
-            'u' => 'ū',
-            'e' => 'ē',
-            'o' => 'ō',
-        );
-        return preg_replace('/(.)'.self::JPNFORPHP_CHOONPU.'/ue', '$macrons[\'${1}\']', $str);
     }
 
     /**

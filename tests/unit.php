@@ -1,19 +1,32 @@
 <?php
-include_once '../src/jpnforphp.php';
+include_once '../src/JpnForPhp.php';
+
+global $check;
+$check = "pass";
 
 function unit($function, $inputs, $expected_result)
 {
+    global $check;
+    $fn_time_start = microtime(true);
     $result = call_user_func_array("JpnForPhp::$function", $inputs);
-    $css = ($result === $expected_result) ? "pass" : "fail";
+    if ($result === $expected_result){
+        $css = "pass";
+    }
+    else{
+        $css = "fail";
+        $check = $css;
+    }
     $output = '<tr>
     <td>' . implode(' | ', $inputs) . '</td>
     <td>' . var_export($expected_result, true) . '</td>
     <td>' . var_export($result, true) . '</td>
+    <td class="timer">' . number_format((microtime(true) - $fn_time_start), 10) . '</td>
     <td class="' . $css . '"></td>
     </tr>';
 
     return $output;
 }
+
 $time_start = microtime(true);
 ?>
 <!DOCTYPE html>
@@ -37,7 +50,7 @@ $time_start = microtime(true);
             td, th{
                 border: 1px solid #bbb;
                 background: #fff;
-                width: 31%;
+                width: 28%;
                 padding: 5px;
             }
             td.heading{
@@ -46,19 +59,25 @@ $time_start = microtime(true);
                 padding: 10px;
                 border-top-width: 3px;
             }
+            td.timer{
+                width: 10%;
+            }
             td.pass,
             td.fail{
                 width: 6%;
             }
-            td.fail{
-                background: #CF4425;
+            .fail{
+                background: #FF6140;
+                color: #A61D00 !important;
             }
-            td.pass{
-                background: #52964F;
+            .pass{
+                background: #A4F43D;
+                color: #569700 !important;
             }
             p.info{
-                color: #888;
                 font-style: italic;
+                border-radius: 15px;
+                padding: 7px 12px;
             }
         </style>
     </head>
@@ -117,35 +136,35 @@ $time_start = microtime(true);
             <tr>
                 <td colspan="3" class="heading">Function romajiToHiragana()</td>
             </tr>
-            <?php print unit('romajiToHiragana', array('gakkou'), 'がっこう'); ?>
-            <?php print unit('romajiToHiragana', array('matcha'), 'まっちゃ'); ?>
-            <?php print unit('romajiToHiragana', array('maccha'), 'まっちゃ'); ?>
-            <?php print unit('romajiToHiragana', array('kekka'), 'けっか'); ?>
-            <?php print unit('romajiToHiragana', array('obāsan'), 'おばあさん'); ?>
-            <?php print unit('romajiToHiragana', array('gakkō'), 'がっこう'); ?>
+            <?php //print unit('romajiToHiragana', array('gakkou'), 'がっこう'); ?>
+            <?php //print unit('romajiToHiragana', array('matcha'), 'まっちゃ'); ?>
+            <?php //print unit('romajiToHiragana', array('maccha'), 'まっちゃ'); ?>
+            <?php //print unit('romajiToHiragana', array('kekka'), 'けっか'); ?>
+            <?php //print unit('romajiToHiragana', array('obāsan'), 'おばあさん'); ?>
+            <?php //print unit('romajiToHiragana', array('gakkō'), 'がっこう'); ?>
             <tr>
                 <td colspan="3" class="heading">Function romajiToKatakana()</td>
             </tr>
-            <?php print unit('romajiToKatakana', array('furansu'), 'フランス'); ?>
-            <?php print unit('romajiToKatakana', array('matcha'), 'マッチャ'); ?>
-            <?php print unit('romajiToKatakana', array('maccha'), 'マッチャ'); ?>
-            <?php print unit('romajiToKatakana', array('kekka'), 'ケッカ'); ?>
+            <?php //print unit('romajiToKatakana', array('furansu'), 'フランス'); ?>
+            <?php //print unit('romajiToKatakana', array('matcha'), 'マッチャ'); ?>
+            <?php //print unit('romajiToKatakana', array('maccha'), 'マッチャ'); ?>
+            <?php //print unit('romajiToKatakana', array('kekka'), 'ケッカ'); ?>
             <tr>
-                <td colspan="3" class="heading">Function hiraganaToRomaji()</td>
+                <td colspan="3" class="heading">Function toRomaji()</td>
             </tr>
-            <?php print unit('hiraganaToRomaji', array('がっこう'), 'gakkou'); ?>
-            <?php print unit('hiraganaToRomaji', array('まっちゃ'), 'matcha'); ?>
-            <?php print unit('hiraganaToRomaji', array('けっか'), 'kekka'); ?>
-            <?php print unit('hiraganaToRomaji', array('会社にいます'), '会社niimasu'); ?>
-            <tr>
-            <tr>
-                <td colspan="3" class="heading">Function katakanaToRomaji()</td>
-            </tr>
-            <?php print unit('katakanaToRomaji', array('ガッコウ'), 'gakkou'); ?>
-            <?php print unit('katakanaToRomaji', array('マッチャ'), 'matcha'); ?>            
-            <?php print unit('katakanaToRomaji', array('ケッカ'), 'kekka'); ?>            
-            <?php print unit('katakanaToRomaji', array('タクシー'), 'takushī'); ?>
-            <?php print unit('katakanaToRomaji', array('パーティー'), 'pātī'); ?>
+            <?php print unit('toRomaji', array('がっこう'), 'gakkou'); ?>
+            <?php print unit('toRomaji', array('がっこう　に　いきます'), 'gakkou ni ikimasu'); ?>
+            <?php print unit('toRomaji', array('まっちゃ'), 'matcha'); ?>
+            <?php print unit('toRomaji', array('けっか'), 'kekka'); ?>
+            <?php print unit('toRomaji', array('マッチャ'), 'matcha'); ?>   
+            <?php print unit('toRomaji', array('ケッカ'), 'kekka'); ?> 
+            <?php print unit('toRomaji', array('タクシー'), 'takushī'); ?>
+            <?php print unit('toRomaji', array('パーティー'), 'pātī'); ?>
+            <?php print unit('toRomaji', array('サッカーをやる'), 'sakkāwoyaru'); ?>
+            <?php print unit('toRomaji', array('サッカー　を　やる', JpnForPhp::JPNFORPHP_HIRAGANA), 'サッカー wo yaru'); ?>
+            <?php print unit('toRomaji', array('サッカー　を　やる', JpnForPhp::JPNFORPHP_KATAKANA), 'sakkā を やる'); ?>
+            <?php print unit('toRomaji', array('サッカー　を　やる'), 'sakkā wo yaru'); ?>
+            <?php print unit('toRomaji', array('がっこう', '', 'wrong_system'), 'がっこう'); ?>
             <tr>
                 <td colspan="3" class="heading">Function split()</td>
             </tr>
@@ -158,7 +177,7 @@ $time_start = microtime(true);
             <tr>
                 <td colspan="3" class="heading">Function charAt()</td>
             </tr>
-            <?php print unit('charAt', array('がっこう', 2), 'こ'); ?>
+            <?php print unit('charAt', array('がっこう', 2), 'こk'); ?>
             <?php print unit('charAt', array('会社にいます', 0), '会'); ?>
             <tr>
                 <td colspan="3" class="heading">Function subString()</td>
@@ -168,8 +187,8 @@ $time_start = microtime(true);
             <tr>
                 <td colspan="3" class="heading">Function inspect()</td>
             </tr>
-            <?php print unit('inspect', array('がっこう'), array('length' => 4,'kanji' => 0,'hiragana' => 4,'katakana' => 0)); ?>
-            <?php print unit('inspect', array('私はマテューです。'), array('length' => 9,'kanji' => 1,'hiragana' => 3,'katakana' => 4)); ?>
+            <?php print unit('inspect', array('がっこう'), array('length' => 4, 'kanji' => 0, 'hiragana' => 4, 'katakana' => 0)); ?>
+            <?php print unit('inspect', array('私はマテューです。'), array('length' => 9, 'kanji' => 1, 'hiragana' => 3, 'katakana' => 4)); ?>
             <tr>
                 <td colspan="3" class="heading">Function removeLTRM()</td>
             </tr>
@@ -180,10 +199,11 @@ $time_start = microtime(true);
             <?php print unit('removeDiacritics', array('Kyōto'), 'Kyoto'); ?>
             <?php print unit('removeDiacritics', array('Chūō-Sōbu'), 'Chuo-Sobu'); ?>
             <?php print unit('removeDiacritics', array('Noël, Pâques, Été, Cachaça, Háček'), 'Noel, Paques, Ete, Cachaca, Hacek'); ?>
-            <?php print unit('removeDiacritics', array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'), 'AAAAAACEEEEIIIINOOOOOUUUUYY');?>
-            <?php print unit('removeDiacritics', array('áàâäãåçéèêëíìîïñóòôöõúùûüýÿ'), 'aaaaaaceeeeiiiinooooouuuuyy');?>
+            <?php print unit('removeDiacritics', array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'), 'AAAAAACEEEEIIIINOOOOOUUUUYY'); ?>
+            <?php print unit('removeDiacritics', array('áàâäãåçéèêëíìîïñóòôöõúùûüýÿ'), 'aaaaaaceeeeiiiinooooouuuuyy'); ?>
         </table>
-        <?php $time_end = microtime(true);?>
-        <div style="position:absolute;top:5px;right: 15px;"><p class="info">Execution time: <?php print $time_end - $time_start;?> second(s)</p></div>
+        <?php $time_end = microtime(true); ?>
+        <div style="position:absolute;top:5px;right: 15px;"><p class="info <?php print $check;?>">Execution time: <?php print $time_end - $time_start; ?> second(s)</p></div>
+
     </body>
 </html>
