@@ -213,12 +213,26 @@ class JpnForPhp
      */
     public static function hasKatakana($str)
     {
-        return preg_match('/\p{Katakana}/u', $str) > 0;
+        return preg_match('/\p{Katakana}|' . self::JPNFORPHP_CHOONPU . '/u', $str) > 0;
     }
 
     /**
-     * Determines whether the given string contains
-     * Japanese characters (kanji, hiragana or katakana).
+     * Determines whether the given string contains kana (hiragana or katakana).
+     *
+     * @param $str
+     *   String to inspect.
+     * @return bool
+     *   TRUE if it contains either hiragana or katakana, otherwise 
+     *   FALSE.
+     */
+    public static function hasKana($str)
+    {
+        return self::hasHiragana($str) || self::hasKatakana($str);
+    }
+
+    /**
+     * Determines whether the given string contains Japanese characters (kanji, 
+     * hiragana or katakana).
      *
      * @param $str
      *   String to inspect.
@@ -232,13 +246,51 @@ class JpnForPhp
     }
 
     /**
-     * Remove hidden LTR Mark character. trim() and variant
-     * will ignore it
+     * Split a given string to extract kanji substrings.
      *
      * @param $str
-     * 	String to look into
+     *   The input string.
+     * @return array
+     *   An array of kanji substrings.
+     */
+    public static function extractKanji($str)
+    {
+        return preg_split('/\p{^Han}/u', $str, 0, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * Split a given string to extract hiragana substrings.
+     *
+     * @param $str
+     *   The input string.
+     * @return array
+     *   An array of hiragana substrings.
+     */
+    public static function extractHiragana($str)
+    {
+        return preg_split('/\p{^Hiragana}/u', $str, 0, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * Split a given string to extract katakana substrings.
+     *
+     * @param $str
+     *   The input string.
+     * @return array
+     *   An array of kataka substrings.
+     */
+    public static function extractKatakana($str)
+    {
+        return preg_split('/[^\p{Katakana}|' . self::JPNFORPHP_CHOONPU . ']/u', $str, 0, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * Remove hidden LTR Mark character. trim() and variant will ignore it.
+     *
+     * @param $str
+     * 	The input string.
      * @return string
-     * 	Cleaned string
+     * 	Cleaned string.
      */
     public static function removeLTRM($str)
     {
@@ -246,12 +298,12 @@ class JpnForPhp
     }
 
     /**
-     * Remove diacritics from the specified string
+     * Remove diacritics from the specified string.
      *
      * @param $str
-     * 	String to look into
+     * 	The input string.
      * @return string
-     * 	Cleaned string
+     * 	Cleaned string.
      */
     public static function removeDiacritics($str)
     {
@@ -274,7 +326,7 @@ class JpnForPhp
      * Transliterate a string from romaji to hiragana.
      *
      * @param $str
-     *   The string to be converted.
+     *   The input string.
      * @return string
      *   Converted string into hiragana.
      */
@@ -323,7 +375,7 @@ class JpnForPhp
      * Transliterate a string from romaji to katakana.
      *
      * @param $str
-     *   The string to be converted.
+     *   The input string.
      * @return string
      *   Converted string into katakana.
      */
@@ -406,7 +458,7 @@ class JpnForPhp
      * to properly convert a given string into romaji.
      *
      * @param $hiragana
-     *   The string to be converted.
+     *   The input string.
      * @param $transliterator
      *   (Optional) Transliterator class name, set by default to Hepburn.
      * @param $syllabary

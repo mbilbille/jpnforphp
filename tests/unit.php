@@ -105,6 +105,7 @@ $time_start = microtime(true);
                 <td colspan="3" class="heading">Function countKatakana()</td>
             </tr>
             <?php print unit('countKatakana', array('ビール'), 3); ?>
+            <?php print unit('countKatakana', array('ー'), 1); ?>
             <?php print unit('countKatakana', array('サッカー'), 4); ?>
             <?php print unit('countKatakana', array('ｶｷｸｹｺ'), 5); ?>
             <?php print unit('countKatakana', array('㋐'), 1); ?>
@@ -118,12 +119,21 @@ $time_start = microtime(true);
                 <td colspan="3" class="heading">Function hasHiragana()</td>
             </tr>
             <?php print unit('hasHiragana', array('がっこう'), TRUE); ?>
+            <?php print unit('hasHiragana', array('学校　がっこう gakkou'), TRUE); ?>
             <?php print unit('hasHiragana', array('学校　ガッコウ gakkou'), FALSE); ?>
             <tr>
                 <td colspan="3" class="heading">Function hasKatakana()</td>
             </tr>
             <?php print unit('hasKatakana', array('ガッコウ'), TRUE); ?>
             <?php print unit('hasKatakana', array('学校　がっこう gakkou'), FALSE); ?>
+            <?php print unit('hasKatakana', array('学校ガッコウgakkou'), TRUE); ?>
+            <?php print unit('hasKatakana', array('ー'), TRUE); ?>
+            <tr>
+                <td colspan="3" class="heading">Function hasKana()</td>
+            </tr>
+            <?php print unit('hasKana', array('学校　がっこう gakkou'), TRUE); ?>
+            <?php print unit('hasKana', array('学校'), FALSE); ?>
+            <?php print unit('hasKana', array('gakkou'), FALSE); ?>
             <tr>
                 <td colspan="3" class="heading">Function hasJapaneseChars()</td>
             </tr>
@@ -132,6 +142,22 @@ $time_start = microtime(true);
             <?php print unit('hasJapaneseChars', array('ガッコウ'), TRUE); ?>
             <?php print unit('hasJapaneseChars', array('私は学生です'), TRUE); ?>
             <?php print unit('hasJapaneseChars', array('gakkou'), FALSE); ?>
+            <tr>
+            <tr>
+                <td colspan="3" class="heading">Function extractKanji()</td>
+            </tr>
+            <?php print unit('extractKanji', array('学校'), array('学校')); ?>
+            <?php print unit('extractKanji', array('学校に行きます'), array('学校', '行')); ?>
+            <tr>
+                <td colspan="3" class="heading">Function extractHiragana()</td>
+            </tr>
+            <?php print unit('extractHiragana', array('学校'), array()); ?>
+            <?php print unit('extractHiragana', array('学校に行きます'), array('に', 'きます')); ?>
+            <tr>
+                <td colspan="3" class="heading">Function extractKatakana()</td>
+            </tr>
+            <?php print unit('extractKatakana', array('学校'), array()); ?>
+            <?php print unit('extractKatakana', array('サッカーをやる'), array('サッカー')); ?>
             <tr>
                 <td colspan="3" class="heading">Function romajiToHiragana()</td>
             </tr>
