@@ -1,8 +1,8 @@
 <?php
 
 require_once 'Transliterator/Hepburn.php';
-//require_once 'Transliterator/KunreiShiki.php';
-//require_once 'Transliterator/NihonShiki.php';
+require_once 'Transliterator/KunreiShiki.php';
+require_once 'Transliterator/NihonShiki.php';
 
 /**
  * JpnForPhp library, brings some useful tools and functionalities to interact 
@@ -512,7 +512,6 @@ class JpnForPhp
                 $output = implode(' ', $words);
             }
         }
-
 
         return $output;
     }
