@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Transliterator.php';
+namespace JpnForPhp\Transliterator;
+
+use JpnForPhp\JpnForPhp;
 
 /**
  * Hepburn system class
@@ -9,7 +11,7 @@ class Hepburn implements Transliterator
 {
 
     /**
-     * @var array Map hiragana characters (or combinaison of characters) to 
+     * @var array Map hiragana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
     private $mapHiragana = array(
@@ -46,7 +48,7 @@ class Hepburn implements Transliterator
     );
 
     /**
-     * @var array Map katakana characters (or combinaison of characters) to 
+     * @var array Map katakana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
     private $mapKatakana = array(
@@ -117,7 +119,7 @@ class Hepburn implements Transliterator
 
     /**
      * Implements fromHiragana();
-     * 
+     *
      * @see Transliterator
      */
     public function fromHiragana($str)
@@ -130,7 +132,7 @@ class Hepburn implements Transliterator
 
     /**
      * Implements fromKatakana();
-     * 
+     *
      * @see Transliterator
      */
     public function fromKatakana($str)
@@ -144,17 +146,14 @@ class Hepburn implements Transliterator
 
     /**
      * Implements transliterateSokuon().
-     * 
+     *
      * @see Transliterator
      */
     public function transliterateSokuon($str, $syllabary = JpnForPhp::JPNFORPHP_HIRAGANA)
     {
-        if ($syllabary === JpnForPhp::JPNFORPHP_KATAKANA)
-        {
+        if ($syllabary === JpnForPhp::JPNFORPHP_KATAKANA) {
             $sokuon = JpnForPhp::JPNFORPHP_SOKUON_KATAKANA;
-        }
-        else
-        {
+        } else {
             $sokuon = JpnForPhp::JPNFORPHP_SOKUON_HIRAGANA;
         }
 
@@ -167,7 +166,7 @@ class Hepburn implements Transliterator
 
     /**
      * Implements transliterateChoonpu().
-     * 
+     *
      * @see Transliterator
      */
     public function transliterateChoonpu($str)
@@ -179,6 +178,7 @@ class Hepburn implements Transliterator
             'e' => 'ē',
             'o' => 'ō',
         );
+
         return preg_replace('/(.)' . JpnForPhp::JPNFORPHP_CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
     }
 

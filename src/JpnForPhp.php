@@ -1,17 +1,20 @@
 <?php
 
-require_once 'Transliterator/Hepburn.php';
-require_once 'Transliterator/KunreiShiki.php';
-require_once 'Transliterator/NihonShiki.php';
-
 /**
- * JpnForPhp library, brings some useful tools and functionalities to interact 
+ * JpnForPhp library, brings some useful tools and functionalities to interact
  * with Japanese characters.
  *
  * @author      Matthieu Bilbille
  * @link	https://github.com/mbilbille/jpnforphp
  * @version	0.3.1
  */
+
+namespace JpnForPhp;
+
+require_once 'Transliterator/Transliterator.php';
+require_once 'Transliterator/Hepburn.php';
+require_once 'Transliterator/KunreiShiki.php';
+require_once 'Transliterator/NihonShiki.php';
 
 /**
  * JpnForPhp main class
@@ -22,7 +25,7 @@ class JpnForPhp
      * JpnForPhp constants
      * Highly recommended to use these constant names rather than raw values.
      */
-    
+
     // Syllabaries
     const JPNFORPHP_HIRAGANA = 0;                   // Hiragana
     const JPNFORPHP_KATAKANA = 1;                   // Katakana
@@ -162,7 +165,7 @@ class JpnForPhp
     }
 
     /**
-     * Count number of katakana within the specified string. Chōonpu 
+     * Count number of katakana within the specified string. Chōonpu
      * (http://en.wikipedia.org/wiki/Chōonpu) is considered as Katakana here.
      *
      * @param $str
@@ -222,7 +225,7 @@ class JpnForPhp
      * @param $str
      *   String to inspect.
      * @return bool
-     *   TRUE if it contains either hiragana or katakana, otherwise 
+     *   TRUE if it contains either hiragana or katakana, otherwise
      *   FALSE.
      */
     public static function hasKana($str)
@@ -231,13 +234,13 @@ class JpnForPhp
     }
 
     /**
-     * Determines whether the given string contains Japanese characters (kanji, 
+     * Determines whether the given string contains Japanese characters (kanji,
      * hiragana or katakana).
      *
      * @param $str
      *   String to inspect.
      * @return bool
-     *   TRUE if it contains either kanji, hiragana or katakana, otherwise 
+     *   TRUE if it contains either kanji, hiragana or katakana, otherwise
      *   FALSE.
      */
     public static function hasJapaneseChars($str)
@@ -422,31 +425,31 @@ class JpnForPhp
             'kye' => 'キェ',
             'gye' => 'ギェ',
             'kwa' => 'クァ', 'kwi' => 'クィ', 'kwe' => 'クェ', 'kwo' => 'クォ',
-            //'kwa' => 'クヮ', 
+            //'kwa' => 'クヮ',
             'gwa' => 'グァ', 'gwi' => 'グィ', 'gwe' => 'グェ', 'gwo' => 'グォ',
-            //'gwa' => 'グヮ', 
+            //'gwa' => 'グヮ',
             'she' => 'シェ',
             'je' => 'ジェ',
-            //'si' => 'スィ', 
-            //'zi' => 'ズィ', 
+            //'si' => 'スィ',
+            //'zi' => 'ズィ',
             'che' => 'チェ',
             'tsa' => 'ツァ', 'tsi' => 'ツィ', 'tse' => 'ツェ', 'tso' => 'ツォ',
             'tsyu' => 'ツュ',
-            //'ti' => 'ティ', 'tu' => 'テゥ', 
+            //'ti' => 'ティ', 'tu' => 'テゥ',
             'tyu' => 'テュ',
-            //'di' => 'ディ', 'du' => 'デゥ', 
-            //'dyu' => 'デュ', 
+            //'di' => 'ディ', 'du' => 'デゥ',
+            //'dyu' => 'デュ',
             'nye' => 'ニェ',
             'hye' => 'ヒェ',
             'bye' => 'ビェ',
             'pye' => 'ピェ',
             'fa' => 'ファ', 'fi' => 'フィ', 'fe' => 'フェ', 'fo' => 'フォ',
             'fya' => 'フャ', 'fyu' => 'フュ', 'fye' => 'フィェ', 'fyo' => 'フョ',
-            //'hu' => 'ホゥ', 
+            //'hu' => 'ホゥ',
             'mye' => 'ミェ',
             'rye' => 'リェ',
             'la' => 'ラ゜', 'li' => 'リ゜', 'lu' => 'ル゜', 'le' => 'レ゜', 'lo' => 'ロ゜',
-                //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ', 
+                //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ',
         );
         $output = strtr($str, $table);
 
@@ -454,7 +457,7 @@ class JpnForPhp
     }
 
     /**
-     * Wrap all transliteration functions and perform intelligente verification 
+     * Wrap all transliteration functions and perform intelligente verification
      * to properly convert a given string into romaji.
      *
      * @param $hiragana
@@ -466,58 +469,36 @@ class JpnForPhp
      * @return string
      *   Converted string into romaji.
      */
-    public static function toRomaji($str, $transliterator = self::JPNFORPHP_HEPBURN, $syllabary = '')
+    public static function toRomaji($str, $transliterator = self::JPNFORPHP_HEPBURN, $syllabary = NULL)
     {
         $output = $str;
 
         // Get a transliterator object as per the specified system.
-        if (class_exists($transliterator)) {
-            $transliterator = new $transliterator();
+        $classname = 'JpnForPhp\\Transliterator\\'.$transliterator;
+        if (class_exists($classname)) {
+            $transliterator = new $classname();
         } else {
             return $output;
         }
 
-        // Force source syllabary
-        if ($syllabary !== '') {
+        if (!is_null($syllabary)) {
+            // Force source syllabary
             if ($syllabary === self::JPNFORPHP_HIRAGANA) {
                 $output = $transliterator->fromHiragana($str);
             } elseif ($syllabary === self::JPNFORPHP_KATAKANA) {
                 $output = $transliterator->fromKatakana($str);
             }
         } else {
-            // It first tries to transliterate word by word, if not possible
-            // character by character.
-            mb_regex_encoding('UTF-8');
-            mb_internal_encoding("UTF-8");
-            $words = mb_split("[\s　]", $str);
-            foreach ($words as $i => $word) {
-                $length = self::length($word);
-                if ($length === self::countHiragana($word)) {
-                    $words[$i] = $transliterator->fromHiragana($word);
-                } elseif ($length === self::countKatakana($word)) {
-                    $words[$i] = $transliterator->fromKatakana($word);
-                } else {
-                    $chars = self::split($word);
-                    foreach ($chars as $j => $char) {
-                        if (self::hasHiragana($char)) {
-                            $chars[$j] = $transliterator->fromHiragana($char);
-                        } elseif (self::hasKatakana($char)) {
-                            $chars[$j] = $transliterator->fromKatakana($char);
-                        }
-                    }
-                    $words[$i] = implode('', $chars);
-                    $words[$i] = $transliterator->fromHiragana($words[$i]);
-                    $words[$i] = $transliterator->fromKatakana($words[$i]);
-                }
-                $output = implode(' ', $words);
-            }
+                // Rather than guessing the appropriate syllabary, process both.
+                $output = $transliterator->fromHiragana($str);
+                $output = $transliterator->fromKatakana($output);
         }
 
         return $output;
     }
 
     /**
-     * Parse a string to identify and convert Sokuon characters 
+     * Parse a string to identify and convert Sokuon characters
      * (http://en.wikipedia.org/wiki/Sokuon).
      *
      * @param $str
@@ -553,14 +534,14 @@ class JpnForPhp
     }
 
     /**
-     * Prepare a string for its transliteration in kana (ie: Hiragana or 
+     * Prepare a string for its transliteration in kana (ie: Hiragana or
      * Katakana).
-     * 
+     *
      * @param $str
      *   String to be prepared.
      * @return string
      *   Prepared string.
-     * 
+     *
      * @see romajiToHiragana()
      * @see romajiToKatakana()
      */
@@ -571,6 +552,7 @@ class JpnForPhp
             'ā' => 'aa', 'ī' => 'ii', 'ū' => 'uu', 'ē' => 'ee', 'ō' => 'ou',
         );
         $prepared_s = strtr($str, $table);
+
         return $prepared_s;
     }
 

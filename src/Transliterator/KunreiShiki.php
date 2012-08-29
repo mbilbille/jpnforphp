@@ -1,25 +1,25 @@
 <?php
 
-require_once 'Transliterator.php';
+namespace JpnForPhp\Transliterator;
 
 /**
  * Kunrei Shiki romaji system class
  */
 class KunreiShiki implements Transliterator
 {
-	/**
+    /**
      * Implements fromHiragana();
-     * 
+     *
      * @see Transliterator
      */
     public function fromHiragana($str)
     {
         return $str;
     }
-	
-	/**
+
+    /**
      * Implements fromKatakana();
-     * 
+     *
      * @see Transliterator
      */
     public function fromKatakana($str)
@@ -29,7 +29,7 @@ class KunreiShiki implements Transliterator
 
     /**
      * Implements transliterateSokuon().
-     * 
+     *
      * @see Transliterator
      */
     public function transliterateSokuon($str)
@@ -39,7 +39,7 @@ class KunreiShiki implements Transliterator
 
     /**
      * Implements transliterateChoonpu().
-     * 
+     *
      * @see Transliterator
      */
     public function transliterateChoonpu($str)

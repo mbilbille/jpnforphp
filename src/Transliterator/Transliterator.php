@@ -1,12 +1,14 @@
 <?php
 
+namespace JpnForPhp\Transliterator;
+
 /**
  * Transliterator abstract class
  */
 interface Transliterator
-{	
+{
     /**
-     * Transliterate a string from hiragana into latin alphabet as per a 
+     * Transliterate a string from hiragana into latin alphabet as per a
      * specific romanization system.
      *
      * @param $str
@@ -14,10 +16,10 @@ interface Transliterator
      * @return string
      *   Converted string into hiragana.
      */
-    function fromHiragana($str);
+    public function fromHiragana($str);
 
     /**
-     * Transliterate a string from katakana into latin alphabet as per a 
+     * Transliterate a string from katakana into latin alphabet as per a
      * specific romanization system.
      *
      * @param $str
@@ -25,11 +27,10 @@ interface Transliterator
      * @return string
      *   Converted string into hiragana.
      */
-    function fromKatakana($str);
-    
+    public function fromKatakana($str);
 
     /**
-     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into 
+     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
      * its equivalent in latin alphabet.
      *
      * @param $str
@@ -37,10 +38,10 @@ interface Transliterator
      * @return string
      *   Transliterated string.
      */
-    function transliterateSokuon($str);
+    public function transliterateSokuon($str);
 
     /**
-     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character 
+     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
      * into its equivalent in latin alphabet.
      *
      * @param $str
@@ -48,5 +49,5 @@ interface Transliterator
      * @return string
      *   Transliterated string.
      */
-    function transliterateChoonpu($str);
+    public function transliterateChoonpu($str);
 }

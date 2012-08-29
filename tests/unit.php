@@ -1,14 +1,15 @@
 <?php
-include_once '../src/JpnForPhp.php';
+use JpnForPhp\JpnForPhp;
 
-global $check;
-$check = "pass";
+require_once '../src/JpnForPhp.php';
+
+global $check; $check = "pass";
 
 function unit($function, $inputs, $expected_result)
 {
     global $check;
     $fn_time_start = microtime(true);
-    $result = call_user_func_array("JpnForPhp::$function", $inputs);
+    $result = call_user_func_array("JpnForPhp\JpnForPhp::$function", $inputs);
     if ($result === $expected_result) {
         $css = "pass";
     } else {
