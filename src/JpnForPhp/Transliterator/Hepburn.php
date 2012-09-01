@@ -51,7 +51,8 @@ class Hepburn implements RomanizationInterface
         'ぢゃ' => 'ja', 'ぢゅ' => 'ju', 'ぢょ' => 'jo',
         'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
         'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
-        '　' => ' ', '、' => ',　',
+        'んあ' => "n'a", 'んい' => "n'i", 'んう' => "n'u", 'んえ' => "n'e", 'んお' => "n'o",
+        'んや' => "n'ya", 'んゆ' => "n'yu", 'んよ' => "n'yo",
     );
 
     /**
@@ -88,7 +89,6 @@ class Hepburn implements RomanizationInterface
         'ヂャ' => 'ja', 'ヂュ' => 'ju', 'ヂョ' => 'jo',
         'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
         'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
-        '　' => ' ', '、' => ',　',
         'イィ' => 'yi', 'イェ' => 'ye',
         'ウァ' => 'wa', 'ウィ' => 'wi', 'ウゥ' => 'wu', 'ウェ' => 'we', 'ウォ' => 'wo',
         'ウュ' => 'wya',
@@ -122,7 +122,17 @@ class Hepburn implements RomanizationInterface
         'リェ' => 'rye',
         'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo',
         'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
+        'ンア' => "n'a", 'ンイ' => "n'i", 'ンウ' => "n'u", 'ンエ' => "n'e", 'ンオ' => "n'o",
     );
+
+    /**
+     * @var array Map Japanese punctuation marks to their equivalent in latin 
+     * alphabet.
+     */
+    protected $mapPunctuationMarks = array(
+        '　' => ' ', '、' => ',　',
+    );
+
 
     /**
      * Implements fromHiragana();
@@ -132,7 +142,10 @@ class Hepburn implements RomanizationInterface
     public function fromHiragana($str)
     {
         $output = strtr($str, $this->mapHiragana);
+        $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output);
+        $output = $this->convertLongVowels($output);
+        $output = $this->convertParticles($output);
 
         return $output;
     }
@@ -145,6 +158,7 @@ class Hepburn implements RomanizationInterface
     public function fromKatakana($str)
     {
         $output = strtr($str, $this->mapKatakana);
+        $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
         $output = $this->transliterateChoonpu($output);
 
@@ -159,7 +173,6 @@ class Hepburn implements RomanizationInterface
     public function __toString(){
         return 'Hepburn romanization system (ヘボン式ローマ字)';
     }
-
 
     /**
      * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
@@ -181,7 +194,7 @@ class Hepburn implements RomanizationInterface
 
         // As per Hepburn system ch > tch
         // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
-        return preg_replace('/cch/', 'tch', $output);
+        return str_replace('cch', 'tch', $output);
     }
 
     /**
@@ -203,5 +216,38 @@ class Hepburn implements RomanizationInterface
         );
 
         return preg_replace('/(.)' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+    }
+
+    /**
+     * Post-processing transliteration to properly format long vowels.
+     * This is a minimalist implementation of Hepburn's rules. For a detailed
+     * explanation please refer to:
+     *  - http://en.wikipedia.org/wiki/Hepburn_romanization#Long_vowels
+     *
+     * @param string $str String to be preprocessed.
+     *
+     * @return string Transliterated string.
+     */
+    protected function convertLongVowels($str)
+    {
+        $search = array('aa', 'uu', 'ee', 'oo', 'ou');
+        $replace = array('ā', 'ū', 'ē', 'ō', 'ō');
+
+        return str_replace($search, $replace, $str);
+    }
+
+    /**
+     * Post-processing transliteration to properly format particles.
+     *
+     * @param string $str String to be preprocessed.
+     *
+     * @return string Transliterated string.
+     */
+    protected function convertParticles($str)
+    {
+        $search = array(' ha ', ' he ', ' wo ');
+        $replace = array(' wa ', ' e ', ' o ');
+
+        return str_replace($search, $replace, $str);
     }
 }

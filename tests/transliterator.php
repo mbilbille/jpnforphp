@@ -10,36 +10,8 @@ $data = array(
     'functions' => array(
         'toRomaji' => array(
             array(
-                'input' => array('まっちゃ'),
-                'expected' => 'matcha',
-            ),
-            array(
-                'input' => array('けっか'),
-                'expected' => 'kekka',
-            ),
-            array(
-                'input' => array('マッチャ'),
-                'expected' => 'matcha',
-            ),
-            array(
-                'input' => array('ケッカ'),
-                'expected' => 'kekka',
-            ),
-            array(
-                'input' => array('タクシー'),
-                'expected' => 'takushī',
-            ),
-            array(
-                'input' => array('パーティー'),
-                'expected' => 'pātī',
-            ),
-            array(
-                'input' => array('サッカーをやる'),
-                'expected' => 'sakkāwoyaru',
-            ),
-            array(
-                'input' => array('サッカー　を　やる'),
-                'expected' => 'sakkā wo yaru',
+                'input' => array('くるま'),
+                'expected' => 'kuruma',
             ),
             array(
                 'input' => array('がっこう', NULL, new MyClass()),
@@ -48,6 +20,50 @@ $data = array(
             array(
                 'input' => array('がっこう', NULL, new Hepburn()),
                 'expected' => 'gakkō',
+            ),
+            array(
+                'input' => array('おばあさん', NULL, new Hepburn()),
+                'expected' => 'obāsan',
+            ),
+                        array(
+                'input' => array('まっちゃ', NULL, new Hepburn()),
+                'expected' => 'matcha',
+            ),
+            array(
+                'input' => array('けっか', NULL, new Hepburn()),
+                'expected' => 'kekka',
+            ),
+            array(
+                'input' => array('マッチャ', NULL, new Hepburn()),
+                'expected' => 'matcha',
+            ),
+            array(
+                'input' => array('ケッカ', NULL, new Hepburn()),
+                'expected' => 'kekka',
+            ),
+            array(
+                'input' => array('タクシー', NULL, new Hepburn()),
+                'expected' => 'takushī',
+            ),
+            array(
+                'input' => array('パーティー', NULL, new Hepburn()),
+                'expected' => 'pātī',
+            ),
+            array(
+                'input' => array('サッカーをやる', NULL, new Hepburn()),
+                'expected' => 'sakkāwoyaru',
+            ),
+            array(
+                'input' => array('サッカー　を　やる', NULL, new Hepburn()),
+                'expected' => 'sakkā o yaru',
+            ),
+            array(
+                'input' => array('あんない', NULL, new Hepburn()),
+                'expected' => 'annai',
+            ),
+            array(
+                'input' => array('きんえん', NULL, new Hepburn()),
+                'expected' => "kin'en",
             ),
             array(
                 'input' => array('がっこう', NULL, new Kunrei()),
@@ -59,7 +75,7 @@ $data = array(
             ),
             array(
                 'input' => array('サッカー　を　やる', Transliterator::HIRAGANA),
-                'expected' => 'サッカー wo yaru',
+                'expected' => 'サッカー o yaru',
             ),
             array(
                 'input' => array('サッカー　を　やる', Transliterator::KATAKANA),
@@ -70,6 +86,10 @@ $data = array(
             array(
                 'input' => array('gakkou', Transliterator::HIRAGANA),
                 'expected' => 'がっこう',
+            ),
+            array(
+                'input' => array('obāsan', Transliterator::HIRAGANA),
+                'expected' => 'おばあさん',
             ),
             array(
                 'input' => array('chakku', Transliterator::KATAKANA),
@@ -94,6 +114,10 @@ $data = array(
             array(
                 'input' => array('fôdo', Transliterator::KATAKANA),
                 'expected' => 'フォード',
+            ),
+            array(
+                'input' => array('gakkō ni ikimasu', Transliterator::HIRAGANA),
+                'expected' => 'がっこう　に　いきます',
             ),
         ),
     ),
