@@ -9,6 +9,7 @@
         <div class="container">
             <div class="page-header">
                 <h1>UNIT TESTS<small> - JpnForPhp library</small></h1>
+                <span class="label label-info">Version 0.4-dev</span>
             </div>
             <div class="tabbable">
                 <ul class="nav nav-pills">

@@ -40,7 +40,7 @@ function process($data)
 {
     global $check;
     $output = '<table class="table table-bordered"><thead>
-    <tr class="inverse tr-inverse"><th>Inputs</th><th>Expected results</th><th>Results</th><th>Time</th></tr>
+    <tr><th>Inputs</th><th>Expected results</th><th>Results</th><th>Time</th></tr>
     </thead><tbody>';
 
     foreach ($data['functions'] as $fn => $groups) {
@@ -55,7 +55,7 @@ function process($data)
                 $grp_output .= unit($data['namespace'].'::'.$fn, $case['input'], $case['expected'], $i);
             }
 
-            $output .= '<tr><td colspan="4" class="heading"><button class="btn btn-primary">Function '.$fn.'()</button>
+            $output .= '<tr><td colspan="4" class="heading"><button class="btn btn-info">Function '.$fn.'()</button>
             <button class="btn btn-'.$check[$i].'">'.$group['description'].'</button></td></tr>' . $grp_output;
         }
     }
