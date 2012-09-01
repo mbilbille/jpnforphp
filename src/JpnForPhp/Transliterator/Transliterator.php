@@ -32,12 +32,12 @@ class Transliterator
      * verification to properly convert a given string into romaji.
      *
      * @param string $str The input string.
-     * @param TransliteratorInterface $transliterator A transliterator instance.
+     * @param RomanizationInterface $transliterator A romanization instance.
      * @param integer $syllabary Force source syllabary.
      *
      * @return string Converted string into romaji.
      */
-    public static function toRomaji($str, $syllabary = NULL, TransliteratorInterface $transliterator = NULL)
+    public static function toRomaji($str, $syllabary = NULL, RomanizationInterface $transliterator = NULL)
     {
         $output = $str;
 
@@ -45,7 +45,7 @@ class Transliterator
             // Set default system to Hepburn
             $transliterator = new Hepburn();
         }
-        elseif(!$transliterator instanceof TransliteratorInterface) {
+        elseif(!$transliterator instanceof RomanizationInterface) {
             return $output;
         }
 
@@ -57,7 +57,7 @@ class Transliterator
                 $output = $transliterator->fromKatakana($str);
             }
         } else {
-                // Rather than guessing the appropriate syllabary, process both.
+            // Rather than guessing the appropriate syllabary, process both.
             $output = $transliterator->fromHiragana($str);
             $output = $transliterator->fromKatakana($output);
         }
@@ -67,6 +67,17 @@ class Transliterator
 
 
     public static function toKana($str, $syllabary){
-        return $str;
+        
+        $output = $str;
+        $transliterator = new Kana();
+
+        if($syllabary === self::HIRAGANA){
+            $output = $transliterator->toHiragana($str);
+        }
+        elseif($syllabary === self::KATAKANA){
+            $output = $transliterator->toKatakana($str);
+        }
+
+        return $output;
     }
 }

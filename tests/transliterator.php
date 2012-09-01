@@ -75,6 +75,26 @@ $data = array(
                 'input' => array('chakku', Transliterator::KATAKANA),
                 'expected' => 'チャック',
             ),
+            array(
+                'input' => array('sakkaa', Transliterator::KATAKANA),
+                'expected' => 'サッカー',
+            ),
+            array(
+                'input' => array('sakkā', Transliterator::KATAKANA),
+                'expected' => 'サッカー',
+            ),
+            array(
+                'input' => array('foodo', Transliterator::KATAKANA),
+                'expected' => 'フォード',
+            ),
+            array(
+                'input' => array('fōdo', Transliterator::KATAKANA),
+                'expected' => 'フォード',
+            ),
+            array(
+                'input' => array('fôdo', Transliterator::KATAKANA),
+                'expected' => 'フォード',
+            ),
         ),
     ),
 );
