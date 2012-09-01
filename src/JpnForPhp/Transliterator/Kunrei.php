@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the JpnForPhp package.
+ *
+ * (c) Matthieu Bilbille
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace JpnForPhp\Transliterator;
 
 /**
  * Kunrei romanization system class
  */
-class Kunrei implements TransliteratorInterface
+class Kunrei implements RomanizationInterface
 {
     /**
      * Implements fromHiragana();
@@ -26,27 +35,7 @@ class Kunrei implements TransliteratorInterface
     {
         return $str;
     }
-
-    /**
-     * Implements transliterateSokuon().
-     *
-     * @see Transliterator
-     */
-    public function transliterateSokuon($str)
-    {
-        return $str;
-    }
-
-    /**
-     * Implements transliterateChoonpu().
-     *
-     * @see Transliterator
-     */
-    public function transliterateChoonpu($str)
-    {
-        return $str;
-    }
-
+    
     /**
      * Implements __toString().
      *

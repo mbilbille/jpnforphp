@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the JpnForPhp package.
+ *
+ * (c) Matthieu Bilbille
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace JpnForPhp\Transliterator;
 
 /**
  * Nihon romanization system class
  */
-class Nihon implements TransliteratorInterface
+class Nihon implements RomanizationInterface
 {
     /**
      * Implements fromHiragana();
@@ -23,26 +32,6 @@ class Nihon implements TransliteratorInterface
      * @see Transliterator
      */
     public function fromKatakana($str)
-    {
-        return $str;
-    }
-
-    /**
-     * Implements transliterateSokuon().
-     *
-     * @see Transliterator
-     */
-    public function transliterateSokuon($str)
-    {
-        return $str;
-    }
-
-    /**
-     * Implements transliterateChoonpu().
-     *
-     * @see Transliterator
-     */
-    public function transliterateChoonpu($str)
     {
         return $str;
     }

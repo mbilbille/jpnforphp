@@ -1,18 +1,27 @@
 <?php
 
+/*
+ * This file is part of the JpnForPhp package.
+ *
+ * (c) Matthieu Bilbille
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace JpnForPhp\Transliterator;
 
 /**
  * Hepburn romanization system class
  */
-class Hepburn implements TransliteratorInterface
+class Hepburn implements RomanizationInterface
 {
 
     /**
      * @var array Map hiragana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
-    private $mapHiragana = array(
+    protected $mapHiragana = array(
         'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
         'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
         'さ' => 'sa', 'し' => 'shi', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
@@ -49,7 +58,7 @@ class Hepburn implements TransliteratorInterface
      * @var array Map katakana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
-    private $mapKatakana = array(
+    protected $mapKatakana = array(
         'ア' => 'a', 'イ' => 'i', 'ウ' => 'u', 'エ' => 'e', 'オ' => 'o',
         'カ' => 'ka', 'キ' => 'ki', 'ク' => 'ku', 'ケ' => 'ke', 'コ' => 'ko',
         'サ' => 'sa', 'シ' => 'shi', 'ス' => 'su', 'セ' => 'se', 'ソ' => 'so',
@@ -143,11 +152,24 @@ class Hepburn implements TransliteratorInterface
     }
 
     /**
-     * Implements transliterateSokuon().
+     * Implements __toString().
      *
      * @see TransliteratorInterface
      */
-    public function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
+    public function __toString(){
+        return 'Hepburn romanization system (ヘボン式ローマ字)';
+    }
+
+
+    /**
+     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
+     * its equivalent in latin alphabet.
+     *
+     * @param string $str String to be transliterated.
+     *
+     * @return string Transliterated string.
+     */
+    protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
     {
         if ($syllabary === Transliterator::KATAKANA) {
             $sokuon = Transliterator::SOKUON_KATAKANA;
@@ -163,11 +185,14 @@ class Hepburn implements TransliteratorInterface
     }
 
     /**
-     * Implements transliterateChoonpu().
+     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
+     * into its equivalent in latin alphabet.
      *
-     * @see TransliteratorInterface
+     * @param string $str String to be transliterated.
+     * 
+     * @return string Transliterated string.
      */
-    public function transliterateChoonpu($str)
+    protected function transliterateChoonpu($str)
     {
         $macrons = array(
             'a' => 'ā',
@@ -179,14 +204,4 @@ class Hepburn implements TransliteratorInterface
 
         return preg_replace('/(.)' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
     }
-
-    /**
-     * Implements __toString().
-     *
-     * @see TransliteratorInterface
-     */
-    public function __toString(){
-        return 'Hepburn romanization system (ヘボン式ローマ字)';
-    }
-
 }
