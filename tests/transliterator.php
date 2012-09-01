@@ -10,115 +10,154 @@ $data = array(
     'functions' => array(
         'toRomaji' => array(
             array(
-                'input' => array('くるま'),
-                'expected' => 'kuruma',
+                'description' => 'Default',
+                'cases' => array(
+                    array(
+                        'input' => array('くるま'),
+                        'expected' => 'kuruma',
+                    ),
+                    array(
+                        'input' => array('くるま', NULL, new MyClass()),
+                        'expected' => 'くるま',
+                    ),
+                    array(
+                        'input' => array('くるま', NULL, new Hepburn()),
+                        'expected' => 'kuruma',
+                    ),
+                ),
             ),
             array(
-                'input' => array('がっこう', NULL, new MyClass()),
-                'expected' => 'がっこう',
+                'description' => 'using Hepburn romanization system',
+                'cases' => array(
+                    array(
+                        'input' => array('がっこう', NULL, new Hepburn()),
+                        'expected' => 'gakkō',
+                    ),
+                    array(
+                        'input' => array('おばあさん', NULL, new Hepburn()),
+                        'expected' => 'obāsan',
+                    ),
+                                array(
+                        'input' => array('まっちゃ', NULL, new Hepburn()),
+                        'expected' => 'matcha',
+                    ),
+                    array(
+                        'input' => array('けっか', NULL, new Hepburn()),
+                        'expected' => 'kekka',
+                    ),
+                    array(
+                        'input' => array('マッチャ', NULL, new Hepburn()),
+                        'expected' => 'matcha',
+                    ),
+                    array(
+                        'input' => array('ケッカ', NULL, new Hepburn()),
+                        'expected' => 'kekka',
+                    ),
+                    array(
+                        'input' => array('タクシー', NULL, new Hepburn()),
+                        'expected' => 'takushī',
+                    ),
+                    array(
+                        'input' => array('パーティー', NULL, new Hepburn()),
+                        'expected' => 'pātī',
+                    ),
+                    array(
+                        'input' => array('サッカーをやる', NULL, new Hepburn()),
+                        'expected' => 'sakkāwoyaru',
+                    ),
+                    array(
+                        'input' => array('サッカー　を　やる', NULL, new Hepburn()),
+                        'expected' => 'sakkā o yaru',
+                    ),
+                    array(
+                        'input' => array('あんない', NULL, new Hepburn()),
+                        'expected' => 'annai',
+                    ),
+                    array(
+                        'input' => array('きんえん', NULL, new Hepburn()),
+                        'expected' => "kin'en",
+                    ),
+                ),
             ),
             array(
-                'input' => array('がっこう', NULL, new Hepburn()),
-                'expected' => 'gakkō',
+                'description' => 'using Kunrei romanization system',
+                'cases' => array(
+                    array(
+                        'input' => array('がっこう', NULL, new Kunrei()),
+                        'expected' => 'gakkô',
+                    ),
+                ),
             ),
             array(
-                'input' => array('おばあさん', NULL, new Hepburn()),
-                'expected' => 'obāsan',
-            ),
-                        array(
-                'input' => array('まっちゃ', NULL, new Hepburn()),
-                'expected' => 'matcha',
-            ),
-            array(
-                'input' => array('けっか', NULL, new Hepburn()),
-                'expected' => 'kekka',
+                'description' => 'using Nihon romanization system',
+                'cases' => array(
+                    array(
+                        'input' => array('がっこう', NULL, new Nihon()),
+                        'expected' => 'gakkô',
+                    ),
+                ),
             ),
             array(
-                'input' => array('マッチャ', NULL, new Hepburn()),
-                'expected' => 'matcha',
-            ),
-            array(
-                'input' => array('ケッカ', NULL, new Hepburn()),
-                'expected' => 'kekka',
-            ),
-            array(
-                'input' => array('タクシー', NULL, new Hepburn()),
-                'expected' => 'takushī',
-            ),
-            array(
-                'input' => array('パーティー', NULL, new Hepburn()),
-                'expected' => 'pātī',
-            ),
-            array(
-                'input' => array('サッカーをやる', NULL, new Hepburn()),
-                'expected' => 'sakkāwoyaru',
-            ),
-            array(
-                'input' => array('サッカー　を　やる', NULL, new Hepburn()),
-                'expected' => 'sakkā o yaru',
-            ),
-            array(
-                'input' => array('あんない', NULL, new Hepburn()),
-                'expected' => 'annai',
-            ),
-            array(
-                'input' => array('きんえん', NULL, new Hepburn()),
-                'expected' => "kin'en",
-            ),
-            array(
-                'input' => array('がっこう', NULL, new Kunrei()),
-                'expected' => 'gakkô',
-            ),
-            array(
-                'input' => array('がっこう', NULL, new Nihon()),
-                'expected' => 'gakkô',
-            ),
-            array(
-                'input' => array('サッカー　を　やる', Transliterator::HIRAGANA),
-                'expected' => 'サッカー o yaru',
-            ),
-            array(
-                'input' => array('サッカー　を　やる', Transliterator::KATAKANA),
-                'expected' => 'sakkā を やる',
+                'description' => 'forcing syllabary',
+                'cases' => array(
+                    array(
+                        'input' => array('サッカー　を　やる', Transliterator::HIRAGANA),
+                        'expected' => 'サッカー o yaru',
+                    ),
+                    array(
+                        'input' => array('サッカー　を　やる', Transliterator::KATAKANA),
+                        'expected' => 'sakkā を やる',
+                    ),
+                ),
             ),
         ),
         'toKana' => array(
             array(
-                'input' => array('gakkou', Transliterator::HIRAGANA),
-                'expected' => 'がっこう',
+                'description' => 'Hiragana',
+                'cases' => array(
+                    array(
+                        'input' => array('gakkou', Transliterator::HIRAGANA),
+                        'expected' => 'がっこう',
+                    ),
+                    array(
+                        'input' => array('obāsan', Transliterator::HIRAGANA),
+                        'expected' => 'おばあさん',
+                    ),
+                    array(
+                        'input' => array('gakkō ni ikimasu', Transliterator::HIRAGANA),
+                        'expected' => 'がっこう　に　いきます',
+                    ),
+                ),
             ),
             array(
-                'input' => array('obāsan', Transliterator::HIRAGANA),
-                'expected' => 'おばあさん',
-            ),
-            array(
-                'input' => array('chakku', Transliterator::KATAKANA),
-                'expected' => 'チャック',
-            ),
-            array(
-                'input' => array('sakkaa', Transliterator::KATAKANA),
-                'expected' => 'サッカー',
-            ),
-            array(
-                'input' => array('sakkā', Transliterator::KATAKANA),
-                'expected' => 'サッカー',
-            ),
-            array(
-                'input' => array('foodo', Transliterator::KATAKANA),
-                'expected' => 'フォード',
-            ),
-            array(
-                'input' => array('fōdo', Transliterator::KATAKANA),
-                'expected' => 'フォード',
-            ),
-            array(
-                'input' => array('fôdo', Transliterator::KATAKANA),
-                'expected' => 'フォード',
-            ),
-            array(
-                'input' => array('gakkō ni ikimasu', Transliterator::HIRAGANA),
-                'expected' => 'がっこう　に　いきます',
-            ),
+                'description' => 'Katakana',
+                'cases' => array(
+                    array(
+                        'input' => array('chakku', Transliterator::KATAKANA),
+                        'expected' => 'チャック',
+                    ),
+                    array(
+                        'input' => array('sakkaa', Transliterator::KATAKANA),
+                        'expected' => 'サッカー',
+                    ),
+                    array(
+                        'input' => array('sakkā', Transliterator::KATAKANA),
+                        'expected' => 'サッカー',
+                    ),
+                    array(
+                        'input' => array('foodo', Transliterator::KATAKANA),
+                        'expected' => 'フォード',
+                    ),
+                    array(
+                        'input' => array('fōdo', Transliterator::KATAKANA),
+                        'expected' => 'フォード',
+                    ),
+                    array(
+                        'input' => array('fôdo', Transliterator::KATAKANA),
+                        'expected' => 'フォード',
+                    ),
+                ),
+            ),  
         ),
     ),
 );

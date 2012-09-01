@@ -6,7 +6,7 @@ function __autoload($classname){
     require_once('../src/' . $classname . '.php');
 }
 
-function unit($function, $inputs, $expected_result)
+function unit($function, $inputs, $expected_result, $grp)
 {
     global $check;
     $fn_time_start = microtime(true);
@@ -17,11 +17,13 @@ function unit($function, $inputs, $expected_result)
             $css = "success";
         } else {
             $css = "error";
+            $check[$grp] = 'danger';
         }
     }
     catch(Exception $e){
         $result = $e->getMessage();
         $css = "error";
+        $check[$grp] = 'danger';
     }
     $check[$css]++;
     $output = '<tr class="' . $css . '">
@@ -38,16 +40,23 @@ function process($data)
 {
     global $check;
     $output = '<table class="table table-bordered"><thead>
-    <tr><th>Inputs</th><th>Expected results</th><th>Results</th><th>Time</th></tr>
+    <tr class="inverse tr-inverse"><th>Inputs</th><th>Expected results</th><th>Results</th><th>Time</th></tr>
     </thead><tbody>';
 
-    foreach ($data['functions'] as $fn => $cases) {
-        
-        $output .= '<tr><td colspan="4" class="heading"><span class="label label-info">Function '.$fn.'()</span></td></tr>';
+    foreach ($data['functions'] as $fn => $groups) {
 
-        foreach ($cases as $case) {
-            
-            $output .= unit($data['namespace'].'::'.$fn, $case['input'], $case['expected']);
+        foreach ($groups as $i => $group) {
+
+            $grp_output = '';
+            $check[$i] = 'success';
+
+            foreach ($group['cases'] as $case) {
+                
+                $grp_output .= unit($data['namespace'].'::'.$fn, $case['input'], $case['expected'], $i);
+            }
+
+            $output .= '<tr><td colspan="4" class="heading"><button class="btn btn-primary">Function '.$fn.'()</button>
+            <button class="btn btn-'.$check[$i].'">'.$group['description'].'</button></td></tr>' . $grp_output;
         }
     }
 
