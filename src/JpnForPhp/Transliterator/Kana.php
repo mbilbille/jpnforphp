@@ -18,7 +18,11 @@ use JpnForPhp\Analyzer\Analyzer;
  */
 class Kana
 {
-    private $mapHiragana = array(
+    /**
+     * @var array Map latin characters (or combinaison of characters) to
+     * their equivalent in hiragana.
+     */
+    protected $mapHiragana = array(
         'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
         'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
         'sa' => 'さ', 'shi' => 'し', 'si' => 'し', 'su' => 'す', 'se' => 'せ', 'so' => 'そ',
@@ -49,7 +53,12 @@ class Kana
         'bya' => 'びゃ', 'byu' => 'びゅ', 'byo' => 'びょ',
         'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pyo' => 'ぴょ',
     );
-    private $mapKatakana = array(
+
+    /**
+     * @var array Map latin characters (or combinaison of characters) to
+     * their equivalent in katakana.
+     */
+    protected $mapKatakana = array(
         'a' => 'ア', 'i' => 'イ', 'u' => 'ウ', 'e' => 'エ', 'o' => 'オ',
         'ka' => 'カ', 'ki' => 'キ', 'ku' => 'ク', 'ke' => 'ケ', 'ko' => 'コ',
         'sa' => 'サ', 'shi' => 'シ', 'si' => 'シ', 'su' => 'ス', 'se' => 'セ', 'so' => 'ソ',
@@ -114,7 +123,12 @@ class Kana
         'la' => 'ラ゜', 'li' => 'リ゜', 'lu' => 'ル゜', 'le' => 'レ゜', 'lo' => 'ロ゜',
         //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ',
     );
-    private $mapMarks = array(
+
+    /**
+     * @var array Map latin form of various marks, punctuation, hyphen, etc. to
+     * their equivalent in Japanese syllabary.
+     */
+    protected $mapMarks = array(
         ' ' => '　', ',' => '、', ', ' => '、', '-' => 'ー',
     );
 
