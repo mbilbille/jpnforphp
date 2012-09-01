@@ -2,12 +2,10 @@
 
 namespace JpnForPhp\Transliterator;
 
-use JpnForPhp\JpnForPhp;
-
 /**
- * Hepburn system class
+ * Hepburn romanization system class
  */
-class Hepburn implements Transliterator
+class Hepburn implements TransliteratorInterface
 {
 
     /**
@@ -120,7 +118,7 @@ class Hepburn implements Transliterator
     /**
      * Implements fromHiragana();
      *
-     * @see Transliterator
+     * @see TransliteratorInterface
      */
     public function fromHiragana($str)
     {
@@ -133,12 +131,12 @@ class Hepburn implements Transliterator
     /**
      * Implements fromKatakana();
      *
-     * @see Transliterator
+     * @see TransliteratorInterface
      */
     public function fromKatakana($str)
     {
         $output = strtr($str, $this->mapKatakana);
-        $output = $this->transliterateSokuon($output, JpnForPhp::JPNFORPHP_KATAKANA);
+        $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
         $output = $this->transliterateChoonpu($output);
 
         return $output;
@@ -147,14 +145,14 @@ class Hepburn implements Transliterator
     /**
      * Implements transliterateSokuon().
      *
-     * @see Transliterator
+     * @see TransliteratorInterface
      */
-    public function transliterateSokuon($str, $syllabary = JpnForPhp::JPNFORPHP_HIRAGANA)
+    public function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
     {
-        if ($syllabary === JpnForPhp::JPNFORPHP_KATAKANA) {
-            $sokuon = JpnForPhp::JPNFORPHP_SOKUON_KATAKANA;
+        if ($syllabary === Transliterator::KATAKANA) {
+            $sokuon = Transliterator::SOKUON_KATAKANA;
         } else {
-            $sokuon = JpnForPhp::JPNFORPHP_SOKUON_HIRAGANA;
+            $sokuon = Transliterator::SOKUON_HIRAGANA;
         }
 
         $output = preg_replace('/' . $sokuon . '(.)/u', '${1}${1}', $str);
@@ -167,7 +165,7 @@ class Hepburn implements Transliterator
     /**
      * Implements transliterateChoonpu().
      *
-     * @see Transliterator
+     * @see TransliteratorInterface
      */
     public function transliterateChoonpu($str)
     {
@@ -179,7 +177,16 @@ class Hepburn implements Transliterator
             'o' => 'ō',
         );
 
-        return preg_replace('/(.)' . JpnForPhp::JPNFORPHP_CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+        return preg_replace('/(.)' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+    }
+
+    /**
+     * Implements __toString().
+     *
+     * @see TransliteratorInterface
+     */
+    public function __toString(){
+        return 'Hepburn romanization system (ヘボン式ローマ字)';
     }
 
 }

@@ -5,7 +5,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Transliterator abstract class
  */
-interface Transliterator
+interface TransliteratorInterface
 {
     /**
      * Transliterate a string from hiragana into latin alphabet as per a
@@ -50,4 +50,9 @@ interface Transliterator
      *   Transliterated string.
      */
     public function transliterateChoonpu($str);
+
+    /**
+     *
+     */
+    public function __toString();
 }

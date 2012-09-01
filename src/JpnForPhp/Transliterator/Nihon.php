@@ -3,9 +3,9 @@
 namespace JpnForPhp\Transliterator;
 
 /**
- * Kunrei Shiki romaji system class
+ * Nihon romanization system class
  */
-class KunreiShiki implements Transliterator
+class Nihon implements TransliteratorInterface
 {
     /**
      * Implements fromHiragana();
@@ -47,4 +47,12 @@ class KunreiShiki implements Transliterator
         return $str;
     }
 
+    /**
+     * Implements __toString().
+     *
+     * @see TransliteratorInterface
+     */
+    public function __toString(){
+        return 'Nihon romanization system (日本式ローマ字)';
+    }
 }
