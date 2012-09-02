@@ -9,7 +9,10 @@
         <div class="container">
             <div class="page-header">
                 <h1>UNIT TESTS<small> - JpnForPhp library</small></h1>
-                <span class="label label-info">Version 0.4-dev</span>
+                <span class="label label-info">Version 0.4-dev</span> 
+                <a class="btn btn-mini btn-inverse pull-right" href="https://github.com/mbilbille/jpnforphp">
+                    <i class="icon-eye-open icon-white"></i>  View On GitHub
+                </a>
             </div>
             <div class="tabbable">
                 <ul class="nav nav-pills">

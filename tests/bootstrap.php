@@ -55,8 +55,8 @@ function process($data)
                 $grp_output .= unit($data['namespace'].'::'.$fn, $case['input'], $case['expected'], $i);
             }
 
-            $output .= '<tr><td colspan="4" class="heading"><button class="btn btn-info">Function '.$fn.'()</button>
-            <button class="btn btn-'.$check[$i].'">'.$group['description'].'</button></td></tr>' . $grp_output;
+            $output .= '<tr><td colspan="4" class="heading"><button class="btn btn-small btn-info">Function '.$fn.'()</button>
+            <button class="btn btn-small btn-'.$check[$i].'">'.$group['description'].'</button></td></tr>' . $grp_output;
         }
     }
 
