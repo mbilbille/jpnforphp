@@ -127,28 +127,35 @@ class Helper
     }
 
     /**
-     * Remove diacritics from the specified string.
+     * Remove macrons from the specified string.
+     *
+     * Based on Wordpress remove_accents().
      *
      * @param $str The input string.
      *
      * @return string Cleaned string.
-     *
-     * @see split()
      */
-    public static function removeDiacritics($str)
+    public static function removeMacrons($str)
     {
-        $newChars = array();
-        $chars = self::split($str);
-        if (!empty($chars)) {
-            foreach ($chars as $char) {
-                $newChar = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $char);
-                if ($newChar != $char) {
-                    $newChar = preg_replace('/\p{P}|\^|\`|~/u', '', $newChar);
-                }
-                $newChars[] = $newChar;
-            }
+        if ( !preg_match('/[\x80-\xff]/', $str) ){
+            return $str;    
         }
 
-        return implode('', $newChars);
+        $chars = array(
+            // Some romanization system may use circumflex accent rather than macron
+            chr(195).chr(130) => 'A', chr(195).chr(162) => 'a',
+            chr(195).chr(142) => 'I', chr(195).chr(174) => 'i',
+            chr(195).chr(155) => 'U', chr(195).chr(187) => 'u',
+            chr(195).chr(138) => 'E', chr(195).chr(170) => 'e',
+            chr(195).chr(148) => 'O', chr(195).chr(180) => 'o',
+            // Macrons
+            chr(196).chr(128) => 'A', chr(196).chr(129) => 'a',
+            chr(196).chr(170) => 'I', chr(196).chr(171) => 'i',
+            chr(197).chr(170) => 'U', chr(197).chr(171) => 'u',
+            chr(196).chr(146) => 'E', chr(196).chr(147) => 'e',
+            chr(197).chr(140) => 'O', chr(197).chr(141) => 'o',
+        ); 
+        
+        return strtr($str, $chars);
     }
 }

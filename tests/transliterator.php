@@ -17,10 +17,6 @@ $data = array(
                         'expected' => 'kuruma',
                     ),
                     array(
-                        'input' => array('くるま', NULL, new MyClass()),
-                        'expected' => 'くるま',
-                    ),
-                    array(
                         'input' => array('くるま', NULL, new Hepburn()),
                         'expected' => 'kuruma',
                     ),
@@ -163,9 +159,3 @@ $data = array(
 );
 
 print process($data);
-
-class MyClass{
-    function __toString(){
-        return 'MyClass';
-    }
-}

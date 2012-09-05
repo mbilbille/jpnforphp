@@ -108,10 +108,14 @@ $data = array(
                 ),
             ),
         ),
-        'removeDiacritics' => array(
+        'removeMacrons' => array(
             array(
                 'description' => 'Default',
                 'cases' => array(
+                    array(
+                        'input' => array('Macrons'),
+                        'expected' => 'Macrons',
+                    ),
                     array(
                         'input' => array('Kyōto'),
                         'expected' => 'Kyoto',
@@ -121,16 +125,8 @@ $data = array(
                         'expected' => 'Chuo-Sobu',
                     ),
                     array(
-                        'input' => array('Noël, Pâques, Été, Cachaça, Háček'),
-                        'expected' =>  'Noel, Paques, Ete, Cachaca, Hacek',
-                    ),  
-                    array(
-                        'input' => array('ÁÀÂÄÃÅÇÉÈÊËÍÏÎÌÑÓÒÔÖÕÚÙÛÜÝŸ'),
-                        'expected' =>  'AAAAAACEEEEIIIINOOOOOUUUUYY',
-                    ),
-                    array(
-                        'input' => array('áàâäãåçéèêëíìîïñóòôöõúùûüýÿ'),
-                        'expected' =>  'aaaaaaceeeeiiiinooooouuuuyy',
+                        'input' => array('ŌōŪūĀāĪīôÔûÛâÂîÎêÊ'),
+                        'expected' =>  'OoUuAaIioOuUaAiIeE',
                     ),
                 ),
             ),
