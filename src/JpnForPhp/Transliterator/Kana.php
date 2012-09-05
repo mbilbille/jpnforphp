@@ -136,14 +136,16 @@ class Kana
      * Transliterate a string from latin alphabet into hiragana.
      *
      * @param string $str The string to be converted.
-     * 
+     *
      * @return string Converted string into hiragana.
      */
-    public function toHiragana($str){
+    public function toHiragana($str)
+    {
         $str = $this->prepareTransliteration($str, Transliterator::HIRAGANA);
         $str = $this->transliterateSokuon($str, Transliterator::HIRAGANA);
         $output = strtr($str, $this->mapHiragana);
         $output = strtr($output, $this->mapMarks);
+
         return $output;
     }
 
@@ -151,14 +153,16 @@ class Kana
      * Transliterate a string from latin alphabet into katakana.
      *
      * @param string $str The string to be converted.
-     * 
+     *
      * @return string Converted string into katakana.
      */
-    public function toKatakana($str){
+    public function toKatakana($str)
+    {
         $str = $this->prepareTransliteration($str,Transliterator::KATAKANA);
         $str = $this->transliterateSokuon($str, Transliterator::KATAKANA);
         $output = strtr($str, $this->mapKatakana);
         $output = strtr($output, $this->mapMarks);
+
         return $output;
     }
 
@@ -166,42 +170,39 @@ class Kana
      * Prepare a string for its transliteration in kana.
      *
      * @param string $str String to be prepared.
-     * 
+     *
      * @return string Prepared string.
      */
     protected function prepareTransliteration($str, $syllabary)
     {
         $str = mb_strtolower($str, 'UTF-8');
         $mapChars = array();
-        if($syllabary === Transliterator::HIRAGANA){
+        if ($syllabary === Transliterator::HIRAGANA) {
             $mapChars = array(
                 'ā' => 'aa', 'ī' => 'ii', 'ū' => 'uu', 'ē' => 'ee', 'ō' => 'ou',
                 'ô' => 'ou',
             );
-        }
-        elseif($syllabary === Transliterator::KATAKANA){
+        } elseif ($syllabary === Transliterator::KATAKANA) {
             $mapChars = array(
             'aa' => 'a-', 'ii' => 'i-', 'uu' => 'u-', 'ee' => 'e-', 'oo' => 'o-',
             'ā' => 'a-', 'ī' => 'i-', 'ū' => 'u-', 'ē' => 'e-', 'ō' => 'o-',
             'ô' => 'o-',
             );
-        }
-        else{
+        } else {
             return $str;
         }
-        
+
         $prepared_s = strtr($str, $mapChars);
 
         return $prepared_s;
     }
 
-
     /**
      * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
      * its equivalent in latin alphabet.
      *
-     * @param string $str String to be transliterated.
-     * @param string $syllabary Syllabary to be used ; either Hiragana or 
+     * @param string $str       String to be transliterated.
+     * @param string $syllabary Syllabary to be used ; either Hiragana or
      * Katakana.
      *
      * @return string Transliterated string.

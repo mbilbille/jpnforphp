@@ -21,7 +21,7 @@ interface RomanizationInterface
      * specific romanization system.
      *
      * @param string $str The string to be converted.
-     * 
+     *
      * @return string Converted string into hiragana.
      */
     public function fromHiragana($str);

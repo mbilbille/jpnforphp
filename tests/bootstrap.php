@@ -2,8 +2,9 @@
 
 global $check; $check = array("success" => 0, "error" => 0);
 
-function __autoload($classname){
-    require_once('../src/' . $classname . '.php');
+function __autoload($classname)
+{
+    require_once '../src/'. $classname . '.php';
 }
 
 function unit($function, $inputs, $expected_result, $grp)
@@ -11,7 +12,7 @@ function unit($function, $inputs, $expected_result, $grp)
     global $check;
     $fn_time_start = microtime(true);
     set_error_handler('errorHandler');
-    try{
+    try {
         $result = call_user_func_array($function, $inputs);
         if ($result === $expected_result) {
             $css = "success";
@@ -19,8 +20,7 @@ function unit($function, $inputs, $expected_result, $grp)
             $css = "error";
             $check[$grp] = 'danger';
         }
-    }
-    catch(Exception $e){
+    } catch (Exception $e) {
         $result = $e->getMessage();
         $css = "error";
         $check[$grp] = 'danger';
@@ -51,7 +51,7 @@ function process($data)
             $check[$i] = 'success';
 
             foreach ($group['cases'] as $case) {
-                
+
                 $grp_output .= unit($data['namespace'].'::'.$fn, $case['input'], $case['expected'], $i);
             }
 
@@ -62,16 +62,19 @@ function process($data)
 
     $output .= '</tbody></table>
     <span id="check-success" class="invisible">'.$check['success'].'</span>
-    <span id="check-error" class="invisible">'.$check['error'].'</span>';  
+    <span id="check-error" class="invisible">'.$check['error'].'</span>';
 
     return $output;
 }
 
-function errorHandler($errno, $errstr, $errfile, $errline) {
-  if ( E_RECOVERABLE_ERROR===$errno ) {
+function errorHandler($errno, $errstr, $errfile, $errline)
+{
+  if (E_RECOVERABLE_ERROR===$errno) {
     print '<div class="alert alert-warning">'.$errstr.'</div>';
+
     return true;
   }
   print '<div class="alert alert-error">'.$errstr.'</div>';
+
   return false;
 }

@@ -26,14 +26,14 @@ class Helper
     const PREG_PATTERN_NOT_KANJI = '/\p{^Han}/u';
     const PREG_PATTERN_NOT_HIRAGANA = '/\p{^Hiragana}/u';
     const PREG_PATTERN_NOT_KATAKANA = '/[^\p{Katakana}|ー]/u';
-    
+
     /**
      * Enhance default splitter function to handle UTF-8 characters.
      *
-     * @param string $str The string to split.
-     * @param integer $length (optional) Define an optional substring length. 
+     * @param string  $str    The string to split.
+     * @param integer $length (optional) Define an optional substring length.
      * Default to 1.
-     * 
+     *
      * @return array An array of strings.
      */
     public static function split($str, $length = 1)
@@ -50,9 +50,9 @@ class Helper
     /**
      * Returns a new string that is a substring of the given string.
      *
-     * @param string $str The input string.
+     * @param string  $str   The input string.
      * @param integer $begin The beginning index, inclusive.
-     * @param integer $len Maximum number of characters to use from str.
+     * @param integer $len   Maximum number of characters to use from str.
      *
      * @return string A substring
      *
@@ -66,8 +66,8 @@ class Helper
     /**
      * Returns the character at the specified index.
      *
-     * @param string $str The input string.
-     * @param integer $index The index of the character to return (0 based 
+     * @param string  $str   The input string.
+     * @param integer $index The index of the character to return (0 based
      * indexing).
      *
      * @return string The character at the specified index.
@@ -118,7 +118,7 @@ class Helper
     /**
      * Remove hidden LTR Mark character where trim() and variant will ignore it.
      *
-     * @param string $str The input string.
+     * @param  string $str The input string.
      * @return string A cleaned string.
      */
     public static function removeLTRM($str)
@@ -137,8 +137,8 @@ class Helper
      */
     public static function removeMacrons($str)
     {
-        if ( !preg_match('/[\x80-\xff]/', $str) ){
-            return $str;    
+        if ( !preg_match('/[\x80-\xff]/', $str) ) {
+            return $str;
         }
 
         $chars = array(
@@ -154,8 +154,8 @@ class Helper
             chr(197).chr(170) => 'U', chr(197).chr(171) => 'u',
             chr(196).chr(146) => 'E', chr(196).chr(147) => 'e',
             chr(197).chr(140) => 'O', chr(197).chr(141) => 'o',
-        ); 
-        
+        );
+
         return strtr($str, $chars);
     }
 }

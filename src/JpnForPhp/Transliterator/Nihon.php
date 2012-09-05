@@ -41,7 +41,8 @@ class Nihon implements RomanizationInterface
      *
      * @see TransliteratorInterface
      */
-    public function __toString(){
+    public function __toString()
+    {
         return 'Nihon romanization system (日本式ローマ字)';
     }
 }

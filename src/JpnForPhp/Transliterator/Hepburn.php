@@ -126,13 +126,12 @@ class Hepburn implements RomanizationInterface
     );
 
     /**
-     * @var array Map Japanese punctuation marks to their equivalent in latin 
+     * @var array Map Japanese punctuation marks to their equivalent in latin
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
         '　' => ' ', '、' => ',　',
     );
-
 
     /**
      * Implements fromHiragana();
@@ -170,7 +169,8 @@ class Hepburn implements RomanizationInterface
      *
      * @see TransliteratorInterface
      */
-    public function __toString(){
+    public function __toString()
+    {
         return 'Hepburn romanization system (ヘボン式ローマ字)';
     }
 
@@ -202,7 +202,7 @@ class Hepburn implements RomanizationInterface
      * into its equivalent in latin alphabet.
      *
      * @param string $str String to be transliterated.
-     * 
+     *
      * @return string Transliterated string.
      */
     protected function transliterateChoonpu($str)

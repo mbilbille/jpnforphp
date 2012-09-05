@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 use JpnForPhp\Transliterator\Hepburn;
 
 /**
- * Provides utilities to transliterate Japanese strings into various 
+ * Provides utilities to transliterate Japanese strings into various
  * syllabaries.
  *
  * @author Matthieu Bilbille
@@ -28,12 +28,12 @@ class Transliterator
     const CHOONPU = 'ー';
 
     /**
-     * Wrap all romaji transliteration functions and perform intelligente 
+     * Wrap all romaji transliteration functions and perform intelligente
      * verification to properly convert a given string into romaji.
      *
-     * @param string $str The input string.
+     * @param string                $str            The input string.
      * @param RomanizationInterface $transliterator A romanization instance.
-     * @param integer $syllabary Force source syllabary.
+     * @param integer               $syllabary      Force source syllabary.
      *
      * @return string Converted string into romaji.
      */
@@ -41,11 +41,10 @@ class Transliterator
     {
         $output = $str;
 
-        if(is_null($transliterator)){
+        if (is_null($transliterator)) {
             // Set default system to Hepburn
             $transliterator = new Hepburn();
-        }
-        elseif(!$transliterator instanceof RomanizationInterface) {
+        } elseif (!$transliterator instanceof RomanizationInterface) {
             return $output;
         }
 
@@ -65,16 +64,14 @@ class Transliterator
         return $output;
     }
 
-
-    public static function toKana($str, $syllabary){
-        
+    public static function toKana($str, $syllabary)
+    {
         $output = $str;
         $transliterator = new Kana();
 
-        if($syllabary === self::HIRAGANA){
+        if ($syllabary === self::HIRAGANA) {
             $output = $transliterator->toHiragana($str);
-        }
-        elseif($syllabary === self::KATAKANA){
+        } elseif ($syllabary === self::KATAKANA) {
             $output = $transliterator->toKatakana($str);
         }
 

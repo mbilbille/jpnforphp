@@ -35,13 +35,14 @@ class Kunrei implements RomanizationInterface
     {
         return $str;
     }
-    
+
     /**
      * Implements __toString().
      *
      * @see TransliteratorInterface
      */
-    public function __toString(){
+    public function __toString()
+    {
         return 'Kunrei romanization system (訓令式ローマ字)';
     }
 }

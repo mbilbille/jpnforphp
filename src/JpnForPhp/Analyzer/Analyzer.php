@@ -26,7 +26,7 @@ class Analyzer
      *
      * @param string $str The string being measured for length.
      *
-     * @return integer Returns the number of characters in the input string. A 
+     * @return integer Returns the number of characters in the input string. A
      * multi-byte character is counted as 1.
      *
      * @see mb_strlen()
@@ -40,7 +40,7 @@ class Analyzer
      * Inspects a given string and returns useful details about it.
      *
      * @param string $str The string to be inspected.
-     * 
+     *
      * @return array An associative array containing the following items:
      *   - "length" : string length.
      *   - "kanji" : number of kanji within this string.
@@ -50,7 +50,7 @@ class Analyzer
      * @see length()
      * @see countKanji()
      * @see countHiragana()
-     * @see countKatakana() 
+     * @see countKatakana()
      */
     public static function inspect($str)
     {
@@ -79,6 +79,7 @@ class Analyzer
     public static function countKanji($str)
     {
         $matches = array();
+
         return preg_match_all(Helper::PREG_PATTERN_KANJI, $str, $matches);
     }
 
@@ -92,6 +93,7 @@ class Analyzer
     public static function countHiragana($str)
     {
         $matches = array();
+
         return preg_match_all(Helper::PREG_PATTERN_HIRAGANA, $str, $matches);
     }
 
@@ -106,6 +108,7 @@ class Analyzer
     public static function countKatakana($str)
     {
         $matches = array();
+
         return preg_match_all(Helper::PREG_PATTERN_KATAKANA, $str, $matches);
     }
 
@@ -126,7 +129,7 @@ class Analyzer
      *
      * @param string $str The string to inspect.
      *
-     * @return boolean TRUE if it contains at least one hiragana, otherwise 
+     * @return boolean TRUE if it contains at least one hiragana, otherwise
      * FALSE.
      */
     public static function hasHiragana($str)
@@ -139,7 +142,7 @@ class Analyzer
      *
      * @param string $str The string to inspect.
      *
-     * @return boolean TRUE if it contains at least one katakana, otherwise 
+     * @return boolean TRUE if it contains at least one katakana, otherwise
      * FALSE.
      */
     public static function hasKatakana($str)
@@ -150,8 +153,8 @@ class Analyzer
     /**
      * Determines whether the given string contains kana (hiragana or katakana).
      *
-     * @param string $str The string to inspect.
-     * @return boolean TRUE if it contains either hiragana or katakana, 
+     * @param  string  $str The string to inspect.
+     * @return boolean TRUE if it contains either hiragana or katakana,
      * otherwise FALSE.
      *
      * @see hasHiragana()
@@ -168,7 +171,7 @@ class Analyzer
      *
      * @param string $str The string to inspect.
      *
-     * @return boolean TRUE if it contains either kanji, hiragana or katakana, 
+     * @return boolean TRUE if it contains either kanji, hiragana or katakana,
      * otherwise FALSE.
      *
      * @see hasKanji()
