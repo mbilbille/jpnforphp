@@ -131,7 +131,7 @@ class Helper
      *
      * Based on Wordpress remove_accents().
      *
-     * @param $str The input string.
+     * @param string $str The input string.
      *
      * @return string Cleaned string.
      */
