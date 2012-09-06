@@ -171,6 +171,8 @@ class Kana
      *
      * @param string $str String to be prepared.
      *
+     * @param string $syllabary Syllabary to use
+     *
      * @return string Prepared string.
      */
     protected function prepareTransliteration($str, $syllabary)

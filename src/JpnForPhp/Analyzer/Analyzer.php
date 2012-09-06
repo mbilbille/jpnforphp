@@ -101,7 +101,7 @@ class Analyzer
      * Count number of katakana within the specified string. Chōonpu
      * (http://en.wikipedia.org/wiki/Chōonpu) is considered as Katakana here.
      *
-     * @param $ The input string.
+     * @param string $str The input string.
      *
      * @return integer Returns the number of katakana
      */
