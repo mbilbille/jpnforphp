@@ -75,7 +75,6 @@ class Kana
         'da' => 'ダ', 'di' => 'ヂ', 'dzu' => 'ヅ', 'du' => 'ヅ', 'de' => 'デ', 'do' => 'ド',
         'ba' => 'バ', 'bi' => 'ビ', 'bu' => 'ブ', 'be' => 'ベ', 'bo' => 'ボ',
         'pa' => 'パ', 'pi' => 'ピ', 'pu' => 'プ', 'pe' => 'ペ', 'po' => 'ポ',
-        'vu' => 'ヴ',
         'kya' => 'キャ', 'kyu' => 'キュ', 'kyo' => 'キョ',
         'sya' => 'シャ', 'sha' => 'シャ', 'syu' => 'シュ', 'shu' => 'シュ', 'syo' => 'ショ', 'sho' => 'ショ',
         'cya' => 'チャ', 'cha' => 'チャ', 'cyu' => 'チュ', 'chu' => 'チュ', 'cyo' => 'チョ', 'cho' => 'チョ',
@@ -170,6 +169,8 @@ class Kana
      * Prepare a string for its transliteration in kana.
      *
      * @param string $str String to be prepared.
+     *
+     * @param string $syllabary Syllabary to use
      *
      * @return string Prepared string.
      */

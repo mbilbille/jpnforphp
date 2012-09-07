@@ -76,7 +76,6 @@ class Hepburn implements RomanizationInterface
         'ダ' => 'da', 'ヂ' => 'ji', 'ヅ' => 'zu', 'デ' => 'de', 'ド' => 'do',
         'バ' => 'ba', 'ビ' => 'bi', 'ブ' => 'bu', 'ベ' => 'be', 'ボ' => 'bo',
         'パ' => 'pa', 'ピ' => 'pi', 'プ' => 'pu', 'ペ' => 'pe', 'ポ' => 'po',
-        'ヴ' => 'vu',
         'キャ' => 'kya', 'キュ' => 'kyu', 'キョ' => 'kyo',
         'シャ' => 'sha', 'シュ' => 'shu', 'ショ' => 'sho',
         'チャ' => 'cha', 'チュ' => 'chu', 'チョ' => 'cho',
@@ -179,6 +178,8 @@ class Hepburn implements RomanizationInterface
      * its equivalent in latin alphabet.
      *
      * @param string $str String to be transliterated.
+     *
+     * @param string $syllabary Syllabary to use
      *
      * @return string Transliterated string.
      */
