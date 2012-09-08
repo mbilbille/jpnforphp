@@ -122,6 +122,7 @@ class Hepburn implements RomanizationInterface
         'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo',
         'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
         'ンア' => "n'a", 'ンイ' => "n'i", 'ンウ' => "n'u", 'ンエ' => "n'e", 'ンオ' => "n'o",
+        'ンヤ' => "n'ya", 'ンユ' => "n'yu", 'ンヨ' => "n'yo",
     );
 
     /**
@@ -129,7 +130,9 @@ class Hepburn implements RomanizationInterface
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ',　',
+        '　' => ' ', '、' => ',　', '・' => '-', 
+        '「' => '"', '」' => '"',
+        '（' => '(', '）' => ')',
     );
 
     /**
