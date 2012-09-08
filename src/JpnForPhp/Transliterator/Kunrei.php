@@ -100,7 +100,7 @@ class Kunrei implements RomanizationInterface
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ',　', '・' => '-', 
+        '　' => ' ', '、' => ',　', '・' => '-',
         '「' => '"', '」' => '"',
         '（' => '(', '）' => ')',
     );
