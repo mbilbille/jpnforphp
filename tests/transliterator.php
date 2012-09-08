@@ -82,6 +82,42 @@ $data = array(
                         'input' => array('がっこう', NULL, new Kunrei()),
                         'expected' => 'gakkô',
                     ),
+                    array(
+                        'input' => array('かんよう', NULL, new Kunrei()),
+                        'expected' => "kan'yô",
+                    ),
+                    array(
+                        'input' => array('かにょう', NULL, new Kunrei()),
+                        'expected' => "kanyô",
+                    ),
+                    array(
+                        'input' => array('おおきい', NULL, new Kunrei()),
+                        'expected' => "ôkii",
+                    ),
+                    array(
+                        'input' => array('「ほしい」', NULL, new Kunrei()),
+                        'expected' => '"hosii"',
+                    ),
+                    array(
+                        'input' => array('まっちゃ', NULL, new Kunrei()),
+                        'expected' => 'mattya',
+                    ),
+                    array(
+                        'input' => array('マッチャ', NULL, new Kunrei()),
+                        'expected' => 'mattya',
+                    ),
+                    array(
+                        'input' => array('ケッカ', NULL, new Kunrei()),
+                        'expected' => 'kekka',
+                    ),
+                    array(
+                        'input' => array('ローマジ', NULL, new Kunrei()),
+                        'expected' => 'rômazi',
+                    ),
+                    array(
+                        'input' => array('フライドポテト', NULL, new Kunrei()),
+                        'expected' => 'huraidopoteto',
+                    ),
                 ),
             ),
             array(
