@@ -187,9 +187,12 @@ class Kana
             );
         } elseif ($syllabary === Transliterator::KATAKANA) {
             $mapChars = array(
-            'aa' => 'a-', 'ii' => 'i-', 'uu' => 'u-', 'ee' => 'e-', 'oo' => 'o-',
-            'ā' => 'a-', 'ī' => 'i-', 'ū' => 'u-', 'ē' => 'e-', 'ō' => 'o-',
-            'ô' => 'o-',
+            'aa' => 'a'.Transliterator::CHOONPU, 'ii' => 'i'.Transliterator::CHOONPU,
+            'uu' => 'u'.Transliterator::CHOONPU, 'ee' => 'e'.Transliterator::CHOONPU,
+            'oo' => 'o'.Transliterator::CHOONPU, 'ā' => 'a'.Transliterator::CHOONPU,
+            'ī' => 'i'.Transliterator::CHOONPU, 'ū' => 'u'.Transliterator::CHOONPU,
+            'ē' => 'e'.Transliterator::CHOONPU, 'ō' => 'o'.Transliterator::CHOONPU,
+            'ô' => 'o'.Transliterator::CHOONPU,
             );
         } else {
             return $str;
