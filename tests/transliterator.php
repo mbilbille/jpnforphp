@@ -159,6 +159,10 @@ $data = array(
                         'input' => array('gakkō ni ikimasu', Transliterator::HIRAGANA),
                         'expected' => 'がっこう　に　いきます',
                     ),
+                    array(
+                        'input' => array('"iie"toiimashita', Transliterator::HIRAGANA),
+                        'expected' => '「いいえ」といいました',
+                    ),
                 ),
             ),
             array(

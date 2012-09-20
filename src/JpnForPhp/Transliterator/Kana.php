@@ -107,7 +107,6 @@ class Kana
         'tsa' => 'ツァ', 'tsi' => 'ツィ', 'tse' => 'ツェ', 'tso' => 'ツォ',
         'tsyu' => 'ツュ',
         //'ti' => 'ティ', 'tu' => 'テゥ',
-        'tyu' => 'テュ',
         //'di' => 'ディ', 'du' => 'デゥ',
         //'dyu' => 'デュ',
         'nye' => 'ニェ',
@@ -129,7 +128,6 @@ class Kana
      */
     protected $mapMarks = array(
         ' ' => '　', ',' => '、', ', ' => '、', '-' => '・',
-        '"' => '「', '"' => '」',
         '(' => '（', ')' => '）',
     );
 
@@ -144,6 +142,7 @@ class Kana
     {
         $str = $this->prepareTransliteration($str, Transliterator::HIRAGANA);
         $str = $this->transliterateSokuon($str, Transliterator::HIRAGANA);
+        $str = $this->transliterateQuotationMarks($str);
         $output = strtr($str, $this->mapHiragana);
         $output = strtr($output, $this->mapMarks);
 
@@ -161,6 +160,7 @@ class Kana
     {
         $str = $this->prepareTransliteration($str,Transliterator::KATAKANA);
         $str = $this->transliterateSokuon($str, Transliterator::KATAKANA);
+        $str = $this->transliterateQuotationMarks($str);
         $output = strtr($str, $this->mapKatakana);
         $output = strtr($output, $this->mapMarks);
 
@@ -204,11 +204,11 @@ class Kana
     }
 
     /**
-     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
-     * its equivalent in latin alphabet.
+     * Transliterate proper combinaisons of latin alphabet characters into 
+     * Sokuon (http://en.wikipedia.org/wiki/Sokuon) characters.
      *
-     * @param string $str       String to be transliterated.
-     * @param string $syllabary Syllabary to be used ; either Hiragana or
+     * @param string $str String to be transliterated.
+     * @param string $syllabary Syllabary to use ; either Hiragana or
      * Katakana.
      *
      * @return string Transliterated string.
@@ -237,6 +237,18 @@ class Kana
         }
 
         return $new_str;
+    }
+
+    /**
+     * Transliterate quotation mark into their equivalent in Japanese syllabary.
+     *
+     * @param string $str String to be transliterated.
+     *
+     * @return string Transliterated string.
+     */
+    protected function transliterateQuotationMarks($str)
+    {
+        return preg_replace('/"(.*)"/u', '「${1}」', $str);
     }
 
 }
