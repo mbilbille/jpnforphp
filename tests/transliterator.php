@@ -73,6 +73,10 @@ $data = array(
                         'input' => array('きんえん', NULL, new Hepburn()),
                         'expected' => "kin'en",
                     ),
+                    array(
+                        'input' => array('ファッションショー', NULL, new Hepburn()),
+                        'expected' => "fasshonshō",
+                    ),
                 ),
             ),
             array(
@@ -117,6 +121,10 @@ $data = array(
                     array(
                         'input' => array('フライドポテト', NULL, new Kunrei()),
                         'expected' => 'huraidopoteto',
+                    ),
+                    array(
+                        'input' => array('ファッションショー', NULL, new Kunrei()),
+                        'expected' => "huァssyonsyô",
                     ),
                 ),
             ),
