@@ -126,6 +126,22 @@ $data = array(
                         'input' => array('ファッションショー', NULL, new Kunrei()),
                         'expected' => "huァssyonsyô",
                     ),
+                    array(
+                        'input' => array('かなづかい', NULL, new Kunrei()),
+                        'expected' => "kanazukai",
+                    ),
+                    array(
+                        'input' => array('しごと　は　たのしい　です', NULL, new Kunrei()),
+                        'expected' => "sigoto wa tanosii desu",
+                    ),
+                    array(
+                        'input' => array('しごと　を　します', NULL, new Kunrei()),
+                        'expected' => "sigoto o simasu",
+                    ),
+                    array(
+                        'input' => array('しごと　へ　いきます', NULL, new Kunrei()),
+                        'expected' => "sigoto e ikimasu",
+                    ),
                 ),
             ),
             array(
@@ -134,6 +150,62 @@ $data = array(
                     array(
                         'input' => array('がっこう', NULL, new Nihon()),
                         'expected' => 'gakkô',
+                    ),
+                                        array(
+                        'input' => array('かんよう', NULL, new Nihon()),
+                        'expected' => "kan'yô",
+                    ),
+                    array(
+                        'input' => array('かにょう', NULL, new Nihon()),
+                        'expected' => "kanyô",
+                    ),
+                    array(
+                        'input' => array('おおきい', NULL, new Nihon()),
+                        'expected' => "ôkii",
+                    ),
+                    array(
+                        'input' => array('「ほしい」', NULL, new Nihon()),
+                        'expected' => '"hosii"',
+                    ),
+                    array(
+                        'input' => array('まっちゃ', NULL, new Nihon()),
+                        'expected' => 'mattya',
+                    ),
+                    array(
+                        'input' => array('マッチャ', NULL, new Nihon()),
+                        'expected' => 'mattya',
+                    ),
+                    array(
+                        'input' => array('ケッカ', NULL, new Nihon()),
+                        'expected' => 'kekka',
+                    ),
+                    array(
+                        'input' => array('ローマジ', NULL, new Nihon()),
+                        'expected' => 'rômazi',
+                    ),
+                    array(
+                        'input' => array('フライドポテト', NULL, new Nihon()),
+                        'expected' => 'huraidopoteto',
+                    ),
+                    array(
+                        'input' => array('ファッションショー', NULL, new Nihon()),
+                        'expected' => "huァssyonsyô",
+                    ),
+                    array(
+                        'input' => array('かなづかい', NULL, new Nihon()),
+                        'expected' => "kanadukai",
+                    ),
+                    array(
+                        'input' => array('しごと　は　たのしい　です', NULL, new Nihon()),
+                        'expected' => "sigoto ha tanosii desu",
+                    ),
+                    array(
+                        'input' => array('しごと　を　します', NULL, new Nihon()),
+                        'expected' => "sigoto wo simasu",
+                    ),
+                    array(
+                        'input' => array('しごと　へ　いきます', NULL, new Nihon()),
+                        'expected' => "sigoto he ikimasu",
                     ),
                 ),
             ),
