@@ -34,7 +34,7 @@ class Kunrei implements RomanizationInterface
         'ま' => 'ma', 'み' => 'mi', 'む' => 'mu', 'め' => 'me', 'も' => 'mo',
         'や' => 'ya', 'ゆ' => 'yu', 'よ' => 'yo',
         'ら' => 'ra', 'り' => 'ri', 'る' => 'ru', 'れ' => 're', 'ろ' => 'ro',
-        'わ' => 'wa', 'ゐ' => 'wi', 'ゑ' => 'we', 'を' => 'wo',
+        'わ' => 'wa', 'ゐ' => 'i', 'ゑ' => 'e', 'を' => 'wo',
         'ん' => 'n',
         'が' => 'ga', 'ぎ' => 'gi', 'ぐ' => 'gu', 'げ' => 'ge', 'ご' => 'go',
         'ざ' => 'za', 'じ' => 'zi', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
@@ -54,6 +54,7 @@ class Kunrei implements RomanizationInterface
         'ぢゃ' => 'zya', 'ぢゅ' => 'zyu', 'ぢょ' => 'zyo',
         'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
         'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
+        'くゎ' => 'ka', 'ぐゎ' => 'ga',
         'んあ' => "n'a", 'んい' => "n'i", 'んう' => "n'u", 'んえ' => "n'e", 'んお' => "n'o",
         'んや' => "n'ya", 'んゆ' => "n'yu", 'んよ' => "n'yo",
     );
@@ -72,7 +73,7 @@ class Kunrei implements RomanizationInterface
         'マ' => 'ma', 'ミ' => 'mi', 'ム' => 'mu', 'メ' => 'me', 'モ' => 'mo',
         'ヤ' => 'ya', 'ユ' => 'yu', 'ヨ' => 'yo',
         'ラ' => 'ra', 'リ' => 'ri', 'ル' => 'ru', 'レ' => 're', 'ロ' => 'ro',
-        'ワ' => 'wa', 'ヰ' => 'wi', 'ヱ' => 'we', 'ヲ' => 'wo',
+        'ワ' => 'wa', 'ヰ' => 'i', 'ヱ' => 'e', 'ヲ' => 'wo',
         'ン' => 'n',
         'ガ' => 'ga', 'ギ' => 'gi', 'グ' => 'gu', 'ゲ' => 'ge', 'ゴ' => 'go',
         'ザ' => 'za', 'ジ' => 'zi', 'ズ' => 'zu', 'ゼ' => 'ze', 'ゾ' => 'zo',
@@ -91,6 +92,7 @@ class Kunrei implements RomanizationInterface
         'ヂャ' => 'zya', 'ヂュ' => 'zyu', 'ヂョ' => 'zyo',
         'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
         'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
+        'クヮ' => 'ka', 'グヮ' => 'ga',
         'ンア' => "n'a", 'ンイ' => "n'i", 'ンウ' => "n'u", 'ンエ' => "n'e", 'ンオ' => "n'o",
         'ンヤ' => "n'ya", 'ンユ' => "n'yu", 'ンヨ' => "n'yo",
     );
@@ -132,6 +134,8 @@ class Kunrei implements RomanizationInterface
         $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
         $output = $this->transliterateChoonpu($output);
+        $output = $this->convertLongVowels($output);
+        $output = $this->convertParticles($output);
 
         return $output;
     }
