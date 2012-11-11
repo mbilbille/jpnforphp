@@ -22,7 +22,7 @@
   "replace": {
     "jpnforphp/analyzer": "self.version",
     "jpnforphp/helper": "self.version",
-    "jpnforphp/transliterator": "self.version",
+    "jpnforphp/transliterator": "self.version"
   },
   "autoload": {
     "psr-0": { "JpnForPhp": "src/" }
