@@ -1,8 +1,8 @@
 {
-  "name": "jpnforphp/jpnforphp",
+  "name": "jpnforphp/helper",
   "type": "library",
-  "description": "A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language.",
-  "keywords": ["library","japanese"],
+  "description": "JpnForPhp Helper Component",
+  "keywords": [],
   "homepage": "http://mbilbille.github.com/jpnforphp/",
   "license": "MIT",
   "authors": [
@@ -19,14 +19,10 @@
   "require": {
     "php": ">=5.3.0"
   },
-  "replace": {
-    "jpnforphp/analyzer": "self.version",
-    "jpnforphp/helper": "self.version",
-    "jpnforphp/transliterator": "self.version"
-  },
   "autoload": {
-    "psr-0": { "JpnForPhp": "src/" }
+    "psr-0": { "JpnForPhp\\Helper": "" }
   },
+  "target-dir": "JpnForPhp/Helper",
   "extra": {
     "branch-alias": {
       "dev-master": "0.5-dev"

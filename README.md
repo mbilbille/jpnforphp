@@ -18,7 +18,7 @@ A tiny PHP lib which provides nice functions & wrappers to interact with Japanes
 Check out the _develop_ branch to get all the latest code and change (https://github.com/mbilbille/jpnforphp/tree/develop)
 
 Ship with the next release (ie: 0.4)
-* **Extractors** (_new tool_) →　extract substrings of a given syllabary.
+* **Extractors** (_new tool_) ? extract substrings of a given syllabary.
 * Advanced **transliterator** supporting all main romanization systems (ie: Hepburn, Kunrei shiki & Nihon shiki)
 
 ##Integration
