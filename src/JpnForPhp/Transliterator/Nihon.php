@@ -103,7 +103,6 @@ class Nihon implements RomanizationInterface
         '（' => '(', '）' => ')',
     );
 
-
     /**
      * Implements fromHiragana();
      *

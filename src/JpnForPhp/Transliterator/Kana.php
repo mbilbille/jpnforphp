@@ -204,10 +204,10 @@ class Kana
     }
 
     /**
-     * Transliterate proper combinaisons of latin alphabet characters into 
+     * Transliterate proper combinaisons of latin alphabet characters into
      * Sokuon (http://en.wikipedia.org/wiki/Sokuon) characters.
      *
-     * @param string $str String to be transliterated.
+     * @param string $str       String to be transliterated.
      * @param string $syllabary Syllabary to use ; either Hiragana or
      * Katakana.
      *
