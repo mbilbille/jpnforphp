@@ -7,7 +7,7 @@ A tiny PHP lib which provides nice functions & wrappers to interact with Japanes
 - [Official Website](http://mbilbille.github.com/jpnforphp/)
 
 ##Features list
-_Complete rewriting_ ; the library is now based on 3 components
+_Complete rewrite_ ; the library is now based on 3 components
 
 - Helper: a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).
 - Analyzer: various "inspecting" functions (length, count kana, etc.).
