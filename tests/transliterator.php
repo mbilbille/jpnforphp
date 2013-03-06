@@ -222,6 +222,19 @@ $data = array(
                     ),
                 ),
             ),
+            array(
+                'description' => 'hotfix #14',
+                'cases' => array(
+                    array(
+                        'input' => array('some words here'),
+                        'expected' => 'some words here',
+                    ),
+                    array(
+                        'input' => array('yahoo'),
+                        'expected' => 'yahoo',
+                    ),
+                ),
+            ),
         ),
         'toKana' => array(
             array(
