@@ -12,6 +12,7 @@
 namespace JpnForPhp\Transliterator;
 
 use JpnForPhp\Transliterator\Hepburn;
+use JpnForPhp\Helper\Helper;
 
 /**
  * Provides utilities to transliterate Japanese strings into various
@@ -48,6 +49,21 @@ class Transliterator
             return $output;
         }
 
+        $parts_in_latin = array();
+        $has_latin_parts = preg_match_all(
+                                Helper::PREG_PATTERN_JAPANESE_MULTI
+                                , $str
+                                , $parts_in_latin
+                                , PREG_PATTERN_ORDER);
+
+        if($has_latin_parts) {
+            $str = preg_replace(
+                        Helper::PREG_PATTERN_JAPANESE_MULTI
+                        ,'%s'
+                        , $str);
+        }
+
+
         if (!is_null($syllabary)) {
             // Force source syllabary
             if ($syllabary === self::HIRAGANA) {
@@ -59,6 +75,10 @@ class Transliterator
             // Rather than guessing the appropriate syllabary, process both.
             $output = $transliterator->fromHiragana($str);
             $output = $transliterator->fromKatakana($output);
+        }
+
+        if($has_latin_parts) {
+            $output = vsprintf($output, $parts_in_latin[0]);
         }
 
         return $output;
