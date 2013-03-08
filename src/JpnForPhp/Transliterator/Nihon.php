@@ -110,10 +110,12 @@ class Nihon extends Romanization
      */
     public function fromHiragana($str)
     {
+        $str = $this->escapeLatinCharacters($str);
         $output = strtr($str, $this->mapHiragana);
         $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output);
         $output = $this->convertLongVowels($output);
+        $output = $this->unescapeLatinCharacters($output);
 
         return $output;
     }
@@ -125,11 +127,12 @@ class Nihon extends Romanization
      */
     public function fromKatakana($str)
     {
+        $str = $this->escapeLatinCharacters($str);
         $output = strtr($str, $this->mapKatakana);
         $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
         $output = $this->transliterateChoonpu($output);
-        $output = $this->convertLongVowels($output);
+        $output = $this->unescapeLatinCharacters($output);
 
         return $output;
     }
@@ -145,34 +148,9 @@ class Nihon extends Romanization
     }
 
     /**
-     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
-     * its equivalent in latin alphabet.
+     * Overrides transliterateChoonpu().
      *
-     * @param string $str String to be transliterated.
-     *
-     * @param string $syllabary Syllabary to use
-     *
-     * @return string Transliterated string.
-     */
-    protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
-    {
-        if ($syllabary === Transliterator::KATAKANA) {
-            $sokuon = Transliterator::SOKUON_KATAKANA;
-        } else {
-            $sokuon = Transliterator::SOKUON_HIRAGANA;
-        }
-        $output = preg_replace('/' . $sokuon . '(.)/u', '${1}${1}', $str);
-
-        return $output;
-    }
-
-    /**
-     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
-     * into its equivalent in latin alphabet.
-     *
-     * @param string $str String to be transliterated.
-     *
-     * @return string Transliterated string.
+     * @see Romanization
      */
     protected function transliterateChoonpu($str)
     {
@@ -188,14 +166,9 @@ class Nihon extends Romanization
     }
 
     /**
-     * Post-processing transliteration to properly format long vowels.
-     * This is a minimalist implementation of Hepburn's rules. For a detailed
-     * explanation please refer to:
-     *  - http://en.wikipedia.org/wiki/Hepburn_romanization#Long_vowels
+     * Overrides convertLongVowels().
      *
-     * @param string $str String to be preprocessed.
-     *
-     * @return string Transliterated string.
+     * @see Romanization
      */
     protected function convertLongVowels($str)
     {

@@ -230,16 +230,16 @@ $data = array(
                 'description' => 'hotfix #14',
                 'cases' => array(
                     array(
-                        'input' => array('some words here'),
-                        'expected' => 'some words here',
+                        'input' => array('ヤフー　yahoo YAHOO', NULL, new Hepburn()),
+                        'expected' => 'yafū yahoo YAHOO',
                     ),
                     array(
-                        'input' => array('yahoo'),
-                        'expected' => 'yahoo',
+                        'input' => array('ヤフー　yahoo YAHOO', NULL, new Kunrei()),
+                        'expected' => 'yahû yahoo YAHOO',
                     ),
                     array(
-                        'input' => array('YAHOO'),
-                        'expected' => 'YAHOO',
+                        'input' => array('ヤフー　yahoo YAHOO', NULL, new Nihon()),
+                        'expected' => 'yahû yahoo YAHOO',
                     ),
                 ),
             ),

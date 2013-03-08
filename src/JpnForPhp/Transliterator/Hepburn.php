@@ -16,7 +16,6 @@ namespace JpnForPhp\Transliterator;
  */
 class Hepburn extends Romanization
 {
-
     /**
      * @var array Map hiragana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
@@ -149,7 +148,7 @@ class Hepburn extends Romanization
         $output = $this->convertLongVowels($output);
         $output = $this->convertParticles($output);
         $output = $this->unescapeLatinCharacters($output);
-        
+
         return $output;
     }
 
@@ -195,12 +194,9 @@ class Hepburn extends Romanization
     }
 
     /**
-     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
-     * into its equivalent in latin alphabet.
+     * Overrides transliterateChoonpu().
      *
-     * @param string $str String to be transliterated.
-     *
-     * @return string Transliterated string.
+     * @see Romanization
      */
     protected function transliterateChoonpu($str)
     {
@@ -216,19 +212,31 @@ class Hepburn extends Romanization
     }
 
     /**
-     * Post-processing transliteration to properly format long vowels.
+     * Overrides convertLongVowels().
+     *
+     * @see Romanization
+     *
      * This is a minimalist implementation of Hepburn's rules. For a detailed
      * explanation please refer to:
      *  - http://en.wikipedia.org/wiki/Hepburn_romanization#Long_vowels
-     *
-     * @param string $str String to be preprocessed.
-     *
-     * @return string Transliterated string.
      */
     protected function convertLongVowels($str)
     {
         $search = array('aa', 'uu', 'ee', 'oo', 'ou');
         $replace = array('ā', 'ū', 'ē', 'ō', 'ō');
+
+        return str_replace($search, $replace, $str);
+    }
+
+    /**
+     * Overrides convertParticles().
+     *
+     * @see Romanization
+     */
+    protected function convertParticles($str)
+    {
+        $search = array(' ha ', ' he ', ' wo ');
+        $replace = array(' wa ', ' e ', ' o ');
 
         return str_replace($search, $replace, $str);
     }
