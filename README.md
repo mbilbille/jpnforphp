@@ -63,11 +63,11 @@ _Complete rewrite_ ; the library is now based on 3 components
 
 ##Upcoming
 
-Check out the _develop_ branch to get all the latest code and change (https://github.com/mbilbille/jpnforphp/tree/develop)
+Check out the _develop_ branch to get all the latest code and change (http://github.com/mbilbille/jpnforphp/tree/develop)
 
 ## License
 
-JpnForPHP was created by [Matthieu Bilbille](http://mbilbille.github.com) and released under the [MIT License](http://github.com/mbilbille/jpnforphp/blob/master/LICENSE).
+JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and released under the [MIT License](http://github.com/mbilbille/jpnforphp/blob/master/LICENSE).
 
 ##Integration
 

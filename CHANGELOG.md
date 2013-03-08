@@ -2,7 +2,10 @@
 
 This changelog references the relevant changes (bug and security fixes) done in 0.x versions
 
-* 0.4 (2012-11-14)
+* 0.4.1 (2013-03-08)
+  * 9970077: Bug fix #14
+
+* 0.4.0 (2012-11-14)
   
   * 1fb1cad: Support for Composer
   * cc58295: Implement Nihon romanization class
