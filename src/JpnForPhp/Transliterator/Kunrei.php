@@ -17,7 +17,7 @@ namespace JpnForPhp\Transliterator;
  * Based on the following rules:
  * http://www.age.ne.jp/x/nrs/iso3602/iso3602_unicode.html#kutoten
  */
-class Kunrei implements RomanizationInterface
+class Kunrei extends Romanization
 {
 
     /**
@@ -207,21 +207,6 @@ class Kunrei implements RomanizationInterface
     {
         $search = array('aa', 'uu', 'ee', 'oo', 'ou');
         $replace = array('â', 'û', 'ê', 'ô', 'ô');
-
-        return str_replace($search, $replace, $str);
-    }
-
-    /**
-     * Post-processing transliteration to properly format particles.
-     *
-     * @param string $str String to be preprocessed.
-     *
-     * @return string Transliterated string.
-     */
-    protected function convertParticles($str)
-    {
-        $search = array(' ha ', ' he ', ' wo ');
-        $replace = array(' wa ', ' e ', ' o ');
 
         return str_replace($search, $replace, $str);
     }

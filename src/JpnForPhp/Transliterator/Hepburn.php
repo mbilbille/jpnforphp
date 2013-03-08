@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Hepburn romanization system class
  */
-class Hepburn implements RomanizationInterface
+class Hepburn extends Romanization
 {
 
     /**
@@ -142,12 +142,14 @@ class Hepburn implements RomanizationInterface
      */
     public function fromHiragana($str)
     {
+        $str = $this->escapeLatinCharacters($str);
         $output = strtr($str, $this->mapHiragana);
         $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output);
         $output = $this->convertLongVowels($output);
         $output = $this->convertParticles($output);
-
+        $output = $this->unescapeLatinCharacters($output);
+        
         return $output;
     }
 
@@ -158,10 +160,12 @@ class Hepburn implements RomanizationInterface
      */
     public function fromKatakana($str)
     {
+        $str = $this->escapeLatinCharacters($str);
         $output = strtr($str, $this->mapKatakana);
         $output = strtr($output, $this->mapPunctuationMarks);
         $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
         $output = $this->transliterateChoonpu($output);
+        $output = $this->unescapeLatinCharacters($output);
 
         return $output;
     }
@@ -177,24 +181,13 @@ class Hepburn implements RomanizationInterface
     }
 
     /**
-     * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
-     * its equivalent in latin alphabet.
+     * Overrides transliterateSokuon().
      *
-     * @param string $str String to be transliterated.
-     *
-     * @param string $syllabary Syllabary to use
-     *
-     * @return string Transliterated string.
+     * @see Romanization
      */
     protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
     {
-        if ($syllabary === Transliterator::KATAKANA) {
-            $sokuon = Transliterator::SOKUON_KATAKANA;
-        } else {
-            $sokuon = Transliterator::SOKUON_HIRAGANA;
-        }
-
-        $output = preg_replace('/' . $sokuon . '(.)/u', '${1}${1}', $str);
+        $output = parent::transliterateSokuon($str, $syllabary);
 
         // As per Hepburn system ch > tch
         // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
@@ -236,21 +229,6 @@ class Hepburn implements RomanizationInterface
     {
         $search = array('aa', 'uu', 'ee', 'oo', 'ou');
         $replace = array('ā', 'ū', 'ē', 'ō', 'ō');
-
-        return str_replace($search, $replace, $str);
-    }
-
-    /**
-     * Post-processing transliteration to properly format particles.
-     *
-     * @param string $str String to be preprocessed.
-     *
-     * @return string Transliterated string.
-     */
-    protected function convertParticles($str)
-    {
-        $search = array(' ha ', ' he ', ' wo ');
-        $replace = array(' wa ', ' e ', ' o ');
 
         return str_replace($search, $replace, $str);
     }

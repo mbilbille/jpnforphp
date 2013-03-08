@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Nihon romanization system class
  */
-class Nihon implements RomanizationInterface
+class Nihon extends Romanization
 {
     /**
      * @var array Map hiragana characters (or combinaison of characters) to

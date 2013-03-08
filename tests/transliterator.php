@@ -13,6 +13,10 @@ $data = array(
                 'description' => 'Default',
                 'cases' => array(
                     array(
+                        'input' => array(''),
+                        'expected' => '',
+                    ),
+                    array(
                         'input' => array('くるま'),
                         'expected' => 'kuruma',
                     ),
@@ -232,6 +236,10 @@ $data = array(
                     array(
                         'input' => array('yahoo'),
                         'expected' => 'yahoo',
+                    ),
+                    array(
+                        'input' => array('YAHOO'),
+                        'expected' => 'YAHOO',
                     ),
                 ),
             ),
