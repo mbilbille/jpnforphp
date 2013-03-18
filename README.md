@@ -1,10 +1,14 @@
-#README
+#JpnForPhp
 
-##What is JpnForPHP?
 A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language.
 
 ##Quick links
 - [Official Website](http://mbilbille.github.com/jpnforphp/)
+
+##Installation
+```bash
+composer install
+```
 
 ##Features list
 _Complete rewrite_ ; the library is now based on 3 components
@@ -18,46 +22,40 @@ _Complete rewrite_ ; the library is now based on 3 components
 - Helper component:
 
 ```php
-<?php
-  use JpnForPhp\Helper\Helper;
+use JpnForPhp\Helper\Helper;
 
-  Helper::split('素晴らしいです'); // array('素','晴','ら','し','い','で','す')
-  Helper::subString('素晴らしいです', 2, 4); // 'らし'
-  Helper::extractKanji('素晴らしいです'); // array('素晴')
-  Helper::extractHiragana('素晴らしいです'); // array('らしいです')
-?>
+Helper::split('素晴らしいです'); // array('素','晴','ら','し','い','で','す')
+Helper::subString('素晴らしいです', 2, 4); // 'らし'
+Helper::extractKanji('素晴らしいです'); // array('素晴')
+Helper::extractHiragana('素晴らしいです'); // array('らしいです')
 ```
 
 - Analyzer component
 
 ```php
-<?php
-  use JpnForPhp\Analyzer\Analyzer;
+use JpnForPhp\Analyzer\Analyzer;
 
-  Analyzer::length('素晴らしいです'); // 7
-  Analyzer::inspect('素晴らしいです'); // array('length'=>7,'kanji'=>2,'hiragana' =>5,'katakana'=>0)
-  Analyzer::countHiragana('素晴らしいです'); // 5
-  Analyzer::hasKanji('素晴らしいです'); // TRUE
-?>
+Analyzer::length('素晴らしいです'); // 7
+Analyzer::inspect('素晴らしいです'); // array('length'=>7,'kanji'=>2,'hiragana' =>5,'katakana'=>0)
+Analyzer::countHiragana('素晴らしいです'); // 5
+Analyzer::hasKanji('素晴らしいです'); // TRUE
 ```
 
 - Transliterator component:
 
 ```php
-<?php
-  use JpnForPhp\Transliterator\Transliterator;
-  use JpnForPhp\Transliterator\Hepburn;
-  use JpnForPhp\Transliterator\Kunrei;
-  use JpnForPhp\Transliterator\Nihon;
+use JpnForPhp\Transliterator\Transliterator;
+use JpnForPhp\Transliterator\Hepburn;
+use JpnForPhp\Transliterator\Kunrei;
+use JpnForPhp\Transliterator\Nihon;
 
-  Transliterator::toRomaji('ローマジ で　かいて'); // rōmaji de kaite
-  Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::HIRAGANA, new Hepburn()); // ローマジ de kaite
-  Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::KATAKANA, new Hepburn()); // rōmaji で かいて
-  Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Kunrei()); // rômazi de kaite
-  Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Nihon()); // rômazi de kaite
-  Transliterator::toKana('kana de kaite', Transliterator::HIRAGANA); // かな　で　かいて
-  Transliterator::toKana('kana de kaite', Transliterator::KATAKANA); // カナ　デ　カイテ
-?>
+Transliterator::toRomaji('ローマジ で　かいて'); // rōmaji de kaite
+Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::HIRAGANA, new Hepburn()); // ローマジ de kaite
+Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::KATAKANA, new Hepburn()); // rōmaji で かいて
+Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Kunrei()); // rômazi de kaite
+Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Nihon()); // rômazi de kaite
+Transliterator::toKana('kana de kaite', Transliterator::HIRAGANA); // かな　で　かいて
+Transliterator::toKana('kana de kaite', Transliterator::KATAKANA); // カナ　デ　カイテ
 ```
 
 
