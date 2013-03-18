@@ -1,9 +1,6 @@
 #JpnForPhp
 
-A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language.
-
-##Quick links
-- [Official Website](http://mbilbille.github.com/jpnforphp/)
+A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
 
 ##Installation
 ```bash
@@ -11,7 +8,7 @@ composer install
 ```
 
 ##Features list
-_Complete rewrite_ ; the library is now based on 3 components
+Provides the following components:
 
 - Helper: a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).
 - Analyzer: various "inspecting" functions (length, count kana, etc.).
