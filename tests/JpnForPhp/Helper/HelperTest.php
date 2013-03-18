@@ -27,68 +27,104 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-    public function testSplit()
+    public function testSplitAnEmptySequenceOfCharacters()
     {
         $result = Helper::split($this->mixCharacters);
         $this->assertSame($result, array('今', '日', '、', 'J', 'o', 'o', '「', 'ジ', 'ョ', 'オ', '」', 'は', '学', '校', 'に', 'い', 'ま', 'す', '。'));
     }
 
-    public function testCharAt()
+    public function testSplitSequenceOfCharacters()
+    {
+        $result = Helper::split($this->mixCharacters);
+        $this->assertSame($result, array('今', '日', '、', 'J', 'o', 'o', '「', 'ジ', 'ョ', 'オ', '」', 'は', '学', '校', 'に', 'い', 'ま', 'す', '。'));
+    }
+
+    public function testGetCharAtMiddleOfString()
     {
         $result = Helper::charAt($this->mixCharacters, 13);
         $this->assertEquals($result, '校');
+    }
 
+    public function testGetCharAtStartOfString()
+    {
         $result = Helper::charAt($this->mixCharacters, 0);
         $this->assertEquals($result, '今');
+    }
 
+    public function testGetCharAtEndOfString()
+    {
         $result = Helper::charAt($this->mixCharacters, -2);
         $this->assertEquals($result, 'す');
     }
 
-    public function testSubString()
+    public function testSubStringInTheMiddle()
     {
         $result = Helper::subString($this->mixCharacters, 4, 5);
         $this->assertEquals($result, 'oo「ジョ');
+    }
 
+    public function testSubStringFromTheBeginning()
+    {
         $result = Helper::subString($this->mixCharacters, 0, 3);
         $this->assertEquals($result, '今日、');
+    }
 
+    public function testSubStringFromTheEnd()
+    {
         $result = Helper::subString($this->mixCharacters, -3, 3);
         $this->assertEquals($result, 'ます。');
     }
 
-    public function testExtractKanji()
+    public function testExtractKanjiWhenKanjiOnly()
     {
         $result = Helper::extractKanji($this->kanjiCharacters);
         $this->assertSame($result, array('漢字'));
+    }
 
+    public function testExtractKanjiWhenNoKanji()
+    {
         $result = Helper::extractKanji($this->hiraganaCharacters);
         $this->assertSame($result, array());
+    }
 
+    public function testExtractKanjiWhenMixedCharacters()
+    {
         $result = Helper::extractKanji($this->mixCharacters);
         $this->assertSame($result, array('今日','学校'));
     }
 
-    public function testExtractHiragana()
+    public function testExtractHiraganaWhenHiraganaOnly()
     {
         $result = Helper::extractHiragana($this->hiraganaCharacters);
         $this->assertSame($result, array('ひらがな'));
+    }
 
+    public function testExtractHiraganaWhenNoHiragana()
+    {
         $result = Helper::extractHiragana($this->katakanaCharacters);
         $this->assertSame($result, array());
+    }
 
+    public function testExtractHiraganaWhenMixedCharacters()
+    {
         $result = Helper::extractHiragana($this->mixCharacters);
         $this->assertSame($result, array('は','にいます'));
     }
-    
-    public function testExtractKatakana()
+
+    public function testExtractKatakanaWhenKatakanaOnly()
     {
         $result = Helper::extractKatakana($this->katakanaCharacters);
         $this->assertSame($result, array('カタカナ'));
+    }
 
+    public function testExtractKatakanaWhenNoKatakana()
+    {
         $result = Helper::extractKatakana($this->hiraganaCharacters);
         $this->assertSame($result, array());
+    }
 
+    public function testExtractKatakanaWhenMixedCharacters()
+    {
         $result = Helper::extractKatakana($this->mixCharacters);
         $this->assertSame($result, array('ジョオ'));
     }
@@ -99,11 +135,14 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result, "Kyōto");
     }
 
-    public function testRemoveMacrons()
+    public function testRemoveMacronsFromMixedCharacters()
     {
         $result = Helper::removeMacrons($this->mixCharacters);
         $this->assertEquals($result, $this->mixCharacters);
+    }
 
+    public function testRemoveMacronsFromAnyMacrons()
+    {
         $result = Helper::removeMacrons('ŌōŪūĀāĪīôÔûÛâÂîÎêÊ');
         $this->assertEquals($result, 'OoUuAaIioOuUaAiIeE');
     }
