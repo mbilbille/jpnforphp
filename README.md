@@ -2,6 +2,8 @@
 
 A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
 
+[![build status](https://secure.travis-ci.org/mbilbille/jpnforphp.png)](http://travis-ci.org/mbilbille/jpnforphp)
+
 ##Installation
 ```bash
 composer install
