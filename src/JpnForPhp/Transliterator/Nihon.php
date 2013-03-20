@@ -98,7 +98,7 @@ class Nihon extends Romanization
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ',　', '・' => '-',
+        '　' => ' ', '、' => ', ', '・' => '-',
         '「' => '"', '」' => '"',
         '（' => '(', '）' => ')',
     );

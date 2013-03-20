@@ -101,7 +101,7 @@ class Kunrei extends Romanization
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ',　', '・' => '-',
+        '　' => ' ', '、' => ', ', '・' => '-',
         '「' => '"', '」' => '"',
         '（' => '(', '）' => ')',
     );

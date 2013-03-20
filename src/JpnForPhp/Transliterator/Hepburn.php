@@ -129,7 +129,7 @@ class Hepburn extends Romanization
      * alphabet.
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ',　', '・' => '-',
+        '　' => ' ', '、' => ', ', '・' => '-',
         '「' => '"', '」' => '"',
         '（' => '(', '）' => ')',
     );
