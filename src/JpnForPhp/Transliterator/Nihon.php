@@ -96,11 +96,15 @@ class Nihon extends Romanization
     /**
      * @var array Map Japanese punctuation marks to their equivalent in latin
      * alphabet.
+     *
+     * @see http://en.wikipedia.org/wiki/Japanese_punctuation
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ', ', '・' => '-',
-        '「' => '"', '」' => '"',
-        '（' => '(', '）' => ')',
+        '　' => ' ', '、' => ', ', '・' => '-', '。' => '.', '：' => ':', '！' => '!', '？' => '?',
+        '「' => '\'', '」' => '\'', '『' => '"', '』' => '"',
+        '（' => '(', '）' => ')', '｛' => '{', '｝' => '}',
+        '［' => '[', '］' => ']', '【' => '[', '】' => ']',
+        '〜' => '~', '‥' => '…', '〽' => '\'',
     );
 
     /**

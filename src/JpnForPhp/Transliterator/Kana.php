@@ -42,13 +42,15 @@ class Kana
         'vu' => 'ゔ',
         'kya' => 'きゃ', 'kyu' => 'きゅ', 'kyo' => 'きょ',
         'sya' => 'しゃ', 'sha' => 'しゃ', 'syu' => 'しゅ', 'shu' => 'しゅ', 'syo' => 'しょ', 'sho' => 'しょ',
-        'tya' => 'ちゃ', 'cya' => 'ちゃ', 'cha' => 'ちゃ', 'tyu' => 'ちゅ', 'cyu' => 'ちゅ', 'chu' => 'ちゅ', 'tyo' => 'ちょ', 'cyo' => 'ちょ', 'cho' => 'ちょ',
+        'tya' => 'ちゃ', 'cya' => 'ちゃ', 'cha' => 'ちゃ', 'tyu' => 'ちゅ', 'cyu' => 'ちゅ', 'chu' => 'ちゅ', 'tyo' => 'ちょ',
+        'cyo' => 'ちょ', 'cho' => 'ちょ',
         'nya' => 'にゃ', 'nyu' => 'みゅ', 'nyo' => 'にょ',
         'hya' => 'ひゃ', 'hyu' => 'ひゅ', 'hyo' => 'ひょ',
         'mya' => 'みゃ', 'myu' => 'みゅ', 'myo' => 'みょ',
         'rya' => 'りゃ', 'ryu' => 'りゅ', 'ryo' => 'りょ',
         'gya' => 'ぎゃ', 'gyu' => 'ぎゅ', 'gyo' => 'ぎょ',
-        'ja' => 'じゃ', 'zya' => 'じゃ', 'jya' => 'じゃ', 'ju' => 'じゅ', 'zyu' => 'じゅ', 'jyu' => 'じゅ', 'jo' => 'じょ', 'zyo' => 'じょ', 'jyo' => 'じょ',
+        'ja' => 'じゃ', 'zya' => 'じゃ', 'jya' => 'じゃ', 'ju' => 'じゅ', 'zyu' => 'じゅ', 'jyu' => 'じゅ', 'jo' => 'じょ',
+        'zyo' => 'じょ', 'jyo' => 'じょ',
         'dja' => 'ぢゃ', 'dya' => 'ぢゃ', 'dju' => 'ぢゅ', 'dyu' => 'ぢゅ', 'djo' => 'ぢょ', 'dyo' => 'ぢょ',
         'bya' => 'びゃ', 'byu' => 'びゅ', 'byo' => 'びょ',
         'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pyo' => 'ぴょ',
@@ -77,13 +79,15 @@ class Kana
         'pa' => 'パ', 'pi' => 'ピ', 'pu' => 'プ', 'pe' => 'ペ', 'po' => 'ポ',
         'kya' => 'キャ', 'kyu' => 'キュ', 'kyo' => 'キョ',
         'sya' => 'シャ', 'sha' => 'シャ', 'syu' => 'シュ', 'shu' => 'シュ', 'syo' => 'ショ', 'sho' => 'ショ',
-        'tya' => 'チャ', 'cya' => 'チャ', 'cha' => 'チャ', 'tyu' => 'チュ', 'cyu' => 'チュ', 'chu' => 'チュ', 'tyo' => 'チョ', 'cyo' => 'チョ', 'cho' => 'チョ',
+        'tya' => 'チャ', 'cya' => 'チャ', 'cha' => 'チャ', 'tyu' => 'チュ', 'cyu' => 'チュ', 'chu' => 'チュ', 'tyo' => 'チョ',
+        'cyo' => 'チョ', 'cho' => 'チョ',
         'nya' => 'ニャ', 'nyu' => 'ニュ', 'nyo' => 'ニョ',
         'hya' => 'ヒャ', 'hyu' => 'ヒュ', 'hyo' => 'ヒョ',
         'mya' => 'ミャ', 'myu' => 'ミュ', 'myo' => 'ミョ',
         'rya' => 'リャ', 'ryu' => 'リュ', 'ryo' => 'リョ',
         'gya' => 'ギャ', 'gyu' => 'ギュ', 'gyo' => 'ギョ',
-        'ja' => 'ジャ', 'zya' => 'ジャ', 'jya' => 'ジャ', 'ju' => 'ジュ', 'zyu' => 'ジュ', 'jyu' => 'ジュ', 'jo' => 'ジョ', 'zyo' => 'ジョ', 'jyo' => 'ジョ',
+        'ja' => 'ジャ', 'zya' => 'ジャ', 'jya' => 'ジャ', 'ju' => 'ジュ', 'zyu' => 'ジュ', 'jyu' => 'ジュ', 'jo' => 'ジョ',
+        'zyo' => 'ジョ', 'jyo' => 'ジョ',
         'dja' => 'ヂャ', 'dya' => 'ヂャ', 'dju' => 'ヂュ', 'dyu' => 'ヂュ', 'djo' => 'ヂョ', 'dyo' => 'ヂョ',
         'bya' => 'ビャ', 'byu' => 'ビュ', 'byo' => 'ビョ',
         'pya' => 'ピャ', 'pyu' => 'ピュ', 'pyo' => 'ピョ',
@@ -123,12 +127,16 @@ class Kana
     );
 
     /**
-     * @var array Map latin form of various marks, punctuation, hyphen, etc. to
-     * their equivalent in Japanese syllabary.
+     * @var array Map latin punctuation marks to their equivalent in Japanese syllabary.
+     *
+     * @see http://en.wikipedia.org/wiki/Japanese_punctuation
      */
-    protected $mapMarks = array(
-        ' ' => '　', ',' => '、', ', ' => '、', '-' => '・',
-        '(' => '（', ')' => '）',
+    protected $mapPunctuationMarks = array(
+        ' ' => '　', ',' => '、', ', ' => '、', '-' => '・', '.' => '。', ':' => '：', '!' => '！', '?' => '？',
+        ' \'' => '「', '\' ' => '」', ' "' => '『', '" ' => '』',
+        '(' => '（', ')' => '）', '{' => '｛', '}' => '｝',
+        '[' => '［', ']' => '］', '[' => '【', ']' => '】',
+        '~' => '〜',
     );
 
     /**
@@ -158,7 +166,7 @@ class Kana
      */
     public function toKatakana($str)
     {
-        $str = $this->prepareTransliteration($str,Transliterator::KATAKANA);
+        $str = $this->prepareTransliteration($str, Transliterator::KATAKANA);
         $str = $this->transliterateSokuon($str, Transliterator::KATAKANA);
         $str = $this->transliterateQuotationMarks($str);
         $output = strtr($str, $this->mapKatakana);
@@ -187,12 +195,12 @@ class Kana
             );
         } elseif ($syllabary === Transliterator::KATAKANA) {
             $mapChars = array(
-            'aa' => 'a'.Transliterator::CHOONPU, 'ii' => 'i'.Transliterator::CHOONPU,
-            'uu' => 'u'.Transliterator::CHOONPU, 'ee' => 'e'.Transliterator::CHOONPU,
-            'oo' => 'o'.Transliterator::CHOONPU, 'ā' => 'a'.Transliterator::CHOONPU,
-            'ī' => 'i'.Transliterator::CHOONPU, 'ū' => 'u'.Transliterator::CHOONPU,
-            'ē' => 'e'.Transliterator::CHOONPU, 'ō' => 'o'.Transliterator::CHOONPU,
-            'ô' => 'o'.Transliterator::CHOONPU,
+                'aa' => 'a' . Transliterator::CHOONPU, 'ii' => 'i' . Transliterator::CHOONPU,
+                'uu' => 'u' . Transliterator::CHOONPU, 'ee' => 'e' . Transliterator::CHOONPU,
+                'oo' => 'o' . Transliterator::CHOONPU, 'ā' => 'a' . Transliterator::CHOONPU,
+                'ī' => 'i' . Transliterator::CHOONPU, 'ū' => 'u' . Transliterator::CHOONPU,
+                'ē' => 'e' . Transliterator::CHOONPU, 'ō' => 'o' . Transliterator::CHOONPU,
+                'ô' => 'o' . Transliterator::CHOONPU,
             );
         } else {
             return $str;

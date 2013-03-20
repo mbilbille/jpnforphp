@@ -23,7 +23,7 @@ class Kunrei extends Romanization
      * @var array Map hiragana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
-    protected $mapHiragana = array (
+    protected $mapHiragana = array(
         'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
         'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
         'さ' => 'sa', 'し' => 'si', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
@@ -62,7 +62,7 @@ class Kunrei extends Romanization
      * @var array Map katakana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
      */
-    protected $mapKatakana = array (
+    protected $mapKatakana = array(
         'ア' => 'a', 'イ' => 'i', 'ウ' => 'u', 'エ' => 'e', 'オ' => 'o',
         'カ' => 'ka', 'キ' => 'ki', 'ク' => 'ku', 'ケ' => 'ke', 'コ' => 'ko',
         'サ' => 'sa', 'シ' => 'si', 'ス' => 'su', 'セ' => 'se', 'ソ' => 'so',
@@ -99,11 +99,15 @@ class Kunrei extends Romanization
     /**
      * @var array Map Japanese punctuation marks to their equivalent in latin
      * alphabet.
+     *
+     * @see http://en.wikipedia.org/wiki/Japanese_punctuation
      */
     protected $mapPunctuationMarks = array(
-        '　' => ' ', '、' => ', ', '・' => '-',
-        '「' => '"', '」' => '"',
-        '（' => '(', '）' => ')',
+        '　' => ' ', '、' => ', ', '・' => '-', '。' => '.', '：' => ':', '！' => '!', '？' => '?',
+        '「' => '\'', '」' => '\'', '『' => '"', '』' => '"',
+        '（' => '(', '）' => ')', '｛' => '{', '｝' => '}',
+        '［' => '[', '］' => ']', '【' => '[', '】' => ']',
+        '〜' => '~', '‥' => '…', '〽' => '\'',
     );
 
     /**
