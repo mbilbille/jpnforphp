@@ -127,13 +127,17 @@ class Kana
     );
 
     /**
-     * @var array Map latin punctuation marks to their equivalent in Japanese syllabary.
+     * @var array Map latin punctuation marks to their equivalent in Japanese 
+     * syllabary. 
      *
      * @see http://en.wikipedia.org/wiki/Japanese_punctuation
+     * 
+     * NOTE: Quotation marks are not handle here as opening and closing 
+     * characters are equivalent in latin alphabet.
+     * @see transliterateQuotationMarks().
      */
     protected $mapPunctuationMarks = array(
         ' ' => '　', ',' => '、', ', ' => '、', '-' => '・', '.' => '。', ':' => '：', '!' => '！', '?' => '？',
-        ' \'' => '「', '\' ' => '」', ' "' => '『', '" ' => '』',
         '(' => '（', ')' => '）', '{' => '｛', '}' => '｝',
         '[' => '［', ']' => '］', '[' => '【', ']' => '】',
         '~' => '〜',
@@ -152,7 +156,7 @@ class Kana
         $str = $this->transliterateSokuon($str, Transliterator::HIRAGANA);
         $str = $this->transliterateQuotationMarks($str);
         $output = strtr($str, $this->mapHiragana);
-        $output = strtr($output, $this->mapMarks);
+        $output = strtr($output, $this->mapPunctuationMarks);
 
         return $output;
     }
@@ -170,7 +174,7 @@ class Kana
         $str = $this->transliterateSokuon($str, Transliterator::KATAKANA);
         $str = $this->transliterateQuotationMarks($str);
         $output = strtr($str, $this->mapKatakana);
-        $output = strtr($output, $this->mapMarks);
+        $output = strtr($output, $this->mapPunctuationMarks);
 
         return $output;
     }
@@ -191,22 +195,30 @@ class Kana
         if ($syllabary === Transliterator::HIRAGANA) {
             $mapChars = array(
                 'ā' => 'aa', 'ī' => 'ii', 'ū' => 'uu', 'ē' => 'ee', 'ō' => 'ou',
-                'ô' => 'ou',
+                'â' => 'aa', 'î' => 'ii', 'û' => 'uu', 'ê' => 'ee', 'ô' => 'ou',
             );
+            $prepared_s = strtr($str, $mapChars);
         } elseif ($syllabary === Transliterator::KATAKANA) {
+            $consonant = 'bcdfghjklmnpqrstvwyz';
+            $prepared_s = preg_replace_callback('/(^[' . $consonant . '])(aa|ii|uu|ee|oo)/u', function($matches){
+                return $matches[1].substr($matches[2], 1) . Transliterator::CHOONPU;
+            }, $str);
             $mapChars = array(
-                'aa' => 'a' . Transliterator::CHOONPU, 'ii' => 'i' . Transliterator::CHOONPU,
-                'uu' => 'u' . Transliterator::CHOONPU, 'ee' => 'e' . Transliterator::CHOONPU,
-                'oo' => 'o' . Transliterator::CHOONPU, 'ā' => 'a' . Transliterator::CHOONPU,
-                'ī' => 'i' . Transliterator::CHOONPU, 'ū' => 'u' . Transliterator::CHOONPU,
-                'ē' => 'e' . Transliterator::CHOONPU, 'ō' => 'o' . Transliterator::CHOONPU,
+                'ā' => 'a' . Transliterator::CHOONPU,
+                'ī' => 'i' . Transliterator::CHOONPU, 
+                'ū' => 'u' . Transliterator::CHOONPU,
+                'ē' => 'e' . Transliterator::CHOONPU, 
+                'ō' => 'o' . Transliterator::CHOONPU,
+                'â' => 'a' . Transliterator::CHOONPU,
+                'î' => 'i' . Transliterator::CHOONPU, 
+                'û' => 'u' . Transliterator::CHOONPU,
+                'ê' => 'e' . Transliterator::CHOONPU, 
                 'ô' => 'o' . Transliterator::CHOONPU,
             );
+            $prepared_s = strtr($prepared_s, $mapChars);
         } else {
             return $str;
         }
-
-        $prepared_s = strtr($str, $mapChars);
 
         return $prepared_s;
     }
@@ -256,7 +268,10 @@ class Kana
      */
     protected function transliterateQuotationMarks($str)
     {
-        return preg_replace('/"(.*)"/u', '「${1}」', $str);
+        $str = preg_replace('/\'(.*)\'/u', '「${1}」', $str);
+        $str = preg_replace('/"(.*)"/u', '『${1}』', $str);
+
+        return $str;
     }
 
 }
