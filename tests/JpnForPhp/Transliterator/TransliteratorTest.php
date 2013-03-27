@@ -300,7 +300,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
     {
         $result = Transliterator::toKana('', Transliterator::HIRAGANA);
         $this->assertEquals('', $result);
-    }  
+    }
 
     public function testToKanaUsingHiraganaWithMacron()
     {
@@ -324,7 +324,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
     {
         $result = Transliterator::toKana('', Transliterator::KATAKANA);
         $this->assertEquals('', $result);
-    }  
+    }
 
     public function testToKanaUsingKatakanaWithSokuon()
     {

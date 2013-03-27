@@ -22,7 +22,7 @@ class Kunrei extends Romanization
     /**
      * Kunrei's constructor
      */
-    function __construct()
+    public function __construct()
     {
         $this->mapHiragana = array(
             'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',

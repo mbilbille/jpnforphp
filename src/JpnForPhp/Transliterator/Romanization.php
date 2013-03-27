@@ -26,7 +26,6 @@ abstract class Romanization implements RomanizationInterface
      */
     public $latinCharacters = array();
 
-
     /**
      * @var array Map hiragana characters (or combinaison of characters) to
      * their equivalent in latin alphabet.
@@ -96,13 +95,13 @@ abstract class Romanization implements RomanizationInterface
         '〜' => '~', '〽' => '\'',
     );
 
-
     /**
      * Escapes latin characters [a-z].
      */
     protected function escapeLatinCharacters($str)
     {
         $str = preg_replace_callback(Romanization::PREG_PATTERN_ESCAPE_CHAR, array($this, "espaceLatinCharactersCallback"), $str);
+
         return $str;
     }
 
@@ -112,6 +111,7 @@ abstract class Romanization implements RomanizationInterface
     private function espaceLatinCharactersCallback($matches)
     {
         $this->latinCharacters[] = $matches[1];
+
         return '%s';
     }
 

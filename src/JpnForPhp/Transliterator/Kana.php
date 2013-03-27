@@ -127,12 +127,12 @@ class Kana
     );
 
     /**
-     * @var array Map latin punctuation marks to their equivalent in Japanese 
-     * syllabary. 
+     * @var array Map latin punctuation marks to their equivalent in Japanese
+     * syllabary.
      *
      * @see http://en.wikipedia.org/wiki/Japanese_punctuation
-     * 
-     * NOTE: Quotation marks are not handle here as opening and closing 
+     *
+     * NOTE: Quotation marks are not handle here as opening and closing
      * characters are equivalent in latin alphabet.
      * @see transliterateQuotationMarks().
      */
@@ -205,14 +205,14 @@ class Kana
             }, $str);
             $mapChars = array(
                 'ā' => 'a' . Transliterator::CHOONPU,
-                'ī' => 'i' . Transliterator::CHOONPU, 
+                'ī' => 'i' . Transliterator::CHOONPU,
                 'ū' => 'u' . Transliterator::CHOONPU,
-                'ē' => 'e' . Transliterator::CHOONPU, 
+                'ē' => 'e' . Transliterator::CHOONPU,
                 'ō' => 'o' . Transliterator::CHOONPU,
                 'â' => 'a' . Transliterator::CHOONPU,
-                'î' => 'i' . Transliterator::CHOONPU, 
+                'î' => 'i' . Transliterator::CHOONPU,
                 'û' => 'u' . Transliterator::CHOONPU,
-                'ê' => 'e' . Transliterator::CHOONPU, 
+                'ê' => 'e' . Transliterator::CHOONPU,
                 'ô' => 'o' . Transliterator::CHOONPU,
             );
             $prepared_s = strtr($prepared_s, $mapChars);
