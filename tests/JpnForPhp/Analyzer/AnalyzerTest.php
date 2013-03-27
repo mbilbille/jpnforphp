@@ -123,22 +123,46 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result, FALSE);
     }
 
-    public function testHasJapaneseCharsWhenMixedCharacters()
+    public function testHasJapaneseLetters()
     {
-        $result = Analyzer::hasJapaneseChars($this->mixCharacters);
+        $result = Analyzer::hasJapaneseLetters($this->mixCharacters);
         $this->assertEquals($result, TRUE);
     }
 
-    public function testHasNotJapaneseChars()
+    public function testHasNotJapaneseLetters()
     {
-        $result = Analyzer::hasJapaneseChars('This is a test.');
+        $result = Analyzer::hasJapaneseLetters('This is a 「test」。');
         $this->assertEquals($result, FALSE);
     }
 
-    public function testHasNotJapaneseEvenPunctuation()
+    public function testHasJapanesePunctuationMarks()
     {
-        $result = Analyzer::hasJapaneseChars('。');
+        $result = Analyzer::hasJapanesePunctuationMarks($this->mixCharacters);
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasNotJapanesePunctuationMarks()
+    {
+        $result = Analyzer::hasJapanesePunctuationMarks($this->hiraganaCharacters);
         $this->assertEquals($result, FALSE);
+    }
+
+    public function testHasJapaneseWritings()
+    {
+        $result = Analyzer::hasJapaneseWritings($this->mixCharacters);
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasNotJapaneseWritings()
+    {
+        $result = Analyzer::hasJapaneseWritings('This is a test.');
+        $this->assertEquals($result, FALSE);
+    }
+
+    public function testHasJapaneseWritingsButOnlyPunctuationMarks()
+    {
+        $result = Analyzer::hasJapaneseWritings('This is a test。');
+        $this->assertEquals($result, TRUE);
     }
 
     public function testLenghtOfMixedCharacters()

@@ -26,6 +26,7 @@ class Helper
     const PREG_PATTERN_NOT_KANJI = '/\p{^Han}/u';
     const PREG_PATTERN_NOT_HIRAGANA = '/\p{^Hiragana}/u';
     const PREG_PATTERN_NOT_KATAKANA = '/[^\p{Katakana}|ー]/u';
+    const PREG_PATTERN_PUNCTUATION_MARKS = '/[、，：・。！？‥「」『』（）｛｝［］【】〜〽]/u';
 
     /**
      * Enhance default splitter function to handle UTF-8 characters.

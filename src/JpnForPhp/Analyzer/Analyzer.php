@@ -59,7 +59,7 @@ class Analyzer
             'kanji' => 0,
             'hiragana' => 0,
             'katakana' => 0,
-            );
+        );
 
         $result['length'] = self::length($str);
         $result['kanji'] = self::countKanji($str);
@@ -166,7 +166,7 @@ class Analyzer
     }
 
     /**
-     * Determines whether the given string contains Japanese characters (kanji,
+     * Determines whether the given string contains Japanese letters (kanji,
      * hiragana or katakana).
      *
      * @param string $str The string to inspect.
@@ -178,8 +178,39 @@ class Analyzer
      * @see hasHiragana()
      * @see hasKatakana()
      */
-    public static function hasJapaneseChars($str)
+    public static function hasJapaneseLetters($str)
     {
         return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str);
+    }
+
+    /**
+     * Determines whether the given string contains Japanese punctuation marks.
+     *
+     * @param string $str The string to inspect.
+     *
+     * @return boolean TRUE if it contains Japanese punctuation marks, otherwise
+     * FALSE.
+     */
+    public static function hasJapanesePunctuationMarks($str)
+    {
+        return preg_match(Helper::PREG_PATTERN_PUNCTUATION_MARKS, $str) > 0;
+    }
+
+    /**
+     * Determines whether the given string contains Japanese writings (kanji,
+     * hiragana, katakana or punctuation marks).
+     *
+     * @param string $str The string to inspect.
+     *
+     * @return boolean TRUE if it contains either kanji, hiragana, katakana or
+     * punctuation marks, otherwise FALSE.
+     *
+     * @see hasKanji()
+     * @see hasHiragana()
+     * @see hasKatakana()
+     */
+    public static function hasJapaneseWritings($str)
+    {
+        return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str) || self::hasJapanesePunctuationMarks($str);
     }
 }
