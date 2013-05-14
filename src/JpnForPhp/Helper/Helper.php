@@ -117,14 +117,14 @@ class Helper
     }
 
     /**
-     * Remove hidden LTR Mark character where trim() and variant will ignore it.
+     * Enhance default trim() to trim unicode whitespace.
      *
      * @param  string $str The input string.
      * @return string A cleaned string.
      */
-    public static function removeLTRM($str)
+    public static function trim($str)
     {
-        return preg_replace('/\xe2\x80\x8e/', '', $str);
+        return preg_replace('/^[\pZ\pC]+|[\pZ\pC]+$/u', '', $str);
     }
 
     /**

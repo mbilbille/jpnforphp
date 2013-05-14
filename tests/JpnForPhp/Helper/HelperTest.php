@@ -129,9 +129,9 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, array('ジョオ'));
     }
 
-    public function testRemoveLTRM()
+    public function testTrim()
     {
-        $result = Helper::removeLTRM("Kyōto\xe2\x80\x8e");
+        $result = Helper::trim("Kyōto\xe2\x80\x8e");
         $this->assertEquals($result, "Kyōto");
     }
 
