@@ -129,6 +129,12 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, array('ジョオ'));
     }
 
+    public function testExtractKatakanaIssue24()
+    {
+        $result = Helper::extractKatakana('カタカナ|ヒラガナ');
+        $this->assertSame($result, array('カタカナ', 'ヒラガナ'));
+    }
+
     public function testTrim()
     {
         $result = Helper::trim("Kyōto\xe2\x80\x8e");
