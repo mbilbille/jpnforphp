@@ -21,134 +21,56 @@ class Wapuro extends Romanization
      */
     public function __construct()
     {
-        $this->mapHiragana = array(
+        // This follow the MS-IME mapping as detailed here:
+        // - http://www.hyperteika.com/ime/extra/rome.html
+        $this->mapKana = array(
             'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
+            'ぁ' => 'la', 'ぃ' => 'li', 'ぅ' => 'lu', 'ぇ' => 'le', 'ぉ' => 'lo',
             'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
-            'さ' => 'sa', 'し' => 'si', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
-            'た' => 'ta', 'ち' => 'ti', 'つ' => 'tu', 'て' => 'te', 'と' => 'to',
+            'さ' => 'sa', 'し' => 'shi', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
+            'た' => 'ta', 'ち' => 'chi', 'つ' => 'tsu', 'て' => 'te', 'と' => 'to',
+            //'っ' => 'ltsu',
             'な' => 'na', 'に' => 'ni', 'ぬ' => 'nu', 'ね' => 'ne', 'の' => 'no',
-            'は' => 'ha', 'ひ' => 'hi', 'ふ' => 'hu', 'へ' => 'he', 'ほ' => 'ho',
             'ま' => 'ma', 'み' => 'mi', 'む' => 'mu', 'め' => 'me', 'も' => 'mo',
-            'や' => 'ya', 'ゆ' => 'yu', 'よ' => 'yo',
+            'は' => 'ha', 'ひ' => 'hi', 'ふ' => 'hu', 'へ' => 'he', 'ほ' => 'ho',
+            'や' => 'ya', 'ゆ' => 'yu', 'いぇ' => 'ye', 'よ' => 'yo',
+            'ゃ' => 'lya', 'ゅ' => 'lyu', 'ょ' => 'lyo',
             'ら' => 'ra', 'り' => 'ri', 'る' => 'ru', 'れ' => 're', 'ろ' => 'ro',
-            'わ' => 'wa', 'ゐ' => 'wi', 'ゑ' => 'we', 'を' => 'wo',
-            'ん' => 'n',
+            'わ' => 'wa', 'ゐ' => 'wyi', 'ゑ' => 'wye', 'を' => 'wo',
+            'ゎ' => 'lwa',
+            'ん' => 'nn',
+            Transliterator::CHOONPU => '-',
+            'ヵ' => 'lka', 'ヶ' => 'lke',
             'が' => 'ga', 'ぎ' => 'gi', 'ぐ' => 'gu', 'げ' => 'ge', 'ご' => 'go',
-            'ざ' => 'za', 'じ' => 'zi', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
+            'ざ' => 'za', 'じ' => 'ji', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
             'だ' => 'da', 'ぢ' => 'di', 'づ' => 'du', 'で' => 'de', 'ど' => 'do',
             'ば' => 'ba', 'び' => 'bi', 'ぶ' => 'bu', 'べ' => 'be', 'ぼ' => 'bo',
             'ぱ' => 'pa', 'ぴ' => 'pi', 'ぷ' => 'pu', 'ぺ' => 'pe', 'ぽ' => 'po',
-            'ゔ' => 'vu',
+            'うぁ' => 'wha', 'うぃ' => 'whi', 'うぇ' => 'whe', 'うぉ' => 'who',
+            'くぁ' => 'kwa', 'くぃ' => 'qi', 'くぅ' => 'qwu', 'くぇ' => 'qe', 'くぉ' => 'qo',
+            'くゃ' => 'qya', 'くゅ' => 'qyu', 'くょ' => 'qyo',
             'きゃ' => 'kya', 'きゅ' => 'kyu', 'きょ' => 'kyo',
-            'しゃ' => 'sya', 'しゅ' => 'syu', 'しょ' => 'syo',
-            'ちゃ' => 'cya', 'ちゅ' => 'cyu', 'ちょ' => 'cyo',
+            'しゃ' => 'sha', 'しぃ' => 'syi', 'しゅ' => 'shu', 'しぇ' => 'she', 'しょ' => 'sho',
+            'すぁ' => 'swa', 'すぃ' => 'swi', 'すぅ' => 'swu', 'すぇ' => 'swe', 'すぉ' => 'swo',
+            'ちゃ' => 'cha', 'ちぃ' => 'cyi', 'ちゅ' => 'chu', 'ちぇ' => 'che', 'ちょ' => 'cho',
+            'つぁ' => 'tsa', 'つぃ' => 'tsi', 'つぇ' => 'tse', 'つぉ' => 'tso',
+            'とぁ' => 'twa', 'とぃ' => 'twi', 'とぅ' => 'twu', 'とぇ' => 'twe', 'とぉ' => 'two',
+            'ふぁ' => 'fwa', 'ふぃ' => 'fwi', 'ふぅ' => 'fwu', 'ふぇ' => 'fwe', 'ふぉ' => 'fwo',
+            'ふゃ' => 'fya', 'ふゅ' => 'fyu', 'ふょ' => 'fyo',
             'にゃ' => 'nya', 'にゅ' => 'nyu', 'にょ' => 'nyo',
             'ひゃ' => 'hya', 'ひゅ' => 'hyu', 'ひょ' => 'hyo',
             'みゃ' => 'mya', 'みゅ' => 'myu', 'みょ' => 'myo',
-            'りゃ' => 'rya', 'りゅ' => 'ryu', 'りょ' => 'ryo',
             'ぎゃ' => 'gya', 'ぎゅ' => 'gyu', 'ぎょ' => 'gyo',
-            'じゃ' => 'ja', 'じゅ' => 'ju', 'じょ' => 'jo',
-            'ぢゃ' => 'ja', 'ぢゅ' => 'ju', 'ぢょ' => 'jo',
+            'りゃ' => 'rya', 'りぃ' => 'ryi', 'りゅ' => 'ryu', 'りぇ' => 'rye', 'りょ' => 'ryo',
+            'ぐゃ' => 'gwa', 'ぐぃ' => 'gwi', 'ぐゅ' => 'gwu', 'ぐぇ' => 'gwe', 'ぐょ' => 'gwo',
+            'じゃ' => 'ja', 'じぃ' => 'jyi',  'じゅ' => 'ju', 'じぇ' => 'je',  'じょ' => 'jo',
+            'どぁ' => 'dwa', 'どぃ' => 'dwi', 'どぅ' => 'dwu', 'どぇ' => 'dwe', 'どぉ' => 'dwo',
+            'ぢゃ' => 'dya', 'ぢぃ' => 'dyi', 'ぢゅ' => 'dyu', 'ぢぇ' => 'dye', 'ぢょ' => 'dyo',
             'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
             'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
-            'ぁ' => 'xa', 'ぃ' => 'xi', 'ぅ' => 'xu', 'ぇ' => 'xe', 'ぉ' => 'xo',
-            'っ' => 'ltu',
-            'ゃ' => 'lya', 'ゅ' => 'lyu', 'ょ' => 'lyo',
-        ) + $this->mapHiragana;
-        $this->mapKatakana = array(
-            'ア' => 'a', 'イ' => 'i', 'ウ' => 'u', 'エ' => 'e', 'オ' => 'o',
-            'カ' => 'ka', 'キ' => 'ki', 'ク' => 'ku', 'ケ' => 'ke', 'コ' => 'ko',
-            'サ' => 'sa', 'シ' => 'si', 'ス' => 'su', 'セ' => 'se', 'ソ' => 'so',
-            'タ' => 'ta', 'チ' => 'ti', 'ツ' => 'tu', 'テ' => 'te', 'ト' => 'to',
-            'ナ' => 'na', 'ニ' => 'ni', 'ヌ' => 'nu', 'ネ' => 'ne', 'ノ' => 'no',
-            'ハ' => 'ha', 'ヒ' => 'hi', 'フ' => 'hu', 'ヘ' => 'he', 'ホ' => 'ho',
-            'マ' => 'ma', 'ミ' => 'mi', 'ム' => 'mu', 'メ' => 'me', 'モ' => 'mo',
-            'ヤ' => 'ya', 'ユ' => 'yu', 'ヨ' => 'yo',
-            'ラ' => 'ra', 'リ' => 'ri', 'ル' => 'ru', 'レ' => 're', 'ロ' => 'ro',
-            'ワ' => 'wa', 'ヰ' => 'wi', 'ヱ' => 'we', 'ヲ' => 'wo',
-            'ン' => 'n',
-            'ガ' => 'ga', 'ギ' => 'gi', 'グ' => 'gu', 'ゲ' => 'ge', 'ゴ' => 'go',
-            'ザ' => 'za', 'ジ' => 'zi', 'ズ' => 'zu', 'ゼ' => 'ze', 'ゾ' => 'zo',
-            'ダ' => 'da', 'ヂ' => 'di', 'ヅ' => 'du', 'デ' => 'de', 'ド' => 'do',
-            'バ' => 'ba', 'ビ' => 'bi', 'ブ' => 'bu', 'ベ' => 'be', 'ボ' => 'bo',
-            'パ' => 'pa', 'ピ' => 'pi', 'プ' => 'pu', 'ペ' => 'pe', 'ポ' => 'po',
-            'キャ' => 'kya', 'キュ' => 'kyu', 'キョ' => 'kyo',
-            'シャ' => 'sya', 'シュ' => 'syu', 'ショ' => 'syo',
-            'チャ' => 'cya', 'チュ' => 'cyu', 'チョ' => 'cyo',
-            'ニャ' => 'nya', 'ニュ' => 'nyu', 'ニョ' => 'nyo',
-            'ヒャ' => 'hya', 'ヒュ' => 'hyu', 'ヒョ' => 'hyo',
-            'ミャ' => 'mya', 'ミュ' => 'myu', 'ミョ' => 'myo',
-            'リャ' => 'rya', 'リュ' => 'ryu', 'リョ' => 'ryo',
-            'ギャ' => 'gya', 'ギュ' => 'gyu', 'ギョ' => 'gyo',
-            'ジャ' => 'ja', 'ジュ' => 'ju', 'ジョ' => 'jo',
-            'ヂャ' => 'ja', 'ヂュ' => 'ju', 'ヂョ' => 'jo',
-            'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
-            'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
-            'ァ' => 'xa', 'ィ' => 'xi', 'ゥ' => 'xu', 'ェ' => 'xe', 'ォ' => 'xo',
-            'ッ' => 'ltu',
-            'ャ' => 'lya', 'ュ' => 'lyu', 'ョ' => 'lyo',
-            'ゎ' => 'lwa',
-            'イィ' => 'ixi', 'イェ' => 'ixe',
-            'ウァ' => 'uxa', 'ウィ' => 'uxi', 'ウゥ' => 'uxu', 'ウェ' => 'uxe', 'ウォ' => 'uxo',
-            'ウュ' => 'uxya',
-            'クァ' => 'kuxa', 'クィ' => 'kuxi', 'クェ' => 'kuxe', 'クォ' => 'kuxo',
-            'クヮ' => 'kulwa',
-            'グァ' => 'guxa', 'グィ' => 'guxi', 'グェ' => 'guxe', 'グォ' => 'guxo',
-            'グヮ' => 'gulwa',
-            'シェ' => 'sixe',
-            'ジェ' => 'zixe',
-            'スィ' => 'suxi',
-            'ズィ' => 'zuxi',
-            'チェ' => 'tixe',
-            'ツァ' => 'tuxa', 'ツィ' => 'tuxi', 'ツェ' => 'tule', 'ツォ' => 'tulo',
-            'ツュ' => 'tuxyu',
-            'ティ' => 'texi', 'テゥ' => 'texu',
-            'テュ' => 'texyu',
-            'ディ' => 'dexi', 'デゥ' => 'dexu',
-            'デュ' => 'dexyu',
-            'ニェ' => 'nixye',
-            'ヒェ' => 'hixye',
-            'ビェ' => 'bixye',
-            'ピェ' => 'pixye',
-            'ファ' => 'fuxa', 'フィ' => 'fuxi', 'フェ' => 'fuxe', 'フォ' => 'fuxo',
-            'フャ' => 'fuxya', 'フュ' => 'fuxyu', 'フィェ' => 'fuxixe', 'フョ' => 'fuxyo',
-            'ホゥ' => 'hoxu',
-            'ミェ' => 'mixe',
-            'リェ' => 'rixe',
-            Transliterator::CHOONPU => '-',
-        ) + $this->mapKatakana;
-    }
-
-    /**
-     * Implements fromHiragana();
-     *
-     * @see TransliteratorInterface
-     */
-    public function fromHiragana($str)
-    {
-        $str = $this->escapeLatinCharacters($str);
-        $output = strtr($str, $this->mapHiragana);
-        $output = strtr($output, $this->mapPunctuationMarks);
-        $output = $this->transliterateSokuon($output);
-        $output = $this->unescapeLatinCharacters($output);
-
-        return $output;
-    }
-
-    /**
-     * Implements fromKatakana();
-     *
-     * @see TransliteratorInterface
-     */
-    public function fromKatakana($str)
-    {
-        $str = $this->escapeLatinCharacters($str);
-        $output = strtr($str, $this->mapKatakana);
-        $output = strtr($output, $this->mapPunctuationMarks);
-        $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
-        $output = $this->unescapeLatinCharacters($output);
-
-        return $output;
+            'ゔぁ' => 'va', 'ゔぃ' => 'vi', 'ゔ' => 'vu', 'ゔぇ' => 've', 'ゔぉ' => 'vo', 
+            'ゔゃ' => 'vya', 'ゔゅ' => 'vyu', 'ゔょ' => 'vyo', 
+        ) + $this->mapPunctuationMarks;
     }
 
     /**
@@ -160,14 +82,49 @@ class Wapuro extends Romanization
     {
         return 'Hepburn romanization system (ヘボン式ローマ字)';
     }
-
+    
     /**
-     * Overrides transliterateSokuon().
+     * Implements transliterate();
+     *
+     * @see RomanizationInterface
+     */
+    public function transliterate($str)
+    {
+        $str = $this->escapeLatinCharacters($str);
+        $kana = strtr($str, $this->mapHiraganaKatakana);
+        $output = strtr($kana, $this->mapKana);
+        $output = $this->transliterateSokuon($output);
+        $output = $this->transliterateChoonpu($output);
+        $output = $this->unescapeLatinCharacters($output);
+
+        return $output;
+    }
+    
+     /**
+     * Implements fromHiragana();
+     *
+     * @see TransliteratorInterface
+     */
+    public function fromKatakana($str)
+    {
+        return $str;
+    }
+    
+    /**
+     * Overrides transliterateChoonpu().
      *
      * @see Romanization
      */
-    protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
+    protected function transliterateChoonpu($str)
     {
-        $output = parent::transliterateSokuon($str, $syllabary);
+        $macrons = array(
+            'a' => 'aa',
+            'i' => 'ii',
+            'u' => 'uu',
+            'e' => 'ee',
+            'o' => 'oo',
+        );
+
+        return preg_replace('/([aiueo])' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
     }
 }

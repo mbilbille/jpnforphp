@@ -33,11 +33,10 @@ class Transliterator
      *
      * @param string                $str            The input string.
      * @param RomanizationInterface $transliterator A romanization instance.
-     * @param integer               $syllabary      Force source syllabary.
      *
      * @return string Converted string into romaji.
      */
-    public static function toRomaji($str, $syllabary = NULL, RomanizationInterface $transliterator = NULL)
+    public static function toRomaji($str, RomanizationInterface $transliterator = NULL)
     {
         $output = $str;
 
@@ -48,22 +47,17 @@ class Transliterator
             return $output;
         }
 
-        if (!is_null($syllabary)) {
-            // Force source syllabary
-            if ($syllabary === self::HIRAGANA) {
-                $output = $transliterator->fromHiragana($str);
-            } elseif ($syllabary === self::KATAKANA) {
-                $output = $transliterator->fromKatakana($str);
-            }
-        } else {
-            // Rather than guessing the appropriate syllabary, process both.
-            $output = $transliterator->fromHiragana($str);
-            $output = $transliterator->fromKatakana($output);
-        }
-
-        return $output;
+        return $transliterator->transliterate($str);
     }
 
+    /**
+     * Convert a given string into kana (either hiragana or katakana).
+     *
+     * @param string    $str        The input string.
+     * @param string    $syllabary  The syllabary flag.
+     *
+     * @return string Converted string into kana.
+     */
     public static function toKana($str, $syllabary)
     {
         $output = $str;

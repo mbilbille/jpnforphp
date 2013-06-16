@@ -24,7 +24,7 @@ class Kunrei extends Romanization
      */
     public function __construct()
     {
-        $this->mapHiragana = array(
+        $this->mapKana = array(
             'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
             'か' => 'ka', 'き' => 'ki', 'く' => 'ku', 'け' => 'ke', 'こ' => 'ko',
             'さ' => 'sa', 'し' => 'si', 'す' => 'su', 'せ' => 'se', 'そ' => 'so',
@@ -57,86 +57,66 @@ class Kunrei extends Romanization
             'くゎ' => 'ka', 'ぐゎ' => 'ga',
             'んあ' => "n'a", 'んい' => "n'i", 'んう' => "n'u", 'んえ' => "n'e", 'んお' => "n'o",
             'んや' => "n'ya", 'んゆ' => "n'yu", 'んよ' => "n'yo",
-        ) + $this->mapHiragana;
-
-        $this->mapKatakana = array(
-            'ア' => 'a', 'イ' => 'i', 'ウ' => 'u', 'エ' => 'e', 'オ' => 'o',
-            'カ' => 'ka', 'キ' => 'ki', 'ク' => 'ku', 'ケ' => 'ke', 'コ' => 'ko',
-            'サ' => 'sa', 'シ' => 'si', 'ス' => 'su', 'セ' => 'se', 'ソ' => 'so',
-            'タ' => 'ta', 'チ' => 'ti', 'ツ' => 'tu', 'テ' => 'te', 'ト' => 'to',
-            'ナ' => 'na', 'ニ' => 'ni', 'ヌ' => 'nu', 'ネ' => 'ne', 'ノ' => 'no',
-            'ハ' => 'ha', 'ヒ' => 'hi', 'フ' => 'hu', 'ヘ' => 'he', 'ホ' => 'ho',
-            'マ' => 'ma', 'ミ' => 'mi', 'ム' => 'mu', 'メ' => 'me', 'モ' => 'mo',
-            'ヤ' => 'ya', 'ユ' => 'yu', 'ヨ' => 'yo',
-            'ラ' => 'ra', 'リ' => 'ri', 'ル' => 'ru', 'レ' => 're', 'ロ' => 'ro',
-            'ワ' => 'wa', 'ヰ' => 'i', 'ヱ' => 'e', 'ヲ' => 'wo',
-            'ン' => 'n',
-            'ガ' => 'ga', 'ギ' => 'gi', 'グ' => 'gu', 'ゲ' => 'ge', 'ゴ' => 'go',
-            'ザ' => 'za', 'ジ' => 'zi', 'ズ' => 'zu', 'ゼ' => 'ze', 'ゾ' => 'zo',
-            'ダ' => 'da', 'ヂ' => 'zi', 'ヅ' => 'zu', 'デ' => 'de', 'ド' => 'do',
-            'バ' => 'ba', 'ビ' => 'bi', 'ブ' => 'bu', 'ベ' => 'be', 'ボ' => 'bo',
-            'パ' => 'pa', 'ピ' => 'pi', 'プ' => 'pu', 'ペ' => 'pe', 'ポ' => 'po',
-            'キャ' => 'kya', 'キュ' => 'kyu', 'キョ' => 'kyo',
-            'シャ' => 'sya', 'シュ' => 'syu', 'ショ' => 'syo',
-            'チャ' => 'tya', 'チュ' => 'tyu', 'チョ' => 'tyo',
-            'ニャ' => 'nya', 'ニュ' => 'nyu', 'ニョ' => 'nyo',
-            'ヒャ' => 'hya', 'ヒュ' => 'hyu', 'ヒョ' => 'hyo',
-            'ミャ' => 'mya', 'ミュ' => 'myu', 'ミョ' => 'myo',
-            'リャ' => 'rya', 'リュ' => 'ryu', 'リョ' => 'ryo',
-            'ギャ' => 'gya', 'ギュ' => 'gyu', 'ギョ' => 'gyo',
-            'ジャ' => 'zya', 'ジュ' => 'zyu', 'ジョ' => 'zyo',
-            'ヂャ' => 'zya', 'ヂュ' => 'zyu', 'ヂョ' => 'zyo',
-            'ビャ' => 'bya', 'ビュ' => 'byu', 'ビョ' => 'byo',
-            'ピャ' => 'pya', 'ピュ' => 'pyu', 'ピョ' => 'pyo',
-            'クヮ' => 'ka', 'グヮ' => 'ga',
-            'ンア' => "n'a", 'ンイ' => "n'i", 'ンウ' => "n'u", 'ンエ' => "n'e", 'ンオ' => "n'o",
-            'ンヤ' => "n'ya", 'ンユ' => "n'yu", 'ンヨ' => "n'yo",
-        ) + $this->mapKatakana;
-    }
-
-    /**
-     * Implements fromHiragana();
-     *
-     * @see Transliterator
-     */
-    public function fromHiragana($str)
-    {
-        $str = $this->escapeLatinCharacters($str);
-        $output = strtr($str, $this->mapHiragana);
-        $output = strtr($output, $this->mapPunctuationMarks);
-        $output = $this->transliterateSokuon($output);
-        $output = $this->convertLongVowels($output);
-        $output = $this->convertParticles($output);
-        $output = $this->unescapeLatinCharacters($output);
-
-        return $output;
-    }
-
-    /**
-     * Implements fromKatakana();
-     *
-     * @see Transliterator
-     */
-    public function fromKatakana($str)
-    {
-        $str = $this->escapeLatinCharacters($str);
-        $output = strtr($str, $this->mapKatakana);
-        $output = strtr($output, $this->mapPunctuationMarks);
-        $output = $this->transliterateSokuon($output, Transliterator::KATAKANA);
-        $output = $this->transliterateChoonpu($output);
-        $output = $this->unescapeLatinCharacters($output);
-
-        return $output;
+            'てぃ' => 'ti', 'てぅ' => 'tu',
+            'いぃ' => 'yi', 'いぇ' => 'ye',
+            'うぃ' => 'wi', 'うぅ' => 'wu', 'うぇ' => 'we', 'うぉ' => 'wo',
+            'うゃ' => 'wya',
+            'ぶぁ' => 'va', 'ぶぃ' => 'vi', 'ぶぇ' => 've', 'ぶぉ' => 'vo',
+            'ぶゃ' => 'vya', 'ぶゅ' => 'vyu', 'ぶぃぇ' => 'vye', 'ぶょ' => 'vyo',
+            'きぇ' => 'kye',
+            'ぎぇ' => 'gye',
+            'くぁ' => 'kwa', 'くぃ' => 'kwi', 'くぇ' => 'kwe', 'くぉ' => 'kwo',
+            'ぐぁ' => 'gwa', 'ぐぃ' => 'gwi', 'ぐぇ' => 'gwe', 'ぐぉ' => 'gwo',
+            'しぇ' => 'she',
+            'じぇ' => 'je',
+            'すぃ' => 'si',
+            'ずぃ' => 'zi',
+            'ちぇ' => 'che',
+            'つぁ' => 'tsa', 'つぃ' => 'tsi', 'つぇ' => 'tse', 'つぉ' => 'tso',
+            'つゅ' => 'tsyu',
+            'てぃ' => 'ti', 'てぅ' => 'tu',
+            'てゅ' => 'tyu',
+            'でぃ' => 'di', 'でぅ' => 'du',
+            'でゅ' => 'dyu',
+            'にぇ' => 'nye',
+            'ひぇ' => 'hye',
+            'びぇ' => 'bye',
+            'ぴぇ' => 'pye',
+            'ふぁ' => 'fa', 'ふぃ' => 'fi', 'ふぇ' => 'fe', 'フふぉ' => 'fo',
+            'ふゃ' => 'fya', 'ふゅ' => 'fyu', 'ふぃぇ' => 'fye', 'ふょ' => 'fyo',
+            'ほぅ' => 'hu',
+            'みぇ' => 'mye',
+            'りぇ' => 'rye',
+        ) + $this->mapPunctuationMarks;
     }
 
     /**
      * Implements __toString().
      *
-     * @see TransliteratorInterface
+     * @see RomanizationInterface
      */
     public function __toString()
     {
         return 'Kunrei romanization system (訓令式ローマ字)';
+    }
+
+    /**
+     * Implements transliterate();
+     *
+     * @see RomanizationInterface
+     */
+    public function transliterate($str)
+    {
+        $str = $this->escapeLatinCharacters($str);
+        $kana = strtr($str, $this->mapHiraganaKatakana);
+        $output = strtr($kana, $this->mapKana);
+        $output = $this->transliterateSokuon($output);
+        $output = $this->transliterateChoonpu($output);
+        $output = $this->convertLongVowels($output);
+        $output = $this->convertParticles($output);
+        $output = $this->unescapeLatinCharacters($output);
+
+        return $output;
     }
 
     /**

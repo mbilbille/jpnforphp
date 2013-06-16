@@ -25,59 +25,30 @@ abstract class Romanization implements RomanizationInterface
      * @var array Store latin characters which are escaped.
      */
     public $latinCharacters = array();
-
+    
     /**
-     * @var array Map hiragana characters (or combinaison of characters) to
-     * their equivalent in latin alphabet.
-     *
-     * This mapping must be defined in Romanization' subclasses.
+     * @var array Map hiragana characters to their equivalent in katakana.
      */
-    protected $mapHiragana = array();
-
-    /**
-     * @var array Map katakana characters (or combinaison of characters) to
-     * their equivalent in latin alphabet.
-     *
-     * Here is only extended katakana, mapping for default katakana must be defined in Romanization' subclasses.
-     *
-     * @see http://en.wikipedia.org/wiki/Transcription_into_Japanese#Extended_katakana
-     */
-    protected $mapKatakana = array(
-        'イィ' => 'yi', 'イェ' => 'ye',
-        'ウァ' => 'wa', 'ウィ' => 'wi', 'ウゥ' => 'wu', 'ウェ' => 'we', 'ウォ' => 'wo',
-        'ウュ' => 'wya',
-        'ヴァ' => 'va', 'ヴィ' => 'vi', 'ヴ' => 'vu', 'ヴェ' => 've', 'ヴォ' => 'vo',
-        'ヴャ' => 'vya', 'ヴュ' => 'vyu', 'ヴィェ' => 'vye', 'ヴョ' => 'vyo',
-        'キェ' => 'kye',
-        'ギェ' => 'gye',
-        'クァ' => 'kwa', 'クィ' => 'kwi', 'クェ' => 'kwe', 'クォ' => 'kwo',
-        'クヮ' => 'kwa',
-        'グァ' => 'gwa', 'グィ' => 'gwi', 'グェ' => 'gwe', 'グォ' => 'gwo',
-        'グヮ' => 'gwa',
-        'シェ' => 'she',
-        'ジェ' => 'je',
-        'スィ' => 'si',
-        'ズィ' => 'zi',
-        'チェ' => 'che',
-        'ツァ' => 'tsa', 'ツィ' => 'tsi', 'ツェ' => 'tse', 'ツォ' => 'tso',
-        'ツュ' => 'tsyu',
-        'ティ' => 'ti', 'テゥ' => 'tu',
-        'テュ' => 'tyu',
-        'ディ' => 'di', 'デゥ' => 'du',
-        'デュ' => 'dyu',
-        'ニェ' => 'nye',
-        'ヒェ' => 'hye',
-        'ビェ' => 'bye',
-        'ピェ' => 'pye',
-        'ファ' => 'fa', 'フィ' => 'fi', 'フェ' => 'fe', 'フォ' => 'fo',
-        'フャ' => 'fya', 'フュ' => 'fyu', 'フィェ' => 'fye', 'フョ' => 'fyo',
-        'ホゥ' => 'hu',
-        'ミェ' => 'mye',
-        'リェ' => 'rye',
-        'ラ゜' => 'la', 'リ゜' => 'li', 'ル゜' => 'lu', 'レ゜' => 'le', 'ロ゜' => 'lo',
-        'ヷ' => 'va', 'ヸ' => 'vi', 'ヹ' => 've', 'ヺ' => 'vo',
-        'ンア' => "n'a", 'ンイ' => "n'i", 'ンウ' => "n'u", 'ンエ' => "n'e", 'ンオ' => "n'o",
-        'ンヤ' => "n'ya", 'ンユ' => "n'yu", 'ンヨ' => "n'yo",
+    protected $mapHiraganaKatakana = array(
+        'ア' => 'あ', 'イ' => 'い', 'ウ' => 'う', 'エ' => 'え', 'オ' => 'お',
+        'ァ' => 'ぁ', 'ィ' => 'ぃ', 'ゥ' => 'ぅ', 'ェ' => 'ぇ', 'ォ' => 'ぉ',
+        'カ' => 'か', 'キ' => 'き', 'ク' => 'く', 'ケ' => 'け', 'コ' => 'こ',
+        'サ' => 'さ', 'シ' => 'し', 'ス' => 'す', 'セ' => 'せ', 'ソ' => 'そ',
+        'タ' => 'た', 'チ' => 'ち', 'ツ' => 'つ', 'テ' => 'て', 'ト' => 'と',
+        'ナ' => 'な', 'ニ' => 'に', 'ヌ' => 'ぬ', 'ネ' => 'ね', 'ノ' => 'の',
+        'ハ' => 'は', 'ヒ' => 'ひ', 'フ' => 'ふ', 'ヘ' => 'へ', 'ホ' => 'ほ',
+        'マ' => 'ま', 'ミ' => 'み', 'ム' => 'む', 'メ' => 'め', 'モ' => 'も',
+        'ヤ' => 'や', 'ユ' => 'ゆ', 'ヨ' => 'よ',
+        'ャ' => 'ゃ', 'ュ' => 'ゅ', 'ョ' => 'ょ',
+        'ラ' => 'ら', 'リ' => 'り', 'ル' => 'る', 'レ' => 'れ', 'ロ' => 'ろ',
+        'ワ' => 'わ', 'ヰ' => 'ゐ', 'ヱ' => 'ゑ', 'ヲ' => 'を',
+        'ヮ' => 'ゎ',
+        'ン' => 'ん',
+        'ガ' => 'が', 'ギ' => 'ぎ', 'グ' => 'ぐ', 'ゲ' => 'げ', 'ゴ' => 'ご',
+        'ザ' => 'ざ', 'ジ' => 'じ', 'ズ' => 'ず', 'ゼ' => 'ぜ', 'ゾ' => 'を',
+        'ダ' => 'だ', 'ヂ' => 'ぢ', 'ヅ' => 'づ', 'デ' => 'で', 'ド' => 'ど',
+        'バ' => 'ば', 'ビ' => 'び', 'ブ' => 'ぶ', 'ベ' => 'べ', 'ボ' => 'ぼ',
+        'パ' => 'ぱ', 'ピ' => 'ぴ', 'プ' => 'ぷ', 'ペ' => 'ぺ', 'ポ' => 'ぽ',
     );
 
     /**
@@ -137,17 +108,9 @@ abstract class Romanization implements RomanizationInterface
      *
      * @return string Transliterated string.
      */
-    protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
+    protected function transliterateSokuon($str)
     {
-        if ($syllabary === Transliterator::KATAKANA) {
-            $sokuon = Transliterator::SOKUON_KATAKANA;
-        } else {
-            $sokuon = Transliterator::SOKUON_HIRAGANA;
-        }
-
-        $output = preg_replace('/' . $sokuon . '(.)/u', '${1}${1}', $str);
-
-        return $output;
+       return preg_replace('/[' . Transliterator::SOKUON_HIRAGANA . Transliterator::SOKUON_KATAKANA . '](.)/u', '${1}${1}', $str);
     }
 
     /**
