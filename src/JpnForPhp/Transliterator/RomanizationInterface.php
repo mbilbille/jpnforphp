@@ -17,7 +17,7 @@ namespace JpnForPhp\Transliterator;
 interface RomanizationInterface
 {
     /**
-     * Transliterate a string from hiragana/katakana into latin alphabet as per 
+     * Transliterate a string from hiragana/katakana into latin alphabet as per
      * a specific romanization system.
      *
      * @param string $str The string to be converted.

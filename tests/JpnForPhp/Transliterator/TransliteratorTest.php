@@ -292,7 +292,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = Transliterator::toRomaji('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　', $this->nihon);
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
-    
+
 public function testToRomajiWithWapuro()
     {
         $result = Transliterator::toRomaji('くるま', $this->wapuro);
