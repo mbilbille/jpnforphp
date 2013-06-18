@@ -104,7 +104,7 @@ class Hepburn extends Romanization
     public function transliterate($str)
     {
         $str = $this->escapeLatinCharacters($str);
-        $kana = strtr($str, $this->mapHiraganaKatakana);
+        $kana = mb_convert_kana($str, 'c', 'UTF-8');
         $output = strtr($kana, $this->mapKana);
         $output = $this->transliterateSokuon($output);
         $output = $this->transliterateChoonpu($output);
