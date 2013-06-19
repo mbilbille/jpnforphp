@@ -53,8 +53,8 @@ class Transliterator
     /**
      * Convert a given string into kana (either hiragana or katakana).
      *
-     * @param string    $str        The input string.
-     * @param string    $syllabary  The syllabary flag.
+     * @param string $str       The input string.
+     * @param string $syllabary The syllabary flag.
      *
      * @return string Converted string into kana.
      */

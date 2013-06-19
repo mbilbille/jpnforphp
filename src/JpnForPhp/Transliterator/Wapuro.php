@@ -68,8 +68,8 @@ class Wapuro extends Romanization
             'ぢゃ' => 'dya', 'ぢぃ' => 'dyi', 'ぢゅ' => 'dyu', 'ぢぇ' => 'dye', 'ぢょ' => 'dyo',
             'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
             'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
-            'ゔぁ' => 'va', 'ゔぃ' => 'vi', 'ゔ' => 'vu', 'ゔぇ' => 've', 'ゔぉ' => 'vo', 
-            'ゔゃ' => 'vya', 'ゔゅ' => 'vyu', 'ゔょ' => 'vyo', 
+            'ゔぁ' => 'va', 'ゔぃ' => 'vi', 'ゔ' => 'vu', 'ゔぇ' => 've', 'ゔぉ' => 'vo',
+            'ゔゃ' => 'vya', 'ゔゅ' => 'vyu', 'ゔょ' => 'vyo',
         ) + $this->mapPunctuationMarks;
     }
 
@@ -82,7 +82,7 @@ class Wapuro extends Romanization
     {
         return 'Wāpuro romanization system (ワープロローマ字)';
     }
-    
+
     /**
      * Implements transliterate();
      *
@@ -99,7 +99,7 @@ class Wapuro extends Romanization
 
         return $output;
     }
-    
+
     /**
      * Overrides transliterateChoonpu().
      *

@@ -25,7 +25,7 @@ abstract class Romanization implements RomanizationInterface
      * @var array Store latin characters which are escaped.
      */
     public $latinCharacters = array();
-    
+
     /**
      * @var array Map Japanese punctuation marks to their equivalent in latin
      * alphabet.

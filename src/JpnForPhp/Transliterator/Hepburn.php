@@ -84,7 +84,7 @@ class Hepburn extends Romanization
             'りぇ' => 'rye',
         ) + $this->mapPunctuationMarks;
     }
-        
+
     /**
      * Implements __toString().
      *
@@ -110,7 +110,7 @@ class Hepburn extends Romanization
         $output = $this->convertLongVowels($output);
         $output = $this->convertParticles($output);
         $output = $this->unescapeLatinCharacters($output);
-    
+
         return $output;
     }
 

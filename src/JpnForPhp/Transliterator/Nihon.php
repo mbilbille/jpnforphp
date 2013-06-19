@@ -85,7 +85,7 @@ class Nihon extends Romanization
             'りぇ' => 'rye',
         ) + $this->mapPunctuationMarks;
     }
-    
+
     /**
      * Implements __toString().
      *
