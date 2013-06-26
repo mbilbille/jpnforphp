@@ -79,8 +79,6 @@ abstract class Romanization implements RomanizationInterface
      *
      * @param string $str String to be transliterated.
      *
-     * @param string $syllabary Syllabary to use
-     *
      * @return string Transliterated string.
      */
     protected function transliterateSokuon($str)
