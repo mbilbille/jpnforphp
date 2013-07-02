@@ -12,10 +12,20 @@
 namespace JpnForPhp\Transliterator;
 
 /**
- * Romanization system interface
+ * Romaji transliteration system class
  */
-abstract class Romanization implements RomanizationInterface
+abstract class Romaji implements TransliterationSystemInterface
 {
+    /**
+     * @var string Flag for hiragana
+     */
+    const HIRAGANA = 'hiragana';
+    
+    /**
+     * @var string Flag for katakana
+     */
+    const KATAKANA = 'katakana';
+    
     /**
      * @var string Regex pattern to escape latin characters.
      */
@@ -46,7 +56,7 @@ abstract class Romanization implements RomanizationInterface
      */
     protected function escapeLatinCharacters($str)
     {
-        $str = preg_replace_callback(Romanization::PREG_PATTERN_ESCAPE_CHAR, array($this, "espaceLatinCharactersCallback"), $str);
+        $str = preg_replace_callback(Romaji::PREG_PATTERN_ESCAPE_CHAR, array($this, "espaceLatinCharactersCallback"), $str);
 
         return $str;
     }
@@ -83,43 +93,6 @@ abstract class Romanization implements RomanizationInterface
      */
     protected function transliterateSokuon($str)
     {
-       return preg_replace('/[' . Transliterator::SOKUON_HIRAGANA . Transliterator::SOKUON_KATAKANA . '](.)/u', '${1}${1}', $str);
-    }
-
-    /**
-     * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
-     * into its equivalent in latin alphabet.
-     *
-     * @param string $str String to be transliterated.
-     *
-     * @return string Transliterated string.
-     */
-    protected function transliterateChoonpu($str)
-    {
-        return $str;
-    }
-
-    /**
-     * Post-processing transliteration to properly format long vowels.
-     *
-     * @param string $str String to be processed.
-     *
-     * @return string Transliterated string.
-     */
-    protected function convertLongVowels($str)
-    {
-        return $str;
-    }
-
-    /**
-     * Post-processing transliteration to properly format particles.
-     *
-     * @param string $str String to be processed.
-     *
-     * @return string Transliterated string.
-     */
-    protected function convertParticles($str)
-    {
-        return $str;
+       return preg_replace('/[っッ](.)/u', '${1}${1}', $str);
     }
 }

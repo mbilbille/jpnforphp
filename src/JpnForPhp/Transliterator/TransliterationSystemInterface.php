@@ -12,17 +12,17 @@
 namespace JpnForPhp\Transliterator;
 
 /**
- * Romanization system interface
+ * Transliteration system interface
  */
-interface RomanizationInterface
+interface TransliterationSystemInterface
 {
     /**
-     * Transliterate a string from hiragana/katakana into latin alphabet as per
-     * a specific romanization system.
+     * Transliterate a string from an alphabet into another alphabet as per a 
+     * specific transliteration system.
      *
      * @param string $str The string to be converted.
      *
-     * @return string Converted string into latin alphabet.
+     * @return string Converted string.
      */
     public function transliterate($str);
 

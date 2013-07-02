@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Nihon romanization system class
  */
-class Nihon extends Romanization
+class Nihon extends Romaji
 {
     /**
      * Nihon's constructor
@@ -89,7 +89,7 @@ class Nihon extends Romanization
     /**
      * Implements __toString().
      *
-     * @see RomanizationInterface
+     * @see TransliterationSystemInterface
      */
     public function __toString()
     {
@@ -99,7 +99,7 @@ class Nihon extends Romanization
     /**
      * Implements transliterate();
      *
-     * @see RomanizationInterface
+     * @see TransliterationSystemInterface
      */
     public function transliterate($str)
     {
@@ -117,7 +117,7 @@ class Nihon extends Romanization
     /**
      * Overrides transliterateChoonpu().
      *
-     * @see Romanization
+     * @see Romaji
      */
     protected function transliterateChoonpu($str)
     {
@@ -129,13 +129,13 @@ class Nihon extends Romanization
             'o' => 'ô',
         );
 
-        return preg_replace('/([aiueo])' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+        return preg_replace('/([aiueo])ー/ue', '$macrons[\'${1}\']', $str);
     }
 
     /**
      * Overrides convertLongVowels().
      *
-     * @see Romanization
+     * @see Romaji
      */
     protected function convertLongVowels($str)
     {

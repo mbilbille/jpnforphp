@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Hepburn romanization system class
  */
-class Hepburn extends Romanization
+class Hepburn extends Romaji
 {
     /**
      * Hepburn's constructor
@@ -88,7 +88,7 @@ class Hepburn extends Romanization
     /**
      * Implements __toString().
      *
-     * @see RomanizationInterface
+     * @see TransliterationSystemInterface
      */
     public function __toString()
     {
@@ -98,7 +98,7 @@ class Hepburn extends Romanization
     /**
      * Implements transliterate();
      *
-     * @see RomanizationInterface
+     * @see TransliterationSystemInterface
      */
     public function transliterate($str)
     {
@@ -117,9 +117,9 @@ class Hepburn extends Romanization
     /**
      * Overrides transliterateSokuon().
      *
-     * @see Romanization
+     * @see Romaji
      */
-    protected function transliterateSokuon($str, $syllabary = Transliterator::HIRAGANA)
+    protected function transliterateSokuon($str, $syllabary = Romaji::HIRAGANA)
     {
         $output = parent::transliterateSokuon($str, $syllabary);
 
@@ -131,7 +131,7 @@ class Hepburn extends Romanization
     /**
      * Overrides transliterateChoonpu().
      *
-     * @see Romanization
+     * @see Romaji
      */
     protected function transliterateChoonpu($str)
     {
@@ -143,13 +143,13 @@ class Hepburn extends Romanization
             'o' => 'ō',
         );
 
-        return preg_replace('/([aiueo])' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+        return preg_replace('/([aiueo])ー/ue', '$macrons[\'${1}\']', $str);
     }
 
     /**
      * Overrides convertLongVowels().
      *
-     * @see Romanization
+     * @see Romaji
      *
      * This is a minimalist implementation of Hepburn's rules. For a detailed
      * explanation please refer to:
@@ -166,7 +166,7 @@ class Hepburn extends Romanization
     /**
      * Overrides convertParticles().
      *
-     * @see Romanization
+     * @see Romaji
      */
     protected function convertParticles($str)
     {

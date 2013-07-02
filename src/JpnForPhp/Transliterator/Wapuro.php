@@ -14,7 +14,7 @@ namespace JpnForPhp\Transliterator;
 /**
  * Wapuro romanization system class
  */
-class Wapuro extends Romanization
+class Wapuro extends Romaji
 {
     /**
      * Wapuro's constructor
@@ -39,7 +39,7 @@ class Wapuro extends Romanization
             'わ' => 'wa', 'ゐ' => 'wyi', 'ゑ' => 'wye', 'を' => 'wo',
             'ゎ' => 'lwa',
             'ん' => 'nn',
-            Transliterator::CHOONPU => '-',
+            'ー' => '-',
             'ヵ' => 'lka', 'ヶ' => 'lke',
             'が' => 'ga', 'ぎ' => 'gi', 'ぐ' => 'gu', 'げ' => 'ge', 'ご' => 'go',
             'ざ' => 'za', 'じ' => 'ji', 'ず' => 'zu', 'ぜ' => 'ze', 'ぞ' => 'zo',
@@ -76,7 +76,7 @@ class Wapuro extends Romanization
     /**
      * Implements __toString().
      *
-     * @see TransliteratorInterface
+     * @see TransliterationSystemInterface
      */
     public function __toString()
     {
@@ -86,7 +86,7 @@ class Wapuro extends Romanization
     /**
      * Implements transliterate();
      *
-     * @see RomanizationInterface
+     * @see TransliterationSystemInterface
      */
     public function transliterate($str)
     {
@@ -103,7 +103,7 @@ class Wapuro extends Romanization
     /**
      * Overrides transliterateChoonpu().
      *
-     * @see Romanization
+     * @see Romaji
      */
     protected function transliterateChoonpu($str)
     {
@@ -115,6 +115,6 @@ class Wapuro extends Romanization
             'o' => 'oo',
         );
 
-        return preg_replace('/([aiueo])' . Transliterator::CHOONPU . '/ue', '$macrons[\'${1}\']', $str);
+        return preg_replace('/([aiueo])ー/ue', '$macrons[\'${1}\']', $str);
     }
 }

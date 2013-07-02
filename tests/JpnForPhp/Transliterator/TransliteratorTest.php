@@ -16,6 +16,8 @@ use JpnForPhp\Transliterator\Hepburn;
 use JpnForPhp\Transliterator\Kunrei;
 use JpnForPhp\Transliterator\Nihon;
 use JpnForPhp\Transliterator\Wapuro;
+use JpnForPhp\Transliterator\Hiragana;
+use JpnForPhp\Transliterator\Katakana;
 
 /**
  * JpnForPhp Testcase for Transliterator component
@@ -33,6 +35,8 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $this->kunrei = new Kunrei();
         $this->nihon = new Nihon();
         $this->wapuro = new Wapuro();
+        $this->hiragana = new Hiragana();
+        $this->katakana = new Katakana();
         parent::setUp();
     }
 
@@ -367,67 +371,79 @@ public function testToRomajiWithWapuro()
 
     public function testToKanaUsingHiraganaInNormalCase()
     {
-        $result = Transliterator::toKana('kuruma', Transliterator::HIRAGANA);
+        $result = Transliterator::toKana('kuruma', $this->hiragana);
         $this->assertEquals('くるま', $result);
     }
 
     public function testToKanaUsingHiraganaWithAnEmptyString()
     {
-        $result = Transliterator::toKana('', Transliterator::HIRAGANA);
+        $result = Transliterator::toKana('', $this->hiragana);
         $this->assertEquals('', $result);
     }
 
     public function testToKanaUsingHiraganaWithMacron()
     {
-        $result = Transliterator::toKana('gakkō ni ikimasu', Transliterator::HIRAGANA);
+        $result = Transliterator::toKana('gakkō ni ikimasu', $this->hiragana);
         $this->assertEquals('がっこう　に　いきます', $result);
     }
 
     public function testToKanaUsingHiraganaWithPunctuationMarks()
     {
-        $result = Transliterator::toKana('\'iie\'teiimashita', Transliterator::HIRAGANA);
+        $result = Transliterator::toKana('\'iie\'teiimashita', $this->hiragana);
         $this->assertEquals('「いいえ」ていいました', $result);
     }
 
     public function testToKanaUsingKatakanaInNormalCase()
     {
-        $result = Transliterator::toKana('furansu', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('furansu', $this->katakana);
         $this->assertEquals('フランス', $result);
     }
 
     public function testToKanaUsingKatakanaWithAnEmptyString()
     {
-        $result = Transliterator::toKana('', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('', $this->katakana);
         $this->assertEquals('', $result);
     }
 
     public function testToKanaUsingKatakanaWithSokuon()
     {
-        $result = Transliterator::toKana('chakku', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('chakku', $this->katakana);
         $this->assertEquals('チャック', $result);
     }
 
     public function testToKanaUsingKatakanaWithChoonpu()
     {
-        $result = Transliterator::toKana('foodo', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('foodo', $this->katakana);
         $this->assertEquals('フォード', $result);
     }
 
     public function testToKanaUsingKatakanaWithMacron()
     {
-        $result = Transliterator::toKana('fōdo', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('fōdo', $this->katakana);
         $this->assertEquals('フォード', $result);
     }
 
     public function testToKanaUsingKatakanaWithCircumflex()
     {
-        $result = Transliterator::toKana('fôdo', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('fôdo', $this->katakana);
         $this->assertEquals('フォード', $result);
     }
 
     public function testToKanaUsingKatakanaWithPunctuationMarks()
     {
-        $result = Transliterator::toKana('\'iie\'teiimashita', Transliterator::KATAKANA);
+        $result = Transliterator::toKana('\'iie\'teiimashita', $this->katakana);
         $this->assertEquals('「イイエ」テイイマシタ', $result);
+    }
+    
+    public function testToKana27_1()
+    {
+        $result = Transliterator::toKana('wha', $this->hiragana);
+        $this->assertEquals('うぁ', $result);
+    }
+    
+    public function testToKana27_2()
+    {
+        $result = Transliterator::toKana('wha', $this->katakana);
+        $this->assertEquals('ウァ', $result);
     }
 }
