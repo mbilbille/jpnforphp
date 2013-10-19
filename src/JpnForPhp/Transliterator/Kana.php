@@ -16,100 +16,79 @@ use JpnForPhp\Analyzer\Analyzer;
 /**
  * Kana transliteration system class
  */
-abstract class Kana implements TransliterationSystemInterface
-{
+class Kana extends TransliterationSystem
+{ 
     /**
-     * @var array Map latin characters (or combinaison of characters) to
-     * their equivalent in hiragana.
+     * Kana's constructor
      */
-    protected $mapLatin = array (
-        'a' => 'あ', 'i' => 'い', 'u' => 'う', 'e' => 'え', 'o' => 'お',
-        'ka' => 'か', 'ki' => 'き', 'ku' => 'く', 'ke' => 'け', 'ko' => 'こ',
-        'sa' => 'さ', 'shi' => 'し', 'si' => 'し', 'su' => 'す', 'se' => 'せ', 'so' => 'そ',
-        'ta' => 'た', 'chi' => 'ち', 'ti' => 'ち', 'tsu' => 'つ', 'tu' => 'つ', 'te' => 'て', 'to' => 'と',
-        'na' => 'な', 'ni' => 'に', 'nu' => 'ぬ', 'ne' => 'ね', 'no' => 'の',
-        'ha' => 'は', 'hi' => 'ひ', 'fu' => 'ふ', 'hu' => 'ふ', 'he' => 'へ', 'ho' => 'ほ',
-        'ma' => 'ま', 'mi' => 'み', 'mu' => 'む', 'me' => 'め', 'mo' => 'も',
-        'ra' => 'ら', 'ri' => 'り', 'ru' => 'る', 're' => 'れ', 'ro' => 'ろ',
-        'ya' => 'や', 'yi' => 'いぃ', 'yu' => 'ゆ', 'ye' => 'えぇ', 'yo' => 'よ',
-        'wa' => 'わ', 'wi' => 'ゐ', 'we' => 'ゑ', 'wo' => 'を',
-        //'wa' => 'うぁ', 'wi' => 'うぃ', 'wu' => 'うぅ', 'we' => 'うぇ', 'wo' => 'うぉ',
-        'n' => 'ん', "n'" => 'ん',
-        'ga' => 'が', 'gi' => 'ぎ', 'gu' => 'ぐ', 'ge' => 'げ', 'go' => 'ご',
-        'za' => 'ざ', 'ji' => 'じ', 'zi' => 'じ', 'zu' => 'ず', 'ze' => 'ぜ', 'zo' => 'ぞ',
-        'da' => 'だ', 'di' => 'ぢ', 'dzu' => 'づ', 'du' => 'づ', 'de' => 'で', 'do' => 'ど',
-        'ba' => 'ば', 'bi' => 'び', 'bu' => 'ぶ', 'be' => 'べ', 'bo' => 'ぼ',
-        'pa' => 'ぱ', 'pi' => 'ぴ', 'pu' => 'ぷ', 'pe' => 'ぺ', 'po' => 'ぽ',
-        'va' => 'ぶぁ', 'vi' => 'ぶぃ', 'vu' => 'ぶ', 've' => 'ぶぇ', 'vo' => 'ぶぉ',
-        'kya' => 'きゃ', 'kyu' => 'きゅ', 'kye' => 'きぇ', 'kyo' => 'きょ',
-        'sya' => 'しゃ', 'sha' => 'しゃ', 'syu' => 'しゅ', 'shu' => 'しゅ', 'she' => 'しぇ', 'syo' => 'しょ', 'sho' => 'しょ',
-        'tya' => 'ちゃ', 'cya' => 'ちゃ', 'cha' => 'ちゃ', 'tyu' => 'ちゅ', 'cyu' => 'ちゅ', 'chu' => 'ちゅ', 'tyo' => 'ちょ', 'cyo' => 'ちょ', 'cho' => 'ちょ',
-        'nya' => 'にゃ', 'nyu' => 'みゅ', 'nye' => 'にぇ', 'nyo' => 'にょ',
-        'hya' => 'ひゃ', 'hyu' => 'ひゅ', 'hye' => 'ひぇ', 'hyo' => 'ひょ',
-        'mya' => 'みゃ', 'myu' => 'みゅ', 'mye' => 'みぇ', 'myo' => 'みょ',
-        'rya' => 'りゃ', 'ryu' => 'りゅ', 'rye' => 'りぇ', 'ryo' => 'りょ',
-        'gya' => 'ぎゃ', 'gyu' => 'ぎゅ', 'gye' => 'ぎぇ', 'gyo' => 'ぎょ',
-        'vya' => 'ぶゃ', 'vyu' => 'ぶゅ', 'vye' => 'ぶぃぇ', 'vyo' => 'ぶょ',
-        'wya' => 'うゃ', //@todo verifier celui la
-        'ja' => 'じゃ', 'zya' => 'じゃ', 'jya' => 'じゃ', 'ju' => 'じゅ', 'zyu' => 'じゅ', 'jyu' => 'じゅ', 'je' => 'じぇ', 'zye' => 'じぇ', 'jye' => 'じぇ', 'jo' => 'じょ', 'zyo' => 'じょ', 'jyo' => 'じょ',
-        'dja' => 'ぢゃ', 'dya' => 'ぢゃ', 'dju' => 'ぢゅ', 'dyu' => 'ぢゅ', 'djo' => 'ぢょ', 'dyo' => 'ぢょ',
-        'bya' => 'びゃ', 'byu' => 'びゅ', 'bye' => 'びぇ', 'byo' => 'びょ',
-        'pya' => 'ぴゃ', 'pyu' => 'ぴゅ', 'pye' => 'ぴぇ', 'pyo' => 'ぴょ',
-        'fya' => 'ふゃ', 'fyu' => 'ふゅ', 'fye' => 'ふぃぇ', 'fyo' => 'ふょ',
-        'wyi' => 'ゐ', 'wye' => 'ゑ',
-        'kwa' => 'くぁ', 'kwi' => 'くぃ', 'kwe' => 'くぇ', 'kwo' => 'くぉ',
-        //'kwa' => 'くゎ',
-        'gwa' => 'ぐぁ', 'gwi' => 'ぐぃ', 'gwe' => 'ぐぇ', 'gwo' => 'ぐぉ',
-        //'gwa' => 'ぐゎ',
-        'swa' => 'すぁ', 'swi' => 'すぃ', 'swu' => 'すぅ', 'swe' => 'すぇ', 'swo' => 'すぉ',
-        'twa' => 'とぁ', 'twi' => 'とぃ', 'twu' => 'とぅ', 'twe' => 'とぇ', 'two' => 'とぉ',
-        'fwa' => 'ふぁ', 'fwi' => 'ふぃ', 'fwu' => 'ふぅ', 'fwe' => 'ふぇ', 'fwo' => 'ふぉ',
-        'dwa' => 'どぁ', 'dwi' => 'どぃ', 'dwu' => 'どぅ', 'dwe' => 'どぇ', 'dwo' => 'どぉ',
-        //'si' => 'すぃ',
-        //'zi' => 'ずぃ',
-        'che' => 'ちぇ',
-        'tsa' => 'つぁ', 'tsi' => 'つぃ', 'tse' => 'つぇ', 'tso' => 'つぉ',
-        'tsyu' => 'つゅ',
-        //'ti' => 'てぃ', 'tu' => 'てぅ',
-        //'di' => 'でぃ', 'du' => 'でぅ',
-        //'dyu' => 'でゅ',
-        'fa' => 'ふぁ', 'fi' => 'ふぃ', 'fe' => 'ふぇ', 'fo' => 'ふぉ',
-        'wha' => 'うぁ', 'whi' => 'うぃ', 'whe' => 'うぇ', 'who' => 'うぉ',
-        //'hu' => 'ほぅ',
-        //'la' => 'ら゜', 'li' => 'り゜', 'lu' => 'る゜', 'le' => 'れ゜', 'lo' => 'ろ゜',
-        //'va' => 'ヷ', 'vi' => 'ヸ', 've' => 'ヹ', 'vo' => 'ヺ',@todo traduire en hiragana
-        'la' => 'ぁ', 'li' => 'ぃ', 'lu' => 'ぅ', 'le' => 'ぇ', 'lo' => 'ぉ',
-        'lya' => 'ゃ', 'lyu' => 'ゅ', 'lyo' => 'ょ',
-        'lwa' => 'ゎ',
-    );
+    public function __construct($system = '')
+    {
+        $file = __DIR__ . DIRECTORY_SEPARATOR . 'Kana' . DIRECTORY_SEPARATOR . (($system) ? $system : 'hiragana') . '.yaml';
+        parent::__construct($file);
+    }
 
     /**
-     * @var array Map latin punctuation marks to their equivalent in Japanese
-     * syllabary.
+     * Implements __toString().
      *
-     * @see http://en.wikipedia.org/wiki/Japanese_punctuation
-     *
-     * NOTE: Quotation marks are not handle here as opening and closing
-     * characters are equivalent in latin alphabet.
-     * @see transliterateQuotationMarks().
+     * @see TransliterationSystemInterface
      */
-    protected $mapPunctuationMarks = array(
-        ' ' => '　', ',' => '、', ', ' => '、', '-' => '・', '.' => '。', ':' => '：', '!' => '！', '?' => '？',
-        '(' => '（', ')' => '）', '{' => '｛', '}' => '｝',
-        '[' => '［', ']' => '］',
-        '~' => '〜',
-    );
+    public function __toString()
+    {
+        return $this->configuration['name']['english'] . ' (' . $this->configuration['name']['japanese'] . ')';
+    }
+
+    /**
+     * Simple wrap mb_strtolower to convert characters to lower case
+     *
+     * @param string $str           String to be converted
+     *
+     * @return string               Converted string.
+     */
+    protected function convertToLowerCase($str)
+    {
+        return  mb_strtolower($str, 'UTF-8');
+    }
+
+    /**
+     * Prepare a string for to transliterate long vowels into kana.
+     *
+     * @param string $str           String to be prepared.
+     * @param array $parameters     Long vowels mapping.
+     *
+     * @return string               Prepared string.
+     */
+    protected function prepareLongVowelsTransliteration($str, $parameters)
+    {
+        return strtr($str, $parameters['long-vowels']);
+    }
+       
+    /**
+     * Prepare a string for to transliterate choonpu into kana.
+     *
+     * @param string $str           String to be prepared.
+     * @param array $parameters     Long vowels mapping.
+     *
+     * @return string               Prepared string.
+     */
+    protected function prepareChoonpuTransliteration($str)
+    {
+        // Consonant followed by two of the same vowel
+        $consonant = 'bcdfghjklmnpqrstvwyz';
+        return preg_replace_callback('/(^[' . $consonant . '])(aa|ii|uu|ee|oo)/u', function($matches){
+            return $matches[1].substr($matches[2], 1) . 'ー';
+        }, $str);   
+    }
 
     /**
      * Transliterate proper combinaisons of latin alphabet characters into
      * Sokuon (http://en.wikipedia.org/wiki/Sokuon) characters.
      *
-     * @param string $str       String to be transliterated.
-     * Katakana.
+     * @param string $str           String to be transliterated.
+     * @param array $parameters     Sokuon character.
      *
-     * @return string Transliterated string.
+     * @return string               Transliterated string.
      */
-    protected function transliterateSokuon($str)
+    protected function transliterateSokuon($str, $parameters)
     {
         $new_str = $str;
         $length = Analyzer::length($str);
@@ -126,7 +105,7 @@ abstract class Kana implements TransliterationSystemInterface
             if (!in_array($prev_char, $skip)) {
                 // Don't forget Hepburn special case: ch > tch
                 if ($prev_char === substr($str, $i, 1) || ($prev_char === 't' && substr($str, $i, 2) === 'ch')) {
-                    $new_str = substr_replace($str, $this::SOKUON, $i - 1, 1);
+                    $new_str = substr_replace($str, $parameters['sokuon'], $i - 1, 1);
                 }
             }
         }
@@ -149,4 +128,29 @@ abstract class Kana implements TransliterationSystemInterface
         return $str;
     }
 
+    /**
+     * Convert the given string into kana using the specified mapping.
+     *
+     * @param string $str           String to be converted.
+     * @param array $parameters     Characters mapping.
+     *
+     * @return string               Converted string.
+     */
+    protected function convertUsingMapping($str, $parameters)
+    {
+        return strtr($str, $parameters['mapping']);
+    }
+
+    /**
+     * Convert the given string from hiragana to katakana.
+     * Simply wrap the mb_convert_kana function.
+     *
+     * @param string $str           String to be converted.
+     *
+     * @return string               Converted string.     
+     */
+    protected function convertHiraganaToKatakana($str)
+    {
+        return mb_convert_kana($str, 'C', 'UTF-8');
+    }
 }
