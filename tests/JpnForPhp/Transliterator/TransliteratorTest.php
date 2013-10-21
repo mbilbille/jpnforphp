@@ -441,13 +441,13 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = $this->katakana->transliterate('\'iie\'teiimashita');
         $this->assertEquals('「イイエ」テイイマシタ', $result);
     }
-    
+
     public function testTransliterateToKana27_1()
     {
         $result = $this->hiragana->transliterate('wha');
         $this->assertEquals('うぁ', $result);
     }
-    
+
     public function testTransliterateToKana27_2()
     {
         $result = $this->katakana->transliterate('wha');

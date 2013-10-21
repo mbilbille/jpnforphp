@@ -32,7 +32,7 @@ abstract class TransliterationSystem
     }
 
     /**
-     * Transliterate a string from an alphabet into another alphabet as per  
+     * Transliterate a string from an alphabet into another alphabet as per
      * the workflow specified in the configuration file.
      *
      * @param string $str The string to be converted.
@@ -44,11 +44,11 @@ abstract class TransliterationSystem
         $str = $this->preTransliterate($str);
 
         foreach ($this->configuration['workflow'] as $work) {
-            if(!method_exists($this, $work['function'])) {
+            if (!method_exists($this, $work['function'])) {
                 continue;
             }
             $params = array($str);
-            if(isset($work['parameters'])) {
+            if (isset($work['parameters'])) {
                 $params[] = $work['parameters'];
             }
             $str = call_user_func_array(array($this, $work['function']), $params);
@@ -60,29 +60,31 @@ abstract class TransliterationSystem
     }
 
     /**
-     * To be executed before the transliteration workflow. 
+     * To be executed before the transliteration workflow.
      *
      * @param string $str The input string.
      *
      * @return string The string ready for transliteration.
      */
-    protected function preTransliterate($str){
+    protected function preTransliterate($str)
+    {
         return $str;
     }
 
     /**
-     * To be executed after the transliteration workflow. 
+     * To be executed after the transliteration workflow.
      *
      * @param string $str The transliterated string.
      *
      * @return string The transliterated string.
      */
-    protected function postTransliterate($str){
+    protected function postTransliterate($str)
+    {
         return $str;
     }
 
     /**
      * Implement magic method __toString().
      */
-    abstract function __toString();
+    abstract public function __toString();
 }

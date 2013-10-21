@@ -17,7 +17,7 @@ use JpnForPhp\Analyzer\Analyzer;
  * Kana transliteration system class
  */
 class Kana extends TransliterationSystem
-{ 
+{
     /**
      * Kana's constructor
      */
@@ -36,7 +36,7 @@ class Kana extends TransliterationSystem
     {
         return $this->configuration['name']['english'] . ' (' . $this->configuration['name']['japanese'] . ')';
     }
-    
+
     /**
      * Override preTransliterate().
      *
@@ -52,41 +52,42 @@ class Kana extends TransliterationSystem
     /**
      * Prepare a string for to transliterate long vowels into kana.
      *
-     * @param string $str           String to be prepared.
-     * @param array $parameters     Long vowels mapping.
+     * @param string $str        String to be prepared.
+     * @param array  $parameters Long vowels mapping.
      *
-     * @return string               Prepared string.
+     * @return string Prepared string.
      */
     protected function prepareLongVowelsTransliteration($str, $parameters)
     {
         return strtr($str, $parameters['long-vowels']);
     }
-       
+
     /**
      * Prepare a string for to transliterate choonpu into kana.
      *
-     * @param string $str           String to be prepared.
-     * @param array $parameters     Long vowels mapping.
+     * @param string $str        String to be prepared.
+     * @param array  $parameters Long vowels mapping.
      *
-     * @return string               Prepared string.
+     * @return string Prepared string.
      */
     protected function prepareChoonpuTransliteration($str)
     {
         // Consonant followed by two of the same vowel
         $consonant = 'bcdfghjklmnpqrstvwyz';
+
         return preg_replace_callback('/(^[' . $consonant . '])(aa|ii|uu|ee|oo)/u', function($matches){
             return $matches[1].substr($matches[2], 1) . 'ー';
-        }, $str);   
+        }, $str);
     }
 
     /**
      * Transliterate proper combinaisons of latin alphabet characters into
      * Sokuon (http://en.wikipedia.org/wiki/Sokuon) characters.
      *
-     * @param string $str           String to be transliterated.
-     * @param array $parameters     Sokuon character.
+     * @param string $str        String to be transliterated.
+     * @param array  $parameters Sokuon character.
      *
-     * @return string               Transliterated string.
+     * @return string Transliterated string.
      */
     protected function transliterateSokuon($str, $parameters)
     {
@@ -97,9 +98,9 @@ class Kana extends TransliterationSystem
         if ($length < 2) {
             return $new_str;
         }
-         
+
         $skip = array('a', 'i', 'u', 'e', 'o', 'n');
-        
+
         for ($i = 1; $i < $length; $i++) {
             $prev_char = substr($str, $i - 1, 1);
             if (!in_array($prev_char, $skip)) {
@@ -131,10 +132,10 @@ class Kana extends TransliterationSystem
     /**
      * Convert the given string into kana using the specified mapping.
      *
-     * @param string $str           String to be converted.
-     * @param array $parameters     Characters mapping.
+     * @param string $str        String to be converted.
+     * @param array  $parameters Characters mapping.
      *
-     * @return string               Converted string.
+     * @return string Converted string.
      */
     protected function transliterateDefaultCharacters($str, $parameters)
     {
@@ -145,9 +146,9 @@ class Kana extends TransliterationSystem
      * Convert the given string from hiragana to katakana.
      * Simply wrap the mb_convert_kana function.
      *
-     * @param string $str           String to be converted.
+     * @param string $str String to be converted.
      *
-     * @return string               Converted string.     
+     * @return string Converted string.
      */
     protected function convertHiraganaToKatakana($str)
     {

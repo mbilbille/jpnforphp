@@ -15,7 +15,7 @@ namespace JpnForPhp\Transliterator;
  * Romaji transliteration system class
  */
 class Romaji extends TransliterationSystem
-{    
+{
     /**
      * @var array Store latin characters which are escaped.
      */
@@ -49,6 +49,7 @@ class Romaji extends TransliterationSystem
     {
         $str = $this->escapeLatinCharacters($str);
         $str = mb_convert_kana($str, 'c', 'UTF-8');
+
         return $str;
     }
 
@@ -67,10 +68,10 @@ class Romaji extends TransliterationSystem
     /**
      * Use the specified mapping to transliterate the given string into romaji
      *
-     * @param string $str           String to be converted.
-     * @param array $parameters     Characters mapping.
+     * @param string $str        String to be converted.
+     * @param array  $parameters Characters mapping.
      *
-     * @return string               Converted string.
+     * @return string Converted string.
      */
     protected function transliterateDefaultCharacters($str, $parameters)
     {
@@ -81,20 +82,20 @@ class Romaji extends TransliterationSystem
      * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
      * its equivalent in latin alphabet.
      *
-     * @param string $str           String to be transliterated.
-     * @param array $parameters     Default or Hepburn transliteration.
+     * @param string $str        String to be transliterated.
+     * @param array  $parameters Default or Hepburn transliteration.
      *
-     * @return string               Transliterated string.
+     * @return string Transliterated string.
      */
     protected function transliterateSokuon($str, $parameters)
     {
-        if($parameters['default']){
+        if ($parameters['default']) {
             $str = preg_replace('/[っッ](.)/u', '${1}${1}', $str);
         }
 
         // As per Hepburn system ch > tch
         // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
-        if($parameters['hepburn']){
+        if ($parameters['hepburn']) {
             $str = str_replace('cch', 'tch', $str);
         }
 
@@ -106,25 +107,26 @@ class Romaji extends TransliterationSystem
      * Transliterate Chōonpu (http://en.wikipedia.org/wiki/Chōonpu) character
      * into its equivalent in latin alphabet.
      *
-     * @param string $str           String to be transliterated.
-     * @param array $parameters     Macrons mapping.
+     * @param string $str        String to be transliterated.
+     * @param array  $parameters Macrons mapping.
      *
-     * @return string               Transliterated string.
+     * @return string Transliterated string.
      */
     protected function transliterateChoonpu($str, $parameters)
     {
         $keys = array_keys($parameters['macrons']);
         $pattern = '/([' . implode('', $keys) . '])ー/ue';
+
         return preg_replace($pattern, '$parameters[\'macrons\'][\'${1}\']', $str);
     }
 
     /**
      * Transliterate long vowels as per the given mapping.
      *
-     * @param string $str           String to be transliterated.
-     * @param array $parameters     Long vowels mapping.
+     * @param string $str        String to be transliterated.
+     * @param array  $parameters Long vowels mapping.
      *
-     * @return string               Transliterated string.
+     * @return string Transliterated string.
      */
     protected function transliterateLongVowels($str, $parameters)
     {
@@ -134,10 +136,10 @@ class Romaji extends TransliterationSystem
     /**
      * Transliterate particules as per the given mapping.
      *
-     * @param string $str           String to be transliterated.
-     * @param array $parameters     Particules mapping.
+     * @param string $str        String to be transliterated.
+     * @param array  $parameters Particules mapping.
      *
-     * @return string               Transliterated string.
+     * @return string Transliterated string.
      */
     protected function transliterateParticles($str, $parameters)
     {
