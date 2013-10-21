@@ -3,9 +3,7 @@ name:
     english: "Nihon romanization system"
     japanese: "日本式ローマ字"
 workflow:
-    - function: escapeLatinCharacters
-    - function: convertKatakanaToHiragana
-    - function: convertUsingMapping
+    - function: transliterateDefaultCharacters
       parameters:
             mapping:
                 あ: a
@@ -219,7 +217,7 @@ workflow:
                 u: û
                 e: ê
                 o: ô
-    - function: convertLongVowels
+    - function: transliterateLongVowels
       parameters:
             long-vowels:
                 aa: â
@@ -227,4 +225,3 @@ workflow:
                 ee: ê
                 oo: ô
                 ou: ô
-    - function: unescapeLatinCharacters

@@ -3,9 +3,7 @@ name:
     english: "Kunrei romanization system"
     japanese: "訓令式ローマ字"
 workflow:
-    - function: escapeLatinCharacters
-    - function: convertKatakanaToHiragana
-    - function: convertUsingMapping
+    - function: transliterateDefaultCharacters
       parameters:
             # Based on the following rules:
             # - http://www.age.ne.jp/x/nrs/iso3602/iso3602_unicode.html#kutoten
@@ -221,7 +219,7 @@ workflow:
                 u: û
                 e: ê
                 o: ô
-    - function: convertLongVowels
+    - function: transliterateLongVowels
       parameters:
             long-vowels:
                 aa: â
@@ -229,10 +227,9 @@ workflow:
                 ee: ê
                 oo: ô
                 ou: ô
-    - function: convertParticles
+    - function: transliterateParticles
       parameters:
             particules:
                 " ha ": " wa "
                 " he ": " e "
                 " wo ": " o "
-    - function: unescapeLatinCharacters

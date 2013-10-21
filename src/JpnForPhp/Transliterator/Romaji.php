@@ -33,7 +33,7 @@ class Romaji extends TransliterationSystem
     /**
      * Implements __toString().
      *
-     * @see TransliterationSystemInterface
+     * @see TransliterationSystem
      */
     public function __toString()
     {
@@ -41,59 +41,38 @@ class Romaji extends TransliterationSystem
     }
 
     /**
-     * Escapes latin characters [a-z].
+     * Override preTransliterate().
+     *
+     * @see TransliterationSystem
      */
-    protected function escapeLatinCharacters($str)
+    protected function preTransliterate($str)
     {
-        $str = preg_replace_callback('/([a-z]+)/', array($this, "espaceLatinCharactersCallback"), $str);
+        $str = $this->escapeLatinCharacters($str);
+        $str = mb_convert_kana($str, 'c', 'UTF-8');
+        return $str;
+    }
+
+    /**
+     * Override postTransliterate().
+     *
+     * @see TransliterationSystem
+     */
+    protected function postTransliterate($str)
+    {
+        $str = $this->unescapeLatinCharacters($str);
 
         return $str;
     }
 
     /**
-     * Private callback for escapeLatinCharacters().
-     */
-    private function espaceLatinCharactersCallback($matches)
-    {
-        $this->latinCharacters[] = $matches[1];
-
-        return '%s';
-    }
-
-    /**
-     * Unescapes latin characters [a-z].
-     */
-    protected function unescapeLatinCharacters($str)
-    {
-        if ($this->latinCharacters) {
-            $str = vsprintf($str, $this->latinCharacters);
-        }
-
-        return $str;
-    }
-
-    /**
-     * Convert the given string from katakana to hiragana.
-     * Simply wrap the mb_convert_kana function.
-     *
-     * @param string $str           String to be converted.
-     *
-     * @return string               Converted string.     
-     */
-    protected function convertKatakanaToHiragana($str)
-    {
-        return mb_convert_kana($str, 'c', 'UTF-8');
-    }
-
-    /**
-     * Convert the given string into romaji using the specified mapping.
+     * Use the specified mapping to transliterate the given string into romaji
      *
      * @param string $str           String to be converted.
      * @param array $parameters     Characters mapping.
      *
      * @return string               Converted string.
      */
-    protected function convertUsingMapping($str, $parameters)
+    protected function transliterateDefaultCharacters($str, $parameters)
     {
         return strtr($str, $parameters['mapping']);
     }
@@ -140,29 +119,60 @@ class Romaji extends TransliterationSystem
     }
 
     /**
-     * Convert long vowels as per the given mapping.
+     * Transliterate long vowels as per the given mapping.
      *
-     * @param string $str           String to be converted.
+     * @param string $str           String to be transliterated.
      * @param array $parameters     Long vowels mapping.
      *
-     * @return string               Converted string.
+     * @return string               Transliterated string.
      */
-    protected function convertLongVowels($str, $parameters)
+    protected function transliterateLongVowels($str, $parameters)
     {
         return str_replace(array_keys($parameters['long-vowels']), array_values($parameters['long-vowels']), $str);
     }
 
     /**
-     * Convert particules as per the given mapping.
+     * Transliterate particules as per the given mapping.
      *
-     * @param string $str           String to be converted.
+     * @param string $str           String to be transliterated.
      * @param array $parameters     Particules mapping.
      *
-     * @return string               Converted string.
+     * @return string               Transliterated string.
      */
-    protected function convertParticles($str, $parameters)
+    protected function transliterateParticles($str, $parameters)
     {
         return str_replace(array_keys($parameters['particules']), array_values($parameters['particules']), $str);
     }
 
+    /**
+     * Escapes latin characters [a-z].
+     */
+    private function escapeLatinCharacters($str)
+    {
+        $str = preg_replace_callback('/([a-z]+)/', array($this, "espaceLatinCharactersCallback"), $str);
+
+        return $str;
+    }
+
+    /**
+     * Private callback for escapeLatinCharacters().
+     */
+    private function espaceLatinCharactersCallback($matches)
+    {
+        $this->latinCharacters[] = $matches[1];
+
+        return '%s';
+    }
+
+    /**
+     * Unescapes latin characters [a-z].
+     */
+    private function unescapeLatinCharacters($str)
+    {
+        if ($this->latinCharacters) {
+            $str = vsprintf($str, $this->latinCharacters);
+        }
+
+        return $str;
+    }
 }

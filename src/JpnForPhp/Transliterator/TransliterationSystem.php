@@ -41,6 +41,8 @@ abstract class TransliterationSystem
      */
     public function transliterate($str)
     {
+        $str = $this->preTransliterate($str);
+
         foreach ($this->configuration['workflow'] as $work) {
             if(!method_exists($this, $work['function'])) {
                 continue;
@@ -51,6 +53,31 @@ abstract class TransliterationSystem
             }
             $str = call_user_func_array(array($this, $work['function']), $params);
         }
+
+        $str = $this->postTransliterate($str);
+
+        return $str;
+    }
+
+    /**
+     * To be executed before the transliteration workflow. 
+     *
+     * @param string $str The input string.
+     *
+     * @return string The string ready for transliteration.
+     */
+    protected function preTransliterate($str){
+        return $str;
+    }
+
+    /**
+     * To be executed after the transliteration workflow. 
+     *
+     * @param string $str The transliterated string.
+     *
+     * @return string The transliterated string.
+     */
+    protected function postTransliterate($str){
         return $str;
     }
 

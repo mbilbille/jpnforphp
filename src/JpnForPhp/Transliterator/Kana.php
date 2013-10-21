@@ -36,17 +36,17 @@ class Kana extends TransliterationSystem
     {
         return $this->configuration['name']['english'] . ' (' . $this->configuration['name']['japanese'] . ')';
     }
-
+    
     /**
-     * Simple wrap mb_strtolower to convert characters to lower case
+     * Override preTransliterate().
      *
-     * @param string $str           String to be converted
-     *
-     * @return string               Converted string.
+     * @see TransliterationSystem
      */
-    protected function convertToLowerCase($str)
+    protected function preTransliterate($str)
     {
-        return  mb_strtolower($str, 'UTF-8');
+        $str = mb_strtolower($str, 'UTF-8');
+
+        return $str;
     }
 
     /**
@@ -136,7 +136,7 @@ class Kana extends TransliterationSystem
      *
      * @return string               Converted string.
      */
-    protected function convertUsingMapping($str, $parameters)
+    protected function transliterateDefaultCharacters($str, $parameters)
     {
         return strtr($str, $parameters['mapping']);
     }

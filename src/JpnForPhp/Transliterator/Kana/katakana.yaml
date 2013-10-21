@@ -3,7 +3,6 @@ name:
     english: "Katakana transliteration system"
     japanese: "平仮名"
 workflow:
-    - function: convertToLowerCase
     - function: prepareChoonpuTransliteration
     - function: prepareLongVowelsTransliteration
       parameters:
@@ -22,7 +21,7 @@ workflow:
       parameters:
             sokuon: ッ
     - function: transliterateQuotationMarks
-    - function: convertUsingMapping
+    - function: transliterateDefaultCharacters
       parameters:
             mapping:
                 a: あ

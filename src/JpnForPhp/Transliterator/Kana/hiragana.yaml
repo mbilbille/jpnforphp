@@ -3,7 +3,6 @@ name:
     english: "Hiragana transliteration system"
     japanese: "平仮名"
 workflow:
-    - function: convertToLowerCase
     - function: prepareLongVowelsTransliteration
       parameters:
             long-vowels:
@@ -21,7 +20,7 @@ workflow:
       parameters:
             sokuon: っ
     - function: transliterateQuotationMarks
-    - function: convertUsingMapping
+    - function: transliterateDefaultCharacters
       parameters:
             mapping:
                 a: あ

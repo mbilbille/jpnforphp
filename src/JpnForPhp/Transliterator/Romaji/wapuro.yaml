@@ -3,9 +3,7 @@ name:
     english: "Kunrei romanization system"
     japanese: "訓令式ローマ字"
 workflow:
-    - function: escapeLatinCharacters
-    - function: convertKatakanaToHiragana
-    - function: convertUsingMapping
+    - function: transliterateDefaultCharacters
       parameters:
             # This follow the MS-IME mapping as detailed here:
             # - http://www.hyperteika.com/ime/extra/rome.html
@@ -229,4 +227,3 @@ workflow:
                 u: uu
                 e: ee
                 o: oo
-    - function: unescapeLatinCharacters
