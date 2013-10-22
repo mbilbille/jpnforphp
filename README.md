@@ -18,7 +18,7 @@ Provides the following components:
 
 ##Usage
 
-- Helper component:
+###Helper component:
 
 ```php
 use JpnForPhp\Helper\Helper;
@@ -29,7 +29,7 @@ Helper::extractKanji('素晴らしいです'); // array('素晴')
 Helper::extractHiragana('素晴らしいです'); // array('らしいです')
 ```
 
-- Analyzer component
+###Analyzer component
 
 ```php
 use JpnForPhp\Analyzer\Analyzer;
@@ -40,22 +40,70 @@ Analyzer::countHiragana('素晴らしいです'); // 5
 Analyzer::hasKanji('素晴らしいです'); // TRUE
 ```
 
-- Transliterator component:
+###Transliterator component:
 
 ```php
-use JpnForPhp\Transliterator\Transliterator;
-use JpnForPhp\Transliterator\Hepburn;
-use JpnForPhp\Transliterator\Kunrei;
-use JpnForPhp\Transliterator\Nihon;
+use JpnForPhp\Transliterator\Romaji;
+use JpnForPhp\Transliterator\Kana;
 
-Transliterator::toRomaji('ローマジ で　かいて'); // rōmaji de kaite
-Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::HIRAGANA, new Hepburn()); // ローマジ de kaite
-Transliterator::toRomaji('ローマジ　で　かいて', Transliterator::KATAKANA, new Hepburn()); // rōmaji で かいて
-Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Kunrei()); // rômazi de kaite
-Transliterator::toRomaji('ローマジ　で　かいて', NULL, new Nihon()); // rômazi de kaite
-Transliterator::toKana('kana de kaite', Transliterator::HIRAGANA); // かな　で　かいて
-Transliterator::toKana('kana de kaite', Transliterator::KATAKANA); // カナ　デ　カイテ
+$hepburn = new Romaji();
+$kunrei = new Romaji('kunrei');
+$hiragana = new Kana('hiragana');
+$katakana = new Kana('katakana');
+
+$hepburn->transliterate('ローマジ で　かいて'); // rōmaji de kaite
+$kunrei->transliterate('ローマジ　で　かいて'); // rômazi de kaite
+$hiragana->transliterate('kana de kaite'); // かな　で　かいて
+$katakana->transliterate('kana de kaite'A); // カナ　デ　カイテ
 ```
+
+Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.
+
+```Romaji.php``` and ```Kana.php``` provides a wild range of functions which can be used to define your own transliteration system.
+Here is a sample ```.yaml``` file
+
+```yaml
+id: mySystem
+name:
+    english: "My romanization system"
+    japanese: "マイローマ字"
+workflow:
+    - function: transliterateDefaultCharacters
+      parameters:
+            mapping:
+                あ: a
+                い: i
+                // [...]
+                ぽ: po
+                ゔ: pu
+    - function: transliterateSokuon
+      parameters:
+            default: true
+            hepburn: false
+    - function: transliterateChoonpu
+      parameters:
+        macrons:
+            a: aa
+            i: ii
+            u: uu
+            e: ee
+            o: oo
+```
+
+JpnForPhp supports the following standard transliteration system:
+- [Hepburn](http://en.wikipedia.org/wiki/Hepburn_romanization)
+- [Kunrei](http://en.wikipedia.org/wiki/Kunrei-shiki_romanization)
+- [Nihon](http://en.wikipedia.org/wiki/Nihon-shiki_romanization)
+- [Wapuro](http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji)
+- [JSL](http://en.wikipedia.org/wiki/JSL_romanization) _yet to be implemented_
+
+```.yaml``` files for those transliteration systems are available here:
+- [hepburn](src/JpnForPhp/Transliterator/Romaji/hepburn.yaml)
+- [kunrei](src/JpnForPhp/Transliterator/Romaji/kunrei.yaml)
+- [nihon](src/JpnForPhp/Transliterator/Romaji/nihon.yaml)
+- [wapuro](src/JpnForPhp/Transliterator/Romaji/wapuro.yaml)
+- [hiragana](src/JpnForPhp/Transliterator/Romaji/hiragana.yaml)
+- [katakana](src/JpnForPhp/Transliterator/Romaji/katakana.yaml)
 
 
 ##Upcoming
