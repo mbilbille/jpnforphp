@@ -1,4 +1,6 @@
-  #JpnForPhp
+
+
+#JpnForPhp
 
 A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
 
@@ -23,10 +25,10 @@ Provides the following components:
 ```php
 use JpnForPhp\Helper\Helper;
 
-Helper::split('g4 f4c	ccc'c'); // array('g4 ','f4','c	','c','c','c'','c')
-Helper::subString('g4 f4c	ccc'c', 2, 4); // 'c	c'
-Helper::extractKanji('g4 f4c	ccc'c'); // array('g4 f4')
-Helper::extractHiragana('g4 f4c	ccc'c'); // array('c	ccc'c')
+Helper::split('素晴らしいです'); // array('素','晴','ら','し','い','で','す')
+Helper::subString('素晴らしいです', 2, 4); // 'らし'
+Helper::extractKanji('素晴らしいです'); // array('素晴')
+Helper::extractHiragana('素晴らしいです'); // array('らしいです')
 ```
 
 ###Analyzer component
@@ -34,10 +36,10 @@ Helper::extractHiragana('g4 f4c	ccc'c'); // array('c	ccc'c')
 ```php
 use JpnForPhp\Analyzer\Analyzer;
 
-Analyzer::length('g4 f4c	ccc'c'); // 7
-Analyzer::inspect('g4 f4c	ccc'c'); // array('length'=>7,'kanji'=>2,'hiragana' =>5,'katakana'=>0)
-Analyzer::countHiragana('g4 f4c	ccc'c'); // 5
-Analyzer::hasKanji('g4 f4c	ccc'c'); // TRUE
+Analyzer::length('素晴らしいです'); // 7
+Analyzer::inspect('素晴らしいです'); // array('length'=>7,'kanji'=>2,'hiragana' =>5,'katakana'=>0)
+Analyzer::countHiragana('素晴らしいです'); // 5
+Analyzer::hasKanji('素晴らしいです'); // TRUE
 ```
 
 ###Transliterator component:
@@ -51,12 +53,10 @@ $kunrei = new Romaji('kunrei');
 $hiragana = new Kana('hiragana');
 $katakana = new Kana('katakana');
 
-$hepburn->transliterate('c-c<cc8 c'cccc&'); // rE
-maji de kaite
-$kunrei->transliterate('c-c<cc8cc'cccc&'); // rC4mazi de kaite
-$hiragana->transliterate('kana de kaite'); // cc*cc'cccc&
-$katakana->transliterate('kana de kaite'A); // c+c
-cccc+c$c
+$hepburn->transliterate('ローマジ で　かいて'); // rōmaji de kaite
+$kunrei->transliterate('ローマジ　で　かいて'); // rômazi de kaite
+$hiragana->transliterate('kana de kaite'); // かな　で　かいて
+$katakana->transliterate('kana de kaite'A); // カナ　デ　カイテ
 ```
 
 Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.
@@ -68,16 +68,16 @@ Here is a sample ```.yaml``` file
 id: mySystem
 name:
     english: "My romanization system"
-    japanese: "cc$c-c<ce-"
+    japanese: "マイローマ字"
 workflow:
     - function: transliterateDefaultCharacters
       parameters:
             mapping:
-                c: a
-                c: i
+                あ: a
+                い: i
                 // [...]
-                c=: po
-                c: pu
+                ぽ: po
+                ゔ: pu
     - function: transliterateSokuon
       parameters:
             default: true
@@ -120,4 +120,4 @@ JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and re
 
 - **JPNlizer** integrates JpnForPhp into **Drupal** - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510)
 
-Sponsored by [Openjisho.com](http://www.openjisho.com). 
+Sponsored by [Openjisho.com](http://www.openjisho.com).
