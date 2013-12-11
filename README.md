@@ -121,3 +121,7 @@ JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and re
 - **JPNlizer** integrates JpnForPhp into **Drupal** - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510)
 
 Sponsored by [Openjisho.com](http://www.openjisho.com).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mbilbille/jpnforphp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
