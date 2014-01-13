@@ -31,90 +31,140 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>README</h1>
+        <h1>
+<a name="jpnforphp---" class="anchor" href="#jpnforphp---"><span class="octicon octicon-link"></span></a>JpnForPhp <a href="http://travis-ci.org/mbilbille/jpnforphp"><img src="https://secure.travis-ci.org/mbilbille/jpnforphp.png" alt="build status"></a> <a href="https://waffle.io/mbilbille/jpnforphp"><img src="https://badge.waffle.io/mbilbille/jpnforphp.png?label=ready" alt="Stories in Ready"></a> <a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/mbilbille/jpnforphp/trend.png" alt="Bitdeli Badge"></a>
+</h1>
 
-<h2>What is JpnForPHP?</h2>
+<blockquote>
+<p>A tiny PHP lib which provides nice functions &amp; wrappers to interact with Japanese language. [<a href="http://mbilbille.github.com/jpnforphp/">Official Website</a>]</p>
+</blockquote>
 
-<p>A tiny PHP lib which provides nice functions &amp; wrappers to interact with Japanese language.</p>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<h2>Quick links</h2>
+<div class="highlight highlight-bash"><pre>composer install
+</pre></div>
+
+<h2>
+<a name="features-list" class="anchor" href="#features-list"><span class="octicon octicon-link"></span></a>Features list</h2>
+
+<p>Provides the following components:</p>
 
 <ul>
-<li><a href="https://github.com/mbilbille/jpnforphp">GitHub</a></li>
+<li>Helper: a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).</li>
+<li>Analyzer: various "inspecting" functions (length, count kana, etc.).</li>
+<li>Transliterator: handle both transliterations roman to kana and kana to roman (support all mainstream romanization systems).</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="helper-component" class="anchor" href="#helper-component"><span class="octicon octicon-link"></span></a>Helper component:</h3>
+
+<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Helper\Helper</span><span class="p">;</span>
+
+<span class="nx">Helper</span><span class="o">::</span><span class="na">split</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素','晴','ら','し','い','で','す')</span>
+<span class="nx">Helper</span><span class="o">::</span><span class="na">subString</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 'らし'</span>
+<span class="nx">Helper</span><span class="o">::</span><span class="na">extractKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素晴')</span>
+<span class="nx">Helper</span><span class="o">::</span><span class="na">extractHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('らしいです')</span>
+</pre></div>
+
+<h3>
+<a name="analyzer-component" class="anchor" href="#analyzer-component"><span class="octicon octicon-link"></span></a>Analyzer component</h3>
+
+<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Analyzer\Analyzer</span><span class="p">;</span>
+
+<span class="nx">Analyzer</span><span class="o">::</span><span class="na">length</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 7</span>
+<span class="nx">Analyzer</span><span class="o">::</span><span class="na">inspect</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('length'=&gt;7,'kanji'=&gt;2,'hiragana' =&gt;5,'katakana'=&gt;0)</span>
+<span class="nx">Analyzer</span><span class="o">::</span><span class="na">countHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 5</span>
+<span class="nx">Analyzer</span><span class="o">::</span><span class="na">hasKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// TRUE</span>
+</pre></div>
+
+<h3>
+<a name="transliterator-component" class="anchor" href="#transliterator-component"><span class="octicon octicon-link"></span></a>Transliterator component:</h3>
+
+<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Romaji</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Kana</span><span class="p">;</span>
+
+<span class="nv">$hepburn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Romaji</span><span class="p">();</span>
+<span class="nv">$kunrei</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Romaji</span><span class="p">(</span><span class="s1">'kunrei'</span><span class="p">);</span>
+<span class="nv">$hiragana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kana</span><span class="p">(</span><span class="s1">'hiragana'</span><span class="p">);</span>
+<span class="nv">$katakana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kana</span><span class="p">(</span><span class="s1">'katakana'</span><span class="p">);</span>
+
+<span class="nv">$hepburn</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'ローマジ で　かいて'</span><span class="p">);</span> <span class="c1">// rōmaji de kaite</span>
+<span class="nv">$kunrei</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">);</span> <span class="c1">// rômazi de kaite</span>
+<span class="nv">$hiragana</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="p">);</span> <span class="c1">// かな　で　かいて</span>
+<span class="nv">$katakana</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="nx">A</span><span class="p">);</span> <span class="c1">// カナ　デ　カイテ</span>
+</pre></div>
+
+<p>Starting from the version 0.5, all the transliteration workflow is defined in <code>.yaml</code> file.</p>
+
+<p><code>Romaji.php</code> and <code>Kana.php</code> provides a wild range of functions which can be used to define your own transliteration system.
+Here is a sample <code>.yaml</code> file</p>
+
+<div class="highlight highlight-yaml"><pre><span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mySystem</span>
+<span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">english</span><span class="p-Indicator">:</span> <span class="s">"My</span><span class="nv"> </span><span class="s">romanization</span><span class="nv"> </span><span class="s">system"</span>
+    <span class="l-Scalar-Plain">japanese</span><span class="p-Indicator">:</span> <span class="s">"マイローマ字"</span>
+<span class="l-Scalar-Plain">workflow</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateDefaultCharacters</span>
+      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">mapping</span><span class="p-Indicator">:</span>
+                <span class="l-Scalar-Plain">あ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">a</span>
+                <span class="l-Scalar-Plain">い</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">i</span>
+                <span class="l-Scalar-Plain">// [...]</span>
+                <span class="l-Scalar-Plain">ぽ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">po</span>
+                <span class="l-Scalar-Plain">ゔ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pu</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateSokuon</span>
+      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+            <span class="l-Scalar-Plain">hepburn</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateChoonpu</span>
+      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">macrons</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">a</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">aa</span>
+            <span class="l-Scalar-Plain">i</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ii</span>
+            <span class="l-Scalar-Plain">u</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">uu</span>
+            <span class="l-Scalar-Plain">e</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ee</span>
+            <span class="l-Scalar-Plain">o</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">oo</span>
+</pre></div>
+
+<p>JpnForPhp supports the following standard transliteration system:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Hepburn_romanization">Hepburn</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Kunrei-shiki_romanization">Kunrei</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Nihon-shiki_romanization">Nihon</a></li>
+<li><a href="http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji">Wapuro</a></li>
 <li>
-<a href="http://lab.openjisho.com/jpnforphp/demo.html">Demos</a> <em>coming soon</em>
+<a href="http://en.wikipedia.org/wiki/JSL_romanization">JSL</a> <em>yet to be implemented</em>
 </li>
-<li><a href="http://lab.openjisho.com/jpnforphp/unit.html">Unit tests</a></li>
-</ul><h2>Features list</h2>
-
-<p><em>Complete rewrite</em> ; the library is now based on 3 components</p>
+</ul><p><code>.yaml</code> files for those transliteration systems are available here:</p>
 
 <ul>
-<li>
-<strong>Helper:</strong> a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).</li>
-<li>
-<strong>Analyzer:</strong> various "inspecting" functions (length, count kana, etc.).</li>
-<li>
-<strong>Transliterator:</strong> handle both transliterations roman to kana and kana to roman (support all mainstream romanization systems).</li>
-</ul><h2>Usage</h2>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/hepburn.yaml">hepburn</a></li>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/kunrei.yaml">kunrei</a></li>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/nihon.yaml">nihon</a></li>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/wapuro.yaml">wapuro</a></li>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/hiragana.yaml">hiragana</a></li>
+<li><a href="src/JpnForPhp/Transliterator/Romaji/katakana.yaml">katakana</a></li>
+</ul><h2>
+<a name="upcoming" class="anchor" href="#upcoming"><span class="octicon octicon-link"></span></a>Upcoming</h2>
 
-<ul>
-<li><strong>Helper component:</strong></li>
-</ul><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Helper\Helper</span><span class="p">;</span>
+<p>Check out the <em>develop</em> branch to get all the latest code and change (<a href="http://github.com/mbilbille/jpnforphp/tree/develop">http://github.com/mbilbille/jpnforphp/tree/develop</a>)</p>
 
-  <span class="nx">Helper</span><span class="o">::</span><span class="na">split</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素','晴','ら','し','い','で','す')</span>
-  <span class="nx">Helper</span><span class="o">::</span><span class="na">subString</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 'らし'</span>
-  <span class="nx">Helper</span><span class="o">::</span><span class="na">extractKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素晴')</span>
-  <span class="nx">Helper</span><span class="o">::</span><span class="na">extractHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('らしいです')</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<ul>
-<li><strong>Analyzer component</strong></li>
-</ul><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Analyzer\Analyzer</span><span class="p">;</span>
+<p>JpnForPHP was created by <a href="http://github.com/mbilbille">Matthieu Bilbille</a> and released under the <a href="http://github.com/mbilbille/jpnforphp/blob/master/LICENSE">MIT License</a>.</p>
 
-  <span class="nx">Analyzer</span><span class="o">::</span><span class="na">length</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 7</span>
-  <span class="nx">Analyzer</span><span class="o">::</span><span class="na">inspect</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('length'=&gt;7,'kanji'=&gt;2,'hiragana' =&gt;5,'katakana'=&gt;0)</span>
-  <span class="nx">Analyzer</span><span class="o">::</span><span class="na">countHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 5</span>
-  <span class="nx">Analyzer</span><span class="o">::</span><span class="na">hasKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// TRUE</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
-
-<ul>
-<li><strong>Transliterator component:</strong></li>
-</ul><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Transliterator</span><span class="p">;</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Hepburn</span><span class="p">;</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Kunrei</span><span class="p">;</span>
-  <span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Nihon</span><span class="p">;</span>
-
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toRomaji</span><span class="p">(</span><span class="s1">'ローマジ で　かいて'</span><span class="p">);</span> <span class="c1">// rōmaji de kaite</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toRomaji</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">,</span> <span class="nx">Transliterator</span><span class="o">::</span><span class="na">HIRAGANA</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Hepburn</span><span class="p">());</span> <span class="c1">// ローマジ de kaite</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toRomaji</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">,</span> <span class="nx">Transliterator</span><span class="o">::</span><span class="na">KATAKANA</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Hepburn</span><span class="p">());</span> <span class="c1">// rōmaji で かいて</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toRomaji</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Kunrei</span><span class="p">());</span> <span class="c1">// rômazi de kaite</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toRomaji</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Nihon</span><span class="p">());</span> <span class="c1">// rômazi de kaite</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toKana</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="p">,</span> <span class="nx">Transliterator</span><span class="o">::</span><span class="na">HIRAGANA</span><span class="p">);</span> <span class="c1">// かな　で　かいて</span>
-  <span class="nx">Transliterator</span><span class="o">::</span><span class="na">toKana</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="p">,</span> <span class="nx">Transliterator</span><span class="o">::</span><span class="na">KATAKANA</span><span class="p">);</span> <span class="c1">// カナ　デ　カイテ</span>
-<span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
-
-<h2>Upcoming</h2>
-
-<p>Check out the <em>develop</em> branch to get all the latest code and change (<a href="https://github.com/mbilbille/jpnforphp/tree/develop">https://github.com/mbilbille/jpnforphp/tree/develop</a>)</p>
-
-<h2>License</h2>
-
-<p>JpnForPHP was created by <a href="http://mbilbille.github.com">Matthieu Bilbille</a> and released under the <a href="http://github.com/mbilbille/jpnforphp/blob/master/LICENSE">MIT License</a>.</p>
-
-<h2>Integration</h2>
+<h2>
+<a name="integration" class="anchor" href="#integration"><span class="octicon octicon-link"></span></a>Integration</h2>
 
 <ul>
 <li>
 <strong>JPNlizer</strong> integrates JpnForPhp into <strong>Drupal</strong> - <a href="http://drupal.org/sandbox/mbilbille/1613510">sandbox project</a>
 </li>
-</ul><p>Sponsored by <a href="http://www.openjisho.com">Openjisho.com</a>. </p>
+</ul><p>Sponsored by <a href="http://www.openjisho.com">Openjisho.com</a>.</p>
       </section>
     </div>
 
