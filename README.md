@@ -114,7 +114,7 @@ JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and re
 
 ##Integration
 
-- **JPNlizer** integrates JpnForPhp into **Drupal** - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510)
-- **JpnForPhpBundle**: integrates JpnForPhp as a Symfony2 Bundle - [JpnForPhpBundle](http://github.com/albertofem/JpnForPhpBundle)
+- **JPNlizer** integrates JpnForPhp into Drupal - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510) [Deprecated]
+- **JpnForPhpBundle**: integrates JpnForPhp as a Symfony2 Bundle - [JpnForPhpBundle](http://github.com/albertofem/JpnForPhpBundle) (by @albertofem)
 
 Sponsored by [Openjisho.com](http://www.openjisho.com).
