@@ -1,4 +1,3 @@
-
 #JpnForPhp [![build status](https://secure.travis-ci.org/mbilbille/jpnforphp.png)](http://travis-ci.org/mbilbille/jpnforphp) [![Stories in Ready](https://badge.waffle.io/mbilbille/jpnforphp.png?label=ready)](https://waffle.io/mbilbille/jpnforphp) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mbilbille/jpnforphp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 > A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
@@ -53,7 +52,7 @@ $katakana = new Kana('katakana');
 $hepburn->transliterate('ローマジ で　かいて'); // rōmaji de kaite
 $kunrei->transliterate('ローマジ　で　かいて'); // rômazi de kaite
 $hiragana->transliterate('kana de kaite'); // かな　で　かいて
-$katakana->transliterate('kana de kaite'A); // カナ　デ　カイテ
+$katakana->transliterate('kana de kaite'); // カナ　デ　カイテ
 ```
 
 Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.
@@ -116,5 +115,6 @@ JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and re
 ##Integration
 
 - **JPNlizer** integrates JpnForPhp into **Drupal** - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510)
+- **JpnForPhpBundle**: integrates JpnForPhp as a Symfony2 Bundle - [JpnForPhpBundle](http://github.com/albertofem/JpnForPhpBundle)
 
 Sponsored by [Openjisho.com](http://www.openjisho.com).
