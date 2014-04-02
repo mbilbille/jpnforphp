@@ -152,4 +152,22 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $result = Helper::removeMacrons('ŌōŪūĀāĪīôÔûÛâÂîÎêÊ');
         $this->assertEquals($result, 'OoUuAaIioOuUaAiIeE');
     }
+
+    public function testExtractKanjiLiteralsWhenKanjiOnly()
+    {
+        $result = Helper::extractKanjiCharacters($this->kanjiCharacters);
+        $this->assertEquals($result, array('漢', '字'));
+    }
+
+    public function testExtractKanjiLiteralsWhenMixed()
+    {
+        $result = Helper::extractKanjiCharacters($this->mixCharacters);
+        $this->assertEquals($result, array('今', '日', '学', '校'));
+    }
+
+    public function testExtractKanjiWhenNoKanjis()
+    {
+        $result = Helper::extractKanjiCharacters($this->hiraganaCharacters);
+        $this->assertEquals($result, array());
+    }
 }
