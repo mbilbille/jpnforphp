@@ -93,6 +93,18 @@ class Helper
     }
 
     /**
+     * Split a given string to extract kanji literals
+     *
+     * @param string $str The input string
+     *
+     * @return array An array of kanji literals
+     */
+    public static function extractKanjiCharacters($str)
+    {
+        return preg_split("//u", preg_replace(self::PREG_PATTERN_NOT_KANJI, "", $str), -1, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
      * Split a given string to extract hiragana substrings.
      *
      * @param string $str The input string.
