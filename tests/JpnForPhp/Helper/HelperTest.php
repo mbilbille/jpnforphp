@@ -18,6 +18,11 @@ use JpnForPhp\Helper\Helper;
  */
 class HelperTest extends \PHPUnit_Framework_TestCase
 {
+    protected $mixCharacters;
+    protected $kanjiCharacters;
+    protected $hiraganaCharacters;
+    protected $katakanaCharacters;
+
     protected function setUp()
     {
         $this->mixCharacters = '今日、Joo「ジョオ」は学校にいます。';
@@ -75,22 +80,46 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result, 'ます。');
     }
 
-    public function testExtractKanjiWhenKanjiOnly()
-    {
-        $result = Helper::extractKanji($this->kanjiCharacters);
-        $this->assertSame($result, array('漢字'));
-    }
-
     public function testExtractKanjiWhenNoKanji()
     {
         $result = Helper::extractKanji($this->hiraganaCharacters);
         $this->assertSame($result, array());
     }
 
+    public function testExtractKanjiWhenKanjiOnly()
+    {
+        $result = Helper::extractKanji($this->kanjiCharacters);
+        $this->assertEquals($result, array('漢字'));
+    }
+
     public function testExtractKanjiWhenMixedCharacters()
     {
         $result = Helper::extractKanji($this->mixCharacters);
         $this->assertSame($result, array('今日','学校'));
+    }
+
+    public function testExtractKanjiWithLengthEqualsOneWhenKanjiOnly()
+    {
+        $result = Helper::extractKanji($this->kanjiCharacters, 1);
+        $this->assertEquals($result, array('漢', '字'));
+    }
+
+    public function testExtractKanjiWithLengthEqualsOneWhenMixed()
+    {
+        $result = Helper::extractKanji($this->mixCharacters, 1);
+        $this->assertEquals($result, array('今', '日', '学', '校'));
+    }
+
+    public function testExtractKanjiWithLengthEqualsNWhenKanjiOnly()
+    {
+        $result = Helper::extractKanji($this->kanjiCharacters, 2);
+        $this->assertEquals($result, array('漢字'));
+    }
+
+    public function testExtractKanjiWithLengthEqualsNWhenMixed()
+    {
+        $result = Helper::extractKanji($this->mixCharacters, 2);
+        $this->assertEquals($result, array('今日', '学校'));
     }
 
     public function testExtractHiraganaWhenHiraganaOnly()
@@ -111,6 +140,42 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, array('は','にいます'));
     }
 
+    public function testExtractHiraganaWithLengthEqualsOneWhenHiraganaOnly()
+    {
+        $result = Helper::extractHiragana($this->hiraganaCharacters, 1);
+        $this->assertEquals($result, array('ひ', 'ら', 'が', 'な'));
+    }
+
+    public function testExtractHiraganaWithLengthEqualsOneWhenMixed()
+    {
+        $result = Helper::extractHiragana($this->mixCharacters, 1);
+        $this->assertSame($result, array('は', 'に', 'い', 'ま', 'す'));
+    }
+
+    public function testExtractHiraganaWithLengthEqualsOneAndYoonTrue()
+    {
+        $result = Helper::extractHiragana('じゃ、行きましょう', 1, true);
+        $this->assertSame($result, array('じゃ', 'き', 'ま', 'しょ', 'う'));
+    }
+
+    public function testExtractHiraganaWithLengthEqualsNWhenHiraganaOnly()
+    {
+        $result = Helper::extractHiragana($this->hiraganaCharacters, 2);
+        $this->assertEquals($result, array('ひら', 'がな'));
+    }
+
+    public function testExtractHiraganaWithLengthEqualsNWhenMixed()
+    {
+        $result = Helper::extractHiragana($this->mixCharacters, 2);
+        $this->assertSame($result, array('はに', 'いま', 'す'));
+    }
+
+    public function testExtractHiraganaWithLengthEqualsNAndYoonTrue()
+    {
+        $result = Helper::extractHiragana('じゃ、行きましょう', 3, true);
+        $this->assertSame($result, array('じゃきま', 'しょう'));
+    }
+
     public function testExtractKatakanaWhenKatakanaOnly()
     {
         $result = Helper::extractKatakana($this->katakanaCharacters);
@@ -129,10 +194,100 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, array('ジョオ'));
     }
 
+    public function testExtractKatakanaWithLengthEqualsOneWhenKatakanaOnly()
+    {
+        $result = Helper::extractKatakana($this->katakanaCharacters, 1);
+        $this->assertEquals($result, array('カ', 'タ', 'カ', 'ナ'));
+    }
+
+    public function testExtractKatakanaWithLengthEqualsOneWhenMixed()
+    {
+        $result = Helper::extractKatakana($this->mixCharacters, 1);
+        $this->assertSame($result, array('ジ', 'ョ', 'オ'));
+    }
+
+    public function testExtractKatakanaWithLengthEqualsOneAndYoonTrue()
+    {
+        $result = Helper::extractKatakana('ジョオと申します', 1, true);
+        $this->assertSame($result, array('ジョ', 'オ'));
+    }
+
+    public function testExtractKatakanaWithLengthEqualsNWhenKatakanaOnly()
+    {
+        $result = Helper::extractKatakana($this->katakanaCharacters, 2);
+        $this->assertEquals($result, array('カタ', 'カナ'));
+    }
+
+    public function testExtractKatakanaWithLengthEqualsNWhenMixed()
+    {
+        $result = Helper::extractKatakana($this->mixCharacters, 2);
+        $this->assertSame($result, array('ジョ', 'オ'));
+    }
+
+    public function testExtractKatakanaWithLengthEqualsNAndYoonTrue()
+    {
+        $result = Helper::extractKatakana('ジョオと申します', 2, true);
+        $this->assertSame($result, array('ジョオ'));
+    }
+
     public function testExtractKatakanaIssue24()
     {
         $result = Helper::extractKatakana('カタカナ|ヒラガナ');
         $this->assertSame($result, array('カタカナ', 'ヒラガナ'));
+    }
+
+    public function testExtractKanaWhenKanaOnly()
+    {
+        $result = Helper::extractKana($this->hiraganaCharacters . $this->katakanaCharacters);
+        $this->assertSame($result, array('ひらがなカタカナ'));
+    }
+
+    public function testExtractKanaWhenNoKana()
+    {
+        $result = Helper::extractKana($this->kanjiCharacters);
+        $this->assertSame($result, array());
+    }
+
+    public function testExtractKanaWhenMixedCharacters()
+    {
+        $result = Helper::extractKana($this->mixCharacters);
+        $this->assertSame($result, array('ジョオ', 'は', 'にいます'));
+    }
+
+    public function testExtractKanaWithLengthEqualsOneWhenKanaOnly()
+    {
+        $result = Helper::extractKana($this->hiraganaCharacters . $this->katakanaCharacters, 1);
+        $this->assertEquals($result, array('ひ', 'ら', 'が', 'な', 'カ', 'タ', 'カ', 'ナ'));
+    }
+
+    public function testExtractKanaWithLengthEqualsOneWhenMixed()
+    {
+        $result = Helper::extractKana($this->mixCharacters, 1);
+        $this->assertSame($result, array('ジ', 'ョ', 'オ', 'は', 'に', 'い', 'ま', 'す'));
+    }
+
+    public function testExtractKanaWithLengthEqualsOneAndYoonTrue()
+    {
+        $result = Helper::extractKana('ジョオと行きましょう', 1, true);
+        $this->assertSame($result, array('ジョ', 'オ', 'と', 'き', 'ま', 'しょ', 'う'));
+    }
+
+    public function testExtractKanaWithLengthEqualsNWhenKanaOnly()
+    {
+        $result = Helper::extractKana($this->hiraganaCharacters . $this->katakanaCharacters, 4);
+        $this->assertEquals($result, array('ひらがな', 'カタカナ'));
+    }
+
+    public function testExtractKanaWithLengthEqualsNWhenMixed()
+    {
+        $result = Helper::extractKana($this->mixCharacters, 2);
+        $this->assertSame($result, array('ジョ', 'オは', 'にい', 'ます'));
+    }
+
+    public function testextractKanaWithLengthEqualsNAndYoonTrue()
+    {
+        $result = Helper::extractKana('ジョオと行きましょう', 3, true);
+        $this->assertSame($result, array('ジョオと', 'きましょ', 'う'));
     }
 
     public function testTrim()
@@ -151,23 +306,5 @@ class HelperTest extends \PHPUnit_Framework_TestCase
     {
         $result = Helper::removeMacrons('ŌōŪūĀāĪīôÔûÛâÂîÎêÊ');
         $this->assertEquals($result, 'OoUuAaIioOuUaAiIeE');
-    }
-
-    public function testExtractKanjiLiteralsWhenKanjiOnly()
-    {
-        $result = Helper::extractKanjiCharacters($this->kanjiCharacters);
-        $this->assertEquals($result, array('漢', '字'));
-    }
-
-    public function testExtractKanjiLiteralsWhenMixed()
-    {
-        $result = Helper::extractKanjiCharacters($this->mixCharacters);
-        $this->assertEquals($result, array('今', '日', '学', '校'));
-    }
-
-    public function testExtractKanjiWhenNoKanjis()
-    {
-        $result = Helper::extractKanjiCharacters($this->hiraganaCharacters);
-        $this->assertEquals($result, array());
     }
 }
