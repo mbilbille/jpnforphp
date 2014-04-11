@@ -21,11 +21,10 @@ Provides the following components:
 ```php
 use JpnForPhp\Helper\Helper;
 
-Helper::split('素晴らしいです'); // array('素','晴','ら','し','い','で','す')
-Helper::subString('素晴らしいです', 2, 4); // 'らし'
-Helper::extractKanji('素晴らしいです'); // array('素晴')
-Helper::extractKanjiCharacters('素晴らしいです'); // array('素', '晴')
-Helper::extractHiragana('素晴らしいです'); // array('らしいです')
+Helper::split('素晴らしいでしょう'); // array('素','晴','ら','し','い','で','す')
+Helper::subString('素晴らしいでしょう', 2, 4); // 'らし'
+Helper::extractKanji('素晴らしいでしょう'); // array('素晴')
+Helper::extractHiragana('素晴らしいでしょう', 1, true); // array('ら','し','い','で','しょ','う')
 ```
 
 ###Analyzer component
