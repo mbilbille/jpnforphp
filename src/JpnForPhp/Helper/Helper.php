@@ -256,4 +256,31 @@ class Helper
 
         return strtr($str, $chars);
     }
+
+    /**
+     * Convert the given string from katakana to hiragana.
+     * Simply wrap the mb_convert_kana function.
+     *
+     * @param string $str String to be converted.
+     *
+     * @return string Converted string.
+     *
+     */
+    public static function convertKatakanaToHiragana($str)
+    {
+        return mb_convert_kana($str, 'c', 'UTF-8');
+    }
+
+    /**
+     * Convert the given string from hiragana to katakana.
+     * Simply wrap the mb_convert_kana function.
+     *
+     * @param string $str String to be converted.
+     *
+     * @return string Converted string.
+     */
+    public static function convertHiraganaToKatakana($str)
+    {
+        return mb_convert_kana($str, 'C', 'UTF-8');
+    }
 }

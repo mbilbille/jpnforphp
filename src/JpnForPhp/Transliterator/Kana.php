@@ -12,6 +12,7 @@
 namespace JpnForPhp\Transliterator;
 
 use JpnForPhp\Analyzer\Analyzer;
+use JpnForPhp\Helper\Helper;
 
 /**
  * Kana transliteration system class
@@ -143,15 +144,17 @@ class Kana extends TransliterationSystem
     }
 
     /**
-     * Convert the given string from hiragana to katakana.
-     * Simply wrap the mb_convert_kana function.
+     * Hack to call Helper::convertHiraganaToKatakana() within the
+     * transliteration workflow.
      *
      * @param string $str String to be converted.
      *
      * @return string Converted string.
+     *
+     * @see JpnForPhp\Helper\Helper::convertHiraganaToKatakana()
      */
     protected function convertHiraganaToKatakana($str)
     {
-        return mb_convert_kana($str, 'C', 'UTF-8');
+        return Helper::convertHiraganaToKatakana($str);
     }
 }

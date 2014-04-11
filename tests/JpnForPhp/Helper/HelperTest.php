@@ -307,4 +307,52 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $result = Helper::removeMacrons('ŌōŪūĀāĪīôÔûÛâÂîÎêÊ');
         $this->assertEquals($result, 'OoUuAaIioOuUaAiIeE');
     }
+
+    public function testConvertHiraganaToKatakanaWhenEmptyString()
+    {
+        $result = Helper::convertHiraganaToKatakana('');
+        $this->assertEquals($result, '');
+    }
+
+    public function testConvertHiraganaToKatakanaWhenHiragana()
+    {
+        $result = Helper::convertHiraganaToKatakana($this->hiraganaCharacters);
+        $this->assertEquals($result, 'ヒラガナ');
+    }
+
+    public function testConvertHiraganaToKatakanaWhenNoHiragana()
+    {
+        $result = Helper::convertHiraganaToKatakana($this->katakanaCharacters);
+        $this->assertEquals($result, $this->katakanaCharacters);
+    }
+
+    public function testConvertHiraganaToKatakanaWhenMixCharacters()
+    {
+        $result = Helper::convertHiraganaToKatakana($this->mixCharacters);
+        $this->assertEquals($result, '今日、Joo「ジョオ」ハ学校ニイマス。');
+    }
+
+    public function testConvertKatakanaToHiraganaWhenEmptyString()
+    {
+        $result = Helper::convertKatakanaToHiragana('');
+        $this->assertEquals($result, '');
+    }
+
+    public function testConvertKatakanaToHiraganaWhenKatakana()
+    {
+        $result = Helper::convertKatakanaToHiragana($this->katakanaCharacters);
+        $this->assertEquals($result, 'かたかな');
+    }
+
+    public function testConvertKatakanaToHiraganaWhenNoKatakana()
+    {
+        $result = Helper::convertKatakanaToHiragana($this->hiraganaCharacters);
+        $this->assertEquals($result, $this->hiraganaCharacters);
+    }
+
+    public function testConvertKatakanaToHiraganaWhenMixCharacters()
+    {
+        $result = Helper::convertKatakanaToHiragana($this->mixCharacters);
+        $this->assertEquals($result, '今日、Joo「じょお」は学校にいます。');
+    }
 }
