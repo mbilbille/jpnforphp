@@ -1,6 +1,11 @@
-#CHANGELOG for 0.5.0
+#CHANGELOG for 0.5.2
 
 This changelog references the relevant changes (bug and security fixes) done in 0.x versions
+
+* 0.5.2 (2014-04-18)
+  * de3d50a: Bug fix #36
+  * 507f8b7: Add hiragana to katakana convertor and vice versa
+  * 547bdaa: Revise split and extract methods
 
 * 0.5.1 (2013-11-03)
   * f0bd7ec: Fix mapping error on フォ
