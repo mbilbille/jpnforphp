@@ -3,8 +3,24 @@
 > A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
 
 ##Installation
+
+The recommended way to install JpnForPhp is through [Composer](http://getcomposer.org/). Just create a composer.json file and run the php composer.phar install command to install it:
+
+```json
+{
+    "require": {
+        "silex/silex": "~0.5"
+    }
+}
+```
+
+##Tests
+
+To run the test suite, you need [Composer](http://getcomposer.org/):
+
 ```bash
-composer install
+    $ php composer.phar install --dev
+    $ vendor/bin/phpunit
 ```
 
 ##Features list
