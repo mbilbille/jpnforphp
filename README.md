@@ -9,7 +9,7 @@ The recommended way to install JpnForPhp is through [Composer](http://getcompose
 ```json
 {
     "require": {
-        "silex/silex": "~0.5"
+        "mbilbille/jpnforphp": "~0.5"
     }
 }
 ```
