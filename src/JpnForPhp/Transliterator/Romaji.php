@@ -115,9 +115,11 @@ class Romaji extends TransliterationSystem
     protected function transliterateChoonpu($str, $parameters)
     {
         $keys = array_keys($parameters['macrons']);
-        $pattern = '/([' . implode('', $keys) . '])ー/ue';
+        $pattern = '/([' . implode('', $keys) . '])ー/u';
 
-        return preg_replace($pattern, '$parameters[\'macrons\'][\'${1}\']', $str);
+        return preg_replace_callback($pattern, function($matches) use ($parameters) {
+            return $parameters['macrons'][$matches[1]];
+        }, $str);
     }
 
     /**
