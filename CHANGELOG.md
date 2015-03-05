@@ -1,6 +1,9 @@
-#CHANGELOG for 0.5.2
+#CHANGELOG for 0.5.3
 
 This changelog references the relevant changes (bug and security fixes) done in 0.x versions
+
+* 0.5.3 (2015-03-05)
+  * 8a2f4f9: Bug fix #38
 
 * 0.5.2 (2014-04-18)
   * de3d50a: Bug fix #36
