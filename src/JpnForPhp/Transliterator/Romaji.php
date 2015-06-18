@@ -147,6 +147,18 @@ class Romaji extends TransliterationSystem
     {
         return str_replace(array_keys($parameters['particules']), array_values($parameters['particules']), $str);
     }
+    
+    /**
+     * Transliterate character 'n' to 'm' before labial consonants.
+     *
+     * @param string $str        String to be transliterated.
+     * 
+     * @return string Transliterated string.
+     */
+    protected function transliterateNBeforeLabialConsonants($str)
+    {
+        return preg_replace('/n([bmp])/u', 'm$1', $str);
+    }
 
     /**
      * Escapes latin characters [a-z].
