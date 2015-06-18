@@ -45,9 +45,11 @@ class Kana extends TransliterationSystem
      */
     protected function preTransliterate($str)
     {
-        $str = mb_strtolower($str, 'UTF-8');
-
-        return $str;
+        //$str = mb_strtolower($str, 'UTF-8');
+        return preg_replace_callback('/([A-Z])([a-z])/u', function($matches) {
+            return mb_strtolower($matches[1], 'UTF-8') . $matches[2];
+        }, $str);
+        //return $str;
     }
 
     /**

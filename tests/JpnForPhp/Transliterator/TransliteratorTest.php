@@ -453,4 +453,36 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = $this->katakana->transliterate('wha');
         $this->assertEquals('ウァ', $result);
     }
+    
+    public function testTransliterateToKana41_1()
+    {
+        $result = $this->hiragana->transliterate('JR東日本');
+        $this->assertEquals('JR東日本', $result);
+    }
+    
+    public function testTransliterateToKana41_2()
+    {
+        $result = $this->hiragana->transliterate('NHKオンライン');
+        $this->assertEquals('NHKオンライン', $result);
+    }
+    
+    public function testTransliterateToKana41_3()
+    {
+        $result = $this->hiragana->transliterate('Kuruma');
+        $this->assertEquals('くるま', $result);
+    }   
+    
+    public function testTransliterateToKana41_4()
+    {
+        $result = $this->hiragana->transliterate('TOYOTA no kuruma');
+        $this->assertEquals('TOYOTA　の　くるま', $result);
+    }
+    
+    public function testTransliterateToKana41_5()
+    {
+        $result = $this->katakana->transliterate('L saizu');
+        $this->assertEquals('L　サイズ', $result);
+    }
+    
+    
 }
