@@ -111,6 +111,22 @@ class Helper
     {
         return self::subString($str, $index, 1);
     }
+    
+    /**
+     * Counts the number of substring occurrences.
+     *
+     * @param string  $str    The input string.
+     * @param string  $needle The string being found.
+     *
+     * @return integer The number of times the needle substring occurs in the 
+     * input string.
+     *
+     * @see mb_substr_count()
+     */
+    public static function countSubString($str, $needle)
+    {
+        return mb_substr_count($str, $needle, 'UTF-8');
+    }
 
     /**
      * Split a given string to extract kanji substrings.

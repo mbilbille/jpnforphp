@@ -79,6 +79,18 @@ class HelperTest extends \PHPUnit_Framework_TestCase
         $result = Helper::subString($this->mixCharacters, -3, 3);
         $this->assertEquals($result, 'ます。');
     }
+    
+    public function testCountSubStringWhenOccurencesFound()
+    {
+        $result = Helper::countSubString($this->mixCharacters, '学');
+        $this->assertEquals($result, 1);
+    }
+    
+    public function testCountSubStringWhenNoOccurencesFound()
+    {
+        $result = Helper::countSubString($this->mixCharacters, '漢');
+        $this->assertEquals($result, 0);
+    }
 
     public function testExtractKanjiWhenNoKanji()
     {
