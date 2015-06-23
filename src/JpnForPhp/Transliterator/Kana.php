@@ -19,6 +19,11 @@ use JpnForPhp\Helper\Helper;
  */
 class Kana extends TransliterationSystem
 {
+    const STRIP_WHITESPACE_NONE = 0;
+    const STRIP_WHITESPACE_ALL = 1;
+    const STRIP_WHITESPACE_AUTO = 2;
+    const STRIP_WHITESPACE_AUTO_NB_SPACES = 2;
+    
     /**
      * Kana's constructor
      */
@@ -37,6 +42,28 @@ class Kana extends TransliterationSystem
     {
         return $this->configuration['name']['english'] . ' (' . $this->configuration['name']['japanese'] . ')';
     }
+    
+    /**
+     * Override transliterate().
+     *
+     * @see TransliterationSystem
+     */
+    public function transliterate($str, $stripwhitespace = self::STRIP_WHITESPACE_NONE)
+    {
+        $str = parent::transliterate($str);
+        
+        // Strip whitespace(s) here
+        switch($stripwhitespace) {
+            case self::STRIP_WHITESPACE_AUTO:
+                if(Helper::countSubString($str, '　') > self::STRIP_WHITESPACE_AUTO_NB_SPACES) {
+                    break;
+                }
+            case self::STRIP_WHITESPACE_ALL:
+                $str = preg_replace('/\s/u', '', $str);
+                break;
+        }
+        return $str;
+    }
 
     /**
      * Override preTransliterate().
@@ -45,11 +72,9 @@ class Kana extends TransliterationSystem
      */
     protected function preTransliterate($str)
     {
-        //$str = mb_strtolower($str, 'UTF-8');
         return preg_replace_callback('/([A-Z])([a-z])/u', function($matches) {
             return mb_strtolower($matches[1], 'UTF-8') . $matches[2];
         }, $str);
-        //return $str;
     }
 
     /**

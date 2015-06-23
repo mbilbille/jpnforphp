@@ -484,6 +484,24 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$kana->transliterate('kuruma');
         $this->assertEquals('くるま', $result);
     }
+    
+    public function testTransliterateToKanaWithWhitespaceStripping()
+    {
+        $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_ALL);
+        $this->assertEquals('なごやじょう', $result);
+    }
+    
+    public function testTransliterateToKanaWithAutoWhitespaceStripping()
+    {
+        $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_AUTO);
+        $this->assertEquals('なごやじょう', $result);
+    }
+    
+    public function testTransliterateToKanaWithAutoWhitespaceStrippingOnLongText()
+    {
+        $result = self::$kana->transliterate('Nagoya ha kyōto no higashi no hou ni aru', Kana::STRIP_WHITESPACE_AUTO);
+        $this->assertEquals('なごや　は　きょうと　の　ひがし　の　ほう　に　ある', $result);
+    }
 
     public function testTransliterateToKanaUsingHiraganaInNormalCase()
     {
