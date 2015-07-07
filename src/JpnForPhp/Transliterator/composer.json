@@ -18,7 +18,8 @@
     },
   "require": {
     "php": ">=5.3.0",
-    "jpnforphp/analyzer": ">=0.4"
+    "jpnforphp/analyzer": ">=0.4",
+    "jpnforphp/helper": ">=0.6"
   },
   "autoload": {
     "psr-0": { "JpnForPhp\\Transliterator": "" }
@@ -26,7 +27,7 @@
   "target-dir": "JpnForPhp/Transliterator",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.5-dev"
+      "dev-master": "0.6-dev"
     }
   }
 }
