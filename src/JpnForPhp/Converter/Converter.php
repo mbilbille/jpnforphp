@@ -88,7 +88,7 @@ class Converter
                     $chunk = (isset($mapPowersOfTen[$j - 1]) ? $mapPowersOfTen[$j - 1] : '') . $chunk;
                 }
             }
-            $res .= $chunk . $mapPowersOfTen[$i * 4];
+            $res .= $chunk . (isset($mapPowersOfTen[$i * 4]) ? $mapPowersOfTen[$i * 4] : '');
         }
 
         return $res;
