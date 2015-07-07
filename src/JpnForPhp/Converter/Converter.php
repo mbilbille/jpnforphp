@@ -82,13 +82,13 @@ class Converter
                 
                 $d = intval($d);
                 if($d > 1) {
-                    $chunk = $mapDigits[$d] . $mapPowersOfTen[$j-1] . $chunk;
+                    $chunk = $mapDigits[$d] . (isset($mapPowersOfTen[$j - 1]) ? $mapPowersOfTen[$j - 1] : '') . $chunk;
                 }
                 else { // ie: $d == 1
-                    $chunk = $mapPowersOfTen[$j-1] . $chunk;
+                    $chunk = (isset($mapPowersOfTen[$j - 1]) ? $mapPowersOfTen[$j - 1] : '') . $chunk;
                 }
             }
-            $res .= $chunk . $mapPowersOfTen[$i*4];
+            $res .= $chunk . $mapPowersOfTen[$i * 4];
         }
 
         return $res;
