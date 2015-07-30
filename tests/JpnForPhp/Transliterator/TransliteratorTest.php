@@ -610,4 +610,16 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$katakana->transliterate('L saizu');
         $this->assertEquals('L　サイズ', $result);
     }
+    
+    public function testTransliterateToKana41_6()
+    {
+        $result = self::$hiragana->transliterate('Ōsaka');
+        $this->assertEquals('おうさか', $result);
+    }
+    
+    public function testTransliterateToKana41_7()
+    {
+        $result = self::$hiragana->transliterate('Tōkyō');
+        $this->assertEquals('とうきょう', $result);
+    }
 }
