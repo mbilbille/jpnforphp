@@ -20,95 +20,172 @@ class Converter
 {
 
     /**
+     * Numeral conversion type
+     */
+    const NUMERAL_KANJI = 0;
+    const NUMERAL_KANJI_LEGAL = 1;
+    const NUMERAL_READING = 2;
+
+    // Mapping between digits and kanjis
+    private static $mapDigitsKanji = array(
+        1 => '一',
+        2 => '二',
+        3 => '三',
+        4 => '四',
+        5 => '五',
+        6 => '六',
+        7 => '七',
+        8 => '八',
+        9 => '九'
+    );
+
+    // Mapping between digits and legal use kanjis
+    private static $mapDigitsKanjiLegal = array(
+        1 => '壱',
+        2 => '弐',
+        3 => '参',
+        4 => '四',
+        5 => '五',
+        6 => '六',
+        7 => '七',
+        8 => '八',
+        9 => '九'
+    );
+
+    // Mapping between digits and readings
+    private static $mapDigitsReading = array(
+        1 => 'ichi',
+        2 => 'ni',
+        3 => 'san',
+        4 => 'yon',
+        5 => 'go',
+        6 => 'roku',
+        7 => 'nana',
+        8 => 'hachi',
+        9 => 'kyū'
+    );
+
+    // Mapping powers of ten and kanjis
+    private static $mapPowersOfTenKanji = array(
+        1 => '十',
+        2 => '百',
+        3 => '千',
+        4 => '万',
+        8 => '億',
+        12 => '兆',
+        16 => '京'
+    );
+
+    // Mapping powers of ten and legal use kanjis
+    private static $mapPowersOfTenKanjiLegal = array(
+        1 => '拾',
+        2 => '百',
+        3 => '千',
+        4 => '万',
+        8 => '億',
+        12 => '兆',
+        16 => '京'
+    );
+
+    // Mapping powers of ten and readings
+    private static $mapPowersOfTenReading = array(
+        1 => 'jū',
+        2 => 'hyaku',
+        3 => 'sen',
+        4 => 'man',
+        8 => 'oku',
+        12 => 'chō',
+        16 => 'kei'
+    );
+
+    // Mapping numeral and their exceptions
+    private static $readingExceptions = array(
+        300 => 'sanbyaku',
+        600 => 'roppyaku',
+        800 => 'happyaku',
+        1000 => 'issen',
+        3000 => 'sanzen',
+        8000 => 'hassen',
+        1000000000000 => 'ichō',
+        8000000000000 => 'hatchō'
+    );
+
+    /**
      * Converts a number in Arabic/Western format into Japanese numeral.
      *
      * @param integer $number The input number.
      *
+     * @param int $type
      * @return string The Japanese numeral.
+     * @throws Exception
      */
-    public static function toJapaneseNumeral($number) 
+    public static function toJapaneseNumeral($number, $type = self::NUMERAL_KANJI)
     {
-        // Mapping between digits and kanjis
-        $mapDigits = array(
-            0 => '〇',
-            1 => '一',
-            2 => '二',
-            3 => '三',
-            4 => '四',
-            5 => '五',
-            6 => '六',
-            7 => '七',
-            8 => '八',
-            9 => '九'
-        );
-        
-        // Mapping powers of ten and kanjis
-        $mapPowersOfTen = array(
-            1 => '十',
-            2 => '百',
-            3 => '千',
-            4 => '万',
-            8 => '億',
-            12 => '兆',
-            16 => '京'
-        );
-        
-        // Before doing need ensure that an integer value has been given
-        if(!preg_match('/^[1-9]?[0-9]*$/', $number)) {
-            throw new Exception('Wrong input value');
-        }
-        // ... and force type to integer
-        $number = intval($number);
-        
-        // Easy with digits...
-        if($number < 10) {
-            return $mapDigits[$number];
-        }
-        
-        // Split number by group of 4 digits (!! starting from the end)
-        $chunks = self::rstr_split($number, 4);
-        
-        $res = '';
-        for ($i = count($chunks) - 1; $i >= 0; $i--) {
-            $chunk = '';
-            for ($j = 1; $j <= strlen($chunks[$i]); $j++) {
-                
-                $d = substr($chunks[$i], $j * -1, 1);
-
-                // 0 (ie: zero) is not use for number superior to 0.
-                if(!$d) {
-                    continue;
-                }
-                
-                $d = intval($d);
-                if($d > 1) {
-                    $chunk = $mapDigits[$d] . (isset($mapPowersOfTen[$j - 1]) ? $mapPowersOfTen[$j - 1] : '') . $chunk;
-                }
-                else { // ie: $d == 1
-                    $chunk = (isset($mapPowersOfTen[$j - 1]) ? $mapPowersOfTen[$j - 1] : '') . $chunk;
-                }
-            }
-            $res .= $chunk . (isset($mapPowersOfTen[$i * 4]) ? $mapPowersOfTen[$i * 4] : '');
-        }
-
-        return $res;
-    }
-    
-    /**
-     * Reverse version of str_split.
-     * @see str_split()
-     */
-    private static function rstr_split($string, $split_length) {
-        $splits = array();
-        $tmp = '';
-        for ($i = 1; $i <= strlen($string); $i++) {
-            $tmp = substr($string, $i * -1, 1) . $tmp;
-            if(strlen($tmp) === $split_length || $i === strlen($string)) {
-                $splits[] = $tmp;
-                $tmp = '';
+        // Return fast on zero
+        if ($number == 0) {
+            if ($type == self::NUMERAL_READING) {
+                return 'zero';
+            } else {
+                return '〇';
             }
         }
-        
-        return $splits;
+        $separator = '';
+        switch ($type) {
+            case self::NUMERAL_KANJI:
+                $mapPowersOfTen = self::$mapPowersOfTenKanji;
+                $mapDigits = self::$mapDigitsKanji;
+                break;
+            case self::NUMERAL_KANJI_LEGAL:
+                $mapPowersOfTen = self::$mapPowersOfTenKanjiLegal;
+                $mapDigits = self::$mapDigitsKanjiLegal;
+                break;
+            case self::NUMERAL_READING:
+                $mapPowersOfTen = self::$mapPowersOfTenReading;
+                $mapDigits = self::$mapDigitsReading;
+                $separator = ' ';
+                break;
+            default:
+                throw new Exception('Unknown type');
+        }
+        $exponent = strlen($number) - 1;
+        if ($exponent > 4) {
+            $exponentRemainder = $exponent % 4;
+            $closestExponent = $exponent - $exponentRemainder;
+            $power = pow(10, $closestExponent);
+            $remainder = $number % $power;
+            $roundPart = $number - $remainder;
+            $multiplier = (int)(($number - $remainder) / $power);
+            if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
+                $result = self::toJapaneseNumeral($multiplier, $type) . $separator . $mapPowersOfTen[$closestExponent];
+            } else {
+                $result = self::$readingExceptions[$roundPart];
+            }
+            if ($remainder != 0) {
+                $result .= rtrim($separator . self::toJapaneseNumeral($remainder, $type));
+            }
+            return $result;
+        } else {
+            $result = '';
+            while ($exponent > 0) {
+                $power = pow(10, $exponent);
+                $remainder = $number % $power;
+                $roundPart = $number - $remainder;
+                $multiplier = (int)(($number - $remainder) / $power);
+                if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
+                    if ($multiplier != 1 || $exponent == 4) {
+                        $result .= $mapDigits[$multiplier] . $separator;
+                    }
+                    $result .= $mapPowersOfTen[$exponent] . $separator;
+                } else {
+                    $result .= self::$readingExceptions[$roundPart] . $separator;
+                }
+                $number = $remainder;
+                $exponent = strlen($number) - 1;
+            }
+            if ($number != 0) {
+                $result .= $mapDigits[$number];
+            }
+            return $result;
+        }
     }
 }
