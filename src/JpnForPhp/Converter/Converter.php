@@ -18,7 +18,8 @@ use JpnForPhp\Helper\Helper;
 /**
  * Provides useful methods for Japanese units conversion.
  *
- * @author Matthieu Bilbille
+ * @author Matthieu Bilbille (@mbibille)
+ * @author Axel Bodart (@akeru)
  */
 class Converter
 {
