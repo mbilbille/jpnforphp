@@ -16,7 +16,7 @@ use JpnForPhp\Helper\Helper;
 /**
  * Provides useful utilities to analyze Japanese strings & characters.
  *
- * @author Matthieu Bilbille
+ * @author Matthieu Bilbille (@mbilbille)
  */
 class Analyzer
 {

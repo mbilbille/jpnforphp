@@ -16,7 +16,7 @@ use JpnForPhp\Analyzer\Analyzer;
 /**
  * Provides useful utilities to manipulate Japanese strings.
  *
- * @author Matthieu Bilbille
+ * @author Matthieu Bilbille (@mbilbille)
  */
 class Helper
 {
