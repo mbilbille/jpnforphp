@@ -13,8 +13,12 @@ namespace JpnForPhp\Transliterator;
 
 use Symfony\Component\Yaml\Yaml;
 
+
 /**
- * Transliteration system interface
+ * Transliteration system interface to transliterate Japanese into various 
+ * alphabet.
+ *
+ * @author Matthieu Bilbille (@mbibille)
  */
 abstract class TransliterationSystem
 {

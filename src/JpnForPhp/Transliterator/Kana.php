@@ -15,7 +15,11 @@ use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Helper\Helper;
 
 /**
- * Kana transliteration system class
+ * Transliteration system class to support transliteration into Kana alphabet:
+ *  - Hiragana
+ *  - Katakana
+ *
+ * @author Matthieu Bilbille (@mbibille)
  */
 class Kana extends TransliterationSystem
 {

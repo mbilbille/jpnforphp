@@ -12,7 +12,9 @@
 namespace JpnForPhp\Transliterator;
 
 /**
- * Romaji transliteration system class
+ * Transliteration system class to support transliteration into Romaji alphabet.
+ *
+ * @author Matthieu Bilbille (@mbibille)
  */
 class Romaji extends TransliterationSystem
 {
