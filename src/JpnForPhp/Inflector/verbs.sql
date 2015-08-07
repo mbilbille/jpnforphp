@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS verbs (
   id    INTEGER PRIMARY KEY     NOT NULL,
-  kanji TEXT                    NOT NULL,
+  kanji TEXT,
   kana  TEXT                    NOT NULL,
   type  TEXT                    NOT NULL
 );
