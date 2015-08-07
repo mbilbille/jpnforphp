@@ -68,6 +68,10 @@ class Inflector
     const NOT_LOOK_LIKE_NEUTRAL = "NOT_LOOK_LIKE_NEUTRAL";
     const NOT_LOOK_LIKE_POLITE = "NOT_LOOK_LIKE_POLITE";
 
+    /**
+     * Generates full mapping for all known verb types
+     * @return array
+     */
     private static function makeVerbMappings()
     {
         $verbs = array(
@@ -200,6 +204,12 @@ class Inflector
         return $verbs;
     }
 
+    /**
+     * Generates stub mapping for a given verb type
+     *
+     * @param array $verb
+     * @return array
+     */
     private static function makeVerbMapping(array &$verb)
     {
         $imperative_neutral = 'なさい';
@@ -232,13 +242,20 @@ class Inflector
         return $verb;
     }
 
-    private static function conjugateEntry(array $verb, $suffix, $entryType)
+    /**
+     * Inflects radical for the given verb to the given form
+     *
+     * @param array $verb
+     * @param $form
+     * @return array
+     */
+    public static function getRadicals(array $verb, $form)
     {
         $kanji = $verb['kanji'];
         $kana = $verb['kana'];
         $type = $verb['type'];
         if ($type == 'k') {
-            switch ($entryType) {
+            switch ($form) {
                 case self::NON_PAST_NEGATIVE:
                 case self::PAST_NEGATIVE:
                 case self::PASSIVE:
@@ -264,13 +281,36 @@ class Inflector
         }
         if (!empty($kanji)) {
             $kanjiRadical = Helper::subString($kanji, 0, Analyzer::length($kanji) - 1);
+        } else {
+            $kanjiRadical = null;
+        }
+        return array('kanji' => $kanjiRadical, 'kana' => $kanaRadical);
+    }
+
+    /**
+     * Generates conjugation for the given verb to the given type using the given suffix
+     *
+     * @param array $verb
+     * @param $suffix
+     * @param $type
+     * @return array
+     */
+    private static function conjugateEntry(array $verb, $suffix, $type)
+    {
+        $radicals = self::getRadicals($verb, $type);
+        $kanjiRadical = $radicals['kanji'];
+        if (!empty($kanjiRadical)) {
             $kanjiValue = $kanjiRadical . $suffix;
         } else {
             $kanjiValue = null;
         }
-        return array('kanji' => $kanjiValue, 'kana' => $kanaRadical . $suffix);
+        $kanaValue = $radicals['kana'] . $suffix;
+        return array('kanji' => $kanjiValue, 'kana' => $kanaValue);
     }
 
+    /**
+     * Helper method the generate the database. The JMDict file my be downloaded separately
+     */
     public static function generate()
     {
         $ddl = file_get_contents('verbs.sql');
@@ -305,6 +345,12 @@ class Inflector
         }
     }
 
+    /**
+     * Gets a verb entry from the database using eith kanji, hiragana or romaji
+     *
+     * @param $verb
+     * @return array
+     */
     public static function getVerb($verb)
     {
         if (!Analyzer::hasJapaneseLetters($verb)) {
@@ -322,6 +368,13 @@ class Inflector
         return $results;
     }
 
+    /**
+     * Conjugates the verb to all known forms
+     *
+     * @param $verb
+     * @return array
+     * @throws Exception
+     */
     public static function conjugate($verb)
     {
         $ret = array();
