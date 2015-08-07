@@ -23,7 +23,7 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
     {
         $verbs = Inflector::getVerb($verb);
         $this->assertNotEmpty($verbs);
-        $results = Inflector::conjugate($verbs[0]);
+        $results = Inflector::inflect($verbs[0]);
         $fileName = __DIR__ . DIRECTORY_SEPARATOR . $file . '.csv';
         $this->assertFileExists($fileName);
         $lines = file($fileName);
@@ -73,22 +73,23 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
     public function testInflectMiruNonPastPoliteKana()
     {
         $verbs = Inflector::getVerb('見る');
-        $results = Inflector::conjugate($verbs[0]);
-        $this->assertEquals($results[Inflector::NON_PAST_POLITE]['kana'], 'みます');
+        $results = Inflector::inflect($verbs[0], Inflector::NON_PAST_POLITE);
+        $this->assertEquals($results['kana'], 'みます');
     }
 
-    public function testInflectMiruPastKana()
+    public function testInflectMiruPastPastPoliteKana()
     {
         $verbs = Inflector::getVerb('見る');
-        $results = Inflector::conjugate($verbs[0]);
+        $results = Inflector::inflect($verbs[0], array(Inflector::PAST, Inflector::PAST_POLITE));
         $this->assertEquals($results[Inflector::PAST]['kana'], 'みた');
+        $this->assertEquals($results[Inflector::PAST_POLITE]['kana'], 'みました');
     }
 
     public function testInflectHanasuNonPastPoliteKanji()
     {
         $verbs = Inflector::getVerb('はなす');
-        $results = Inflector::conjugate($verbs[0]);
-        $this->assertEquals($results[Inflector::NON_PAST_POLITE]['kanji'], '放します');
+        $results = Inflector::inflect($verbs[0], Inflector::NON_PAST_POLITE);
+        $this->assertEquals($results['kanji'], '放します');
     }
 
     public function testInflect1()
