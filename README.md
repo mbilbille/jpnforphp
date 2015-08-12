@@ -1,13 +1,13 @@
 ![Logo](https://raw.githubusercontent.com/mbilbille/jpnforphp/gh-pages/images/logo.png)
 
-JpnForPhp is a library for PHP that provides support and tone of helpers to play with Japanese language.
+JpnForPhp is a library for PHP that provides support and tone of helpers to play with Japanese language ([DEMO](http://jpnforphpdemos.nebuleux.be)).
 
 [![build status](https://travis-ci.org/mbilbille/jpnforphp.svg)](http://travis-ci.org/mbilbille/jpnforphp)
 
 The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: **split, extract, etc.** as well as more specialized and powerful features: **transliteration, infection, conversion**, and so one. 
 
 
-##Installation
+## Installation
 
 The recommended way to install JpnForPhp is through [Composer](http://getcomposer.org/). Just create a composer.json file and run the php composer.phar install command to install it:
 
@@ -20,7 +20,7 @@ The recommended way to install JpnForPhp is through [Composer](http://getcompose
 ```
 
 
-##Components
+## Components
 
 ![Components](https://raw.github.com/mbilbille/jpnforphp/gh-pages/images/components_schema.png)
 
@@ -54,12 +54,13 @@ JpnForPhp supports all mainstream romanization systems:
 @TODO
 
 
-##Demo website
+## Examples
 
-Thanks to @Akeru, see JpnForPhp in actions: [demo website](http://jpnforphpdemos.nebuleux.be)
+See and test each features on this [demo website](http://jpnforphpdemos.nebuleux.be).
+This website is maintained by @Akeru.
 
 
-##Tests
+## Tests
 
 To run the test suite, you need [Composer](http://getcomposer.org/):
 
@@ -68,13 +69,13 @@ To run the test suite, you need [Composer](http://getcomposer.org/):
     $ vendor/bin/phpunit
 ```
 
-##Want to help?
+## Want to help?
 Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributing](https://github.com/mbilbille/jpnforphp/tree/master/CONTRIBUTING.md) and then check out one of our [issues](https://github.com/mbilbille/jpnforphp/issues).
 
 [List of all contributors](https://github.com/mbilbille/jpnforphp/graphs/contributors)
 
 
-##Upcoming
+## Upcoming
 
 Check out the _develop_ branch to get all the latest code and change (http://github.com/mbilbille/jpnforphp/tree/develop)
 
@@ -82,7 +83,7 @@ Check out the _develop_ branch to get all the latest code and change (http://git
 
 JpnForPhp was created by [Matthieu Bilbille](http://github.com/mbilbille) and released under the [MIT License](http://github.com/mbilbille/jpnforphp/blob/master/LICENSE).
 
-##Integration
+## Integration
 
 - **JPNlizer** integrates JpnForPhp into Drupal - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510) [Deprecated]
 - **JpnForPhpBundle**: integrates JpnForPhp as a Symfony2 Bundle - [JpnForPhpBundle](http://github.com/albertofem/JpnForPhpBundle) (by @albertofem)
