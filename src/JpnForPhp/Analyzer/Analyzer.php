@@ -213,4 +213,43 @@ class Analyzer
     {
         return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str) || self::hasJapanesePunctuationMarks($str);
     }
+
+    /**
+     * Determines whether the given string contains Japanese numerals.
+     *
+     * @param string $str The string to inspect.
+     *
+     * @return boolean TRUE if it contains Japanese numerals, otherwise
+     * FALSE.
+     */
+    public static function hasJapaneseNumerals($str)
+    {
+        return preg_match(Helper::PREG_PATTERN_JAPANESE_NUMERAL, $str) > 0;
+    }
+
+    /**
+     * Determines whether the given string contains Western numerals.
+     *
+     * @param string $str The string to inspect.
+     *
+     * @return boolean TRUE if it contains Western numerals, otherwise
+     * FALSE.
+     */
+    public static function hasWesternNumerals($str)
+    {
+        return preg_match(Helper::PREG_PATTERN_WESTERN_NUMERAL, $str) > 0;
+    }
+
+    /**
+     * Determines whether the given string contains latin letters
+     *
+     * @param string $str The string to inspect.
+     *
+     * @return boolean TRUE if it contains latin letters, otherwise
+     * FALSE.
+     */
+    public static function hasLatinLetters($str)
+    {
+        return preg_match(Helper::PREG_PATTERN_LATIN, $str) > 0;
+    }
 }
