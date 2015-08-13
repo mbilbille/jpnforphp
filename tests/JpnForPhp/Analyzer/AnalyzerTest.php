@@ -18,6 +18,21 @@ use JpnForPhp\Analyzer\Analyzer;
  */
 class AnalyzerTest extends \PHPUnit_Framework_TestCase
 {
+
+    private function segmentSentenceFromFile($sentenceId)
+    {
+        $fileName = __DIR__ . DIRECTORY_SEPARATOR . 'sentence' . $sentenceId . '.csv';
+        $this->assertFileExists($fileName);
+        $lines = file($fileName);
+        $this->assertNotEmpty($lines);
+        foreach ($lines as $line) {
+            list($sentence, $segments) = explode(',', trim($line));
+            $segments = explode('|', $segments);
+            $results = Analyzer::segment($sentence);
+            $this->assertSame($segments, $results);
+        }
+    }
+
     protected function setUp()
     {
         $this->mixCharacters = '今日、Joo「ジョオ」は学校にいます。';
@@ -223,6 +238,21 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     {
         $result = Analyzer::countKanji('三ヶ日', TRUE);
         $this->assertEquals($result, 3);
+    }
+
+    public function testSegmenterSentence1()
+    {
+        $this->segmentSentenceFromFile(1);
+    }
+
+    public function testSegmenterSentence2()
+    {
+        $this->segmentSentenceFromFile(2);
+    }
+
+    public function testSegmenterSentence3()
+    {
+        $this->segmentSentenceFromFile(3);
     }
 
 }

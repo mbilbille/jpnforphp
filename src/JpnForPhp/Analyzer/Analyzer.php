@@ -262,4 +262,16 @@ class Analyzer
     {
         return preg_match(Helper::PREG_PATTERN_LATIN, $str) > 0;
     }
+
+    /**
+     * Segments the given string to its various part of speech components
+     *
+     * @param string $str The string to segment
+     * @return array Segments parts of the given string
+     */
+    public static function segment($str)
+    {
+        $segmenter = new TinySegmenter();
+        return $segmenter->segment($str);
+    }
 }
