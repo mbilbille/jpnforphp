@@ -48,10 +48,13 @@ JpnForPhp supports all mainstream romanization systems:
 * [Western year](https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L451)
 * [Japanese year](https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L515) (kanji, kana, romaji)
 
+*More units should complement the `Converter` component in future release*
+
 
 #### Inflector
 
-@TODO
+JpnForPhp supports many verbal form.  
+[List of all verbal forms](https://github.com/mbilbille/jpnforphp/blob/develop/src/JpnForPhp/Inflector/Inflector.php#L28)
 
 
 ## Examples
