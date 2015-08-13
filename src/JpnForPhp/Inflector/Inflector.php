@@ -532,7 +532,7 @@ class Inflector
     }
 
     /**
-     * Gets a verb entry from the database using eith kanji, hiragana or romaji
+     * Gets a verb entry from the database using either Kanji, Hiragana or Romaji
      *
      * @param $verb
      * @return array
