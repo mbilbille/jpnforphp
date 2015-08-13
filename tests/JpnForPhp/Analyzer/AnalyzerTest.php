@@ -182,4 +182,41 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $result = Analyzer::inspect($this->mixCharacters);
         $this->assertSame($result, array('length' => 19, 'kanji' => 4, 'hiragana' => 5, 'katakana' => 3));
     }
+
+    public function testHasJapaneseNumeral()
+    {
+        $result = Analyzer::hasJapaneseNumerals('五百二十八');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasNotJapaneseNumeral()
+    {
+        $result = Analyzer::hasJapaneseNumerals($this->hiraganaCharacters);
+        $this->assertEquals($result, FALSE);
+    }
+
+    public function testHasLatin()
+    {
+        $result = Analyzer::hasLatinLetters('Test');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasLatinFullwidth()
+    {
+        $result = Analyzer::hasLatinLetters('Ｔｅｓｔ');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasWesternNumeral()
+    {
+        $result = Analyzer::hasWesternNumerals('123');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasWesternNumeralFullwith()
+    {
+        $result = Analyzer::hasWesternNumerals('１２３');
+        $this->assertEquals($result, TRUE);
+    }
+
 }
