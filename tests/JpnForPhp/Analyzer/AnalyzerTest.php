@@ -219,4 +219,10 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result, TRUE);
     }
 
+    public function testCountKanjiExtended()
+    {
+        $result = Analyzer::countKanji('三ヶ日', TRUE);
+        $this->assertEquals($result, 3);
+    }
+
 }

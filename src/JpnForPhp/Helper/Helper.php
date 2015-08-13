@@ -23,6 +23,7 @@ class Helper
     const PREG_PATTERN_KATAKANA = '/\p{Katakana}|ー/u';
     const PREG_PATTERN_KANA = '/\p{Hiragana}|\p{Katakana}|ー/u';
     const PREG_PATTERN_NOT_KANJI = '/\p{^Han}/u';
+    const PREG_PATTERN_KANJI_EXTENDED = '/\p{Han}|〆|ヵ|ヶ/u';
     const PREG_PATTERN_NOT_HIRAGANA = '/\p{^Hiragana}/u';
     const PREG_PATTERN_NOT_KATAKANA = '/[^\p{Katakana}ー]/u';
     const PREG_PATTERN_NOT_KANA = '/[^\p{Hiragana}|\p{Katakana}|ー]/u';
