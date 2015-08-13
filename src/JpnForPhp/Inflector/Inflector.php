@@ -333,7 +333,8 @@ class Inflector
     }
 
     /**
-     * Generates conjugation for the given verb to the given type using the given mappings
+     * Generates conjugation for the given verb to the given type using the 
+     * given mappings
      *
      * @param array $verb
      * @param array $mappings
@@ -495,7 +496,8 @@ class Inflector
     }
 
     /**
-     * Helper method the generate the database. The JMDict file my be downloaded separately
+     * Helper method the generate the database. The JMDict file my be downloaded
+     * separately
      */
     public static function createDatabase()
     {
@@ -564,24 +566,28 @@ class Inflector
      */
     public static function inflect($verb, $forms = array())
     {
-        $ret = array();
+        $result = array();
+        
         if (!empty($verb)) {
-            $type = $verb['type'];
-            $mapVerbs = self::makeVerbMappings();
-            if (array_key_exists($type, $mapVerbs)) {
-                $mappings = $mapVerbs[$type];
-                if (is_string($forms)) {
-                    return self::inflectForm($verb, $mappings, $forms);
-                } elseif (empty($forms)) {
-                    $forms = self::$ALL;
-                }
-                foreach ($forms as $form) {
-                    $ret[$form] = self::inflectForm($verb, $mappings, $form);
-                }
-            } else {
-                throw new Exception("Unknown verb type : " . $type);
-            }
+            return $result;
         }
-        return $ret;
+        
+        $type = $verb['type'];
+        $mapVerbs = self::makeVerbMappings();
+        if (!array_key_exists($type, $mapVerbs)) {
+            throw new Exception("Unknown verb type : " . $type);
+        }
+        
+        $mappings = $mapVerbs[$type];
+        if (is_string($forms)) {
+            return self::inflectForm($verb, $mappings, $forms);
+        } elseif (empty($forms)) {
+            $forms = self::$ALL;
+        }
+        foreach ($forms as $form) {
+            $ret[$form] = self::inflectForm($verb, $mappings, $form);
+        }
+
+        return $result;
     }
 }
