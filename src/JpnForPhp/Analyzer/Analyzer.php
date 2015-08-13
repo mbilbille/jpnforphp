@@ -73,14 +73,19 @@ class Analyzer
      * Count number of kanji within the specified string.
      *
      * @param string $str The input string.
+     * @param bool $extended Determines whether to use the extended kanji set
      *
      * @return integer Returns the number of kanji.
      */
-    public static function countKanji($str)
+    public static function countKanji($str, $extended = false)
     {
         $matches = array();
 
-        return preg_match_all(Helper::PREG_PATTERN_KANJI, $str, $matches);
+        if ($extended) {
+            return preg_match_all(Helper::PREG_PATTERN_KANJI_EXTENDED, $str, $matches);
+        } else {
+            return preg_match_all(Helper::PREG_PATTERN_KANJI, $str, $matches);
+        }
     }
 
     /**
@@ -116,12 +121,17 @@ class Analyzer
      * Determines whether the given string contains kanji characters.
      *
      * @param string $str The string to inspect.
+     * @param bool $extended Determines whether to use the extended kanji set
      *
-     * @return boolean TRUE if it contains at least one kanji, otherwise FALSE.
+     * @return bool TRUE if it contains at least one kanji, otherwise FALSE.
      */
-    public static function hasKanji($str)
+    public static function hasKanji($str, $extended = false)
     {
-        return preg_match(Helper::PREG_PATTERN_KANJI, $str) > 0;
+        if ($extended) {
+            return preg_match(Helper::PREG_PATTERN_KANJI_EXTENDED, $str, $matches) > 0;
+        } else {
+            return preg_match(Helper::PREG_PATTERN_KANJI, $str, $matches) > 0;
+        }
     }
 
     /**
