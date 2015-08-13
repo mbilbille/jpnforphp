@@ -18,6 +18,21 @@ use JpnForPhp\Analyzer\Analyzer;
  */
 class AnalyzerTest extends \PHPUnit_Framework_TestCase
 {
+
+    private function segmentSentenceFromFile($sentenceId)
+    {
+        $fileName = __DIR__ . DIRECTORY_SEPARATOR . 'sentence' . $sentenceId . '.csv';
+        $this->assertFileExists($fileName);
+        $lines = file($fileName);
+        $this->assertNotEmpty($lines);
+        foreach ($lines as $line) {
+            list($sentence, $segments) = explode(',', trim($line));
+            $segments = explode('|', $segments);
+            $results = Analyzer::segment($sentence);
+            $this->assertSame($segments, $results);
+        }
+    }
+
     protected function setUp()
     {
         $this->mixCharacters = '今日、Joo「ジョオ」は学校にいます。';
@@ -182,4 +197,62 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $result = Analyzer::inspect($this->mixCharacters);
         $this->assertSame($result, array('length' => 19, 'kanji' => 4, 'hiragana' => 5, 'katakana' => 3));
     }
+
+    public function testHasJapaneseNumeral()
+    {
+        $result = Analyzer::hasJapaneseNumerals('五百二十八');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasNotJapaneseNumeral()
+    {
+        $result = Analyzer::hasJapaneseNumerals($this->hiraganaCharacters);
+        $this->assertEquals($result, FALSE);
+    }
+
+    public function testHasLatin()
+    {
+        $result = Analyzer::hasLatinLetters('Test');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasLatinFullwidth()
+    {
+        $result = Analyzer::hasLatinLetters('Ｔｅｓｔ');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasWesternNumeral()
+    {
+        $result = Analyzer::hasWesternNumerals('123');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testHasWesternNumeralFullwith()
+    {
+        $result = Analyzer::hasWesternNumerals('１２３');
+        $this->assertEquals($result, TRUE);
+    }
+
+    public function testCountKanjiExtended()
+    {
+        $result = Analyzer::countKanji('三ヶ日', TRUE);
+        $this->assertEquals($result, 3);
+    }
+
+    public function testSegmenterSentence1()
+    {
+        $this->segmentSentenceFromFile(1);
+    }
+
+    public function testSegmenterSentence2()
+    {
+        $this->segmentSentenceFromFile(2);
+    }
+
+    public function testSegmenterSentence3()
+    {
+        $this->segmentSentenceFromFile(3);
+    }
+
 }
