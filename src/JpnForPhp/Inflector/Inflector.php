@@ -568,7 +568,7 @@ class Inflector
     {
         $result = array();
         
-        if (!empty($verb)) {
+        if (!$verb) {
             return $result;
         }
         
@@ -581,11 +581,11 @@ class Inflector
         $mappings = $mapVerbs[$type];
         if (is_string($forms)) {
             return self::inflectForm($verb, $mappings, $forms);
-        } elseif (empty($forms)) {
+        } elseif (!$forms) {
             $forms = self::$ALL;
         }
         foreach ($forms as $form) {
-            $ret[$form] = self::inflectForm($verb, $mappings, $form);
+            $result[$form] = self::inflectForm($verb, $mappings, $form);
         }
 
         return $result;
