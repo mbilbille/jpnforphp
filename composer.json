@@ -29,7 +29,9 @@
   "replace": {
     "jpnforphp/analyzer": "self.version",
     "jpnforphp/helper": "self.version",
-    "jpnforphp/transliterator": "self.version"
+    "jpnforphp/transliterator": "self.version",
+    "jpnforphp/converter": "self.version",
+    "jpnforphp/inflector": "self.version"
   },
   "autoload": {
     "psr-0": {
@@ -38,7 +40,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.5-dev"
+      "dev-master": "0.7-dev"
     }
   }
 }

@@ -11,12 +11,10 @@
 
 namespace JpnForPhp\Helper;
 
-use JpnForPhp\Analyzer\Analyzer;
-
 /**
  * Provides useful utilities to manipulate Japanese strings.
  *
- * @author Matthieu Bilbille
+ * @author Matthieu Bilbille (@mbilbille)
  */
 class Helper
 {
@@ -25,6 +23,7 @@ class Helper
     const PREG_PATTERN_KATAKANA = '/\p{Katakana}|ー/u';
     const PREG_PATTERN_KANA = '/\p{Hiragana}|\p{Katakana}|ー/u';
     const PREG_PATTERN_NOT_KANJI = '/\p{^Han}/u';
+    const PREG_PATTERN_KANJI_EXTENDED = '/\p{Han}|〆|ヵ|ヶ/u';
     const PREG_PATTERN_NOT_HIRAGANA = '/\p{^Hiragana}/u';
     const PREG_PATTERN_NOT_KATAKANA = '/[^\p{Katakana}ー]/u';
     const PREG_PATTERN_NOT_KANA = '/[^\p{Hiragana}|\p{Katakana}|ー]/u';
@@ -32,6 +31,9 @@ class Helper
     const PREG_PATTERN_KATAKANA_YOON = '/ャ|ュ|ョ|ァ|ィ|ゥ|ェ|ォ|ヮ/u';
     const PREG_PATTERN_KANA_YOON = '/ゃ|ゅ|ょ|ぁ|ぃ|ぅ|ぇ|ぉ|ゎ|ャ|ュ|ョ|ァ|ィ|ゥ|ェ|ォ|ヮ/u';
     const PREG_PATTERN_PUNCTUATION_MARKS = '/[、，：・。！？‥「」『』（）｛｝［］【】〜〽]/u';
+    const PREG_PATTERN_JAPANESE_NUMERAL = '/一|二|三|四|五|六|七|八|九|十|百|千|万|億|兆/u';
+    const PREG_PATTERN_WESTERN_NUMERAL = '/[0-9０-９]/u';
+    const PREG_PATTERN_LATIN = '/\p{Latin}/u';
 
     /**
      * Enhance default splitter function to handle UTF-8 characters.
@@ -110,6 +112,22 @@ class Helper
     public static function charAt($str, $index)
     {
         return self::subString($str, $index, 1);
+    }
+
+    /**
+     * Counts the number of substring occurrences.
+     *
+     * @param string  $str    The input string.
+     * @param string  $needle The string being found.
+     *
+     * @return integer The number of times the needle substring occurs in the
+     * input string.
+     *
+     * @see mb_substr_count()
+     */
+    public static function countSubString($str, $needle)
+    {
+        return mb_substr_count($str, $needle, 'UTF-8');
     }
 
     /**

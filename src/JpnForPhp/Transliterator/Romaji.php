@@ -12,7 +12,9 @@
 namespace JpnForPhp\Transliterator;
 
 /**
- * Romaji transliteration system class
+ * Transliteration system class to support transliteration into Romaji alphabet.
+ *
+ * @author Matthieu Bilbille (@mbibille)
  */
 class Romaji extends TransliterationSystem
 {
@@ -146,6 +148,18 @@ class Romaji extends TransliterationSystem
     protected function transliterateParticles($str, $parameters)
     {
         return str_replace(array_keys($parameters['particules']), array_values($parameters['particules']), $str);
+    }
+    
+    /**
+     * Transliterate character 'n' to 'm' before labial consonants.
+     *
+     * @param string $str        String to be transliterated.
+     * 
+     * @return string Transliterated string.
+     */
+    protected function transliterateNBeforeLabialConsonants($str)
+    {
+        return preg_replace('/n([bmp])/u', 'm$1', $str);
     }
 
     /**

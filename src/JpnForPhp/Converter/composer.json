@@ -1,7 +1,7 @@
 {
-  "name": "jpnforphp/analyzer",
+  "name": "jpnforphp/converter",
   "type": "library",
-  "description": "JpnForPhp Analyzer Component",
+  "description": "JpnForPhp COnverter Component",
   "keywords": [],
   "homepage": "http://mbilbille.github.com/jpnforphp/",
   "license": "MIT",
@@ -10,6 +10,10 @@
       "name": "Matthieu Bilbille",
       "email": "matthieu.bilbille@gmail.com",
       "homepage": "https://github.com/mbilbille"
+    },
+    {
+      "name": "Axel Bodart",
+      "homepage": "https://github.com/Akeru"
     }
   ],
   "support": {
@@ -18,12 +22,13 @@
     },
   "require": {
     "php": ">=5.3.0",
-    "jpnforphp/helper": ">=0.4"
+    "jpnforphp/analyzer": ">=0.4",
+    "jpnforphp/helper": ">=0.5"
   },
   "autoload": {
-    "psr-0": { "JpnForPhp\\Analyzer": "" }
+    "psr-0": { "JpnForPhp\\Converter": "" }
   },
-  "target-dir": "JpnForPhp/Analyzer",
+  "target-dir": "JpnForPhp/Converter",
   "extra": {
     "branch-alias": {
       "dev-master": "0.7-dev"

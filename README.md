@@ -1,136 +1,92 @@
-#JpnForPhp [![build status](https://travis-ci.org/mbilbille/jpnforphp.svg)](http://travis-ci.org/mbilbille/jpnforphp) [![Stories in Ready](https://badge.waffle.io/mbilbille/jpnforphp.svg?label=ready&title=Ready)](http://waffle.io/mbilbille/jpnforphp)
+![Logo](https://raw.githubusercontent.com/mbilbille/jpnforphp/gh-pages/images/logo.png)
 
-> A tiny PHP lib which provides nice functions & wrappers to interact with Japanese language. [[Official Website](http://mbilbille.github.com/jpnforphp/)]
+JpnForPhp is a library for PHP that provides support and tone of helpers to play with Japanese language ([DEMO](http://jpnforphpdemos.nebuleux.be)).
 
-##Installation
+[![build status](https://travis-ci.org/mbilbille/jpnforphp.svg)](http://travis-ci.org/mbilbille/jpnforphp)
+
+The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: **split, extract, etc.** as well as more specialized and powerful features: **transliteration, infection, conversion**, and so one. 
+
+
+## Installation
 
 The recommended way to install JpnForPhp is through [Composer](http://getcomposer.org/). Just create a composer.json file and run the php composer.phar install command to install it:
 
 ```json
 {
     "require": {
-        "mbilbille/jpnforphp": "~0.5"
+        "mbilbille/jpnforphp": "~0.6"
     }
 }
 ```
 
-##Tests
+
+## Components
+
+![Components](https://raw.github.com/mbilbille/jpnforphp/gh-pages/images/components_schema.png)
+
+* [Helper](https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Helper)
+* [Analyzer](https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Analyzer)
+* [Transliterator](https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Transliterator)
+* [Converter](https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Converter)
+* [Inflector](https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Inflector)
+
+#### Transliterator
+
+JpnForPhp supports all mainstream romanization systems:
+
+* [Hepburn](http://en.wikipedia.org/wiki/Hepburn_romanization)
+* [Kunrei](http://en.wikipedia.org/wiki/Kunrei-shiki_romanization)
+* [Nihon](http://en.wikipedia.org/wiki/Nihon-shiki_romanization)
+* [Wapuro](http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji)
+
+*Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.*
+
+
+#### Converter
+
+* [Japanese numeral](https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L374) (kanji, reading)
+* [Western year](https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L451)
+* [Japanese year](https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L515) (kanji, kana, romaji)
+
+*More units should complement the `Converter` component in future release*
+
+
+#### Inflector
+
+JpnForPhp supports many verbal form.  
+[List of all verbal forms](https://github.com/mbilbille/jpnforphp/blob/develop/src/JpnForPhp/Inflector/Inflector.php#L28)
+
+
+## Examples
+
+See and test each features on this [demo website](http://jpnforphpdemos.nebuleux.be).
+This website is maintained by @Akeru.
+
+
+## Tests
 
 To run the test suite, you need [Composer](http://getcomposer.org/):
 
 ```bash
-    $ php composer.phar install --dev
+    $ php composer.phar install
     $ vendor/bin/phpunit
 ```
 
-##Features list
-Provides the following components:
+## Want to help?
+Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributing](https://github.com/mbilbille/jpnforphp/tree/master/CONTRIBUTING.md) and then check out one of our [issues](https://github.com/mbilbille/jpnforphp/issues).
 
-- Helper: a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).
-- Analyzer: various "inspecting" functions (length, count kana, etc.).
-- Transliterator: handle both transliterations roman to kana and kana to roman (support all mainstream romanization systems).
-
-##Usage
-
-###Helper component:
-
-```php
-use JpnForPhp\Helper\Helper;
-
-Helper::split('素晴らしいでしょう'); // array('素','晴','ら','し','い','で','す')
-Helper::subString('素晴らしいでしょう', 2, 4); // 'らし'
-Helper::extractKanji('素晴らしいでしょう'); // array('素晴')
-Helper::extractHiragana('素晴らしいでしょう', 1, true); // array('ら','し','い','で','しょ','う')
-```
-
-###Analyzer component
-
-```php
-use JpnForPhp\Analyzer\Analyzer;
-
-Analyzer::length('素晴らしいです'); // 7
-Analyzer::inspect('素晴らしいです'); // array('length'=>7,'kanji'=>2,'hiragana' =>5,'katakana'=>0)
-Analyzer::countHiragana('素晴らしいです'); // 5
-Analyzer::hasKanji('素晴らしいです'); // TRUE
-```
-
-###Transliterator component:
-
-```php
-use JpnForPhp\Transliterator\Romaji;
-use JpnForPhp\Transliterator\Kana;
-
-$hepburn = new Romaji();
-$kunrei = new Romaji('kunrei');
-$hiragana = new Kana('hiragana');
-$katakana = new Kana('katakana');
-
-$hepburn->transliterate('ローマジ で　かいて'); // rōmaji de kaite
-$kunrei->transliterate('ローマジ　で　かいて'); // rômazi de kaite
-$hiragana->transliterate('kana de kaite'); // かな　で　かいて
-$katakana->transliterate('kana de kaite'); // カナ　デ　カイテ
-```
-
-Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.
-
-```Romaji.php``` and ```Kana.php``` provides a wild range of functions which can be used to define your own transliteration system.
-Here is a sample ```.yaml``` file
-
-```yaml
-id: mySystem
-name:
-    english: "My romanization system"
-    japanese: "マイローマ字"
-workflow:
-    - function: transliterateDefaultCharacters
-      parameters:
-            mapping:
-                あ: a
-                い: i
-                // [...]
-                ぽ: po
-                ゔ: pu
-    - function: transliterateSokuon
-      parameters:
-            default: true
-            hepburn: false
-    - function: transliterateChoonpu
-      parameters:
-        macrons:
-            a: aa
-            i: ii
-            u: uu
-            e: ee
-            o: oo
-```
-
-JpnForPhp supports the following standard transliteration system:
-- [Hepburn](http://en.wikipedia.org/wiki/Hepburn_romanization)
-- [Kunrei](http://en.wikipedia.org/wiki/Kunrei-shiki_romanization)
-- [Nihon](http://en.wikipedia.org/wiki/Nihon-shiki_romanization)
-- [Wapuro](http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji)
-- [JSL](http://en.wikipedia.org/wiki/JSL_romanization) _yet to be implemented_
-
-```.yaml``` files for those transliteration systems are available here:
-- [hepburn](src/JpnForPhp/Transliterator/Romaji/hepburn.yaml)
-- [kunrei](src/JpnForPhp/Transliterator/Romaji/kunrei.yaml)
-- [nihon](src/JpnForPhp/Transliterator/Romaji/nihon.yaml)
-- [wapuro](src/JpnForPhp/Transliterator/Romaji/wapuro.yaml)
-- [hiragana](src/JpnForPhp/Transliterator/Romaji/hiragana.yaml)
-- [katakana](src/JpnForPhp/Transliterator/Romaji/katakana.yaml)
+[List of all contributors](https://github.com/mbilbille/jpnforphp/graphs/contributors)
 
 
-##Upcoming
+## Upcoming
 
 Check out the _develop_ branch to get all the latest code and change (http://github.com/mbilbille/jpnforphp/tree/develop)
 
 ## License
 
-JpnForPHP was created by [Matthieu Bilbille](http://github.com/mbilbille) and released under the [MIT License](http://github.com/mbilbille/jpnforphp/blob/master/LICENSE).
+JpnForPhp was created by [Matthieu Bilbille](http://github.com/mbilbille) and released under the [MIT License](http://github.com/mbilbille/jpnforphp/blob/master/LICENSE).
 
-##Integration
+## Integration
 
 - **JPNlizer** integrates JpnForPhp into Drupal - [sandbox project](http://drupal.org/sandbox/mbilbille/1613510) [Deprecated]
 - **JpnForPhpBundle**: integrates JpnForPhp as a Symfony2 Bundle - [JpnForPhpBundle](http://github.com/albertofem/JpnForPhpBundle) (by @albertofem)
-
-Sponsored by [Openjisho.com](http://www.openjisho.com).

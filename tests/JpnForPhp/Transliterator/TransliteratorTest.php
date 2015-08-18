@@ -19,438 +19,607 @@ use JpnForPhp\Transliterator\Kana;
  */
 class TransliteratorTest extends \PHPUnit_Framework_TestCase
 {
-    private $romaji;
-    private $hepburn;
-    private $kunrei;
-    private $nihon;
-    private $wapuro;
-    private $kana;
-    private $hiragana;
-    private $katakana;
+    protected static $romaji;
+    protected static $hepburn;
+    protected static $hepburn_traditional;
+    protected static $kunrei;
+    protected static $nihon;
+    protected static $wapuro;
+    protected static $kana;
+    protected static $hiragana;
+    protected static $katakana;
 
-    protected function setUp()
+    public static function setUpBeforeClass()
     {
-        $this->romaji = new Romaji();
-        $this->hepburn = new Romaji('hepburn');
-        $this->kunrei = new Romaji('kunrei');
-        $this->nihon = new Romaji('nihon');
-        $this->wapuro = new Romaji('wapuro');
-        $this->kana = new Kana();
-        $this->hiragana = new Kana('hiragana');
-        $this->katakana = new Kana('katakana');
-        parent::setUp();
+        self::$romaji = new Romaji();
+        self::$hepburn = new Romaji('hepburn');
+        self::$hepburn_traditional = new Romaji('hepburn_traditional');
+        self::$kunrei = new Romaji('kunrei');
+        self::$nihon = new Romaji('nihon');
+        self::$wapuro = new Romaji('wapuro');
+        self::$kana = new Kana();
+        self::$hiragana = new Kana('hiragana');
+        self::$katakana = new Kana('katakana');
     }
 
     public function testTransliterateToRomajiWithDefaultParameters()
     {
-        $result = $this->romaji->transliterate('くるま');
+        $result = self::$romaji->transliterate('くるま');
         $this->assertEquals('kuruma', $result);
     }
 
     public function testTransliterateToRomajiWithDefaultParametersWhenEmptyString()
     {
-        $result = $this->romaji->transliterate('');
+        $result = self::$romaji->transliterate('');
         $this->assertEquals('', $result);
     }
 
     public function testTransliterateToRomajiWithHepburn()
     {
-        $result = $this->hepburn->transliterate('くるま');
+        $result = self::$hepburn->transliterate('くるま');
         $this->assertEquals('kuruma', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenLatinOnly()
     {
-        $result = $this->hepburn->transliterate('yahoo YAHOO');
+        $result = self::$hepburn->transliterate('yahoo YAHOO');
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenLongVowels()
     {
-        $result = $this->hepburn->transliterate('がっこう');
+        $result = self::$hepburn->transliterate('がっこう');
         $this->assertEquals('gakkō', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnWhenLongA()
+    {
+        $result = self::$hepburn->transliterate('おばあさん');
+        $this->assertEquals('obāsan', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnWhenLongI()
+    {
+        $result = self::$hepburn->transliterate('おにいさん');
+        $this->assertEquals('oniisan', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenSokuonInHiragana()
     {
-        $result = $this->hepburn->transliterate('けっか');
+        $result = self::$hepburn->transliterate('けっか');
         $this->assertEquals('kekka', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenSokuonInKatakana()
     {
-        $result = $this->hepburn->transliterate('サッカー');
+        $result = self::$hepburn->transliterate('サッカー');
         $this->assertEquals('sakkā', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenSokuonTchInHiragana()
     {
-        $result = $this->hepburn->transliterate('マッチャ');
+        $result = self::$hepburn->transliterate('マッチャ');
         $this->assertEquals('matcha', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenParticles()
     {
-        $result = $this->hepburn->transliterate('サッカーをやる');
+        $result = self::$hepburn->transliterate('サッカーをやる');
         $this->assertEquals('sakkāwoyaru', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenChoonpu()
     {
-        $result = $this->hepburn->transliterate('パーティー');
+        $result = self::$hepburn->transliterate('パーティー');
         $this->assertEquals('pātī', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenMixingHiraganaAndKatakana()
     {
-        $result = $this->hepburn->transliterate('サッカー を やる');
+        $result = self::$hepburn->transliterate('サッカー を やる');
         $this->assertEquals('sakkā o yaru', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenNFollowedByVowel()
     {
-        $result = $this->hepburn->transliterate('きんえん');
+        $result = self::$hepburn->transliterate('きんえん');
         $this->assertEquals('kin\'en', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenNFollowedByConsonant()
     {
-        $result = $this->hepburn->transliterate('あんない');
+        $result = self::$hepburn->transliterate('あんない');
         $this->assertEquals('annai', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnWhenNFollowedByLabialConsonant()
+    {
+        $result = self::$hepburn->transliterate('ぐんま');
+        $this->assertEquals('gunma', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenPunctuationMarks()
     {
-        $result = $this->hepburn->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
+        $result = self::$hepburn->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
+        $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnTraditional()
+    {
+        $result = self::$hepburn_traditional->transliterate('くるま');
+        $this->assertEquals('kuruma', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenLatinOnly()
+    {
+        $result = self::$hepburn_traditional->transliterate('yahoo YAHOO');
+        $this->assertEquals('yahoo YAHOO', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenLongVowels()
+    {
+        $result = self::$hepburn_traditional->transliterate('がっこう');
+        $this->assertEquals('gakkō', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenLongA()
+    {
+        $result = self::$hepburn_traditional->transliterate('おばあさん');
+        $this->assertEquals('obaasan', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenLongI()
+    {
+        $result = self::$hepburn_traditional->transliterate('おにいさん');
+        $this->assertEquals('oniisan', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenSokuonInHiragana()
+    {
+        $result = self::$hepburn_traditional->transliterate('けっか');
+        $this->assertEquals('kekka', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenSokuonInKatakana()
+    {
+        $result = self::$hepburn_traditional->transliterate('サッカー');
+        $this->assertEquals('sakkā', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenSokuonTchInHiragana()
+    {
+        $result = self::$hepburn_traditional->transliterate('マッチャ');
+        $this->assertEquals('matcha', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenParticles()
+    {
+        $result = self::$hepburn_traditional->transliterate('サッカーをやる');
+        $this->assertEquals('sakkāwoyaru', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenChoonpu()
+    {
+        $result = self::$hepburn_traditional->transliterate('パーティー');
+        $this->assertEquals('pātī', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenMixingHiraganaAndKatakana()
+    {
+        $result = self::$hepburn_traditional->transliterate('サッカー を やる');
+        $this->assertEquals('sakkā wo yaru', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenNFollowedByVowel()
+    {
+        $result = self::$hepburn_traditional->transliterate('きんえん');
+        $this->assertEquals('kin-en', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenNFollowedByConsonant()
+    {
+        $result = self::$hepburn_traditional->transliterate('あんない');
+        $this->assertEquals('annai', $result);
+    }
+    
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenNFollowedByLabialConsonant()
+    {
+        $result = self::$hepburn_traditional->transliterate('ぐんま');
+        $this->assertEquals('gumma', $result);
+    }
+
+    public function testTransliterateToRomajiWithHepburnTraditionalWhenPunctuationMarks()
+    {
+        $result = self::$hepburn_traditional->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
 
     public function testTransliterateToRomajiWithKunrei()
     {
-        $result = $this->kunrei->transliterate('くるま');
+        $result = self::$kunrei->transliterate('くるま');
         $this->assertEquals('kuruma', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenLatinOnly()
     {
-        $result = $this->kunrei->transliterate('yahoo YAHOO');
+        $result = self::$kunrei->transliterate('yahoo YAHOO');
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenLongVowels()
     {
-        $result = $this->kunrei->transliterate('がっこう');
+        $result = self::$kunrei->transliterate('がっこう');
         $this->assertEquals('gakkô', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenSSounds()
     {
-        $result = $this->kunrei->transliterate('ほしい');
+        $result = self::$kunrei->transliterate('ほしい');
         $this->assertEquals('hosii', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenFuSound()
     {
-        $result = $this->kunrei->transliterate('フライドポテト');
+        $result = self::$kunrei->transliterate('フライドポテト');
         $this->assertEquals('huraidopoteto', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenTeiSound()
     {
-        $result = $this->kunrei->transliterate('ティーム');
+        $result = self::$kunrei->transliterate('ティーム');
         $this->assertEquals('tîmu', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenSokuonInHiragana()
     {
-        $result = $this->kunrei->transliterate('けっか');
+        $result = self::$kunrei->transliterate('けっか');
         $this->assertEquals('kekka', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenSokuonInKatakana()
     {
-        $result = $this->kunrei->transliterate('サッカー');
+        $result = self::$kunrei->transliterate('サッカー');
         $this->assertEquals('sakkâ', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenSokuonTchInHiragana()
     {
-        $result = $this->kunrei->transliterate('マッチャ');
+        $result = self::$kunrei->transliterate('マッチャ');
         $this->assertEquals('mattya', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenParticles()
     {
-        $result = $this->kunrei->transliterate('サッカーをやる');
+        $result = self::$kunrei->transliterate('サッカーをやる');
         $this->assertEquals('sakkâwoyaru', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenChoonpu()
     {
-        $result = $this->kunrei->transliterate('パーティー');
+        $result = self::$kunrei->transliterate('パーティー');
         $this->assertEquals('pâtî', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenMixingHiraganaAndKatakana()
     {
-        $result = $this->kunrei->transliterate('サッカー を やる');
+        $result = self::$kunrei->transliterate('サッカー を やる');
         $this->assertEquals('sakkâ o yaru', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenNFollowedByVowel()
     {
-        $result = $this->kunrei->transliterate('きんえん');
+        $result = self::$kunrei->transliterate('きんえん');
         $this->assertEquals('kin\'en', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenNFollowedByConsonant()
     {
-        $result = $this->kunrei->transliterate('あんない');
+        $result = self::$kunrei->transliterate('あんない');
         $this->assertEquals('annai', $result);
     }
 
     public function testTransliterateToRomajiWithKunreiWhenPunctuationMarks()
     {
-        $result = $this->kunrei->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
+        $result = self::$kunrei->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
     public function testTransliterateToRomajiWithNihon()
     {
-        $result = $this->nihon->transliterate('くるま');
+        $result = self::$nihon->transliterate('くるま');
         $this->assertEquals('kuruma', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenLatinOnly()
     {
-        $result = $this->nihon->transliterate('yahoo YAHOO');
+        $result = self::$nihon->transliterate('yahoo YAHOO');
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenLongVowels()
     {
-        $result = $this->nihon->transliterate('がっこう');
+        $result = self::$nihon->transliterate('がっこう');
         $this->assertEquals('gakkô', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenSSounds()
     {
-        $result = $this->nihon->transliterate('ほしい');
+        $result = self::$nihon->transliterate('ほしい');
         $this->assertEquals('hosii', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenDuSound()
     {
-        $result = $this->nihon->transliterate('かなづかい');
+        $result = self::$nihon->transliterate('かなづかい');
         $this->assertEquals('kanadukai', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenSokuonInHiragana()
     {
-        $result = $this->nihon->transliterate('けっか');
+        $result = self::$nihon->transliterate('けっか');
         $this->assertEquals('kekka', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenSokuonInKatakana()
     {
-        $result = $this->nihon->transliterate('サッカー');
+        $result = self::$nihon->transliterate('サッカー');
         $this->assertEquals('sakkâ', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenSokuonTchInHiragana()
     {
-        $result = $this->nihon->transliterate('マッチャ');
+        $result = self::$nihon->transliterate('マッチャ');
         $this->assertEquals('mattya', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenParticles()
     {
-        $result = $this->nihon->transliterate('サッカーをやる');
+        $result = self::$nihon->transliterate('サッカーをやる');
         $this->assertEquals('sakkâwoyaru', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenChoonpu()
     {
-        $result = $this->nihon->transliterate('パーティー');
+        $result = self::$nihon->transliterate('パーティー');
         $this->assertEquals('pâtî', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenMixingHiraganaAndKatakana()
     {
-        $result = $this->nihon->transliterate('サッカー を やる');
+        $result = self::$nihon->transliterate('サッカー を やる');
         $this->assertEquals('sakkâ wo yaru', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenNFollowedByVowel()
     {
-        $result = $this->nihon->transliterate('きんえん');
+        $result = self::$nihon->transliterate('きんえん');
         $this->assertEquals('kin\'en', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenNFollowedByConsonant()
     {
-        $result = $this->nihon->transliterate('あんない');
+        $result = self::$nihon->transliterate('あんない');
         $this->assertEquals('annai', $result);
     }
 
     public function testTransliterateToRomajiWithNihonWhenPunctuationMarks()
     {
-        $result = $this->nihon->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
+        $result = self::$nihon->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
 
     public function testTransliterateToRomajiWithWapuro()
     {
-        $result = $this->wapuro->transliterate('くるま');
+        $result = self::$wapuro->transliterate('くるま');
         $this->assertEquals('kuruma', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenLatinOnly()
     {
-        $result = $this->wapuro->transliterate('yahoo YAHOO');
+        $result = self::$wapuro->transliterate('yahoo YAHOO');
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenLongVowels()
     {
-        $result = $this->wapuro->transliterate('がっこう');
+        $result = self::$wapuro->transliterate('がっこう');
         $this->assertEquals('gakkou', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenSokuonInHiragana()
     {
-        $result = $this->wapuro->transliterate('けっか');
+        $result = self::$wapuro->transliterate('けっか');
         $this->assertEquals('kekka', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenSokuonInKatakana()
     {
-        $result = $this->wapuro->transliterate('サッカー');
+        $result = self::$wapuro->transliterate('サッカー');
         $this->assertEquals('sakka-', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenSokuonTchInHiragana()
     {
-        $result = $this->wapuro->transliterate('マッチャ');
+        $result = self::$wapuro->transliterate('マッチャ');
         $this->assertEquals('maccha', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenParticles()
     {
-        $result = $this->wapuro->transliterate('サッカーをやる');
+        $result = self::$wapuro->transliterate('サッカーをやる');
         $this->assertEquals('sakka-woyaru', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenChoonpu()
     {
-        $result = $this->wapuro->transliterate('パーティー');
+        $result = self::$wapuro->transliterate('パーティー');
         $this->assertEquals('pa-teli-', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenMixingHiraganaAndKatakana()
     {
-        $result = $this->wapuro->transliterate('サッカー を やる');
+        $result = self::$wapuro->transliterate('サッカー を やる');
         $this->assertEquals('sakka- wo yaru', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenNFollowedByVowel()
     {
-        $result = $this->wapuro->transliterate('きんえん');
+        $result = self::$wapuro->transliterate('きんえん');
         $this->assertEquals('kinnenn', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenNFollowedByConsonant()
     {
-        $result = $this->wapuro->transliterate('あんない');
+        $result = self::$wapuro->transliterate('あんない');
         $this->assertEquals('annnai', $result);
     }
 
     public function testTransliterateToRomajiWithWapuroWhenPunctuationMarks()
     {
-        $result = $this->wapuro->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
+        $result = self::$wapuro->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
 
     public function testTransliterateToKanaWithDefaultParameters()
     {
-        $result = $this->kana->transliterate('kuruma');
+        $result = self::$kana->transliterate('kuruma');
         $this->assertEquals('くるま', $result);
+    }
+    
+    public function testTransliterateToKanaWithWhitespaceStripping()
+    {
+        $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_ALL);
+        $this->assertEquals('なごやじょう', $result);
+    }
+    
+    public function testTransliterateToKanaWithAutoWhitespaceStripping()
+    {
+        $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_AUTO);
+        $this->assertEquals('なごやじょう', $result);
+    }
+    
+    public function testTransliterateToKanaWithAutoWhitespaceStrippingOnLongText()
+    {
+        $result = self::$kana->transliterate('Nagoya ha kyōto no higashi no hou ni aru', Kana::STRIP_WHITESPACE_AUTO);
+        $this->assertEquals('なごや　は　きょうと　の　ひがし　の　ほう　に　ある', $result);
     }
 
     public function testTransliterateToKanaUsingHiraganaInNormalCase()
     {
-        $result = $this->hiragana->transliterate('kuruma');
+        $result = self::$hiragana->transliterate('kuruma');
         $this->assertEquals('くるま', $result);
     }
 
     public function testTransliterateToKanaUsingHiraganaWithAnEmptyString()
     {
-        $result = $this->hiragana->transliterate('');
+        $result = self::$hiragana->transliterate('');
         $this->assertEquals('', $result);
     }
 
     public function testTransliterateToKanaUsingHiraganaWithMacron()
     {
-        $result = $this->hiragana->transliterate('gakkō ni ikimasu');
+        $result = self::$hiragana->transliterate('gakkō ni ikimasu');
         $this->assertEquals('がっこう　に　いきます', $result);
     }
 
     public function testTransliterateToKanaUsingHiraganaWithPunctuationMarks()
     {
-        $result = $this->hiragana->transliterate('\'iie\'teiimashita');
+        $result = self::$hiragana->transliterate('\'iie\'teiimashita');
         $this->assertEquals('「いいえ」ていいました', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaInNormalCase()
     {
-        $result = $this->katakana->transliterate('furansu');
+        $result = self::$katakana->transliterate('furansu');
         $this->assertEquals('フランス', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithAnEmptyString()
     {
-        $result = $this->katakana->transliterate('');
+        $result = self::$katakana->transliterate('');
         $this->assertEquals('', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithSokuon()
     {
-        $result = $this->katakana->transliterate('chakku');
+        $result = self::$katakana->transliterate('chakku');
         $this->assertEquals('チャック', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithChoonpu()
     {
-        $result = $this->katakana->transliterate('foodo');
+        $result = self::$katakana->transliterate('foodo');
         $this->assertEquals('フォード', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithMacron()
     {
-        $result = $this->katakana->transliterate('fōdo');
+        $result = self::$katakana->transliterate('fōdo');
         $this->assertEquals('フォード', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithCircumflex()
     {
-        $result = $this->katakana->transliterate('fôdo');
+        $result = self::$katakana->transliterate('fôdo');
         $this->assertEquals('フォード', $result);
     }
 
     public function testTransliterateToKanaUsingKatakanaWithPunctuationMarks()
     {
-        $result = $this->katakana->transliterate('\'iie\'teiimashita');
+        $result = self::$katakana->transliterate('\'iie\'teiimashita');
         $this->assertEquals('「イイエ」テイイマシタ', $result);
     }
 
     public function testTransliterateToKana27_1()
     {
-        $result = $this->hiragana->transliterate('wha');
+        $result = self::$hiragana->transliterate('wha');
         $this->assertEquals('うぁ', $result);
     }
 
     public function testTransliterateToKana27_2()
     {
-        $result = $this->katakana->transliterate('wha');
+        $result = self::$katakana->transliterate('wha');
         $this->assertEquals('ウァ', $result);
+    }
+    
+    public function testTransliterateToKana41_1()
+    {
+        $result = self::$hiragana->transliterate('JR東日本');
+        $this->assertEquals('JR東日本', $result);
+    }
+    
+    public function testTransliterateToKana41_2()
+    {
+        $result = self::$hiragana->transliterate('NHKオンライン');
+        $this->assertEquals('NHKオンライン', $result);
+    }
+    
+    public function testTransliterateToKana41_3()
+    {
+        $result = self::$hiragana->transliterate('Kuruma');
+        $this->assertEquals('くるま', $result);
+    }   
+    
+    public function testTransliterateToKana41_4()
+    {
+        $result = self::$hiragana->transliterate('TOYOTA no kuruma');
+        $this->assertEquals('TOYOTA　の　くるま', $result);
+    }
+    
+    public function testTransliterateToKana41_5()
+    {
+        $result = self::$katakana->transliterate('L saizu');
+        $this->assertEquals('L　サイズ', $result);
+    }
+    
+    public function testTransliterateToKana41_6()
+    {
+        $result = self::$hiragana->transliterate('Ōsaka');
+        $this->assertEquals('おうさか', $result);
+    }
+    
+    public function testTransliterateToKana41_7()
+    {
+        $result = self::$hiragana->transliterate('Tōkyō');
+        $this->assertEquals('とうきょう', $result);
     }
 }
