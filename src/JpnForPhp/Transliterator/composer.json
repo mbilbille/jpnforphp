@@ -27,7 +27,7 @@
   "target-dir": "JpnForPhp/Transliterator",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.6-dev"
+      "dev-master": "0.7-dev"
     }
   }
 }
