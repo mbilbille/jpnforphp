@@ -1,183 +1,137 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Jpnforphp : Japanese toolbox for PHP" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Jpnforphp</title>
+    <meta charset="UTF-8">
+    <title>Jpnforphp by mbilbille</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Jpnforphp</h1>
+      <h2 class="project-tagline">Japanese toolbox for PHP</h2>
+      <a href="https://github.com/mbilbille/jpnforphp" class="btn">View on GitHub</a>
+      <a href="https://github.com/mbilbille/jpnforphp/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mbilbille/jpnforphp/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mbilbille/jpnforphp">View on GitHub</a>
+    <section class="main-content">
+      <p>JpnForPhp is a library for PHP that provides support and tone of helpers to play with Japanese language (<a href="http://jpnforphpdemos.nebuleux.be">DEMO</a>).</p>
 
-          <h1 id="project_title">Jpnforphp</h1>
-          <h2 id="project_tagline">Japanese toolbox for PHP</h2>
+<p><a href="http://travis-ci.org/mbilbille/jpnforphp"><img src="https://travis-ci.org/mbilbille/jpnforphp.svg" alt="build status"></a></p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mbilbille/jpnforphp/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mbilbille/jpnforphp/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="jpnforphp---" class="anchor" href="#jpnforphp---"><span class="octicon octicon-link"></span></a>JpnForPhp <a href="http://travis-ci.org/mbilbille/jpnforphp"><img src="https://secure.travis-ci.org/mbilbille/jpnforphp.png" alt="build status"></a> <a href="https://waffle.io/mbilbille/jpnforphp"><img src="https://badge.waffle.io/mbilbille/jpnforphp.png?label=ready" alt="Stories in Ready"></a> <a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/mbilbille/jpnforphp/trend.png" alt="Bitdeli Badge"></a>
-</h1>
-
-<blockquote>
-<p>A tiny PHP lib which provides nice functions &amp; wrappers to interact with Japanese language. [<a href="http://mbilbille.github.com/jpnforphp/">Official Website</a>]</p>
-</blockquote>
+<p>The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: <strong>split, extract, etc.</strong> as well as more specialized and powerful features: <strong>transliteration, infection, conversion</strong>, and so one. </p>
 
 <h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight highlight-bash"><pre>composer install
-</pre></div>
+<p>The recommended way to install JpnForPhp is through <a href="http://getcomposer.org/">Composer</a>. Just create a composer.json file and run the php composer.phar install command to install it:</p>
+
+<div class="highlight highlight-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>mbilbille/jpnforphp<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>~0.6<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
 
 <h2>
-<a name="features-list" class="anchor" href="#features-list"><span class="octicon octicon-link"></span></a>Features list</h2>
+<a id="components" class="anchor" href="#components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Components</h2>
 
-<p>Provides the following components:</p>
+<p><img src="https://raw.github.com/mbilbille/jpnforphp/gh-pages/images/components_schema.png" alt="Components"></p>
 
 <ul>
-<li>Helper: a set of function to help you interact with Japanese wordings (split, extract, clean, etc.).</li>
-<li>Analyzer: various "inspecting" functions (length, count kana, etc.).</li>
-<li>Transliterator: handle both transliterations roman to kana and kana to roman (support all mainstream romanization systems).</li>
-</ul><h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<li><a href="https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Helper">Helper</a></li>
+<li><a href="https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Analyzer">Analyzer</a></li>
+<li><a href="https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Transliterator">Transliterator</a></li>
+<li><a href="https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Converter">Converter</a></li>
+<li><a href="https://github.com/mbilbille/jpnforphp/tree/master/src/JpnForPhp/Inflector">Inflector</a></li>
+</ul>
 
-<h3>
-<a name="helper-component" class="anchor" href="#helper-component"><span class="octicon octicon-link"></span></a>Helper component:</h3>
+<h4>
+<a id="transliterator" class="anchor" href="#transliterator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transliterator</h4>
 
-<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Helper\Helper</span><span class="p">;</span>
-
-<span class="nx">Helper</span><span class="o">::</span><span class="na">split</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素','晴','ら','し','い','で','す')</span>
-<span class="nx">Helper</span><span class="o">::</span><span class="na">subString</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 'らし'</span>
-<span class="nx">Helper</span><span class="o">::</span><span class="na">extractKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('素晴')</span>
-<span class="nx">Helper</span><span class="o">::</span><span class="na">extractHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('らしいです')</span>
-</pre></div>
-
-<h3>
-<a name="analyzer-component" class="anchor" href="#analyzer-component"><span class="octicon octicon-link"></span></a>Analyzer component</h3>
-
-<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Analyzer\Analyzer</span><span class="p">;</span>
-
-<span class="nx">Analyzer</span><span class="o">::</span><span class="na">length</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 7</span>
-<span class="nx">Analyzer</span><span class="o">::</span><span class="na">inspect</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// array('length'=&gt;7,'kanji'=&gt;2,'hiragana' =&gt;5,'katakana'=&gt;0)</span>
-<span class="nx">Analyzer</span><span class="o">::</span><span class="na">countHiragana</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// 5</span>
-<span class="nx">Analyzer</span><span class="o">::</span><span class="na">hasKanji</span><span class="p">(</span><span class="s1">'素晴らしいです'</span><span class="p">);</span> <span class="c1">// TRUE</span>
-</pre></div>
-
-<h3>
-<a name="transliterator-component" class="anchor" href="#transliterator-component"><span class="octicon octicon-link"></span></a>Transliterator component:</h3>
-
-<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Romaji</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">JpnForPhp\Transliterator\Kana</span><span class="p">;</span>
-
-<span class="nv">$hepburn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Romaji</span><span class="p">();</span>
-<span class="nv">$kunrei</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Romaji</span><span class="p">(</span><span class="s1">'kunrei'</span><span class="p">);</span>
-<span class="nv">$hiragana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kana</span><span class="p">(</span><span class="s1">'hiragana'</span><span class="p">);</span>
-<span class="nv">$katakana</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Kana</span><span class="p">(</span><span class="s1">'katakana'</span><span class="p">);</span>
-
-<span class="nv">$hepburn</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'ローマジ で　かいて'</span><span class="p">);</span> <span class="c1">// rōmaji de kaite</span>
-<span class="nv">$kunrei</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'ローマジ　で　かいて'</span><span class="p">);</span> <span class="c1">// rômazi de kaite</span>
-<span class="nv">$hiragana</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="p">);</span> <span class="c1">// かな　で　かいて</span>
-<span class="nv">$katakana</span><span class="o">-&gt;</span><span class="na">transliterate</span><span class="p">(</span><span class="s1">'kana de kaite'</span><span class="p">);</span> <span class="c1">// カナ　デ　カイテ</span>
-</pre></div>
-
-<p>Starting from the version 0.5, all the transliteration workflow is defined in <code>.yaml</code> file.</p>
-
-<p><code>Romaji.php</code> and <code>Kana.php</code> provides a wild range of functions which can be used to define your own transliteration system.
-Here is a sample <code>.yaml</code> file</p>
-
-<div class="highlight highlight-yaml"><pre><span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mySystem</span>
-<span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">english</span><span class="p-Indicator">:</span> <span class="s">"My</span><span class="nv"> </span><span class="s">romanization</span><span class="nv"> </span><span class="s">system"</span>
-    <span class="l-Scalar-Plain">japanese</span><span class="p-Indicator">:</span> <span class="s">"マイローマ字"</span>
-<span class="l-Scalar-Plain">workflow</span><span class="p-Indicator">:</span>
-    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateDefaultCharacters</span>
-      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
-            <span class="l-Scalar-Plain">mapping</span><span class="p-Indicator">:</span>
-                <span class="l-Scalar-Plain">あ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">a</span>
-                <span class="l-Scalar-Plain">い</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">i</span>
-                <span class="l-Scalar-Plain">// [...]</span>
-                <span class="l-Scalar-Plain">ぽ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">po</span>
-                <span class="l-Scalar-Plain">ゔ</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pu</span>
-    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateSokuon</span>
-      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
-            <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-            <span class="l-Scalar-Plain">hepburn</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">transliterateChoonpu</span>
-      <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">macrons</span><span class="p-Indicator">:</span>
-            <span class="l-Scalar-Plain">a</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">aa</span>
-            <span class="l-Scalar-Plain">i</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ii</span>
-            <span class="l-Scalar-Plain">u</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">uu</span>
-            <span class="l-Scalar-Plain">e</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ee</span>
-            <span class="l-Scalar-Plain">o</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">oo</span>
-</pre></div>
-
-<p>JpnForPhp supports the following standard transliteration system:</p>
+<p>JpnForPhp supports all mainstream romanization systems:</p>
 
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/Hepburn_romanization">Hepburn</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Kunrei-shiki_romanization">Kunrei</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Nihon-shiki_romanization">Nihon</a></li>
 <li><a href="http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji">Wapuro</a></li>
-<li>
-<a href="http://en.wikipedia.org/wiki/JSL_romanization">JSL</a> <em>yet to be implemented</em>
-</li>
-</ul><p><code>.yaml</code> files for those transliteration systems are available here:</p>
+</ul>
+
+<p><em>Starting from the version 0.5, all the transliteration workflow is defined in <code>.yaml</code> file.</em></p>
+
+<h4>
+<a id="converter" class="anchor" href="#converter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Converter</h4>
 
 <ul>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/hepburn.yaml">hepburn</a></li>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/kunrei.yaml">kunrei</a></li>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/nihon.yaml">nihon</a></li>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/wapuro.yaml">wapuro</a></li>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/hiragana.yaml">hiragana</a></li>
-<li><a href="src/JpnForPhp/Transliterator/Romaji/katakana.yaml">katakana</a></li>
-</ul><h2>
-<a name="upcoming" class="anchor" href="#upcoming"><span class="octicon octicon-link"></span></a>Upcoming</h2>
+<li>
+<a href="https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L374">Japanese numeral</a> (kanji, reading)</li>
+<li><a href="https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L451">Western year</a></li>
+<li>
+<a href="https://github.com/mbilbille/jpnforphp/blob/master/src/JpnForPhp/Converter/Converter.php#L515">Japanese year</a> (kanji, kana, romaji)</li>
+</ul>
+
+<p><em>More units should complement the <code>Converter</code> component in future release</em></p>
+
+<h4>
+<a id="inflector" class="anchor" href="#inflector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inflector</h4>
+
+<p>JpnForPhp supports many verbal form.<br>
+<a href="https://github.com/mbilbille/jpnforphp/blob/develop/src/JpnForPhp/Inflector/Inflector.php#L28">List of all verbal forms</a></p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>See and test each features on this <a href="http://jpnforphpdemos.nebuleux.be">demo website</a>.
+This website is maintained by <a href="https://github.com/Akeru" class="user-mention">@Akeru</a>.</p>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>To run the test suite, you need <a href="http://getcomposer.org/">Composer</a>:</p>
+
+<div class="highlight highlight-bash"><pre>    $ php composer.phar install
+    $ vendor/bin/phpunit</pre></div>
+
+<h2>
+<a id="want-to-help" class="anchor" href="#want-to-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Want to help?</h2>
+
+<p>Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our guidelines for <a href="https://github.com/mbilbille/jpnforphp/tree/master/CONTRIBUTING.md">contributing</a> and then check out one of our <a href="https://github.com/mbilbille/jpnforphp/issues">issues</a>.</p>
+
+<p><a href="https://github.com/mbilbille/jpnforphp/graphs/contributors">List of all contributors</a></p>
+
+<h2>
+<a id="upcoming" class="anchor" href="#upcoming" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upcoming</h2>
 
 <p>Check out the <em>develop</em> branch to get all the latest code and change (<a href="http://github.com/mbilbille/jpnforphp/tree/develop">http://github.com/mbilbille/jpnforphp/tree/develop</a>)</p>
 
 <h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>JpnForPHP was created by <a href="http://github.com/mbilbille">Matthieu Bilbille</a> and released under the <a href="http://github.com/mbilbille/jpnforphp/blob/master/LICENSE">MIT License</a>.</p>
+<p>JpnForPhp was created by <a href="http://github.com/mbilbille">Matthieu Bilbille</a> and released under the <a href="http://github.com/mbilbille/jpnforphp/blob/master/LICENSE">MIT License</a>.</p>
 
 <h2>
-<a name="integration" class="anchor" href="#integration"><span class="octicon octicon-link"></span></a>Integration</h2>
+<a id="integration" class="anchor" href="#integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integration</h2>
 
 <ul>
 <li>
 <strong>JPNlizer</strong> integrates JpnForPhp into Drupal - <a href="http://drupal.org/sandbox/mbilbille/1613510">sandbox project</a> [Deprecated]</li>
 <li>
 <strong>JpnForPhpBundle</strong>: integrates JpnForPhp as a Symfony2 Bundle - <a href="http://github.com/albertofem/JpnForPhpBundle">JpnForPhpBundle</a> (by <a href="https://github.com/albertofem" class="user-mention">@albertofem</a>)</li>
-</ul><p>Sponsored by <a href="http://www.openjisho.com">Openjisho.com</a>.</p>
-      </section>
-    </div>
+</ul>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Jpnforphp maintained by <a href="https://github.com/mbilbille">mbilbille</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mbilbille/jpnforphp">Jpnforphp</a> is maintained by <a href="https://github.com/mbilbille">mbilbille</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -187,7 +141,6 @@ Here is a sample <code>.yaml</code> file</p>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
