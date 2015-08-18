@@ -28,7 +28,7 @@
   "target-dir": "JpnForPhp/Inflector",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.6-dev"
+      "dev-master": "0.7-dev"
     }
   }
 }

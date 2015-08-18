@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done
 
+* 0.6.0 (2015-08-18)
+  * bd2b872 cff3de7 Bug fix #41 
+  * a09fd39 Bug fix #42  
+  * a754e6d Bug fix #43
+  * f2a879b Add helper method `countSubString()`
+  * cde9ec7 Add component `Converter`
+  * 804b8e7 Add component `Inflector`
+  
 * 0.5.3 (2015-03-05)
   * 8a2f4f9: Bug fix #38
 
