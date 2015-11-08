@@ -69,7 +69,7 @@ To run the test suite, you need [Composer](http://getcomposer.org/):
 
 ```bash
     $ php composer.phar install
-    $ vendor/bin/phpunit
+    $ ./vendor/bin/phpunit
 ```
 
 ## Want to help?
