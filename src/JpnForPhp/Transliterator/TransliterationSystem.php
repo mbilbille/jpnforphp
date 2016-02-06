@@ -32,7 +32,7 @@ abstract class TransliterationSystem
      */
     public function __construct($file)
     {
-        $this->configuration = Yaml::parse($file);
+        $this->configuration = Yaml::parse(file_get_contents($file));
     }
 
     /**
