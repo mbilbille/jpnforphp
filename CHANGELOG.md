@@ -2,6 +2,10 @@
 
 This changelog references the relevant changes (bug and security fixes) done
 
+* 0.6.1 (2016-02-06)
+  * 144807a Bug fix #57
+  * c4568a2 Bug fix #46
+
 * 0.6.0 (2015-08-18)
   * bd2b872 cff3de7 Bug fix #41 
   * a09fd39 Bug fix #42  
