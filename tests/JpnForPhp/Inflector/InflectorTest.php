@@ -167,3 +167,4 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->inflectVerbFromFile('愛する', 'aisuru');
     }
+}
