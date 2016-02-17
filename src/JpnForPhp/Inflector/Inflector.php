@@ -241,6 +241,15 @@ class Inflector
                 'base_e' => 'せ',
                 'volition' => '',
                 'connective' => 'して',
+            ),
+            's-s' => array(
+                'past' => 'した',
+                'suspensive' => 'して',
+                'base_i' => 'し',
+                'base_neg' => 'し',
+                'base_e' => 'せ',
+                'volition' => '',
+                'connective' => 'して',
             )
         );
         foreach ($verbs as $key => &$values) {
@@ -321,11 +330,20 @@ class Inflector
             }
         } elseif ($type == 's-i') {
             $kanaRadical = '';
-        } else {
+        } elseif ($type == 's-s') {
+            // Remove 'する' part
+            $kanaRadical = Helper::subString($kana, 0, Analyzer::length($kana) - 2);
+        }
+        else {
             $kanaRadical = Helper::subString($kana, 0, Analyzer::length($kana) - 1);
         }
         if (!empty($kanji)) {
-            $kanjiRadical = Helper::subString($kanji, 0, Analyzer::length($kanji) - 1);
+           if ($type == 's-s') {
+               // Remove 'する' part
+               $kanjiRadical = Helper::subString($kanji, 0, Analyzer::length($kanji) - 2);
+           } else {
+               $kanjiRadical = Helper::subString($kanji, 0, Analyzer::length($kanji) - 1);
+           }
         } else {
             $kanjiRadical = null;
         }
@@ -333,7 +351,7 @@ class Inflector
     }
 
     /**
-     * Generates conjugation for the given verb to the given type using the 
+     * Generates conjugation for the given verb to the given type using the
      * given mappings
      *
      * @param array $verb
@@ -567,17 +585,17 @@ class Inflector
     public static function inflect($verb, $forms = array())
     {
         $result = array();
-        
+
         if (!$verb) {
             return $result;
         }
-        
+
         $type = $verb['type'];
         $mapVerbs = self::makeVerbMappings();
         if (!array_key_exists($type, $mapVerbs)) {
             throw new Exception("Unknown verb type : " . $type);
         }
-        
+
         $mappings = $mapVerbs[$type];
         if (is_string($forms)) {
             return self::inflectForm($verb, $mappings, $forms);

@@ -162,4 +162,8 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
         $this->inflectVerbFromFile('する', 'suru');
     }
 
-}
+    // Fix s-s verb support #58
+    public function testInflectSS()
+    {
+        $this->inflectVerbFromFile('愛する', 'aisuru');
+    }

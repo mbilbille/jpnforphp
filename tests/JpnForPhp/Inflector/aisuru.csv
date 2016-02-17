@@ -1,0 +1,9 @@
+NON_PAST_POLITE,愛します,あいします
+NON_PAST_NEGATIVE,愛しない,あいしない
+NON_PAST_NEGATIVE_POLITE,愛しません,あいしません
+PAST,愛した,あいした
+PAST_POLITE,愛しました,あいしました
+PAST_NEGATIVE,愛しなかった,あいしなかった
+PAST_NEGATIVE_POLITE,愛しませんでした,あいしませんでした
+BASE_CONNECTIVE,愛して-,あいして-
+SUSPENSIVE_FORM,愛して,あいして
