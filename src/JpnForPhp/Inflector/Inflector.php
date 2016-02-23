@@ -239,8 +239,14 @@ class Inflector
                 'base_i' => 'し',
                 'base_neg' => 'し',
                 'base_e' => 'せ',
-                'volition' => '',
+                'base_passive' => 'さ',
+                'base_fact' => 'さ',
+                'imper_hard' => 'しろ',
+                'volition' => 'そう',
                 'connective' => 'して',
+                'gerund' => 'した',
+                'potential' => 'でき',
+                'cond' => 'すれ',
             ),
             's-s' => array(
                 'past' => 'した',
@@ -248,8 +254,14 @@ class Inflector
                 'base_i' => 'し',
                 'base_neg' => 'し',
                 'base_e' => 'せ',
-                'volition' => '',
+                'base_passive' => 'さ',
+                'base_fact' => 'さ',
+                'imper_hard' => 'しろ',
+                'volition' => 'そう',
                 'connective' => 'して',
+                'gerund' => 'した',
+                'potential' => 'でき',
+                'cond' => 'すれ',
             )
         );
         foreach ($verbs as $key => &$values) {
@@ -284,8 +296,10 @@ class Inflector
         if (!array_key_exists('imper_hard', $verb)) {
             $verb['imper_hard'] = $verb['base_e'];
         }
+        if (!array_key_exists('gerund', $verb)) {
+            $verb['gerund'] = $verb['base_i'] . $gerund;
+        }
         $verb['imperative_neutral'] = $verb['base_i'] . $imperative_neutral;
-        $verb['gerund'] = $verb['base_i'] . $gerund;
         $verb['polite'] = $verb['base_i'] . $polite;
         $verb['volition_polite'] = $verb['base_i'] . $volition_polite;
         $verb['polite_past_neg'] = $verb['base_i'] . $polite_past_neg;
@@ -466,10 +480,20 @@ class Inflector
                 $suffix = $mappings['factitive_c'];
                 break;
             case self::POTENTIAL_NEUTRAL:
-                $suffix = $mappings['base_e'] . 'る';
+                if (array_key_exists('potential', $mappings)) {
+                    $suffix = $mappings['potential'];
+                } else {
+                    $suffix = $mappings['base_e'];
+                }
+                $suffix .= 'る';
                 break;
             case self::POTENTIAL_POLITE:
-                $suffix = $mappings['base_e'] . 'ます';
+                if (array_key_exists('potential', $mappings)) {
+                    $suffix = $mappings['potential'];
+                } else {
+                    $suffix = $mappings['base_e'];
+                }
+                $suffix .= 'ます';
                 break;
             case self::CONDITIONAL_BA:
                 if (array_key_exists('cond', $mappings)) {
