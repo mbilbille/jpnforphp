@@ -7,7 +7,7 @@ PAST_NEGATIVE,愛しなかった,あいしなかった
 PAST_NEGATIVE_POLITE,愛しませんでした,あいしませんでした
 BASE_CONNECTIVE,愛して-,あいして-
 SUSPENSIVE_FORM,愛して,あいして
-PROGRESSIVE,,愛している
+PROGRESSIVE,愛している,あいしている
 PROGRESSIVE_POLITE,愛しています,あいしています
 PROGRESSIVE_NEGATIVE,愛してない,あいしてない
 PROGRESSIVE_NEGATIVE_POLITE,愛していません,あいしていません
