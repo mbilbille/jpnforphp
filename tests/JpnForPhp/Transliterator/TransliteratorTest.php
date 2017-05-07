@@ -66,6 +66,15 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
+    public function testTransliterateToRomajiWithHepburnWhenLatinOnlyForMultipleTimes()
+    {
+        $result = self::$hepburn->transliterate('hello:world');
+        $this->assertEquals('hello:world', $result);
+        
+        $result = self::$hepburn->transliterate('it:works');
+        $this->assertEquals('it:works', $result);
+    }
+
     public function testTransliterateToRomajiWithHepburnWhenLongVowels()
     {
         $result = self::$hepburn->transliterate('がっこう');
