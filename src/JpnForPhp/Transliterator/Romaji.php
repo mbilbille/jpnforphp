@@ -189,6 +189,7 @@ class Romaji extends TransliterationSystem
     {
         if ($this->latinCharacters) {
             $str = vsprintf($str, $this->latinCharacters);
+            $this->latinCharacters = array();
         }
 
         return $str;
