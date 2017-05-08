@@ -66,13 +66,13 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('yahoo YAHOO', $result);
     }
 
-    public function testTransliterateToRomajiWithHepburnWhenLatinOnlyForMultipleTimes()
+    public function testTransliterateToRomajiWithHepburnWhenLatinForMultipleTimes()
     {
-        $result = self::$hepburn->transliterate('hello:world');
-        $this->assertEquals('hello:world', $result);
-        
-        $result = self::$hepburn->transliterate('it:works');
-        $this->assertEquals('it:works', $result);
+        $result = self::$hepburn->transliterate('1st time, いかいめ');
+        $this->assertEquals('1st time, ikaime', $result);
+
+        $result = self::$hepburn->transliterate('2nd time, にかいめ');
+        $this->assertEquals('2nd time, nikaime', $result);
     }
 
     public function testTransliterateToRomajiWithHepburnWhenLongVowels()
@@ -80,13 +80,13 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$hepburn->transliterate('がっこう');
         $this->assertEquals('gakkō', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnWhenLongA()
     {
         $result = self::$hepburn->transliterate('おばあさん');
         $this->assertEquals('obāsan', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnWhenLongI()
     {
         $result = self::$hepburn->transliterate('おにいさん');
@@ -140,7 +140,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$hepburn->transliterate('あんない');
         $this->assertEquals('annai', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnWhenNFollowedByLabialConsonant()
     {
         $result = self::$hepburn->transliterate('ぐんま');
@@ -152,7 +152,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$hepburn->transliterate('｛｝（）［］【】、，…‥。・〽「」『』〜：！？　');
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnTraditional()
     {
         $result = self::$hepburn_traditional->transliterate('くるま');
@@ -170,13 +170,13 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$hepburn_traditional->transliterate('がっこう');
         $this->assertEquals('gakkō', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnTraditionalWhenLongA()
     {
         $result = self::$hepburn_traditional->transliterate('おばあさん');
         $this->assertEquals('obaasan', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnTraditionalWhenLongI()
     {
         $result = self::$hepburn_traditional->transliterate('おにいさん');
@@ -230,7 +230,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$hepburn_traditional->transliterate('あんない');
         $this->assertEquals('annai', $result);
     }
-    
+
     public function testTransliterateToRomajiWithHepburnTraditionalWhenNFollowedByLabialConsonant()
     {
         $result = self::$hepburn_traditional->transliterate('ぐんま');
@@ -493,19 +493,19 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$kana->transliterate('kuruma');
         $this->assertEquals('くるま', $result);
     }
-    
+
     public function testTransliterateToKanaWithWhitespaceStripping()
     {
         $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_ALL);
         $this->assertEquals('なごやじょう', $result);
     }
-    
+
     public function testTransliterateToKanaWithAutoWhitespaceStripping()
     {
         $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_AUTO);
         $this->assertEquals('なごやじょう', $result);
     }
-    
+
     public function testTransliterateToKanaWithAutoWhitespaceStrippingOnLongText()
     {
         $result = self::$kana->transliterate('Nagoya ha kyōto no higashi no hou ni aru', Kana::STRIP_WHITESPACE_AUTO);
@@ -589,43 +589,43 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $result = self::$katakana->transliterate('wha');
         $this->assertEquals('ウァ', $result);
     }
-    
+
     public function testTransliterateToKana41_1()
     {
         $result = self::$hiragana->transliterate('JR東日本');
         $this->assertEquals('JR東日本', $result);
     }
-    
+
     public function testTransliterateToKana41_2()
     {
         $result = self::$hiragana->transliterate('NHKオンライン');
         $this->assertEquals('NHKオンライン', $result);
     }
-    
+
     public function testTransliterateToKana41_3()
     {
         $result = self::$hiragana->transliterate('Kuruma');
         $this->assertEquals('くるま', $result);
-    }   
-    
+    }
+
     public function testTransliterateToKana41_4()
     {
         $result = self::$hiragana->transliterate('TOYOTA no kuruma');
         $this->assertEquals('TOYOTA　の　くるま', $result);
     }
-    
+
     public function testTransliterateToKana41_5()
     {
         $result = self::$katakana->transliterate('L saizu');
         $this->assertEquals('L　サイズ', $result);
     }
-    
+
     public function testTransliterateToKana41_6()
     {
         $result = self::$hiragana->transliterate('Ōsaka');
         $this->assertEquals('おうさか', $result);
     }
-    
+
     public function testTransliterateToKana41_7()
     {
         $result = self::$hiragana->transliterate('Tōkyō');
