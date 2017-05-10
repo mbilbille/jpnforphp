@@ -443,7 +443,7 @@ class Converter
             $exponentRemainder = $exponent % 4;
             $closestExponent = $exponent - $exponentRemainder;
             $power = pow(10, $closestExponent);
-            $remainder = $number % $power;
+            $remainder = bcmod($number, $power);
             $roundPart = $number - $remainder;
             $multiplier = (int)(($number - $remainder) / $power);
             if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
@@ -459,7 +459,7 @@ class Converter
             $result = '';
             while ($exponent > 0) {
                 $power = pow(10, $exponent);
-                $remainder = $number % $power;
+                $remainder = bcmod($number, $power);
                 $roundPart = $number - $remainder;
                 $multiplier = (int)(($number - $remainder) / $power);
                 if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
