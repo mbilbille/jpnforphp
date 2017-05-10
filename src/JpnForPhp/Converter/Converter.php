@@ -150,16 +150,23 @@ class Converter
     );
 
     // Mapping numeral and their exceptions
-    private static $readingExceptions = array(
-        300 => 'sanbyaku',
-        600 => 'roppyaku',
-        800 => 'happyaku',
-        1000 => 'issen',
-        3000 => 'sanzen',
-        8000 => 'hassen',
-        1000000000000 => 'ichō',
-        8000000000000 => 'hatchō'
+    // Use numeral as String here to support large integer
+    private static $mapReadingExceptions = array(
+        '300' => 'sanbyaku',
+        '600' => 'roppyaku',
+        '800' => 'happyaku',
+        '1000' => 'issen',
+        '3000' => 'sanzen',
+        '8000' => 'hassen',
+        '1000000000000' => 'ichō',
+        '8000000000000' => 'hatchō'
     );
+    private static function getReadingException($number) {
+        if(!array_key_exists('' . $number, self::$mapReadingExceptions)) {
+            return false;
+        }
+        return self::$mapReadingExceptions['' . $number];
+    }
 
     public static $mapEras = array(
         array('year' => 645, 'romaji' => "Taika", 'kanji' => '大化', 'kana' => 'たいか'),
@@ -446,10 +453,10 @@ class Converter
             $remainder = bcmod($number, $power);
             $roundPart = $number - $remainder;
             $multiplier = (int)(($number - $remainder) / $power);
-            if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
+            if ($type != self::NUMERAL_READING || !self::getReadingException($roundPart)) {
                 $result = self::toJapaneseNumeral($multiplier, $type) . $separator . $mapPowersOfTen[$closestExponent];
             } else {
-                $result = self::$readingExceptions[$roundPart];
+                $result = self::getReadingException($roundPart);
             }
             if ($remainder != 0) {
                 $result .= rtrim($separator . self::toJapaneseNumeral($remainder, $type));
@@ -462,13 +469,13 @@ class Converter
                 $remainder = bcmod($number, $power);
                 $roundPart = $number - $remainder;
                 $multiplier = (int)(($number - $remainder) / $power);
-                if ($type != self::NUMERAL_READING || !array_key_exists($roundPart, self::$readingExceptions)) {
+                if ($type != self::NUMERAL_READING || !self::getReadingException($roundPart)) {
                     if ($multiplier != 1 || $exponent == 4) {
                         $result .= $mapDigits[$multiplier] . $separator;
                     }
                     $result .= $mapPowersOfTen[$exponent] . $separator;
                 } else {
-                    $result .= self::$readingExceptions[$roundPart] . $separator;
+                    $result .= self::getReadingException($roundPart) . $separator;
                 }
                 $number = $remainder;
                 $exponent = strlen($number) - 1;
