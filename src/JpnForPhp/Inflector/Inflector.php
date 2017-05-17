@@ -262,18 +262,13 @@ class Inflector
                 'cond' => 'すれ',
             ),
             'z' => array(
-                'past' => 'した',
-                'suspensive' => 'して',
-                'base_i' => 'し',
-                'base_neg' => 'し',
-                'base_e' => 'せ',
-                'base_passive' => 'さ',
-                'base_fact' => 'さ',
-                'imper_hard' => 'しろ',
-                'volition' => 'そう',
-                'connective' => 'して',
-                'potential' => 'でき',
-                'cond' => 'すれ',
+                'past' => 'った',
+                'suspensive' => 'って',
+                'base_i' => 'り',
+                'base_neg' => 'ら',
+                'base_e' => 'れ',
+                'volition' => 'ろう',
+                'connective' => 'って'
             )
         );
         foreach ($verbs as $key => &$values) {
