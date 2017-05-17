@@ -167,4 +167,10 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->inflectVerbFromFile('愛する', 'aisuru');
     }
+
+    // Fix z verb support #59
+    public function testInflectZ()
+    {
+        $this->inflectVerbFromFile('困ずる', 'kouzuru');
+    }
 }
