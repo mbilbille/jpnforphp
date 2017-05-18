@@ -40,10 +40,11 @@ class Inflector
     const PROGRESSIVE_NEGATIVE_POLITE = "PROGRESSIVE_NEGATIVE_POLITE";
     const PASSIVE = "PASSIVE";
     const PASSIVE_SUSPENSIVE = "PASSIVE_SUSPENSIVE";
+    const IMPERATIVE = "IMPERATIVE";
+    const IMPERATIVE_NEGATIVE = "IMPERATIVE_NEGATIVE";
     const IMPERATIVE_NEUTRAL = "IMPERATIVE_NEUTRAL";
     const IMPERATIVE_POLITE = "IMPERATIVE_POLITE";
     const IMPERATIVE_POLITE_NEGATIVE = "IMPERATIVE_POLITE_NEGATIVE";
-    const IMPERATIVE_HARD = "IMPERATIVE_HARD";
     const OPTATIVE = "OPTATIVE";
     const OPTATIVE_NEGATIVE_FAMILIAR = "OPTATIVE_NEGATIVE_FAMILIAR";
     const OPTATIVE_NEGATIVE_POLITE_1 = "OPTATIVE_NEGATIVE_POLITE_1";
@@ -84,10 +85,11 @@ class Inflector
         self::PROGRESSIVE_NEGATIVE_POLITE,
         self::PASSIVE,
         self::PASSIVE_SUSPENSIVE,
+        self::IMPERATIVE,
+        self::IMPERATIVE_NEGATIVE,
         self::IMPERATIVE_NEUTRAL,
         self::IMPERATIVE_POLITE,
         self::IMPERATIVE_POLITE_NEGATIVE,
-        self::IMPERATIVE_HARD,
         self::OPTATIVE,
         self::OPTATIVE_NEGATIVE_FAMILIAR,
         self::OPTATIVE_NEGATIVE_POLITE_1,
@@ -127,7 +129,7 @@ class Inflector
                 'base_neg' => '',
                 'base_fact' => 'さ',
                 'base_passive' => 'ら',
-                'imper_hard' => 'ろ',
+                'imperative' => 'ろ',
                 'base_e' => 'れ',
                 'volition' => 'よう',
             ),
@@ -194,6 +196,7 @@ class Inflector
                 'base_passive' => 'れ',
                 'base_neg' => 'ら',
                 'base_e' => 'あれ',
+                'imperative' => 'れ',
                 'volition' => 'あろう',
             ),
             '5m' => array(
@@ -217,7 +220,7 @@ class Inflector
                 'suspensive' => 'んで',
                 'base_i' => 'に',
                 'base_neg' => 'な',
-                'imper_hard' => 'ね',
+                'imperative' => 'ね',
                 'base_e' => 'べ',
                 'volition' => 'のう',
             ),
@@ -228,7 +231,7 @@ class Inflector
                 'base_neg' => '',
                 'base_fact' => 'さ',
                 'base_passive' => 'ら',
-                'imper_hard' => 'い',
+                'imperative' => 'い',
                 'base_e' => 'られ',
                 'cond' => 'れ',
                 'volition' => 'よう',
@@ -241,7 +244,7 @@ class Inflector
                 'base_e' => 'せ',
                 'base_passive' => 'さ',
                 'base_fact' => 'さ',
-                'imper_hard' => 'しろ',
+                'imperative' => 'しろ',
                 'volition' => 'そう',
                 'connective' => 'して',
                 'potential' => 'でき',
@@ -255,7 +258,7 @@ class Inflector
                 'base_e' => 'せ',
                 'base_passive' => 'さ',
                 'base_fact' => 'さ',
-                'imper_hard' => 'しろ',
+                'imperative' => 'しろ',
                 'volition' => 'そう',
                 'connective' => 'して',
                 'potential' => 'でき',
@@ -300,8 +303,8 @@ class Inflector
         if (!array_key_exists('base_passive', $verb)) {
             $verb['base_passive'] = $verb['base_neg'];
         }
-        if (!array_key_exists('imper_hard', $verb)) {
-            $verb['imper_hard'] = $verb['base_e'];
+        if (!array_key_exists('imperative', $verb)) {
+            $verb['imperative'] = $verb['base_e'];
         }
         if (!array_key_exists('gerund', $verb)) {
             $verb['gerund'] = $verb['base_i'] . $gerund;
@@ -335,8 +338,8 @@ class Inflector
                 case self::PAST_NEGATIVE:
                 case self::PASSIVE:
                 case self::PASSIVE_SUSPENSIVE:
+                case self::IMPERATIVE:
                 case self::IMPERATIVE_POLITE_NEGATIVE:
-                case self::IMPERATIVE_HARD:
                 case self::FACTITIVE:
                 case self::FACTITIVE_SHORTENED:
                 case self::POTENTIAL_NEUTRAL:
@@ -435,6 +438,12 @@ class Inflector
             case self::PASSIVE_SUSPENSIVE:
                 $suffix = $mappings['base_passive'] . 'れて';
                 break;
+            case self::IMPERATIVE:
+                $suffix = $mappings['imperative'];
+                break;
+            case self::IMPERATIVE_NEGATIVE:
+                $suffix = 'な';
+                break;
             case self::IMPERATIVE_NEUTRAL:
                 $suffix = $mappings['imperative_neutral'];
                 break;
@@ -443,9 +452,6 @@ class Inflector
                 break;
             case self::IMPERATIVE_POLITE_NEGATIVE:
                 $suffix = $mappings['neg'] . 'でください';
-                break;
-            case self::IMPERATIVE_HARD:
-                $suffix = $mappings['imper_hard'];
                 break;
             case self::OPTATIVE:
                 $suffix = $mappings['base_i'] . 'たい';
@@ -534,14 +540,20 @@ class Inflector
             default:
                 throw new Exception('Unknown form ' . $form);
         }
-        $kanjiRadical = $radicals['kanji'];
-        if (!empty($kanjiRadical)) {
-            $kanjiValue = $kanjiRadical . $suffix;
+        // Fix #62 support IMPERATIVE_NEGATIVE ; do not use radical with this form
+        // but dictionary-form.
+        $base = array('kanji' => '', 'kana' => '');
+        if($form == self::IMPERATIVE_NEGATIVE) {
+            $base['kanji'] = !empty($verb['kanji']) ? $verb['kanji'] : null;
+            $base['kana'] = $verb['kana'];
         } else {
-            $kanjiValue = null;
+            $base['kanji'] = !empty($radicals['kanji']) ? $radicals['kanji'] : null;
+            $base['kana'] = $radicals['kana'];
         }
-        $kanaValue = $radicals['kana'] . $suffix;
-        return array('kanji' => $kanjiValue, 'kana' => $kanaValue);
+
+        return array_map(function($val) use ($suffix) {
+            return ($val !== null) ? ($val . $suffix) : $val;
+        }, $base);
     }
 
     /**

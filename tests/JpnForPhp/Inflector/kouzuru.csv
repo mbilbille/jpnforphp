@@ -13,10 +13,11 @@ PROGRESSIVE_NEGATIVE,困ずってない,こうずってない
 PROGRESSIVE_NEGATIVE_POLITE,困ずっていません,こうずっていません
 PASSIVE,困ずられる,こうずられる
 PASSIVE_SUSPENSIVE,困ずられて,こうずられて
+IMPERATIVE,困ずれ,こうずれ
+IMPERATIVE_NEGATIVE,困ずるな,こうずるな
 IMPERATIVE_NEUTRAL,困ずりなさい,こうずりなさい
 IMPERATIVE_POLITE,困ずってください,こうずってください
 IMPERATIVE_POLITE_NEGATIVE,困ずらないでください,こうずらないでください
-IMPERATIVE_HARD,困ずれ,こうずれ
 OPTATIVE,困ずりたい,こうずりたい
 OPTATIVE_NEGATIVE_FAMILIAR,困ずりたくない,こうずりたくない
 OPTATIVE_NEGATIVE_POLITE_1,困ずりたくないです,こうずりたくないです
