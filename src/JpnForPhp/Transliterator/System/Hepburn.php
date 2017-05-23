@@ -9,16 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace JpnForPhp\Transliterator\Romaji;
-
-use JpnForPhp\Transliterator;
+namespace JpnForPhp\Transliterator\System;
 
 /**
  * Transliteration system class to support Hepburn romanization system.
  *
  * @author Matthieu Bilbille (@mbibille)
  */
-class Hepburn extends Transliterator\Romaji
+class Hepburn extends Romaji
 {
     private $mapping = array(
       'あ' => 'a', 'い' => 'i', 'う' => 'u', 'え' => 'e', 'お' => 'o',
@@ -60,29 +58,21 @@ class Hepburn extends Transliterator\Romaji
       'きぇ' => 'kye', 'ぎぇ' => 'gye',
       'くぁ' => 'kwa', 'くぃ' => 'kwi', 'くぇ' => 'kwe', 'くぉ' => 'kwo',
       'ぐぁ' => 'gwa', 'ぐぃ' => 'gwi', 'ぐぇ' => 'gwe', 'ぐぉ' => 'gwo',
-      'しぇ' => 'she',
-      'じぇ' => 'je',
-      'すぃ' => 'si',
-      'ずぃ' => 'zi',
+      'しぇ' => 'she', 'じぇ' => 'je',
+      'すぃ' => 'si', 'ずぃ' => 'zi',
       'ちぇ' => 'che',
       'つぁ' => 'tsa', 'つぃ' => 'tsi', 'つぇ' => 'tse', 'つぉ' => 'tso',
       'つゅ' => 'tsyu',
       'てぃ' => 'ti', 'てぅ' => 'tu',
       'てゅ' => 'tyu',
       'でぃ' => 'di', 'でぅ' => 'du',
-      'でゅ' => 'dyu',
-      'にぇ' => 'nye',
-      'ひぇ' => 'hye',
-      'びぇ' => 'bye',
-      'ぴぇ' => 'pye',
+      'でゅ' => 'dyu', 'にぇ' => 'nye', 'ひぇ' => 'hye', 'びぇ' => 'bye', 'ぴぇ' => 'pye', 'みぇ' => 'mye', 'りぇ' => 'rye',
       'ふぁ' => 'fa', 'ふぃ' => 'fi', 'ふぇ' => 'fe', 'ふぉ' => 'fo',
       'ふゃ' => 'fya', 'ふゅ' => 'fyu', 'ふぃぇ' => 'fye', 'ふょ' => 'fyo',
       'ほぅ' => 'hu',
-      'みぇ' => 'mye',
-      'りぇ' => 'rye',
       '　' => ' ',
       '、' => ', ',
-      '，' => ',  ',
+      '，' => ', ',
       '：' => ':',
       '・' => '-',
       '。' => '.',
@@ -130,7 +120,7 @@ class Hepburn extends Transliterator\Romaji
     /**
      * Override __toString().
      *
-     * @see TransliterationSystem
+     * @see System
      */
     public function __toString()
     {
@@ -140,38 +130,32 @@ class Hepburn extends Transliterator\Romaji
     /**
      * Override transliterate().
      *
-     *  Workflow:
-     *   1/ Default characters
-     *   2/ Sokuon
-     *   3/ Choonpu
-     *   4/ Long vowels
-     *   5/ Particles
-     *
-     * @see TransliterationSystem
+     * @see System
      */
     public function transliterate($str) {
 
-      // 1/ Default characters
+      $str = self::preTransliterate($str);
+
+      // Workflow:
+      //  1/ Default characters
+      //  2/ Sokuon
+      //    As per Hepburn system ch > tch
+      //    (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
+      //  3/ Choonpu
+      //  4/ Long vowels
+      //  5/ Particles
+
       $str = self::transliterateDefaultCharacters($str, $this->mapping);
 
-      // 2/ Sokuon
-      // As per Hepburn system ch > tch
-      // (http://en.wikipedia.org/wiki/Hepburn_romanization#Double_consonants)
       $str = self::transliterateSokuon($str);
       $str = str_replace('cch', 'tch', $str);
 
-      // 3/ Choonpu
       $str = self::transliterateChoonpu($str, $this->macrons);
 
-      // 4/ Long vowels
       $str = self::transliterateLongVowels($str, $this->longVowels);
 
-      // 5/ Particles
       $str = self::transliterateParticles($str, $this->particles);
 
-      return $str;
+      return self::postTransliterate($str);
     }
-
-
-
 }

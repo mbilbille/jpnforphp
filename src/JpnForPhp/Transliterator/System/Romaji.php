@@ -9,26 +9,29 @@
  * file that was distributed with this source code.
  */
 
-namespace JpnForPhp\Transliterator;
+namespace JpnForPhp\Transliterator\System;
 
 /**
  * Transliteration system class to support transliteration into Romaji alphabet.
  *
  * @author Matthieu Bilbille (@mbibille)
  */
-abstract class Romaji implements TransliterationSystem
+abstract class Romaji implements System
 {
     /**
      * @var array Store latin characters which are escaped.
      */
     private $latinCharacters = array();
 
+
     /**
-     * Override preTransliterate().
+     * Prepare given string for transliteration
      *
-     * @see TransliterationSystem
+     * @param string $str        String to be transliterated.
+     *
+     * @return string A string ready for transliteration.
      */
-    public function preTransliterate($str)
+    protected function preTransliterate($str)
     {
         $str = $this->escapeLatinCharacters($str);
         $str = mb_convert_kana($str, 'c', 'UTF-8');
@@ -36,17 +39,21 @@ abstract class Romaji implements TransliterationSystem
         return $str;
     }
 
+
     /**
-     * Override postTransliterate().
+     * Postprocess string after transliteration
      *
-     * @see TransliterationSystem
+     * @param string $str        String transliterated.
+     *
+     * @return string A string ready for output.
      */
-    public function postTransliterate($str)
+    protected function postTransliterate($str)
     {
         $str = $this->unescapeLatinCharacters($str);
 
         return $str;
     }
+
 
     /**
      * Use the specified mapping to transliterate the given string into romaji
@@ -60,6 +67,7 @@ abstract class Romaji implements TransliterationSystem
     {
         return strtr($str, $mapping);
     }
+
 
     /**
      * Transliterate Sokuon (http://en.wikipedia.org/wiki/Sokuon) character into
@@ -94,6 +102,7 @@ abstract class Romaji implements TransliterationSystem
         }, $str);
     }
 
+
     /**
      * Transliterate long vowels as per the given mapping.
      *
@@ -106,6 +115,7 @@ abstract class Romaji implements TransliterationSystem
     {
         return str_replace(array_keys($longVowels), array_values($longVowels), $str);
     }
+
 
     /**
      * Transliterate particules as per the given mapping.
@@ -120,6 +130,7 @@ abstract class Romaji implements TransliterationSystem
         return str_replace(array_keys($particles), array_values($particles), $str);
     }
 
+
     /**
      * Transliterate character 'n' to 'm' before labial consonants.
      *
@@ -132,15 +143,17 @@ abstract class Romaji implements TransliterationSystem
         return preg_replace('/n([bmp])/u', 'm$1', $str);
     }
 
+
     /**
      * Escapes latin characters [a-z].
      */
     private function escapeLatinCharacters($str)
     {
-        $str = preg_replace_callback('/([a-z]+)/', array($this, 'espaceLatinCharactersCallback'), $str);
+        $str = preg_replace_callback('/([a-z]+)/', array($this, "espaceLatinCharactersCallback"), $str);
 
         return $str;
     }
+
 
     /**
      * Private callback for escapeLatinCharacters().
@@ -151,6 +164,7 @@ abstract class Romaji implements TransliterationSystem
 
         return '%s';
     }
+
 
     /**
      * Unescapes latin characters [a-z].
