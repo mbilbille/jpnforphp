@@ -4,7 +4,7 @@ JpnForPhp is a library for PHP that provides support and many helpers to play wi
 
 [![build status](https://travis-ci.org/mbilbille/jpnforphp.svg)](http://travis-ci.org/mbilbille/jpnforphp)
 
-The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: **split, extract, etc.** as well as more specialized and powerful features: **transliteration, inflection, conversion**, and so one. 
+The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: **split, extract, etc.** as well as more specialized and powerful features: **transliteration, inflection, conversion**, and so one.
 
 
 ## Installation
@@ -18,7 +18,6 @@ The recommended way to install JpnForPhp is through [Composer](http://getcompose
     }
 }
 ```
-
 
 ## Components
 
@@ -39,8 +38,12 @@ JpnForPhp supports all mainstream romanization systems:
 * [Nihon](http://en.wikipedia.org/wiki/Nihon-shiki_romanization)
 * [Wapuro](http://en.wikipedia.org/wiki/W%C4%81puro_r%C5%8Dmaji)
 
-*Starting from the version 0.5, all the transliteration workflow is defined in ```.yaml``` file.*
-
+:warning: Component `Transliterator` has been rewritten in 0.7, use it as below:
+```php
+  $transliterator = new Transliterator();
+  $transliterator->setSystem(new Hepburn());
+  $transliterator->transliterate('くるま');
+```
 
 #### Converter
 
@@ -53,7 +56,7 @@ JpnForPhp supports all mainstream romanization systems:
 
 #### Inflector
 
-JpnForPhp supports many verbal form.  
+JpnForPhp supports many verbal form.
 [List of all verbal forms](https://github.com/mbilbille/jpnforphp/blob/develop/src/JpnForPhp/Inflector/Inflector.php#L28)
 
 
