@@ -24,9 +24,8 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
     protected static $kunrei;
     protected static $nihon;
     protected static $wapuro;
-    // protected static $kana;
-    // protected static $hiragana;
-    // protected static $katakana;
+    protected static $hiragana;
+    protected static $katakana;
 
     public static function setUpBeforeClass()
     {
@@ -35,9 +34,8 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         self::$kunrei = (new Transliterator())->setSystem(new System\Kunrei());
         self::$nihon = (new Transliterator())->setSystem(new System\Nihon());
         self::$wapuro = (new Transliterator())->setSystem(new System\Wapuro());
-        // self::$kana = new Kana();
-        // self::$hiragana = new Kana('hiragana');
-        // self::$katakana = new Kana('katakana');
+        self::$hiragana = (new Transliterator())->setSystem(new System\Hiragana());
+        self::$katakana = (new Transliterator())->setSystem(new System\Katakana());
     }
 
     public function testTransliterateToRomajiWithHepburn()
@@ -481,147 +479,153 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('{}()[][], , …….-\'\'\'""~:!? ', $result);
     }
 
-    // public function testTransliterateToKanaWithDefaultParameters()
-    // {
-    //     $result = self::$kana->transliterate('kuruma');
-    //     $this->assertEquals('くるま', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithDefaultParameters()
+    {
+        $result = self::$hiragana->transliterate('kuruma');
+        $this->assertEquals('くるま', $result);
+    }
 
-    // public function testTransliterateToKanaWithWhitespaceStripping()
-    // {
-    //     $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_ALL);
-    //     $this->assertEquals('なごやじょう', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithWhitespaceStripping()
+    {
+        $system = (new System\Hiragana())->setStripWhitespaceMode(System\Hiragana::STRIP_WHITESPACE_ALL);
 
-    // public function testTransliterateToKanaWithAutoWhitespaceStripping()
-    // {
-    //     $result = self::$kana->transliterate('Nagoya jō', Kana::STRIP_WHITESPACE_AUTO);
-    //     $this->assertEquals('なごやじょう', $result);
-    // }
+        $result = self::$hiragana->transliterate('Nagoya jō', $system);
+        $this->assertEquals('なごやじょう', $result);
+    }
 
-    // public function testTransliterateToKanaWithAutoWhitespaceStrippingOnLongText()
-    // {
-    //     $result = self::$kana->transliterate('Nagoya ha kyōto no higashi no hou ni aru', Kana::STRIP_WHITESPACE_AUTO);
-    //     $this->assertEquals('なごや　は　きょうと　の　ひがし　の　ほう　に　ある', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithAutoWhitespaceStripping()
+    {
+        $system  = (new System\Hiragana())->setStripWhitespaceMode(System\Hiragana::STRIP_WHITESPACE_AUTO);
 
-    // public function testTransliterateToKanaUsingHiraganaInNormalCase()
-    // {
-    //     $result = self::$hiragana->transliterate('kuruma');
-    //     $this->assertEquals('くるま', $result);
-    // }
+        $result = self::$hiragana->transliterate('Nagoya jō', $system);
+        $this->assertEquals('なごやじょう', $result);
+    }
 
-    // public function testTransliterateToKanaUsingHiraganaWithAnEmptyString()
-    // {
-    //     $result = self::$hiragana->transliterate('');
-    //     $this->assertEquals('', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithAutoWhitespaceStrippingOnLongText()
+    {
+        $system = (new System\Hiragana())->setStripWhitespaceMode(System\Hiragana::STRIP_WHITESPACE_AUTO);
 
-    // public function testTransliterateToKanaUsingHiraganaWithMacron()
-    // {
-    //     $result = self::$hiragana->transliterate('gakkō ni ikimasu');
-    //     $this->assertEquals('がっこう　に　いきます', $result);
-    // }
+        $result = self::$hiragana->transliterate('Nagoya ha kyōto no higashi no hou ni aru', $system);
+        $this->assertEquals('なごや　は　きょうと　の　ひがし　の　ほう　に　ある', $result);
+    }
 
-    // public function testTransliterateToKanaUsingHiraganaWithPunctuationMarks()
-    // {
-    //     $result = self::$hiragana->transliterate('\'iie\'teiimashita');
-    //     $this->assertEquals('「いいえ」ていいました', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaInNormalCase()
+    {
+        $result = self::$hiragana->transliterate('kuruma');
+        $this->assertEquals('くるま', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaInNormalCase()
-    // {
-    //     $result = self::$katakana->transliterate('furansu');
-    //     $this->assertEquals('フランス', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithAnEmptyString()
+    {
+        $result = self::$hiragana->transliterate('');
+        $this->assertEquals('', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithAnEmptyString()
-    // {
-    //     $result = self::$katakana->transliterate('');
-    //     $this->assertEquals('', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithMacron()
+    {
+        $result = self::$hiragana->transliterate('gakkō ni ikimasu');
+        $this->assertEquals('がっこう　に　いきます', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithSokuon()
-    // {
-    //     $result = self::$katakana->transliterate('chakku');
-    //     $this->assertEquals('チャック', $result);
-    // }
+    public function testTransliterateToKanaUsingHiraganaWithPunctuationMarks()
+    {
+        $result = self::$hiragana->transliterate('\'iie\'teiimashita');
+        $this->assertEquals('「いいえ」ていいました', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithChoonpu()
-    // {
-    //     $result = self::$katakana->transliterate('foodo');
-    //     $this->assertEquals('フォード', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaInNormalCase()
+    {
+        $result = self::$katakana->transliterate('furansu');
+        $this->assertEquals('フランス', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithMacron()
-    // {
-    //     $result = self::$katakana->transliterate('fōdo');
-    //     $this->assertEquals('フォード', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithAnEmptyString()
+    {
+        $result = self::$katakana->transliterate('');
+        $this->assertEquals('', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithCircumflex()
-    // {
-    //     $result = self::$katakana->transliterate('fôdo');
-    //     $this->assertEquals('フォード', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithSokuon()
+    {
+        $result = self::$katakana->transliterate('chakku');
+        $this->assertEquals('チャック', $result);
+    }
 
-    // public function testTransliterateToKanaUsingKatakanaWithPunctuationMarks()
-    // {
-    //     $result = self::$katakana->transliterate('\'iie\'teiimashita');
-    //     $this->assertEquals('「イイエ」テイイマシタ', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithChoonpu()
+    {
+        $result = self::$katakana->transliterate('foodo');
+        $this->assertEquals('フォード', $result);
+    }
 
-    // public function testTransliterateToKana27_1()
-    // {
-    //     $result = self::$hiragana->transliterate('wha');
-    //     $this->assertEquals('うぁ', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithMacron()
+    {
+        $result = self::$katakana->transliterate('fōdo');
+        $this->assertEquals('フォード', $result);
+    }
 
-    // public function testTransliterateToKana27_2()
-    // {
-    //     $result = self::$katakana->transliterate('wha');
-    //     $this->assertEquals('ウァ', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithCircumflex()
+    {
+        $result = self::$katakana->transliterate('fôdo');
+        $this->assertEquals('フォード', $result);
+    }
 
-    // public function testTransliterateToKana41_1()
-    // {
-    //     $result = self::$hiragana->transliterate('JR東日本');
-    //     $this->assertEquals('JR東日本', $result);
-    // }
+    public function testTransliterateToKanaUsingKatakanaWithPunctuationMarks()
+    {
+        $result = self::$katakana->transliterate('\'iie\'teiimashita');
+        $this->assertEquals('「イイエ」テイイマシタ', $result);
+    }
 
-    // public function testTransliterateToKana41_2()
-    // {
-    //     $result = self::$hiragana->transliterate('NHKオンライン');
-    //     $this->assertEquals('NHKオンライン', $result);
-    // }
+    public function testTransliterateToKana27_1()
+    {
+        $result = self::$hiragana->transliterate('wha');
+        $this->assertEquals('うぁ', $result);
+    }
 
-    // public function testTransliterateToKana41_3()
-    // {
-    //     $result = self::$hiragana->transliterate('Kuruma');
-    //     $this->assertEquals('くるま', $result);
-    // }
+    public function testTransliterateToKana27_2()
+    {
+        $result = self::$katakana->transliterate('wha');
+        $this->assertEquals('ウァ', $result);
+    }
 
-    // public function testTransliterateToKana41_4()
-    // {
-    //     $result = self::$hiragana->transliterate('TOYOTA no kuruma');
-    //     $this->assertEquals('TOYOTA　の　くるま', $result);
-    // }
+    public function testTransliterateToKana41_1()
+    {
+        $result = self::$hiragana->transliterate('JR東日本');
+        $this->assertEquals('JR東日本', $result);
+    }
 
-    // public function testTransliterateToKana41_5()
-    // {
-    //     $result = self::$katakana->transliterate('L saizu');
-    //     $this->assertEquals('L　サイズ', $result);
-    // }
+    public function testTransliterateToKana41_2()
+    {
+        $result = self::$hiragana->transliterate('NHKオンライン');
+        $this->assertEquals('NHKオンライン', $result);
+    }
 
-    // public function testTransliterateToKana41_6()
-    // {
-    //     $result = self::$hiragana->transliterate('Ōsaka');
-    //     $this->assertEquals('おうさか', $result);
-    // }
+    public function testTransliterateToKana41_3()
+    {
+        $result = self::$hiragana->transliterate('Kuruma');
+        $this->assertEquals('くるま', $result);
+    }
 
-    // public function testTransliterateToKana41_7()
-    // {
-    //     $result = self::$hiragana->transliterate('Tōkyō');
-    //     $this->assertEquals('とうきょう', $result);
-    // }
+    public function testTransliterateToKana41_4()
+    {
+        $result = self::$hiragana->transliterate('TOYOTA no kuruma');
+        $this->assertEquals('TOYOTA　の　くるま', $result);
+    }
+
+    public function testTransliterateToKana41_5()
+    {
+        $result = self::$katakana->transliterate('L saizu');
+        $this->assertEquals('L　サイズ', $result);
+    }
+
+    public function testTransliterateToKana41_6()
+    {
+        $result = self::$hiragana->transliterate('Ōsaka');
+        $this->assertEquals('おうさか', $result);
+    }
+
+    public function testTransliterateToKana41_7()
+    {
+        $result = self::$hiragana->transliterate('Tōkyō');
+        $this->assertEquals('とうきょう', $result);
+    }
 }

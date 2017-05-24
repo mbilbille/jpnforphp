@@ -14,7 +14,8 @@ namespace JpnForPhp\Inflector;
 use Exception;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Helper\Helper;
-use JpnForPhp\Transliterator\Kana;
+use JpnForPhp\Transliterator\System;
+use JpnForPhp\Transliterator\Transliterator;
 use PDO;
 
 /**
@@ -603,9 +604,9 @@ class Inflector
     public static function getVerb($verb)
     {
         if (!Analyzer::hasJapaneseLetters($verb)) {
-            $hepburn = new Kana();
-            $verb = $hepburn->transliterate($verb);
+            $verb = (new Transliterator())->transliterate($verb, new System\Hiragana());
         }
+
         $sql = 'SELECT * FROM verbs WHERE kanji = :kanji OR kana = :kana';
         $uri = 'sqlite:' . __DIR__ . DIRECTORY_SEPARATOR . 'verbs.db';
         $connection = new PDO($uri);

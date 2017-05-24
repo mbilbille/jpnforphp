@@ -23,7 +23,7 @@ class Transliterator
     private $system;
 
     /**
-     * Transliterator's constructors
+     * Set a transliteration system
      */
     public function setSystem(System $system) {
         $this->system = $system;
@@ -33,14 +33,18 @@ class Transliterator
     /**
      * Transliterate a string from an alphabet into another alphabet.
      *
-     * @param string $str The string to be converted.
+     * @param string $str       The string to be converted.
+     * @param System $system    (Optional) Override default transliteration system.
      *
      * @return string Converted string.
      */
-    public function transliterate($str) {
-        if(is_null($this->system)) {
+    public function transliterate($str, $system = null) {
+        if(is_null($system)) {
+            $system = $this->system;
+        }
+        if(is_null($system)) {
             throw new RuntimeException("Transliteration system is not defined");
         }
-        return $this->system->transliterate($str);
+        return $system->transliterate($str);
     }
 }
