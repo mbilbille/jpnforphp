@@ -1,8 +1,16 @@
-![Logo](https://raw.githubusercontent.com/mbilbille/jpnforphp/gh-pages/images/logo.png)
+<p align="center">
+  <img src='https://raw.githubusercontent.com/mbilbille/jpnforphp/gh-pages/images/logo.png'/>
+</p>
 
-JpnForPhp is a library for PHP that provides support and many helpers to play with Japanese language ([DEMO](http://jpnforphpdemos.nebuleux.be)).
+<p align="center">
+  JpnForPhp provides support and many helpers to play with Japanese language in PHP - <a href="http://jpnforphpdemos.nebuleux.be">Demo</a>.
+</p>
 
-[![build status](https://travis-ci.org/mbilbille/jpnforphp.svg)](http://travis-ci.org/mbilbille/jpnforphp)
+<p align="center">
+  <a href="http://travis-ci.org/mbilbille/jpnforphp"><img alt="Build Status" src="https://travis-ci.org/mbilbille/jpnforphp.svg?branch=master"></a>
+</p>
+
+---
 
 The JpnForPhp toolbox provides over 30 functions build around various components that support both basic actions: **split, extract, etc.** as well as more specialized and powerful features: **transliteration, inflection, conversion**, and so one.
 
