@@ -14,7 +14,7 @@ The recommended way to install JpnForPhp is through [Composer](http://getcompose
 ```json
 {
     "require": {
-        "mbilbille/jpnforphp": "~0.6"
+        "mbilbille/jpnforphp": "~0.7"
     }
 }
 ```
