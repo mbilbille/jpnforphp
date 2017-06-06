@@ -43,13 +43,4 @@ class Verb
   public function getType() {
       return $this->type;
   }
-
-  public static function newInstance($kanji, $kana, $type) {
-    $instance = new self();
-    $instance->kanji = $kanji;
-    $instance->kana = $kana;
-    $instance->type = $type;
-
-    return $instance;
-  }
 }
