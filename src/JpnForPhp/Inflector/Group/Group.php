@@ -20,13 +20,13 @@
   */
  interface Group
  {
-   function getKanjiStem(Verb $verb);
+   function __construct(Verb $verb);
 
-   function getKanaStem(Verb $verb);
+   function getKanjiStem();
 
-   function getKei($form);
+   function getKanaStem();
 
-   function getKeiMapping(Verb $verb, $kei);
+   function getConjugation($conjugatedForm, $verbalForm, $languageForm);
 
-   function getSuffix($form);
+   function getSuffix($verbalForm, $languageForm);
  }

@@ -11,62 +11,84 @@
 
 namespace JpnForPhp\Inflector;
 
+use JpnForPhp\Helper\Helper;
 use Exception;
 
 
 class Inflector
 {
-  const NON_PAST_FORM = "Non past";
-  const PAST_FORM = "Past";
-  const TE_FORM = "Te form";
-  const POTENTIAL_FORM = "Potential";
-  const PASSIVE_FORM = "Passive";
-  const CAUSATIVE_FORM = "Causative";
-  const CAUSATIVE_PASSIVE_FORM = "Causative passive";
-  const PROVISIONAL_CONDITIONAL_FORM = "Provisional conditional";
-  const CONDITIONAL_FORM = "Conditional";
-  const IMPERATIVE_FORM = "Imperative";
-  const COMMAND_FORM = "Command";
-  const VOLITIONAL_FORM = "Volitional";
-  const GERUND_FORM = "Gerund";
-  const OPTATIVE_FORM = "Optative";
+  // Verbal forms
+  const NON_PAST_FORM = "non_past";
+  const PAST_FORM = "past";
+  const TE_FORM = "te_form";
+  const POTENTIAL_FORM = "potential";
+  const PASSIVE_FORM = "passive";
+  const CAUSATIVE_FORM = "causative";
+  const CAUSATIVE_ALT_FORM = "causative_alternative";
+  const CAUSATIVE_PASSIVE_FORM = "causative_passive";
+  const PROVISIONAL_CONDITIONAL_FORM = "provisional_conditional";
+  const CONDITIONAL_FORM = "conditional";
+  const IMPERATIVE_FORM = "imperative";
+  const COMMAND_FORM = "command";
+  const VOLITIONAL_FORM = "volitional";
+  const GERUND_FORM = "gerund";
+  const OPTATIVE_FORM = "optative";
 
-  const MIZENKEI = 0;
-  const RENYOUKEI = 1;
-  const SHUUSHIKEI = 2;
-  const RENTAIKEI = 3;
-  const KATEIKEI= 4;
-  const MEIREIKEI = 5;
+  // Conjugated forms (活用形)
+  const MIZENKEI = 0; // 未然形
+  const RENYOUKEI = 1; // 連用形
+  const SHUUSHIKEI = 2; // 終止形
+  const RENTAIKEI = 3; // 連体形
+  const KATEIKEI= 4; // 仮定形
+  const MEIREIKEI = 5; // 命令形
   const MIZENKEI_ALT = 6;
   const RENYOUKEI_ALT = 7;
 
-  private static $keiPerForm = array(
-    NON_PAST_FORM => array(self::RENTAIKEI, self::RENYOUKEI, self::MIZENKEI, self::RENYOUKEI),
-    PAST_FORM => array(self::RENYOUKEI, self::RENYOUKEI, self::RENYOUKEI, self::RENYOUKEI),
-    TE_FORM => array(self::RENYOUKEI, self::RENYOUKEI, null, null),
-    PASSIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
-    CAUSATIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
-    CAUSATIVE_ALT_FORM => array(self::MIZENKEI, null, null, null),
-    CAUSATIVE_PASSIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
-    POTENTIAL_FORM => array(self::KATEIKEI, self::KATEIKEI, self::KATEIKEI, self::KATEIKEI),
-    PROVISIONAL_CONDITIONAL_FORM => array(self::KATEIKEI, null, self::MIZENKEI, null),
-    CONDITIONAL_FORM => array(self::RENYOUKEI, self::RENYOUKEI, self::MIZENKEI, self::RENYOUKEI),
-    IMPERATIVE_FORM => array(self::MEIREIKEI, self::RENYOUKEI, self::RENYOUKEI, self::MIZENKEI),
-    COMMAND_FORM => array(self::RENTAIKEI, self::RENYOUKEI, null, null),
-    VOLITIONAL_FORM => array(self::MIZENKEI, self::RENYOUKEI, null, null),
-    GERUND_FORM => array(self::RENYOUKEI, null, null, null),
-    OPTATIVE_FORM => array(self::RENYOUKEI, null, self::RENYOUKEI, null)
+  // Language forms
+  // ⚠ $inflectionRules and inflect() arrays use below constants as array keys
+  const PLAIN_FORM = 0; // くだけた
+  const POLITE_FORM = 1; // 丁寧語
+  const PLAIN_NEGATIVE_FORM = 2;
+  const POLITE_NEGATIVE_FORM = 3;
+
+  // Rules which describe for a given `verbal form` which `conjugated form` to
+  // apply to inflect a verb in a given `language form`.
+  // => verbal_form => array(plain, polite, plain negative, polite negative)
+  private static $inflectionRules = array(
+    self::NON_PAST_FORM => array(self::RENTAIKEI, self::RENYOUKEI, self::MIZENKEI, self::RENYOUKEI),
+    self::PAST_FORM => array(self::RENYOUKEI, self::RENYOUKEI, self::RENYOUKEI, self::RENYOUKEI),
+    self::TE_FORM => array(self::RENYOUKEI, self::RENYOUKEI, null, null),
+    self::PASSIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
+    self::CAUSATIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
+    self::CAUSATIVE_ALT_FORM => array(self::MIZENKEI, null, null, null),
+    self::CAUSATIVE_PASSIVE_FORM => array(self::MIZENKEI, self::MIZENKEI, self::MIZENKEI, self::MIZENKEI),
+    self::POTENTIAL_FORM => array(self::KATEIKEI, self::KATEIKEI, self::KATEIKEI, self::KATEIKEI),
+    self::PROVISIONAL_CONDITIONAL_FORM => array(self::KATEIKEI, null, self::MIZENKEI, null),
+    self::CONDITIONAL_FORM => array(self::RENYOUKEI, self::RENYOUKEI, self::MIZENKEI, self::RENYOUKEI),
+    self::IMPERATIVE_FORM => array(self::MEIREIKEI, self::RENYOUKEI, self::RENYOUKEI, self::MIZENKEI),
+    self::COMMAND_FORM => array(self::RENYOUKEI, null, self::RENTAIKEI, null),
+    self::VOLITIONAL_FORM => array(self::MIZENKEI, self::RENYOUKEI, null, null),
+    self::GERUND_FORM => array(self::RENYOUKEI, null, null, null),
+    self::OPTATIVE_FORM => array(self::RENYOUKEI, null, self::RENYOUKEI, null)
   );
 
 
   /**
-   * Inflects the verb to given forms or all if none input
+   * Inflects a verb to given forms or all supported verbal forms if none
+   * provided.
+   *
+   * Return an array formatted as below:
+   *  array(
+   *    verbal_form_1 => (plain_form, polite_form, plain_negative_form, polite_negative_form),
+   *    ...
+   *    verbal_form_n => (plain_form, polite_form, plain_negative_form, polite_negative_form)
+   *  )
    *
    * @param Verb $verb
-   * @param array $forms
+   * @param array $verbalForms
    * @return array
    */
-  public static function inflect(Verb $verb, $forms = array())
+  public static function inflect(Verb $verb, $verbalForms = array())
   {
     $result = array();
 
@@ -74,10 +96,15 @@ class Inflector
       return $result;
     }
 
-    // Get group using verb type
+    // Get all verbal forms if none provided
+    if(!$verbalForms) {
+      $verbalForms = array_keys(Inflector::$inflectionRules);
+    }
+
+    // Get a `Group` instance using the verb type
     switch ($verb->getType()) {
       case 'v1':
-        $group = new Group\Ichidan();
+        $group = new Group\Ichidan($verb);
         break;
       case 'v5aru':
       case 'v5b':
@@ -93,7 +120,7 @@ class Inflector
       case 'v5u':
       case 'v5u':
       case 'v5uru':
-        $group = new Group\Godan();
+        $group = new Group\Godan($verb);
         break;
       case 'vk':
       case 'vs-i':
@@ -104,33 +131,37 @@ class Inflector
         throw new Exception("Unknown verb type : " . $verb->getType());
     }
 
-    // 1/ Get stem
+    // Inflection algorithm:
+    // 1/ Extract stem
+    // 2/ Which conjugated form to use?
+    // 3/ Get the conjugation
+    // 4/ Get suffix
+    // 5/ If the conjugation ends by "n" change suffix "t" -> "d"
+    // 6/ Concat stem + conjugated form + suffix
+
     $stem = $group->getKanjiStem($verb);
 
-    // @TODO
-    $forms = array_keys(Inflector::$keiPerForm);
+    foreach ($verbalForms as $verbalForm) {
+        $result[$verbalForm] = array();
 
-    foreach ($forms as $form) {
+        $rule = Inflector::$inflectionRules[$verbalForm];
+        foreach ($rule as $languageForm => $conjugatedForm) {
 
-        // 2/ Which kei to use? use override otherwise default
-        $kei = Inflector::$keiPerForm[$form][0];
-        if($group->getKei($form)[0] != null) {
-          $kei = $group->getKei($form)[0];
+          if($conjugatedForm === null) {
+            $result[$verbalForm][$languageForm] = null;
+            continue;
+          }
+
+          $conjugation = $group->getConjugation($conjugatedForm, $verbalForm, $languageForm);
+          $suffix = $group->getSuffix($verbalForm, $languageForm);
+
+          if(Helper::subString($conjugation, -1, 1) === 'ん') {
+            $suffix = strtr($suffix, array('た' => 'だ', 'て' => 'で'));
+            // @TODO need to support more cases?
+          }
+
+          $result[$verbalForm][$languageForm] = $stem . $conjugation . $suffix;
         }
-
-        // 3/ Get kei
-        $k = $group->getKeiMapping($verb, $kei);
-
-        // 4/ Get suffix
-        $suffix = $group->getSuffix($form)[0];
-
-        // 5/ if kei ends by "n" change suffix "t" -> "d"
-        if($k === 'ん') {
-          $suffix = strtr($suffix, array('た' => 'だ', 'て' => 'で'));
-        }
-
-        // 6/ Contact stem + kei + suffix
-        $result[$form] = $stem . $k . $suffix;
     }
 
     return $result;
