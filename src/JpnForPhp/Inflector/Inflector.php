@@ -14,7 +14,11 @@ namespace JpnForPhp\Inflector;
 use JpnForPhp\Helper\Helper;
 use Exception;
 
-
+/**
+ * Provides support for inflecting Japanese verbs.
+ *
+ * @author Matthieu Bilbille (@mbilbille) and Axel Bodart (@akeru) based on work by Fabien SK (@fabiensk)
+ */
 class Inflector
 {
   // Verbal forms

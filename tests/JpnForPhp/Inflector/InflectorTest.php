@@ -32,6 +32,6 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
       $this->assertNotEmpty($verbs);
 
       $result = Inflector::inflect($verbs[0]);
-      // @TODO
+      // @TODO plug all tests
     }
 }

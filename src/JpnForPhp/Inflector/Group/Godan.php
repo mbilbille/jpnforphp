@@ -33,7 +33,7 @@ class Godan extends AbstractGroup
       Inflector::TE_FORM => array(true, false, false, false),
       Inflector::CONDITIONAL_FORM => array(true, false, false, false),
       Inflector::IMPERATIVE_FORM => array(false, true, false, false),
-      Inflector::VOLITIONAL_FORM => array(true, false, false, false),
+      Inflector::VOLITIONAL_FORM => array(true, false, false, false)
   );
 
   protected $suffixMap = array(
