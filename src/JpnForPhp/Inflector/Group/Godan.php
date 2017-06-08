@@ -14,17 +14,28 @@ namespace JpnForPhp\Inflector\Group;
 use JpnForPhp\Inflector\Inflector;
 
 /**
-* TODO.
-*
-* @author Matthieu Bilbille (@mbibille)
-*/
+ * Godan (五段) verb group.
+ * Verbs with a stem ending in a consonant
+ *
+ * @author Matthieu Bilbille (@mbibille)
+ */
 class Godan extends AbstractGroup
 {
   protected $conjugationMap = array(
       // 'xx' => array(MIZENKEI, RENYOUKEI, SHUUSHIKEI, RENTAIKEI, KATEIKEI, MEIREIKEI);
       'v5k' => array('か|こ', 'き|い', 'く', 'く', 'け', 'け'),
+      'v5k-s' => array('か|こ', 'き|っ', 'く', 'く', 'け', 'け'),
+      'v5g' => array('が|ご', 'ぎ|い', 'ぐ', 'ぐ', 'げ', 'げ'),
+      'v5s' => array('さ|そ', 'し|し', 'す', 'す', 'せ', 'せ'),
+      'v5t' => array('た|と', 'ち|っ', 'つ', 'つ', 'て', 'て'),
+      'v5n' => array('な|の', 'に|ん', 'ぬ', 'ぬ', 'ね', 'ね'),
+      'v5b' => array('ば|ぼ', 'び|ん', 'ぶ', 'ぶ', 'べ', 'べ'),
       'v5m' => array('ま|も', 'み|ん', 'む', 'む', 'め', 'め'),
-      // @TODO
+      'v5r' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'),
+      'v5aru' => array('ら|ろ', 'あり|あり', 'る', 'る', 'れ', 'れ'),
+      'v5r-i' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'), // @TODO check this
+      'v5u' => array('わ|お', 'い|っ', 'う', 'う', 'え', 'え'),
+      'v5u-s' => array('わ|お', 'い|う', 'う', 'う', 'え', 'え'),
   );
 
   protected $overriddenRules = array(
