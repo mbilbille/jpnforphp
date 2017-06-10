@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 読む, kana: よむ, romaji: yomu }
+  - { kanji: 読みます, kana: よみます, romaji: yomimasu }
+  - { kanji: 読まない, kana: よまない, romaji: yomanai }
+  - { kanji: 読みません, kana: よみません, romaji: yomimasen }
+past:
+  - { kanji: 読んだ, kana: よんだ, romaji: yonda }
+  - { kanji: 読みました, kana: よみました, romaji: yomimashita }
+  - { kanji: 読まなかった, kana: よまなかった, romaji: yomanakatta }
+  - { kanji: 読みませんでした, kana: よみませんでした, romaji: yomimasendeshita }
+te_form:
+  - { kanji: 読んで, kana: よんで, romaji: yonde }
+  - { kanji: 読みまして, kana: よみまして, romaji: yomimashite }
+  - null
+  - null
+potential:
+  - { kanji: 読める, kana: よめる, romaji: yomeru }
+  - { kanji: 読めます, kana: よめます, romaji: yomemasu }
+  - { kanji: 読めない, kana: よめない, romaji: yomenai }
+  - { kanji: 読めません, kana: よめません, romaji: yomemasen }
+passive:
+  - { kanji: 読まれる, kana: よまれる, romaji: yomareru }
+  - { kanji: 読まれます, kana: よまれます, romaji: yomaremasu }
+  - { kanji: 読まれない, kana: よまれない, romaji: yomarenai }
+  - { kanji: 読まれません, kana: よまれません, romaji: yomaremasen }
+causative:
+  - { kanji: 読ませる, kana: よませる, romaji: yomaseru }
+  - { kanji: 読ませます, kana: よませます, romaji: yomasemasu }
+  - { kanji: 読ませない, kana: よませない, romaji: yomasenai }
+  - { kanji: 読ませません, kana: よませません, romaji: yomasemasen }
+causative_alternative:
+  - { kanji: 読ます, kana: よます, romaji: yomasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 読ませられる, kana: よませられる, romaji: yomaserareru }
+  - { kanji: 読ませられます, kana: よませられます, romaji: yomaseraremasu }
+  - { kanji: 読ませられない, kana: よませられない, romaji: yomaserarenai }
+  - { kanji: 読ませられません, kana: よませられません, romaji: yomaseraremasen }
+provisional_conditional:
+  - { kanji: 読めば, kana: よめば, romaji: yomeba }
+  - null
+  - { kanji: 読まなければ, kana: よまなければ, romaji: yomanakereba }
+  - null
+conditional:
+  - { kanji: 読んだら, kana: よんだら, romaji: yondara }
+  - { kanji: 読みましたら, kana: よみましたら, romaji: yomimashitara }
+  - { kanji: 読まなかったら, kana: よまなかったら, romaji: yomanakattara }
+  - { kanji: 読みませんでしたら, kana: よみませんでしたら, romaji: yomimasendeshitara }
+imperative:
+  - { kanji: 読め, kana: よめ, romaji: yome }
+  - { kanji: 読んでください, kana: よんでください, romaji: yondekudasai }
+  - { kanji: 読みませ, kana: よみませ, romaji: yomimase }
+  - { kanji: 読まないでください, kana: よまないでください, romaji: yomanaidekudasai }
+command:
+  - { kanji: 読みなさい, kana: よみなさい, romaji: yominasai }
+  - null
+  - { kanji: 読むな, kana: よむな, romaji: yomuna }
+  - null
+volitional:
+  - { kanji: 読もう, kana: よもう, romaji: yomō }
+  - { kanji: 読みましょう, kana: よみましょう, romaji: yomimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 読みながら, kana: よみながら, romaji: yominagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 読みたい, kana: よみたい, romaji: yomitai }
+  - null
+  - { kanji: 読みたくない, kana: よみたくない, romaji: yomitakunai }
+  - null

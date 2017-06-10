@@ -14,6 +14,7 @@ namespace JpnForPhp\Tests\Inflector;
 use JpnForPhp\Inflector\Inflector;
 use JpnForPhp\Inflector\InflectorUtils;
 use JpnForPhp\Inflector\Verb;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * JpnForPhp Testcase for Inflector component
@@ -26,12 +27,36 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
+    private function assertInflectionFromFile($verb, $file)
+    {
+        $verbs = InflectorUtils::getVerb($verb);
+        $actual = Inflector::inflect($verbs[0]);
+
+        $fileName = __DIR__ . DIRECTORY_SEPARATOR . $file;
+        $this->assertFileExists($fileName);
+        $expected = Yaml::parse(file_get_contents($fileName));
+
+        $this->assertEquals($expected, $actual);
+
+        // foreach ($verbalForms as $verbalForm => $languageForms) {
+        //     $this->assertArrayHasKey($verbalForm, $actual);
+        //
+        //     foreach ($languageForms as $languageForm => $inflection) {
+        //       $this->assertArrayHasKey($languageForm, $actual[$verbalForm]);
+        //       $this->assertEquals($inflection,$actual[$verbalForm])
+        //     }
+        //
+        //     $parts = explode(',', trim($line));
+        //
+        //     $kanji = $results[$parts[0]]['kanji'];
+        //     $kana = $results[$parts[0]]['kana'];
+        //     $this->assertEquals($parts[1], $kanji);
+        //     $this->assertEquals($parts[2], $kana);
+        // }
+    }
+
     public function testInflect()
     {
-      $verbs = InflectorUtils::getVerb('読む');
-      $this->assertNotEmpty($verbs);
-
-      $result = Inflector::inflect($verbs[0]);
-      // @TODO plug all tests
+      $this->assertInflectionFromFile('読む', 'yomu.yml');
     }
 }
