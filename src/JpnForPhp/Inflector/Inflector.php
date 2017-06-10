@@ -12,6 +12,7 @@
 namespace JpnForPhp\Inflector;
 
 use JpnForPhp\Helper\Helper;
+use JpnForPhp\Transliterator\Transliterator;
 use Exception;
 
 /**
@@ -22,21 +23,21 @@ use Exception;
 class Inflector
 {
   // Verbal forms
-  const NON_PAST_FORM = "non_past";
-  const PAST_FORM = "past";
-  const TE_FORM = "te_form";
-  const POTENTIAL_FORM = "potential";
-  const PASSIVE_FORM = "passive";
-  const CAUSATIVE_FORM = "causative";
-  const CAUSATIVE_ALT_FORM = "causative_alternative";
-  const CAUSATIVE_PASSIVE_FORM = "causative_passive";
-  const PROVISIONAL_CONDITIONAL_FORM = "provisional_conditional";
-  const CONDITIONAL_FORM = "conditional";
-  const IMPERATIVE_FORM = "imperative";
-  const COMMAND_FORM = "command";
-  const VOLITIONAL_FORM = "volitional";
-  const GERUND_FORM = "gerund";
-  const OPTATIVE_FORM = "optative";
+  const NON_PAST_FORM = 'non_past';
+  const PAST_FORM = 'past';
+  const TE_FORM = 'te_form';
+  const POTENTIAL_FORM = 'potential';
+  const PASSIVE_FORM = 'passive';
+  const CAUSATIVE_FORM = 'causative';
+  const CAUSATIVE_ALT_FORM = 'causative_alternative';
+  const CAUSATIVE_PASSIVE_FORM = 'causative_passive';
+  const PROVISIONAL_CONDITIONAL_FORM = 'provisional_conditional';
+  const CONDITIONAL_FORM = 'conditional';
+  const IMPERATIVE_FORM = 'imperative';
+  const COMMAND_FORM = 'command';
+  const VOLITIONAL_FORM = 'volitional';
+  const GERUND_FORM = 'gerund';
+  const OPTATIVE_FORM = 'optative';
 
   // Conjugated forms (活用形)
   const MIZENKEI = 0; // 未然形
@@ -54,6 +55,11 @@ class Inflector
   const POLITE_FORM = 1; // 丁寧語
   const PLAIN_NEGATIVE_FORM = 2;
   const POLITE_NEGATIVE_FORM = 3;
+
+  // Transliteration forms
+  const KANJI_FORM = 'kanji';
+  const KANA_FORM = 'kana';
+  const ROMAJI_FORM = 'romaji';
 
   // Rules which describe for a given `verbal form` which `conjugated form` to
   // apply to inflect a verb in a given `language form`.
@@ -100,6 +106,9 @@ class Inflector
       return $result;
     }
 
+    // Get a Transliterator component instance to return the romaji form.
+    $transliterator = (new Transliterator())->setSystem(new System\Hepburn());
+
     // Get all verbal forms if none provided
     if(!$verbalForms) {
       $verbalForms = array_keys(Inflector::$inflectionRules);
@@ -132,7 +141,7 @@ class Inflector
       case 'vz':
         // @TODO
       default:
-        throw new Exception("Unknown verb type : " . $verb->getType());
+        throw new Exception('Unknown verb type : ' . $verb->getType());
     }
 
     // Inflection algorithm:
@@ -140,7 +149,7 @@ class Inflector
     // 2/ Which conjugated form to use?
     // 3/ Get the conjugation
     // 4/ Get suffix
-    // 5/ If the conjugation ends by "n" change suffix "t" -> "d"
+    // 5/ If the conjugation ends by 'n' change suffix 't' -> 'd'
     // 6/ Concat stem + conjugated form + suffix
 
     $stem = $group->getKanjiStem($verb);
@@ -164,7 +173,10 @@ class Inflector
             // @TODO need to support more cases?
           }
 
-          $result[$verbalForm][$languageForm] = $stem . $conjugation . $suffix;
+          $result[$verbalForm][$languageForm] = array(
+            self::KANJI_FORM => $stem . $conjugation . $suffix,
+            self::KANA_FORM => $stem . $conjugation . $suffix,
+            self::ROMAJI_FORM => $transliterator->transliterate($stem . $conjugation . $suffix),
         }
     }
 
