@@ -50,7 +50,7 @@ conditional:
   - { kanji: 焼きませんでしたら, kana: やきませんでしたら, romaji: yakimasendeshitara }
 imperative:
   - { kanji: 焼け, kana: やけ, romaji: yake }
-  - { kanji: 焼いでください, kana: やいでください, romaji: yaidekudasai }
+  - { kanji: 焼いてください, kana: やいてください, romaji: yaitekudasai }
   - { kanji: 焼きませ, kana: やきませ, romaji: yakimase }
   - { kanji: 焼かないでください, kana: やかないでください, romaji: yakanaidekudasai }
 command:

@@ -59,7 +59,7 @@ class Godan extends AbstractGroup
       Inflector::POTENTIAL_FORM => array('る', 'ます', 'ない', 'ません'),
       Inflector::PROVISIONAL_CONDITIONAL_FORM => array('ば', null, 'なければ', null),
       Inflector::CONDITIONAL_FORM => array('たら', 'ましたら', 'なかったら', 'ませんでしたら'),
-      Inflector::IMPERATIVE_FORM => array('', 'でください', 'ませ', 'ないでください'),
+      Inflector::IMPERATIVE_FORM => array('', 'てください', 'ませ', 'ないでください'),
       Inflector::COMMAND_FORM => array('なさい', null, 'な', null),
       Inflector::VOLITIONAL_FORM => array('う', 'ましょう', null, null),
       Inflector::GERUND_FORM => array('ながら', null, null, null),
