@@ -120,20 +120,19 @@ class Inflector
             case 'v1':
                 $group = new Group\Ichidan($verb);
                 break;
-            case 'v5aru':
-            case 'v5b':
+            case 'v5k':
+            case 'v5k-s':
             case 'v5g':
-            case 'v5k':
-            case 'v5k':
-            case 'v5m':
-            case 'v5n':
-            case 'v5r':
-            case 'v5r':
             case 'v5s':
             case 'v5t':
+            case 'v5n':
+            case 'v5b':
+            case 'v5m':
+            case 'v5r':
+            case 'v5aru':
+            case 'v5r-i':
             case 'v5u':
-            case 'v5u':
-            case 'v5uru':
+            case 'v5u-s':
                 $group = new Group\Godan($verb);
                 break;
             case 'vk':
