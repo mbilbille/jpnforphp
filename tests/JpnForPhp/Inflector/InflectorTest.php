@@ -54,6 +54,11 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty(InflectorUtils::getVerb('miru'));
     }
 
+    public function testInflect5k()
+    {
+        $this->assertInflectionFromFile('焼く', 'yaku.yml');
+    }
+
     public function testInflect5m()
     {
       $this->assertInflectionFromFile('読む', 'yomu.yml');

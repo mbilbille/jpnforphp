@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 焼く, kana: やく, romaji: yaku }
+  - { kanji: 焼きます, kana: やきます, romaji: yakimasu }
+  - { kanji: 焼かない, kana: やかない, romaji: yakanai }
+  - { kanji: 焼きません, kana: やきません, romaji: yakimasen }
+past:
+  - { kanji: 焼いた, kana: やいた, romaji: yaita }
+  - { kanji: 焼きました, kana: やきました, romaji: yakimashita }
+  - { kanji: 焼かなかった, kana: やかなかった, romaji: yakanakatta }
+  - { kanji: 焼きませんでした, kana: やきませんでした, romaji: yakimasendeshita }
+te_form:
+  - { kanji: 焼いて, kana: やいて, romaji: yaite }
+  - { kanji: 焼きまして, kana: やきまして, romaji: yakimashite }
+  - null
+  - null
+potential:
+  - { kanji: 焼ける, kana: やける, romaji: yakeru }
+  - { kanji: 焼けます, kana: やけます, romaji: yakemasu }
+  - { kanji: 焼けない, kana: やけない, romaji: yakenai }
+  - { kanji: 焼けません, kana: やけません, romaji: yakemasen }
+passive:
+  - { kanji: 焼かれる, kana: やかれる, romaji: yakareru }
+  - { kanji: 焼かれます, kana: やかれます, romaji: yakaremasu }
+  - { kanji: 焼かれない, kana: やかれない, romaji: yakarenai }
+  - { kanji: 焼かれません, kana: やかれません, romaji: yakaremasen }
+causative:
+  - { kanji: 焼かせる, kana: やかせる, romaji: yakaseru }
+  - { kanji: 焼かせます, kana: やかせます, romaji: yakasemasu }
+  - { kanji: 焼かせない, kana: やかせない, romaji: yakasenai }
+  - { kanji: 焼かせません, kana: やかせません, romaji: yakasemasen }
+causative_alternative:
+  - { kanji: 焼かす, kana: やかす, romaji: yakasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 焼かせられる, kana: やかせられる, romaji: yakaserareru }
+  - { kanji: 焼かせられます, kana: やかせられます, romaji: yakaseraremasu }
+  - { kanji: 焼かせられない, kana: やかせられない, romaji: yakaserarenai }
+  - { kanji: 焼かせられません, kana: やかせられません, romaji: yakaseraremasen }
+provisional_conditional:
+  - { kanji: 焼けば, kana: やけば, romaji: yakeba }
+  - null
+  - { kanji: 焼かなければ, kana: やかなければ, romaji: yakanakereba }
+  - null
+conditional:
+  - { kanji: 焼いたら, kana: やいたら, romaji: yaitara }
+  - { kanji: 焼きましたら, kana: やきましたら, romaji: yakimashitara }
+  - { kanji: 焼かなかったら, kana: やかなかったら, romaji: yakanakattara }
+  - { kanji: 焼きませんでしたら, kana: やきませんでしたら, romaji: yakimasendeshitara }
+imperative:
+  - { kanji: 焼け, kana: やけ, romaji: yake }
+  - { kanji: 焼いでください, kana: やいでください, romaji: yaidekudasai }
+  - { kanji: 焼きませ, kana: やきませ, romaji: yakimase }
+  - { kanji: 焼かないでください, kana: やかないでください, romaji: yakanaidekudasai }
+command:
+  - { kanji: 焼きなさい, kana: やきなさい, romaji: yakinasai }
+  - null
+  - { kanji: 焼くな, kana: やくな, romaji: yakuna }
+  - null
+volitional:
+  - { kanji: 焼こう, kana: やこう, romaji: yakō }
+  - { kanji: 焼きましょう, kana: やきましょう, romaji: yakimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 焼きながら, kana: やきながら, romaji: yakinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 焼きたい, kana: やきたい, romaji: yakitai }
+  - null
+  - { kanji: 焼きたくない, kana: やきたくない, romaji: yakitakunai }
+  - null
