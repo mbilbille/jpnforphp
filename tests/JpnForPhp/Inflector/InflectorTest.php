@@ -64,6 +64,11 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
         $this->assertInflectionFromFile('行く', 'iku.yml');
     }
 
+    public function testInflect5g()
+    {
+        $this->assertInflectionFromFile('泳ぐ', 'oyogu.yml');
+    }
+
     public function testInflect5m()
     {
       $this->assertInflectionFromFile('読む', 'yomu.yml');
