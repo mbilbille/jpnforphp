@@ -4,12 +4,12 @@ non_past:
   - { kanji: 泳がない, kana: およがない, romaji: oyoganai }
   - { kanji: 泳ぎません, kana: およぎません, romaji: oyogimasen }
 past:
-  - { kanji: 泳いだ, kana: およいだ, romaji: oyoita }
+  - { kanji: 泳いだ, kana: およいだ, romaji: oyoida }
   - { kanji: 泳ぎました, kana: およぎました, romaji: oyogimashita }
   - { kanji: 泳がなかった, kana: およがなかった, romaji: oyoganakatta }
   - { kanji: 泳ぎませんでした, kana: およぎませんでした, romaji: oyogimasendeshita }
 te_form:
-  - { kanji: 泳いで, kana: およいで, romaji: oyoite }
+  - { kanji: 泳いで, kana: およいで, romaji: oyoide }
   - { kanji: 泳ぎまして, kana: およぎまして, romaji: oyogimashite }
   - null
   - null
@@ -44,13 +44,13 @@ provisional_conditional:
   - { kanji: 泳がなければ, kana: およがなければ, romaji: oyoganakereba }
   - null
 conditional:
-  - { kanji: 泳いだら, kana: およいだら, romaji: oyoitara }
+  - { kanji: 泳いだら, kana: およいだら, romaji: oyoidara }
   - { kanji: 泳ぎましたら, kana: およぎましたら, romaji: oyogimashitara }
   - { kanji: 泳がなかったら, kana: およがなかったら, romaji: oyoganakattara }
   - { kanji: 泳ぎませんでしたら, kana: およぎませんでしたら, romaji: oyogimasendeshitara }
 imperative:
   - { kanji: 泳げ, kana: およげ, romaji: oyoge }
-  - { kanji: 泳いでください, kana: およいでください, romaji: oyoitekudasai }
+  - { kanji: 泳いでください, kana: およいでください, romaji: oyoidekudasai }
   - { kanji: 泳ぎませ, kana: およぎませ, romaji: oyogimase }
   - { kanji: 泳がないでください, kana: およがないでください, romaji: oyoganaidekudasai }
 command:
