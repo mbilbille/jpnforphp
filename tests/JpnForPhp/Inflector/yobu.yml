@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 呼ぶ, kana: よぶ, romaji: yobu }
+  - { kanji: 呼びます, kana: よびます, romaji: yobimasu }
+  - { kanji: 呼ばない, kana: よばない, romaji: yobanai }
+  - { kanji: 呼びません, kana: よびません, romaji: yobimasen }
+past:
+  - { kanji: 呼んだ, kana: よんだ, romaji: yonda }
+  - { kanji: 呼びました, kana: よびました, romaji: yobimashita }
+  - { kanji: 呼ばなかった, kana: よばなかった, romaji: yobanakatta }
+  - { kanji: 呼びませんでした, kana: よびませんでした, romaji: yobimasendeshita }
+te_form:
+  - { kanji: 呼んで, kana: よんで, romaji: yonde }
+  - { kanji: 呼びまして, kana: よびまして, romaji: yobimashite }
+  - null
+  - null
+potential:
+  - { kanji: 呼べる, kana: よべる, romaji: yoberu }
+  - { kanji: 呼べます, kana: よべます, romaji: yobemasu }
+  - { kanji: 呼べない, kana: よべない, romaji: yobenai }
+  - { kanji: 呼べません, kana: よべません, romaji: yobemasen }
+passive:
+  - { kanji: 呼ばれる, kana: よばれる, romaji: yobareru }
+  - { kanji: 呼ばれます, kana: よばれます, romaji: yobaremasu }
+  - { kanji: 呼ばれない, kana: よばれない, romaji: yobarenai }
+  - { kanji: 呼ばれません, kana: よばれません, romaji: yobaremasen }
+causative:
+  - { kanji: 呼ばせる, kana: よばせる, romaji: yobaseru }
+  - { kanji: 呼ばせます, kana: よばせます, romaji: yobasemasu }
+  - { kanji: 呼ばせない, kana: よばせない, romaji: yobasenai }
+  - { kanji: 呼ばせません, kana: よばせません, romaji: yobasemasen }
+causative_alternative:
+  - { kanji: 呼ばす, kana: よばす, romaji: yobasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 呼ばせられる, kana: よばせられる, romaji: yobaserareru }
+  - { kanji: 呼ばせられます, kana: よばせられます, romaji: yobaseraremasu }
+  - { kanji: 呼ばせられない, kana: よばせられない, romaji: yobaserarenai }
+  - { kanji: 呼ばせられません, kana: よばせられません, romaji: yobaseraremasen }
+provisional_conditional:
+  - { kanji: 呼べば, kana: よべば, romaji: yobeba }
+  - null
+  - { kanji: 呼ばなければ, kana: よばなければ, romaji: yobanakereba }
+  - null
+conditional:
+  - { kanji: 呼んだら, kana: よんだら, romaji: yondara }
+  - { kanji: 呼びましたら, kana: よびましたら, romaji: yobimashitara }
+  - { kanji: 呼ばなかったら, kana: よばなかったら, romaji: yobanakattara }
+  - { kanji: 呼びませんでしたら, kana: よびませんでしたら, romaji: yobimasendeshitara }
+imperative:
+  - { kanji: 呼べ, kana: よべ, romaji: yobe }
+  - { kanji: 呼んでください, kana: よんでください, romaji: yondekudasai }
+  - { kanji: 呼びませ, kana: よびませ, romaji: yobimase }
+  - { kanji: 呼ばないでください, kana: よばないでください, romaji: yobanaidekudasai }
+command:
+  - { kanji: 呼びなさい, kana: よびなさい, romaji: yobinasai }
+  - null
+  - { kanji: 呼ぶな, kana: よぶな, romaji: yobuna }
+  - null
+volitional:
+  - { kanji: 呼ぼう, kana: よぼう, romaji: yobō }
+  - { kanji: 呼びましょう, kana: よびましょう, romaji: yobimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 呼びながら, kana: よびながら, romaji: yobinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 呼びたい, kana: よびたい, romaji: yobitai }
+  - null
+  - { kanji: 呼びたくない, kana: よびたくない, romaji: yobitakunai }
+  - null
