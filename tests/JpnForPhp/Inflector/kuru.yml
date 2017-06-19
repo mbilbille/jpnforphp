@@ -1,5 +1,5 @@
 non_past:
-  - { kanji: 来る, kana: きます, romaji: kuru }
+  - { kanji: 来る, kana: きる, romaji: kuru }
   - { kanji: 来ます, kana: きます, romaji: kimasu }
   - { kanji: 来ない, kana: きない, romaji: kanai }
   - { kanji: 来ません, kana: きません, romaji: kimasen }
