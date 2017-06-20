@@ -47,8 +47,6 @@ class Inflector
     const RENTAIKEI = 3; // 連体形
     const KATEIKEI= 4; // 仮定形
     const MEIREIKEI = 5; // 命令形
-    const MIZENKEI_ALT = 6;
-    const RENYOUKEI_ALT = 7;
 
     // Language forms
     // ⚠ $inflectionRules and inflect() arrays use below constants as array keys
