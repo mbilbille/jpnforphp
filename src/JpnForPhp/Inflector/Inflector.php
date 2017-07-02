@@ -154,6 +154,9 @@ class Inflector
 
       $stemKanji = $group->getKanjiStem($verb);
       $stemKana = $group->getKanaStem($verb);
+      if($stemKanji === '') { // Support verbs without kanji (such as irassharu)
+        $stemKanji = $stemKana;
+      }
 
       foreach ($verbalForms as $verbalForm) {
           $result[$verbalForm] = array();
