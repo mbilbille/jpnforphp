@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: いらっしゃる, kana: いらっしゃる, romaji: irassharu }
+  - { kanji: いらっしゃります, kana: いらっしゃります, romaji: irassharimasu }
+  - { kanji: いらっしゃらない, kana: いらっしゃらない, romaji: irassharanai }
+  - { kanji: いらっしゃりません, kana: いらっしゃりません, romaji: irassharimasen }
+past:
+  - { kanji: いらっしゃった, kana: いらっしゃった, romaji: irasshatta }
+  - { kanji: いらっしゃありました, kana: いらっしゃありました, romaji: irassharimashita }
+  - { kanji: いらっしゃらなかった, kana: いらっしゃらなかった, romaji: irassharanakatta }
+  - { kanji: いらっしゃりませんでした, kana: いらっしゃりませんでした, romaji: irassharimasendeshita }
+te_form:
+  - { kanji: いらっしゃって, kana: いらっしゃって, romaji: irasshatte }
+  - { kanji: いらっしゃりまして, kana: いらっしゃりまして, romaji: irassharimashite }
+  - null
+  - null
+potential:
+  - { kanji: いらっしゃれる, kana: いらっしゃれる, romaji: irasshareru }
+  - { kanji: いらっしゃれます, kana: いらっしゃれます, romaji: irassharemasu }
+  - { kanji: いらっしゃれない, kana: いらっしゃれない, romaji: irassharenai }
+  - { kanji: いらっしゃれません, kana: いらっしゃれません, romaji: irassharemasen }
+passive:
+  - { kanji: いらっしゃられる, kana: いらっしゃられる, romaji: irassharareru }
+  - { kanji: いらっしゃられます, kana: いらっしゃられます, romaji: irasshararemasu }
+  - { kanji: いらっしゃられない, kana: いらっしゃられない, romaji: irasshararenai }
+  - { kanji: いらっしゃられません, kana: いらっしゃられません, romaji: irasshararemasen }
+causative:
+  - { kanji: いらっしゃらせる, kana: いらっしゃらせる, romaji: irassharaseru }
+  - { kanji: いらっしゃらせます, kana: いらっしゃらせます, romaji: irassharasemasu }
+  - { kanji: いらっしゃらせない, kana: いらっしゃらせない, romaji: irassharasenai }
+  - { kanji: いらっしゃらせません, kana: いらっしゃらせません, romaji: irassharasemasen }
+causative_alternative:
+  - { kanji: いらっしゃらす, kana: いらっしゃらす, romaji: irassharasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: いらっしゃせられる, kana: いらっしゃらせられる, romaji: irassharaserareru }
+  - { kanji: いらっしゃせられます, kana: いらっしゃらせられます, romaji: irassharaseraremasu }
+  - { kanji: いらっしゃせられない, kana: いらっしゃらせられない, romaji: irassharaserarenai }
+  - { kanji: いらっしゃせられません, kana: いらっしゃらせられません, romaji: irassharaseraremasen }
+provisional_conditional:
+  - { kanji: いらっしゃれば, kana: いらっしゃれば, romaji: irasshareba }
+  - null
+  - { kanji: いらっしゃらなければ, kana: いらっしゃらなければ, romaji: irasshanakereba }
+  - null
+conditional:
+  - { kanji: いらっしゃったら, kana: いらっしゃったら, romaji: irasshattara }
+  - { kanji: いらっしゃりましたら, kana: いらっしゃりましたら, romaji: irassharimashitara }
+  - { kanji: いらっしゃらなかったら, kana: いらっしゃらなかったら, romaji: irassharanakattara }
+  - { kanji: いらっしゃりませんでしたら, kana: いらっしゃりませんでしたら, romaji: irassharimasendeshitara }
+imperative:
+  - { kanji: いらっしゃれ, kana: いらっしゃれ, romaji: irasshare }
+  - { kanji: いらっしゃってください, kana: いらっしゃってください, romaji: irasshattekudasai }
+  - { kanji: いらっしゃりませ, kana: いらっしゃりませ, romaji: irassharimase }
+  - { kanji: いらっしゃらないでください, kana: いらっしゃらないでください, romaji: irassharanaidekudasai }
+command:
+  - { kanji: いらっしゃりなさい, kana: いらっしゃりなさい, romaji: irassharinasai }
+  - null
+  - { kanji: いらっしゃるな, kana: いらっしゃるな, romaji: irassharuna }
+  - null
+volitional:
+  - { kanji: いらっしゃろう, kana: いらっしゃろう, romaji: irassharō }
+  - { kanji: いらっしゃりましょう, kana: いらっしゃりましょう, romaji: irassharimashō }
+  - null
+  - null
+gerund:
+  - { kanji: いらっしゃりながら, kana: いらっしゃりながら, romaji: irassharinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: いらっしゃりたい, kana: いらっしゃりたい, romaji: irassharitai }
+  - null
+  - { kanji: いらっしゃりたくない, kana: いらっしゃりたくない, romaji: irassharitakunai }
+  - null
