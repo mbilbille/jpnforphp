@@ -1,10 +1,10 @@
 non_past:
-  - { kanji: 来る, kana: きる, romaji: kuru }
+  - { kanji: 来る, kana: くる, romaji: kuru }
   - { kanji: 来ます, kana: きます, romaji: kimasu }
-  - { kanji: 来ない, kana: きない, romaji: kanai }
+  - { kanji: 来ない, kana: こない, romaji: konai }
   - { kanji: 来ません, kana: きません, romaji: kimasen }
 past:
-  - { kanji: 来だ, kana: きた, romaji: kita }
+  - { kanji: 来た, kana: きた, romaji: kita }
   - { kanji: 来ました, kana: きました, romaji: kimashita }
   - { kanji: 来なかった, kana: こなかった, romaji: konakatta }
   - { kanji: 来ませんでした, kana: きませんでした, romaji: kimasendeshita }
@@ -45,9 +45,9 @@ provisional_conditional:
   - null
 conditional:
   - { kanji: 来たら, kana: きたら, romaji: kitara }
-  - { kanji: 来みましたら, kana: よみましたら, romaji: yomimashitara }
-  - { kanji: 来まなかったら, kana: よまなかったら, romaji: yomanakattara }
-  - { kanji: 来みませんでしたら, kana: よみませんでしたら, romaji: yomimasendeshitara }
+  - { kanji: 来ましたら, kana: きましたら, romaji: kimashitara }
+  - { kanji: 来なかったら, kana: こなかったら, romaji: konakattara }
+  - { kanji: 来ませんでしたら, kana: きませんでしたら, romaji: kimasendeshitara }
 imperative:
   - { kanji: 来い, kana: こい, romaji: koi }
   - { kanji: 来てください, kana: きてください, romaji: kitekudasai }
