@@ -5,7 +5,7 @@ non_past:
   - { kanji: いらっしゃりません, kana: いらっしゃりません, romaji: irassharimasen }
 past:
   - { kanji: いらっしゃった, kana: いらっしゃった, romaji: irasshatta }
-  - { kanji: いらっしゃありました, kana: いらっしゃありました, romaji: irassharimashita }
+  - { kanji: いらっしゃりました, kana: いらっしゃりました, romaji: irassharimashita }
   - { kanji: いらっしゃらなかった, kana: いらっしゃらなかった, romaji: irassharanakatta }
   - { kanji: いらっしゃりませんでした, kana: いらっしゃりませんでした, romaji: irassharimasendeshita }
 te_form:
@@ -34,14 +34,14 @@ causative_alternative:
   - null
   - null
 causative_passive:
-  - { kanji: いらっしゃせられる, kana: いらっしゃらせられる, romaji: irassharaserareru }
-  - { kanji: いらっしゃせられます, kana: いらっしゃらせられます, romaji: irassharaseraremasu }
-  - { kanji: いらっしゃせられない, kana: いらっしゃらせられない, romaji: irassharaserarenai }
-  - { kanji: いらっしゃせられません, kana: いらっしゃらせられません, romaji: irassharaseraremasen }
+  - { kanji: いらっしゃらせられる, kana: いらっしゃらせられる, romaji: irassharaserareru }
+  - { kanji: いらっしゃらせられます, kana: いらっしゃらせられます, romaji: irassharaseraremasu }
+  - { kanji: いらっしゃらせられない, kana: いらっしゃらせられない, romaji: irassharaserarenai }
+  - { kanji: いらっしゃらせられません, kana: いらっしゃらせられません, romaji: irassharaseraremasen }
 provisional_conditional:
   - { kanji: いらっしゃれば, kana: いらっしゃれば, romaji: irasshareba }
   - null
-  - { kanji: いらっしゃらなければ, kana: いらっしゃらなければ, romaji: irasshanakereba }
+  - { kanji: いらっしゃらなければ, kana: いらっしゃらなければ, romaji: irassharanakereba }
   - null
 conditional:
   - { kanji: いらっしゃったら, kana: いらっしゃったら, romaji: irasshattara }
