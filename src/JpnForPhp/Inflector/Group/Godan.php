@@ -23,18 +23,6 @@ use JpnForPhp\Inflector\Verb;
 class Godan extends AbstractGroup
 {
 
-  function __construct(Verb $verb) {
-    parent::__construct($verb);
-
-    // Override default Godan default suffix map
-    if(in_array($this->verb->getType(), array('v5g', 'v5b'), true)) {
-      $this->suffixMap[Inflector::PAST_FORM][Inflector::PLAIN_FORM] = 'だ';
-      $this->suffixMap[Inflector::TE_FORM][Inflector::PLAIN_FORM] = 'で';
-      $this->suffixMap[Inflector::CONDITIONAL_FORM][Inflector::PLAIN_FORM] = 'だら';
-      $this->suffixMap[Inflector::IMPERATIVE_FORM][Inflector::POLITE_FORM] = 'でください';
-    }
-  }
-
   protected $conjugationMap = array(
       // 'xx' => array(MIZENKEI, RENYOUKEI, SHUUSHIKEI, RENTAIKEI, KATEIKEI, MEIREIKEI);
       'v5k' => array('か|こ', 'き|い', 'く', 'く', 'け', 'け'),
@@ -52,7 +40,7 @@ class Godan extends AbstractGroup
       'v5u-s' => array('わ|お', 'い|う', 'う', 'う', 'え', 'え'),
   );
 
-  protected $overriddenRules = array(
+  protected $alternativeConjugationRules = array(
       // verbal_form => array(PLAIN, POLITE, PLAIN_NEGATIVE, POLITE_NEGATIVE)
       Inflector::PAST_FORM => array(true, false, false, false),
       Inflector::TE_FORM => array(true, false, false, false),
@@ -79,4 +67,16 @@ class Godan extends AbstractGroup
       Inflector::GERUND_FORM => array('ながら', null, null, null),
       Inflector::OPTATIVE_FORM => array('たい', null, 'たくない', null)
   );
+
+  function __construct(Verb $verb) {
+    parent::__construct($verb);
+
+    // Override default Godan default suffix map
+    if(in_array($this->verb->getType(), array('v5g', 'v5b'), true)) {
+      $this->suffixMap[Inflector::PAST_FORM][Inflector::PLAIN_FORM] = 'だ';
+      $this->suffixMap[Inflector::TE_FORM][Inflector::PLAIN_FORM] = 'で';
+      $this->suffixMap[Inflector::CONDITIONAL_FORM][Inflector::PLAIN_FORM] = 'だら';
+      $this->suffixMap[Inflector::IMPERATIVE_FORM][Inflector::POLITE_FORM] = 'でください';
+    }
+  }
 }

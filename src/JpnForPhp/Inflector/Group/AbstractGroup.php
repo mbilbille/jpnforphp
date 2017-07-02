@@ -27,6 +27,8 @@ abstract class AbstractGroup implements Group
 
     protected $conjugationMap = array();
 
+    protected $alternativeConjugationRules = array();
+
     protected $inflectionRules = array();
 
     protected $suffixMap = array();
@@ -60,10 +62,11 @@ abstract class AbstractGroup implements Group
 
         $conjugations = explode('|', $conjugation);
 
-        return (!array_key_exists($verbalForm, $this->overriddenRules) ||
-          !array_key_exists($languageForm, $this->overriddenRules[$verbalForm]) ||
-          $this->overriddenRules[$verbalForm][$languageForm] === false) ?
-          $conjugations[0] : $conjugations[1];
+        return (
+          !array_key_exists($verbalForm, $this->alternativeConjugationRules) ||
+          !array_key_exists($languageForm, $this->alternativeConjugationRules[$verbalForm]) ||
+          $this->alternativeConjugationRules[$verbalForm][$languageForm] === false
+        ) ? $conjugations[0] : $conjugations[1];
    }
 
    public function getSuffix($verbalForm, $languageForm)

@@ -136,10 +136,12 @@ class Inflector
                 $group = new Group\Godan($verb);
                 break;
             case 'vk':
+                $group = new Group\IrregularKuru($verb);
+                break;
             case 'vs-i':
             case 'vs-s':
             case 'vz':
-                // @TODO
+                break;
             default:
                 throw new Exception('Unknown verb type : ' . $verb->getType());
       }
@@ -174,10 +176,15 @@ class Inflector
                   // @TODO need to support more cases?
               }
 
+              $conjugationKanji = $conjugationKana = $conjugation;
+              if($verb->getType() === 'vk') {
+                $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
+              }
+
               $result[$verbalForm][$languageForm] = array(
-                  self::KANJI_FORM => $stemKanji . $conjugation . $suffix,
-                  self::KANA_FORM => $stemKana . $conjugation . $suffix,
-                  self::ROMAJI_FORM => $transliterator->transliterate($stemKana . $conjugation . $suffix)
+                  self::KANJI_FORM => $stemKanji . $conjugationKanji . $suffix,
+                  self::KANA_FORM => $stemKana . $conjugationKana . $suffix,
+                  self::ROMAJI_FORM => $transliterator->transliterate($stemKana . $conjugationKana . $suffix)
               );
           }
       }
