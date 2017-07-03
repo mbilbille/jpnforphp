@@ -43,7 +43,11 @@ class InflectorUtils
       $statement = $connection->prepare($sql);
 
       foreach ($entries as $entry) {
-        $poses = array_keys(get_object_vars($entry->sense->pos));
+        $poses = [];
+        foreach ($entry->xpath('sense/pos') as $pos) {
+          $poses[] = array_keys(get_object_vars($pos))[0];
+        }
+        
         foreach ($poses as $pos) {
           if (stripos($pos, 'v1') !== false || stripos($pos, 'v5') !== false || $pos == 'vz' || $pos == 'vk' || $pos == 'vn' || $pos == 'vr' || $pos == 'vs-s' || $pos == 'vs-i') {
             $kanji = $entry->k_ele->keb;
