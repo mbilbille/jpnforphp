@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 使う, kana: つかう, romaji: tsukau }
+  - { kanji: 使います, kana: つかいます, romaji: tsukaimasu }
+  - { kanji: 使わない, kana: つかわない, romaji: tsukawanai }
+  - { kanji: 使いません, kana: つかいません, romaji: tsukaimasen }
+past:
+  - { kanji: 使った, kana: つかった, romaji: tsukatta }
+  - { kanji: 使いました, kana: つかいました, romaji: tsukaimashita }
+  - { kanji: 使わなかった, kana: つかわなかった, romaji: tsukawanakatta }
+  - { kanji: 使いませんでした, kana: つかいませんでした, romaji: tsukaimasendeshita }
+te_form:
+  - { kanji: 使って, kana: つかって, romaji: tsukatte }
+  - { kanji: 使いまして, kana: つかいまして, romaji: tsukaimashite }
+  - null
+  - null
+potential:
+  - { kanji: 使える, kana: つかえる, romaji: tsukaeru }
+  - { kanji: 使えます, kana: つかえます, romaji: tsukaemasu }
+  - { kanji: 使えない, kana: つかえない, romaji: tsukaenai }
+  - { kanji: 使えません, kana: つかえません, romaji: tsukaemasen }
+passive:
+  - { kanji: 使われる, kana: つかわれる, romaji: tsukawareru }
+  - { kanji: 使われます, kana: つかわれます, romaji: tsukawaremasu }
+  - { kanji: 使われない, kana: つかわれない, romaji: tsukawarenai }
+  - { kanji: 使われません, kana: つかわれません, romaji: tsukawaremasen }
+causative:
+  - { kanji: 使わせる, kana: つかわせる, romaji: tsukawaseru }
+  - { kanji: 使わせます, kana: つかわせます, romaji: tsukawasemasu }
+  - { kanji: 使わせない, kana: つかわせない, romaji: tsukawasenai }
+  - { kanji: 使わせません, kana: つかわせません, romaji: tsukawasemasen }
+causative_alternative:
+  - { kanji: 使わす, kana: つかわす, romaji: tsukawasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 使わせられる, kana: つかわせられる, romaji: tsukawaserareru }
+  - { kanji: 使わせられます, kana: つかわせられます, romaji: tsukawaseraremasu }
+  - { kanji: 使わせられない, kana: つかわせられない, romaji: tsukawaserarenai }
+  - { kanji: 使わせられません, kana: つかわせられません, romaji: tsukawaseraremasen }
+provisional_conditional:
+  - { kanji: 使えば, kana: つかえば, romaji: tsukaeba }
+  - null
+  - { kanji: 使わなければ, kana: つかわなければ, romaji: tsukawanakereba }
+  - null
+conditional:
+  - { kanji: 使ったら, kana: つかったら, romaji: tsukattara }
+  - { kanji: 使いましたら, kana: つかいましたら, romaji: tsukaimashitara }
+  - { kanji: 使わなかったら, kana: つかわなかったら, romaji: tsukawanakattara }
+  - { kanji: 使いませんでしたら, kana: つかいませんでしたら, romaji: tsukaimasendeshitara }
+imperative:
+  - { kanji: 使え, kana: つかえ, romaji: tsukae }
+  - { kanji: 使ってください, kana: つかってください, romaji: tsukattekudasai }
+  - { kanji: 使いませ, kana: つかいませ, romaji: tsukaimase }
+  - { kanji: 使わないでください, kana: つかわないでください, romaji: tsukawanaidekudasai }
+command:
+  - { kanji: 使いなさい, kana: つかいなさい, romaji: tsukainasai }
+  - null
+  - { kanji: 使うな, kana: つかうな, romaji: tsukauna }
+  - null
+volitional:
+  - { kanji: 使おう, kana: つかおう, romaji: tsukaō }
+  - { kanji: 使いましょう, kana: つかいましょう, romaji: tsukaimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 使いながら, kana: つかいながら, romaji: tsukainagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 使いたい, kana: つかいたい, romaji: tsukaitai }
+  - null
+  - { kanji: 使いたくない, kana: つかいたくない, romaji: tsukaitakunai }
+  - null
