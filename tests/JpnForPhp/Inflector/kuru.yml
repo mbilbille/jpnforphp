@@ -41,7 +41,7 @@ causative_passive:
 provisional_conditional:
   - { kanji: 来れば, kana: くれば, romaji: kureba }
   - null
-  - { kanji: 来なければ, kana:  こなければ, romaji: konakereba }
+  - { kanji: 来なければ, kana: こなければ, romaji: konakereba }
   - null
 conditional:
   - { kanji: 来たら, kana: きたら, romaji: kitara }
