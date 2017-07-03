@@ -58,4 +58,11 @@ class IrregularKuru extends AbstractGroup
   {
       return Helper::subString($this->verb->getKana(), 0, Analyzer::length($this->verb->getKana()) - 2);
   }
+
+  // Override `getKanjiStem` ; stem is part of the conjugation string when kuru is written in hiragana
+  public function getKanjiStem()
+  {
+    $stem = parent::getKanjiStem();
+    return (Helper::subString($stem, -1, 1) === '来') ? $stem : Helper::subString($this->verb->getKanji(), 0, Analyzer::length($this->verb->getKanji()) - 2);
+  }
 }

@@ -178,7 +178,7 @@ class Inflector
               }
 
               $conjugationKanji = $conjugationKana = $conjugation;
-              if($verb->getType() === 'vk') {
+              if($verb->getType() === 'vk' && Helper::subString($stemKanji, -1, 1) === '来') {
                 $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
               }
 
