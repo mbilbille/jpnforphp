@@ -25,11 +25,6 @@ use Exception;
   */
 abstract class AbstractVerb implements Verb
 {
-    protected $str = array(
-      Inflector::KANJI_FORM => '',
-      Inflector::KANA_FORM => ''
-    );
-
     protected $type;
 
     protected $stem = array(
@@ -47,11 +42,9 @@ abstract class AbstractVerb implements Verb
 
     function __construct(Entry $entry)
     {
-        $this->str[Inflector::KANJI_FORM] = $entry->getKanji();
-        $this->str[Inflector::KANA_FORM] = $entry->getKana();
         $this->type = $entry->getType();
-        $this->stem[Inflector::KANJI_FORM] = Helper::subString($this->str[Inflector::KANJI_FORM], 0, Analyzer::length($this->str[Inflector::KANJI_FORM]) - 1);
-        $this->stem[Inflector::KANA_FORM] = Helper::subString($this->str[Inflector::KANA_FORM], 0, Analyzer::length($this->str[Inflector::KANA_FORM]) - 1);
+        $this->stem[Inflector::KANJI_FORM] = Helper::subString($entry->getKanji(), 0, Analyzer::length($entry->getKanji()) - 1);
+        $this->stem[Inflector::KANA_FORM] = Helper::subString($entry->getKana(), 0, Analyzer::length($entry->getKana()) - 1);
         // Support verbs without kanji (such as irassharu)
         if($this->stem[Inflector::KANJI_FORM] === '') {
           $this->stem[Inflector::KANJI_FORM] = $this->stem[Inflector::KANA_FORM];
@@ -81,7 +74,7 @@ abstract class AbstractVerb implements Verb
     {
         if(!array_key_exists($this->type, $this->conjugationMap) ||
         !array_key_exists($conjugatedForm, $this->conjugationMap[$this->type])) {
-            throw new Exception('Failed to conjugate ' . $this->str[Inflector::KANJI_FORM] . ' (' . $this->type . ')');
+            throw new Exception('Failed to conjugate ' . $entry->getKanji() . ' (' . $this->type . ')');
         }
         $conjugation = $this->conjugationMap[$this->type][$conjugatedForm];
 
