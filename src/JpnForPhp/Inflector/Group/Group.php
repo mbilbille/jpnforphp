@@ -22,9 +22,7 @@
  {
    function __construct(Verb $verb);
 
-   function getKanjiStem();
-
-   function getKanaStem();
+   function getStem($transliterationForm, $verbalForm, $languageForm);
 
    function getConjugation($conjugatedForm, $verbalForm, $languageForm);
 

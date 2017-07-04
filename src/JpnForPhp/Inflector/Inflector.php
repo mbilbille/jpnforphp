@@ -145,19 +145,11 @@ class Inflector
       }
 
       // Inflection algorithm:
-      // 1/ Extract stem
-      // 2/ Which conjugated form to use?
-      // 3/ Get the conjugation
-      // 4/ Get suffix
-      // 5/ If the conjugation ends by 'n' change suffix 't' -> 'd'
-      // 6/ Concat stem + conjugated form + suffix
-
-      $stemKanji = $group->getKanjiStem($verb);
-      $stemKana = $group->getKanaStem($verb);
-      if($stemKanji === '') { // Support verbs without kanji (such as irassharu)
-        $stemKanji = $stemKana;
-      }
-
+      // 1/ Which conjugated form to use?
+      // 2/ Get the conjugation
+      // 3/ Get suffix
+      // 4/ If the conjugation ends by 'n' change suffix 't' -> 'd'
+      // 5/ Concat stem + conjugated form + suffix
       foreach ($verbalForms as $verbalForm) {
           $result[$verbalForm] = array();
 
@@ -177,16 +169,25 @@ class Inflector
                   // @TODO need to support more cases?
               }
 
+              $stemKanji = $group->getStem(self::KANJI_FORM, $verbalForm, $languageForm);
+              $stemKana = $group->getStem(self::KANA_FORM, $verbalForm, $languageForm);
+
+              // @TODO find a better way to support all this irregular case
               $conjugationKanji = $conjugationKana = $conjugation;
               if($verb->getType() === 'vk' && Helper::subString($stemKanji, -1, 1) === '来') {
                 $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
               }
+              else if($verb->getType() === 'v5r-i'
+                && in_array($verbalForm, array(self::NON_PAST_FORM, self::PAST_FORM), true)
+                && $languageForm === self::PLAIN_NEGATIVE_FORM) {
+                  $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
+                  $conjugationKana = Helper::subString($conjugationKana, 1, null);
+              }
 
               $result[$verbalForm][$languageForm] = array(
-                  self::KANJI_FORM => $stemKanji . $conjugationKanji . $suffix,
-                  self::KANA_FORM => $stemKana . $conjugationKana . $suffix,
-                  self::ROMAJI_FORM => $transliterator->transliterate($stemKana . $conjugationKana . $suffix)
-              );
+                  self::KANJI_FORM =>  $stemKanji . $conjugationKanji . $suffix,
+                  self::KANA_FORM => $stemKana . $conjugationKana . $suffix);
+              $result[$verbalForm][$languageForm][self::ROMAJI_FORM] = $transliterator->transliterate($result[$verbalForm][$languageForm][self::KANA_FORM]);
           }
       }
       return $result;

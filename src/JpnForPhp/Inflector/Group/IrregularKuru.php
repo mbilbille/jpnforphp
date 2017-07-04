@@ -53,16 +53,12 @@ class IrregularKuru extends AbstractGroup
       Inflector::OPTATIVE_FORM => array('たい', null, 'たくない', null)
   );
 
-  // Override `getKanaStem` ; stem is part of the conjugation string
-  public function getKanaStem()
-  {
-      return Helper::subString($this->verb->getKana(), 0, Analyzer::length($this->verb->getKana()) - 2);
-  }
 
-  // Override `getKanjiStem` ; stem is part of the conjugation string when kuru is written in hiragana
-  public function getKanjiStem()
-  {
-    $stem = parent::getKanjiStem();
-    return (Helper::subString($stem, -1, 1) === '来') ? $stem : Helper::subString($this->verb->getKanji(), 0, Analyzer::length($this->verb->getKanji()) - 2);
+  function __construct(Verb $verb) {
+    parent::__construct($verb);
+
+    // Override stems when it is part of the conjugation string
+    $this->kanjiStem = (Helper::subString($this->kanjiStem, -1, 1) === '来') ? $this->kanjiStem : Helper::subString($this->verb->getKanji(), 0, Analyzer::length($this->verb->getKanji()) - 2);
+    $this->kanaStem = Helper::subString($this->verb->getKana(), 0, Analyzer::length($this->verb->getKana()) - 2);
   }
 }

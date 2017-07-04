@@ -11,6 +11,8 @@
 
 namespace JpnForPhp\Inflector\Group;
 
+use JpnForPhp\Helper\Helper;
+use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Inflector\Inflector;
 use JpnForPhp\Inflector\Verb;
 
@@ -35,7 +37,7 @@ class Godan extends AbstractGroup
       'v5m' => array('ま|も', 'み|ん', 'む', 'む', 'め', 'め'),
       'v5r' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'),
       'v5aru' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'),
-      'v5r-i' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'), // @TODO check this
+      'v5r-i' => array('ら|ろ', 'り|っ', 'る', 'る', 'れ', 'れ'),
       'v5u' => array('わ|お', 'い|っ', 'う', 'う', 'え', 'え'),
       'v5u-s' => array('わ|お', 'い|う', 'う', 'う', 'え', 'え'),
   );
@@ -78,5 +80,19 @@ class Godan extends AbstractGroup
       $this->suffixMap[Inflector::CONDITIONAL_FORM][Inflector::PLAIN_FORM] = 'だら';
       $this->suffixMap[Inflector::IMPERATIVE_FORM][Inflector::POLITE_FORM] = 'でください';
     }
+  }
+
+  // Override `getStem`
+  public function getStem($transliterationForm, $verbalForm, $languageForm)
+  {
+    $stem = parent::getStem($transliterationForm, $verbalForm, $languageForm);
+
+    // ある・在る・有る has an irregular negative ( ～ない ) form: ない
+    if($this->verb->getType() === 'v5r-i'
+      && in_array($verbalForm, array(Inflector::NON_PAST_FORM, Inflector::PAST_FORM), true)
+      && $languageForm === Inflector::PLAIN_NEGATIVE_FORM) {
+        $stem = Helper::subString($stem, 0, Analyzer::length($stem) - 1);
+    }
+    return $stem;
   }
 }
