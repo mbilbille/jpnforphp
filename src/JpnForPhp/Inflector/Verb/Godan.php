@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace JpnForPhp\Inflector\Group;
+namespace JpnForPhp\Inflector\Verb;
 
 use JpnForPhp\Helper\Helper;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Inflector\Inflector;
-use JpnForPhp\Inflector\Verb;
+use JpnForPhp\Inflector\Entry;
 
 /**
  * Godan (五段) verb group.
@@ -22,7 +22,7 @@ use JpnForPhp\Inflector\Verb;
  *
  * @author Matthieu Bilbille (@mbibille)
  */
-class Godan extends AbstractGroup
+class Godan extends AbstractVerb
 {
 
   protected $conjugationMap = array(
@@ -70,11 +70,11 @@ class Godan extends AbstractGroup
       Inflector::OPTATIVE_FORM => array('たい', null, 'たくない', null)
   );
 
-  function __construct(Verb $verb) {
-    parent::__construct($verb);
+  function __construct(Entry $entry) {
+    parent::__construct($entry);
 
     // Override default Godan default suffix map
-    if(in_array($this->verb->getType(), array('v5g', 'v5b'), true)) {
+    if(in_array($this->type, array('v5g', 'v5b'), true)) {
       $this->suffixMap[Inflector::PAST_FORM][Inflector::PLAIN_FORM] = 'だ';
       $this->suffixMap[Inflector::TE_FORM][Inflector::PLAIN_FORM] = 'で';
       $this->suffixMap[Inflector::CONDITIONAL_FORM][Inflector::PLAIN_FORM] = 'だら';
@@ -88,7 +88,7 @@ class Godan extends AbstractGroup
     $stem = parent::getStem($transliterationForm, $verbalForm, $languageForm);
 
     // ある・在る・有る has an irregular negative ( ～ない ) form: ない
-    if($this->verb->getType() === 'v5r-i'
+    if($this->type === 'v5r-i'
       && in_array($verbalForm, array(Inflector::NON_PAST_FORM, Inflector::PAST_FORM), true)
       && $languageForm === Inflector::PLAIN_NEGATIVE_FORM) {
         $stem = Helper::subString($stem, 0, Analyzer::length($stem) - 1);

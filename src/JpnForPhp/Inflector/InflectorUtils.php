@@ -14,7 +14,7 @@ namespace JpnForPhp\Inflector;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Transliterator\System;
 use JpnForPhp\Transliterator\Transliterator;
-use JpnForPhp\Inflector\Verb;
+use JpnForPhp\Inflector\Entry;
 use PDO;
 
 class InflectorUtils
@@ -47,7 +47,7 @@ class InflectorUtils
         foreach ($entry->xpath('sense/pos') as $pos) {
           $poses[] = array_keys(get_object_vars($pos))[0];
         }
-        
+
         foreach ($poses as $pos) {
           if (stripos($pos, 'v1') !== false || stripos($pos, 'v5') !== false || $pos == 'vz' || $pos == 'vk' || $pos == 'vn' || $pos == 'vr' || $pos == 'vs-s' || $pos == 'vs-i') {
             $kanji = $entry->k_ele->keb;
@@ -63,12 +63,12 @@ class InflectorUtils
   }
 
   /**
-   * Gets a verb entry from the database using either Kanji, Hiragana or Romaji
+   * Gets a verb entries from the database using either Kanji, Hiragana or Romaji
    *
    * @param $verb A String value
-   * @return array Array of Verb instances
+   * @return array Array of Entry instances
    */
-  public static function getVerb($verb)
+  public static function getEntriesFromDatabase($verb)
   {
       if (!Analyzer::hasJapaneseLetters($verb)) {
         $verb = (new Transliterator())->transliterate($verb, new System\Hiragana());
@@ -81,7 +81,7 @@ class InflectorUtils
       $connection->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
       $statement = $connection->prepare($sql);
       $statement->execute(array(':kanji' => $verb, ':kana' => $verb));
-      $results = $statement->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__ . '\\Verb');
+      $results = $statement->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__ . '\\Entry');
       return $results;
   }
 }

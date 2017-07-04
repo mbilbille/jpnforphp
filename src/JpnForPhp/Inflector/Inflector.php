@@ -97,11 +97,11 @@ class Inflector
      * @param array $verbalForms
      * @return array
      */
-    public static function inflect(Verb $verb, $verbalForms = array())
+    public static function inflect(Entry $entry, $verbalForms = array())
     {
         $result = array();
 
-        if (!$verb) {
+        if (!$entry) {
             return $result;
         }
 
@@ -113,10 +113,10 @@ class Inflector
             $verbalForms = array_keys(Inflector::$inflectionRules);
         }
 
-        // Get a `Group` instance using the verb type
-        switch ($verb->getType()) {
+        // Get a `Verb` instance using the verb type
+        switch ($entry->getType()) {
             case 'v1':
-                $group = new Group\Ichidan($verb);
+                $group = new Verb\Ichidan($entry);
                 break;
             case 'v5k':
             case 'v5k-s':
@@ -131,17 +131,17 @@ class Inflector
             case 'v5r-i':
             case 'v5u':
             case 'v5u-s':
-                $group = new Group\Godan($verb);
+                $group = new Verb\Godan($entry);
                 break;
             case 'vk':
-                $group = new Group\IrregularKuru($verb);
+                $group = new Verb\IrregularKuru($entry);
                 break;
             case 'vs-i':
             case 'vs-s':
             case 'vz':
                 break;
             default:
-                throw new Exception('Unknown verb type : ' . $verb->getType());
+                throw new Exception('Unknown verb type : ' . $entry->getType());
       }
 
       // Inflection algorithm:
@@ -174,10 +174,10 @@ class Inflector
 
               // @TODO find a better way to support all this irregular case
               $conjugationKanji = $conjugationKana = $conjugation;
-              if($verb->getType() === 'vk' && Helper::subString($stemKanji, -1, 1) === '来') {
+              if($entry->getType() === 'vk' && Helper::subString($stemKanji, -1, 1) === '来') {
                 $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
               }
-              else if($verb->getType() === 'v5r-i'
+              else if($entry->getType() === 'v5r-i'
                 && in_array($verbalForm, array(self::NON_PAST_FORM, self::PAST_FORM), true)
                 && $languageForm === self::PLAIN_NEGATIVE_FORM) {
                   $conjugationKanji = Helper::subString($conjugationKanji, 1, null);

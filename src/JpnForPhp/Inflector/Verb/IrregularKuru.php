@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace JpnForPhp\Inflector\Group;
+namespace JpnForPhp\Inflector\Verb;
 
 use JpnForPhp\Helper\Helper;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Inflector\Inflector;
-use JpnForPhp\Inflector\Verb;
+use JpnForPhp\Inflector\Entry;
 
 /**
  * Irregular conjugation of the verb "kuru" (カ行変格活用).
  *
  * @author Matthieu Bilbille (@mbibille)
  */
-class IrregularKuru extends AbstractGroup
+class IrregularKuru extends AbstractVerb
 {
 
   protected $conjugationMap = array(
@@ -54,11 +54,11 @@ class IrregularKuru extends AbstractGroup
   );
 
 
-  function __construct(Verb $verb) {
-    parent::__construct($verb);
+  function __construct(Entry $entry) {
+    parent::__construct($entry);
 
     // Override stems when it is part of the conjugation string
-    $this->kanjiStem = (Helper::subString($this->kanjiStem, -1, 1) === '来') ? $this->kanjiStem : Helper::subString($this->verb->getKanji(), 0, Analyzer::length($this->verb->getKanji()) - 2);
-    $this->kanaStem = Helper::subString($this->verb->getKana(), 0, Analyzer::length($this->verb->getKana()) - 2);
+    $this->stem[Inflector::KANJI_FORM] = (Helper::subString($this->stem[Inflector::KANJI_FORM], -1, 1) === '来') ? $this->stem[Inflector::KANJI_FORM] : Helper::subString($entry->getKanji(), 0, Analyzer::length($entry->getKanji()) - 2);
+    $this->stem[Inflector::KANA_FORM] = Helper::subString($entry->getKana(), 0, Analyzer::length($entry->getKana()) - 2);
   }
 }

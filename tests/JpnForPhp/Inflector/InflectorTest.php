@@ -29,8 +29,8 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
 
     private function assertInflectionFromFile($verb, $file)
     {
-        $verbs = InflectorUtils::getVerb($verb);
-        $actual = Inflector::inflect($verbs[0]);
+        $entries = InflectorUtils::getEntriesFromDatabase($verb);
+        $actual = Inflector::inflect($entries[0]);
 
         $fileName = __DIR__ . DIRECTORY_SEPARATOR . $file;
         $this->assertFileExists($fileName);
@@ -41,17 +41,17 @@ class InflectorTest extends \PHPUnit_Framework_TestCase
 
     public function testInflectMiruExistsKanji()
     {
-        $this->assertNotEmpty(InflectorUtils::getVerb('見る'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('見る'));
     }
 
     public function testInflectMiruExistsKana()
     {
-        $this->assertNotEmpty(InflectorUtils::getVerb('みる'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('みる'));
     }
 
     public function testInflectMiruExistsRomaji()
     {
-        $this->assertNotEmpty(InflectorUtils::getVerb('miru'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('miru'));
     }
 
     public function testInflect5k()

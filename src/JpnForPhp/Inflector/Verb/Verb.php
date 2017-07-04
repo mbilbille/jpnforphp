@@ -9,18 +9,20 @@
  * file that was distributed with this source code.
  */
 
- namespace JpnForPhp\Inflector\Group;
+ namespace JpnForPhp\Inflector\Verb;
 
- use JpnForPhp\Inflector\Verb;
+ use JpnForPhp\Inflector\Entry;
 
  /**
-  * TODO.
+  * Verb interface for inflecting Japanese verbs .
   *
   * @author Matthieu Bilbille (@mbibille)
   */
- interface Group
+ interface Verb
  {
-   function __construct(Verb $verb);
+   function __construct(Entry $entry);
+
+   function getType();
 
    function getStem($transliterationForm, $verbalForm, $languageForm);
 

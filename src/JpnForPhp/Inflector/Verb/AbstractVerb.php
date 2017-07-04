@@ -9,22 +9,33 @@
  * file that was distributed with this source code.
  */
 
-namespace JpnForPhp\Inflector\Group;
+namespace JpnForPhp\Inflector\Verb;
 
 use JpnForPhp\Helper\Helper;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Inflector\Inflector;
-use JpnForPhp\Inflector\Verb;
+use JpnForPhp\Inflector\Entry;
 use Exception;
 
 /**
-  * TODO.
+  * Abstract implementation of Verb interface which provide common methods for
+  * each verb group (日本語動詞の活用の種類).
   *
   * @author Matthieu Bilbille (@mbibille)
   */
-abstract class AbstractGroup implements Group
+abstract class AbstractVerb implements Verb
 {
-    protected $verb;
+    protected $str = array(
+      Inflector::KANJI_FORM => '',
+      Inflector::KANA_FORM => ''
+    );
+
+    protected $type;
+
+    protected $stem = array(
+      Inflector::KANJI_FORM => '',
+      Inflector::KANA_FORM => ''
+    );
 
     protected $conjugationMap = array();
 
@@ -32,20 +43,26 @@ abstract class AbstractGroup implements Group
 
     protected $inflectionRules = array();
 
-    protected $kanjiStem;
-
-    protected $kanaStem;
-
     protected $suffixMap = array();
 
-    function __construct(Verb $verb)
+    function __construct(Entry $entry)
     {
-        $this->verb = $verb;
-        $this->kanjiStem = Helper::subString($this->verb->getKanji(), 0, Analyzer::length($this->verb->getKanji()) - 1);
-        $this->kanaStem = Helper::subString($this->verb->getKana(), 0, Analyzer::length($this->verb->getKana()) - 1);
-        if($this->kanjiStem === '') { // Support verbs without kanji (such as irassharu)
-          $this->kanjiStem = $this->kanaStem;
+        $this->str[Inflector::KANJI_FORM] = $entry->getKanji();
+        $this->str[Inflector::KANA_FORM] = $entry->getKana();
+        $this->type = $entry->getType();
+        $this->stem[Inflector::KANJI_FORM] = Helper::subString($this->str[Inflector::KANJI_FORM], 0, Analyzer::length($this->str[Inflector::KANJI_FORM]) - 1);
+        $this->stem[Inflector::KANA_FORM] = Helper::subString($this->str[Inflector::KANA_FORM], 0, Analyzer::length($this->str[Inflector::KANA_FORM]) - 1);
+        // Support verbs without kanji (such as irassharu)
+        if($this->stem[Inflector::KANJI_FORM] === '') {
+          $this->stem[Inflector::KANJI_FORM] = $this->stem[Inflector::KANA_FORM];
         }
+    }
+
+    /**
+     * Getter method for `type`
+     */
+    public function getType() {
+      return $this->type;
     }
 
     /**
@@ -54,7 +71,7 @@ abstract class AbstractGroup implements Group
      */
     public function getStem($transliterationForm, $verbalForm, $languageForm)
     {
-      return ($transliterationForm === Inflector::KANJI_FORM) ? $this->kanjiStem : $this->kanaStem;
+      return ($transliterationForm === Inflector::KANJI_FORM) ? $this->stem[Inflector::KANJI_FORM] : $this->stem[Inflector::KANA_FORM];
     }
 
     /**
@@ -62,11 +79,11 @@ abstract class AbstractGroup implements Group
      */
     public function getConjugation($conjugatedForm, $verbalForm, $languageForm)
     {
-        if(!array_key_exists($this->verb->getType(), $this->conjugationMap) ||
-        !array_key_exists($conjugatedForm, $this->conjugationMap[$this->verb->getType()])) {
-            throw new Exception('Failed to conjugate ' . $this->verb->getKanji() . ' (' . $this->verb->getType() . ')');
+        if(!array_key_exists($this->type, $this->conjugationMap) ||
+        !array_key_exists($conjugatedForm, $this->conjugationMap[$this->type])) {
+            throw new Exception('Failed to conjugate ' . $this->str[Inflector::KANJI_FORM] . ' (' . $this->type . ')');
         }
-        $conjugation = $this->conjugationMap[$this->verb->getType()][$conjugatedForm];
+        $conjugation = $this->conjugationMap[$this->type][$conjugatedForm];
 
         if(strpos($conjugation, '|') === false) {
             return $conjugation;

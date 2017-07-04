@@ -11,7 +11,7 @@
 
 namespace JpnForPhp\Inflector;
 
-class Verb
+class Entry
 {
 
   private $kanji;
