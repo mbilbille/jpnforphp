@@ -69,8 +69,10 @@ abstract class AbstractVerb implements Verb
 
     /**
      * Get a conjugation for a given conjugated, verbal and language forms.
+     * Note: `$transliterationForm` argument is not used here but it might be
+     * useful for overriding methods.
      */
-    public function getConjugation($conjugatedForm, $verbalForm, $languageForm)
+    public function getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm)
     {
         if(!array_key_exists($this->type, $this->conjugationMap) ||
         !array_key_exists($conjugatedForm, $this->conjugationMap[$this->type])) {

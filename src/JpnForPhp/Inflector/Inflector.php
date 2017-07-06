@@ -146,10 +146,11 @@ class Inflector
 
       // Inflection algorithm:
       // 1/ Which conjugated form to use?
-      // 2/ Get the conjugation
-      // 3/ Get suffix
-      // 4/ If the conjugation ends by 'n' change suffix 't' -> 'd'
-      // 5/ Concat stem + conjugated form + suffix
+      // 2/ Get stem
+      // 3/ Get conjugation
+      // 4/ Get suffix
+      // 5/ If the conjugation ends by 'n' change suffix 't' -> 'd'
+      // 6/ Concat stem + conjugated form + suffix
       foreach ($verbalForms as $verbalForm) {
           $result[$verbalForm] = array();
 
@@ -161,27 +162,17 @@ class Inflector
                   continue;
               }
 
-              $conjugation = $group->getConjugation($conjugatedForm, $verbalForm, $languageForm);
-              $suffix = $group->getSuffix($verbalForm, $languageForm);
-
-              if(Helper::subString($conjugation, -1, 1) === 'ん') {
-                  $suffix = strtr($suffix, array('た' => 'だ', 'て' => 'で'));
-                  // @TODO need to support more cases?
-              }
-
               $stemKanji = $group->getStem(self::KANJI_FORM, $verbalForm, $languageForm);
               $stemKana = $group->getStem(self::KANA_FORM, $verbalForm, $languageForm);
 
-              // @TODO find a better way to support all this irregular case
-              $conjugationKanji = $conjugationKana = $conjugation;
-              if($entry->getType() === 'vk' && Helper::subString($stemKanji, -1, 1) === '来') {
-                $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
-              }
-              else if($entry->getType() === 'v5r-i'
-                && in_array($verbalForm, array(self::NON_PAST_FORM, self::PAST_FORM), true)
-                && $languageForm === self::PLAIN_NEGATIVE_FORM) {
-                  $conjugationKanji = Helper::subString($conjugationKanji, 1, null);
-                  $conjugationKana = Helper::subString($conjugationKana, 1, null);
+              $conjugationKanji = $group->getConjugation(self::KANJI_FORM, $conjugatedForm, $verbalForm, $languageForm);
+              $conjugationKana = $group->getConjugation(self::KANA_FORM, $conjugatedForm, $verbalForm, $languageForm);
+
+              $suffix = $group->getSuffix($verbalForm, $languageForm);
+
+              if(Helper::subString($conjugationKanji, -1, 1) === 'ん') { // No need to test both transliteration forms.
+                  $suffix = strtr($suffix, array('た' => 'だ', 'て' => 'で'));
+                  // @TODO need to support more cases?
               }
 
               $result[$verbalForm][$languageForm] = array(

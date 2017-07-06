@@ -61,4 +61,16 @@ class IrregularKuru extends AbstractVerb
     $this->stem[Inflector::KANJI_FORM] = (Helper::subString($this->stem[Inflector::KANJI_FORM], -1, 1) === '来') ? $this->stem[Inflector::KANJI_FORM] : Helper::subString($entry->getKanji(), 0, Analyzer::length($entry->getKanji()) - 2);
     $this->stem[Inflector::KANA_FORM] = Helper::subString($entry->getKana(), 0, Analyzer::length($entry->getKana()) - 2);
   }
+
+  // Override `getConjugation`
+  public function getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm)
+  {
+    $conjugation = parent::getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm);
+
+    if($transliterationForm === Inflector::KANJI_FORM && Helper::subString($this->stem[Inflector::KANJI_FORM], -1, 1) === '来') {
+      $conjugation = Helper::subString($conjugation, 1, null);
+    }
+
+    return $conjugation;
+  }
 }

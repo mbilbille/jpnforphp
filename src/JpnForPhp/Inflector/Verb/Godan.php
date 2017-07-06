@@ -87,12 +87,57 @@ class Godan extends AbstractVerb
   {
     $stem = parent::getStem($transliterationForm, $verbalForm, $languageForm);
 
-    // ある・在る・有る has an irregular negative ( ～ない ) form: ない
-    if($this->type === 'v5r-i'
-      && in_array($verbalForm, array(Inflector::NON_PAST_FORM, Inflector::PAST_FORM), true)
-      && $languageForm === Inflector::PLAIN_NEGATIVE_FORM) {
-        $stem = Helper::subString($stem, 0, Analyzer::length($stem) - 1);
+    if($this->isIrregularForm_v5ri($verbalForm, $languageForm)) {
+      $stem = Helper::subString($stem, 0, Analyzer::length($stem) - 1);
     }
     return $stem;
+  }
+
+  // Override `getConjugation`
+  public function getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm)
+  {
+    $conjugation = parent::getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm);
+
+    if($this->isIrregularForm_v5ri($verbalForm, $languageForm)) {
+      $conjugation = Helper::subString($conjugation, 1, null);
+    }
+    else if($this->isIrregularForm_v5us($verbalForm, $languageForm)) {
+      $conjugation = Helper::subString($conjugation, 1, null);
+    }
+
+    return $conjugation;
+  }
+
+  /**
+   * Detect v5r-i irregular form(s)
+   * ある・在る・有る has an irregular negative ( ～ない ) form: ない
+   */
+  private function isIrregularForm_v5ri($verbalForm, $languageForm) {
+    if($this->type !== 'v5r-i') {
+      return false;
+    }
+
+    if(in_array($verbalForm, array(Inflector::NON_PAST_FORM, Inflector::PAST_FORM,
+      Inflector::PROVISIONAL_CONDITIONAL_FORM, Inflector::CONDITIONAL_FORM), true)
+      && $languageForm === Inflector::PLAIN_NEGATIVE_FORM) {
+        return true;
+    }
+
+    if(in_array($verbalForm, array(Inflector::IMPERATIVE_FORM), true)
+      && $languageForm === Inflector::POLITE_NEGATIVE_FORM) {
+        return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Detect v5u-s irregular form(s)
+   * Irregular て / た form
+   *  “to ask” とう・問う とうて and とうた
+   *  “to request” こう・請う・乞う こうて and こうた
+   */
+  private function isIrregularForm_v5us($verbalForm, $languageForm) {
+    return false; // @TODO
   }
 }

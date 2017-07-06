@@ -26,7 +26,7 @@
 
    function getStem($transliterationForm, $verbalForm, $languageForm);
 
-   function getConjugation($conjugatedForm, $verbalForm, $languageForm);
+   function getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm);
 
    function getSuffix($verbalForm, $languageForm);
  }
