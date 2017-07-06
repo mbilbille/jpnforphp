@@ -41,18 +41,18 @@ causative_passive:
 provisional_conditional:
   - { kanji: 有れば, kana: あれば, romaji: areba }
   - null
-  - { kanji: 有らなければ, kana: あらなければ, romaji: aranakereba }
+  - { kanji:なければ, kana: なければ, romaji: nakereba }
   - null
 conditional:
   - { kanji: 有ったら, kana: あったら, romaji: attara }
   - { kanji: 有りましたら, kana: ありましたら, romaji: arimashitara }
-  - { kanji: 有らなかったら, kana: あらなかったら, romaji: aranakattara }
+  - { kanji: なかったら, kana: なかったら, romaji: nakattara }
   - { kanji: 有りませんでしたら, kana: ありませんでしたら, romaji: arimasendeshitara }
 imperative:
   - { kanji: 有れ, kana: あれ, romaji: are }
   - { kanji: 有ってください, kana: あってください, romaji: attekudasai }
   - { kanji: 有りませ, kana: ありませ, romaji: arimase }
-  - { kanji: 有らないでください, kana: あらないでください, romaji: aranaidekudasai }
+  - { kanji: ないでください, kana: ないでください, romaji: naidekudasai }
 command:
   - { kanji: 有りなさい, kana: ありなさい, romaji: arinasai }
   - null
