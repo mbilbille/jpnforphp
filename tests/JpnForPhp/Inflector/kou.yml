@@ -1,15 +1,15 @@
 non_past:
-  - { kanji: 請う, kana: こう, romaji: kou }
+  - { kanji: 請う, kana: こう, romaji: kō }
   - { kanji: 請います, kana: こいます, romaji: koimasu }
   - { kanji: 請わない, kana: こわない, romaji: kowanai }
   - { kanji: 請いません, kana: こいません, romaji: koimasen }
 past:
-  - { kanji: 請うた, kana: こうた, romaji: kouta }
+  - { kanji: 請うた, kana: こうた, romaji: kōta }
   - { kanji: 請いました, kana: こいました, romaji: koimashita }
   - { kanji: 請わなかった, kana: こわなかった, romaji: kowanakatta }
   - { kanji: 請いませんでした, kana: こいませんでした, romaji: koimasendeshita }
 te_form:
-  - { kanji: 請うて, kana: こうて, romaji: koute }
+  - { kanji: 請うて, kana: こうて, romaji: kōte }
   - { kanji: 請いまして, kana: こいまして, romaji: koimashite }
   - null
   - null
@@ -44,22 +44,22 @@ provisional_conditional:
   - { kanji: 請わなければ, kana: こわなければ, romaji: kowanakereba }
   - null
 conditional:
-  - { kanji: 請うたら, kana: こうたら, romaji: koutara }
+  - { kanji: 請うたら, kana: こうたら, romaji: kōtara }
   - { kanji: 請いましたら, kana: こいましたら, romaji: koimashitara }
   - { kanji: 請わなかったら, kana: こわなかったら, romaji: kowanakattara }
   - { kanji: 請いませんでしたら, kana: こいませんでしたら, romaji: koimasendeshitara }
 imperative:
   - { kanji: 請え, kana: こえ, romaji: koe }
-  - { kanji: 請うてください, kana: こうてください, romaji: koutekudasai }
+  - { kanji: 請うてください, kana: こうてください, romaji: kōtekudasai }
   - { kanji: 請いませ, kana: こいませ, romaji: koimase }
   - { kanji: 請わないでください, kana: こわないでください, romaji: kowanaidekudasai }
 command:
   - { kanji: 請いなさい, kana: こいなさい, romaji: koinasai }
   - null
-  - { kanji: 請うな, kana: こうな, romaji: kouna }
+  - { kanji: 請うな, kana: こうな, romaji: kōna }
   - null
 volitional:
-  - { kanji: 請おう, kana: こおう, romaji: koō }
+  - { kanji: 請おう, kana: こおう, romaji: kōu }
   - { kanji: 請いましょう, kana: こいましょう, romaji: koimashō }
   - null
   - null
