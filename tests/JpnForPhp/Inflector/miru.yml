@@ -10,17 +10,17 @@ past:
   - { kanji: 見ませんでした, kana: みませんでした, romaji: mimasendeshita }
 te_form:
   - { kanji: 見て, kana: みて, romaji: mite }
-  - { kanji: 見まして, kana: 見まして, romaji: mimashite }
+  - { kanji: 見まして, kana: みまして, romaji: mimashite }
   - null
   - null
 potential:
   - { kanji: 見られる, kana: みられる, romaji: mirareru }
-  - { kanji: 見られます, kana: 見られる, romaji: miraremasu }
+  - { kanji: 見られます, kana: みられます, romaji: miraremasu }
   - { kanji: 見られない, kana: みられない, romaji: mirarenai }
   - { kanji: 見られません, kana: みられません, romaji: miraremasen }
 passive:
   - { kanji: 見られる, kana: みられる, romaji: mirareru }
-  - { kanji: 見られます, kana: 見られる, romaji: miraremasu }
+  - { kanji: 見られます, kana: みられます, romaji: miraremasu }
   - { kanji: 見られない, kana: みられない, romaji: mirarenai }
   - { kanji: 見られません, kana: みられません, romaji: miraremasen }
 causative:
@@ -29,7 +29,7 @@ causative:
   - { kanji: 見させない, kana: みさせない, romaji: misasenai }
   - { kanji: 見させません, kana: みさせません, romaji: misasemasen }
 causative_alternative:
-  - { kanji: 見ます, kana: みます, romaji: mimasu }
+  - { kanji: 見さす, kana: みさす, romaji: misasu }
   - null
   - null
   - null
