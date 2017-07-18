@@ -44,11 +44,11 @@ class Godan extends AbstractVerb
 
   protected $alternativeConjugationRules = array(
       // verbal_form => array(PLAIN, POLITE, PLAIN_NEGATIVE, POLITE_NEGATIVE)
-      Inflector::PAST_FORM => array(true, false, false, false),
-      Inflector::TE_FORM => array(true, false, false, false),
-      Inflector::CONDITIONAL_FORM => array(true, false, false, false),
-      Inflector::IMPERATIVE_FORM => array(false, true, false, false),
-      Inflector::VOLITIONAL_FORM => array(true, false, false, false)
+      Inflector::PAST_FORM => array(1, 0, 0, 0),
+      Inflector::TE_FORM => array(1, 0, 0, 0),
+      Inflector::CONDITIONAL_FORM => array(1, 0, 0, 0),
+      Inflector::IMPERATIVE_FORM => array(0, 1, 0, 0),
+      Inflector::VOLITIONAL_FORM => array(1, 0, 0, 0)
   );
 
   protected $suffixMap = array(
@@ -101,9 +101,6 @@ class Godan extends AbstractVerb
     if($this->isIrregularForm_v5ri($verbalForm, $languageForm)) {
       $conjugation = Helper::subString($conjugation, 1, null);
     }
-    else if($this->isIrregularForm_v5us($verbalForm, $languageForm)) {
-      $conjugation = Helper::subString($conjugation, 1, null);
-    }
 
     return $conjugation;
   }
@@ -129,15 +126,5 @@ class Godan extends AbstractVerb
     }
 
     return false;
-  }
-
-  /**
-   * Detect v5u-s irregular form(s)
-   * Irregular て / た form
-   *  “to ask” とう・問う とうて and とうた
-   *  “to request” こう・請う・乞う こうて and こうた
-   */
-  private function isIrregularForm_v5us($verbalForm, $languageForm) {
-    return false; // @TODO
   }
 }

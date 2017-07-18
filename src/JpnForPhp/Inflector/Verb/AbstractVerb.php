@@ -76,7 +76,7 @@ abstract class AbstractVerb implements Verb
     {
         if(!array_key_exists($this->type, $this->conjugationMap) ||
         !array_key_exists($conjugatedForm, $this->conjugationMap[$this->type])) {
-            throw new Exception('Failed to conjugate ' . $entry->getKanji() . ' (' . $this->type . ')');
+            throw new Exception('Failed to conjugate ' . $this->type . ' verb.');
         }
         $conjugation = $this->conjugationMap[$this->type][$conjugatedForm];
 
@@ -86,11 +86,12 @@ abstract class AbstractVerb implements Verb
 
         $conjugations = explode('|', $conjugation);
 
-        return (
-          !array_key_exists($verbalForm, $this->alternativeConjugationRules) ||
-          !array_key_exists($languageForm, $this->alternativeConjugationRules[$verbalForm]) ||
-          $this->alternativeConjugationRules[$verbalForm][$languageForm] === false
-        ) ? $conjugations[0] : $conjugations[1];
+        $alt = 0;
+        try {
+          $alt = $this->alternativeConjugationRules[$verbalForm][$languageForm];
+        } catch (Exception $ignored) {};
+
+        return $conjugations[(isset($conjugations[$alt]) ? $alt : 0)];
    }
 
    /**
