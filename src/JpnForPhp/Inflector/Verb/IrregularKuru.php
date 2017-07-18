@@ -26,12 +26,7 @@ class IrregularKuru extends AbstractVerb
 
   protected $conjugationMap = array(
       // 'xx' => array(MIZENKEI, RENYOUKEI, SHUUSHIKEI, RENTAIKEI, KATEIKEI, MEIREIKEI);
-      'vk' => array('こ', 'き', 'くる', 'くる', 'くれ|こ', 'こい')
-  );
-
-  protected $alternativeConjugationRules = array(
-      // verbal_form => array(PLAIN, POLITE, PLAIN_NEGATIVE, POLITE_NEGATIVE)
-      Inflector::POTENTIAL_FORM => array(true, true, true, true)
+      'vk' => array('こ', 'き', 'くる', 'くる', 'くれ', 'こい')
   );
 
   protected $suffixMap = array(
@@ -65,6 +60,10 @@ class IrregularKuru extends AbstractVerb
   // Override `getConjugation`
   public function getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm)
   {
+    if($verbalForm === Inflector::POTENTIAL_FORM) {
+      $conjugatedForm = Inflector::MIZENKEI;
+    }
+
     $conjugation = parent::getConjugation($transliterationForm, $conjugatedForm, $verbalForm, $languageForm);
 
     if($transliterationForm === Inflector::KANJI_FORM && Helper::subString($this->stem[Inflector::KANJI_FORM], -1, 1) === '来') {
