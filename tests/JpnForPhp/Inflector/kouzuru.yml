@@ -1,75 +1,75 @@
 non_past:
-  - { kanji: 困ずる, kana: こうずる, romaji: kouzuru }
-  - { kanji: 困ずります, kana: こうずります, romaji: kouzurimasu }
-  - { kanji: 困ずらない, kana: こうずらない, romaji: kouzurinai }
-  - { kanji: 困ずりません, kana: こうずりません, romaji: kouzurimasen }
+  - { kanji: 困ずる, kana: こうずる, romaji: kōzuru }
+  - { kanji: 困ずります, kana: こうずります, romaji: kōzurimasu }
+  - { kanji: 困ずらない, kana: こうずらない, romaji: kōzurinai }
+  - { kanji: 困ずりません, kana: こうずりません, romaji: kōzurimasen }
 past:
-  - { kanji: 困ずった, kana: こうずった, romaji: kouzutta }
-  - { kanji: 困ずりました, kana: こうずりました, romaji: kouzurimashita }
-  - { kanji: 困ずらなかった, kana: こうずらなかった, romaji: kouzuranakatta }
-  - { kanji: 困ずりませんでした, kana: こうずりませんでした, romaji: kouzurimasendeshita }
+  - { kanji: 困ずった, kana: こうずった, romaji: kōzutta }
+  - { kanji: 困ずりました, kana: こうずりました, romaji: kōzurimashita }
+  - { kanji: 困ずらなかった, kana: こうずらなかった, romaji: kōzuranakatta }
+  - { kanji: 困ずりませんでした, kana: こうずりませんでした, romaji: kōzurimasendeshita }
 te_form:
-  - { kanji: 困ずって, kana: こうずって, romaji: kouzutte }
-  - { kanji: 困ずりまして, kana: こうずりまして, romaji: kouzurimashite }
+  - { kanji: 困ずって, kana: こうずって, romaji: kōzutte }
+  - { kanji: 困ずりまして, kana: こうずりまして, romaji: kōzurimashite }
   - null
   - null
 potential:
-  - { kanji: 困ずれる, kana: こうずれる, romaji: kouzureru }
-  - { kanji: 困ずれます, kana: こうずれます, romaji: kouzuremasu }
-  - { kanji: 困ずれない, kana: こうずれない, romaji: kouzurenai }
-  - { kanji: 困ずれません, kana: こうずれません, romaji: kouzuremasen }
+  - { kanji: 困ずれる, kana: こうずれる, romaji: kōzureru }
+  - { kanji: 困ずれます, kana: こうずれます, romaji: kōzuremasu }
+  - { kanji: 困ずれない, kana: こうずれない, romaji: kōzurenai }
+  - { kanji: 困ずれません, kana: こうずれません, romaji: kōzuremasen }
 passive:
-  - { kanji: 困ずられる, kana: こうずられる, romaji: kouzurareru }
-  - { kanji: 困ずられます, kana: こうずられます, romaji: kouzuraremasu }
-  - { kanji: 困ずられない, kana: こうずられない, romaji: kouzurarenai }
-  - { kanji: 困ずられません, kana: こうずられません, romaji: kouzuraremasen }
+  - { kanji: 困ずられる, kana: こうずられる, romaji: kōzurareru }
+  - { kanji: 困ずられます, kana: こうずられます, romaji: kōzuraremasu }
+  - { kanji: 困ずられない, kana: こうずられない, romaji: kōzurarenai }
+  - { kanji: 困ずられません, kana: こうずられません, romaji: kōzuraremasen }
 causative:
-  - { kanji: 困ずらせる, kana: こうずらせる, romaji: kouzuraseru }
-  - { kanji: 困ずらせます, kana: こうずらせます, romaji: kouzurasemasu }
-  - { kanji: 困ずらせない, kana: こうずらせない, romaji: kouzurasenai }
-  - { kanji: 困ずらせません, kana: こうずらせません, romaji: kouzurasemasen }
+  - { kanji: 困ずらせる, kana: こうずらせる, romaji: kōzuraseru }
+  - { kanji: 困ずらせます, kana: こうずらせます, romaji: kōzurasemasu }
+  - { kanji: 困ずらせない, kana: こうずらせない, romaji: kōzurasenai }
+  - { kanji: 困ずらせません, kana: こうずらせません, romaji: kōzurasemasen }
 causative_alternative:
-  - { kanji: 困ずらす, kana: こうずらす, romaji: kouzurasu }
+  - { kanji: 困ずらす, kana: こうずらす, romaji: kōzurasu }
   - null
   - null
   - null
 causative_passive:
-  - { kanji: 困ずらせられる, kana: こうずらせられる, romaji: kouzuraserareru }
-  - { kanji: 困ずらせられます, kana: こうずらせられます, romaji: kouzuraseraremasu }
-  - { kanji: 困ずらせられない, kana: こうずらせられない, romaji: kouzuraserarenai }
-  - { kanji: 困ずらせられません, kana: こうずらせられません, romaji: kouzuraseraremasen }
+  - { kanji: 困ずらせられる, kana: こうずらせられる, romaji: kōzuraserareru }
+  - { kanji: 困ずらせられます, kana: こうずらせられます, romaji: kōzuraseraremasu }
+  - { kanji: 困ずらせられない, kana: こうずらせられない, romaji: kōzuraserarenai }
+  - { kanji: 困ずらせられません, kana: こうずらせられません, romaji: kōzuraseraremasen }
 provisional_conditional:
-  - { kanji: 困ずれば, kana: こうずれば, romaji: kouzureba }
+  - { kanji: 困ずれば, kana: こうずれば, romaji: kōzureba }
   - null
-  - { kanji: 困ずらなければ, kana: こうずらなければ, romaji: kouzuranakereba }
+  - { kanji: 困ずらなければ, kana: こうずらなければ, romaji: kōzuranakereba }
   - null
 conditional:
-  - { kanji: 困ずったら, kana: こうずったら, romaji: kouzuttara }
-  - { kanji: 困ずりましたら, kana: こうずりましたら, romaji: kouzurimashitara }
-  - { kanji: 困ずらなかったら, kana: こうずらなかったら, romaji: kouzuranakattara }
-  - { kanji: 困ずりませんでしたら, kana: こうずりませんでしたら, romaji: kouzurimasendeshitara }
+  - { kanji: 困ずったら, kana: こうずったら, romaji: kōzuttara }
+  - { kanji: 困ずりましたら, kana: こうずりましたら, romaji: kōzurimashitara }
+  - { kanji: 困ずらなかったら, kana: こうずらなかったら, romaji: kōzuranakattara }
+  - { kanji: 困ずりませんでしたら, kana: こうずりませんでしたら, romaji: kōzurimasendeshitara }
 imperative:
-  - { kanji: 困ずれ, kana: こうずれ, romaji: kouzure }
-  - { kanji: 困ずってください, kana: こうずってください, romaji: kouzuttekudasai }
-  - { kanji: 困ずりませ, kana: こうずりませ, romaji: kouzurimase }
-  - { kanji: 困ずらないでください, kana: こうずらないでください, romaji: kouzuranaidekudasai  }
+  - { kanji: 困ずれ, kana: こうずれ, romaji: kōzure }
+  - { kanji: 困ずってください, kana: こうずってください, romaji: kōzuttekudasai }
+  - { kanji: 困ずりませ, kana: こうずりませ, romaji: kōzurimase }
+  - { kanji: 困ずらないでください, kana: こうずらないでください, romaji: kōzuranaidekudasai  }
 command:
-  - { kanji: 困ずりなさい, kana: こうずりなさい, romaji: kouzurinasai }
+  - { kanji: 困ずりなさい, kana: こうずりなさい, romaji: kōzurinasai }
   - null
-  - { kanji: 困ずるな, kana: こうずるな, romaji: kouzuruna }
+  - { kanji: 困ずるな, kana: こうずるな, romaji: kōzuruna }
   - null
 volitional:
-  - { kanji: 困ずろう, kana: こうずろう, romaji: kouzurō }
-  - { kanji: 困ずりましょう, kana: こうずりましょう, romaji: kouzurimashō }
+  - { kanji: 困ずろう, kana: こうずろう, romaji: kōzurō }
+  - { kanji: 困ずりましょう, kana: こうずりましょう, romaji: kōzurimashō }
   - null
   - null
 gerund:
-  - { kanji: 困ずりながら, kana: こうずりながら, romaji: kouzurinagara }
+  - { kanji: 困ずりながら, kana: こうずりながら, romaji: kōzurinagara }
   - null
   - null
   - null
 optative:
-  - { kanji: 困ずりたい, kana: こうずりたい, romaji: kouzuritai }
+  - { kanji: 困ずりたい, kana: こうずりたい, romaji: kōzuritai }
   - null
-  - { kanji: 困ずりたくない, kana: こうずりたくない, romaji: kouzuritakunai }
+  - { kanji: 困ずりたくない, kana: こうずりたくない, romaji: kōzuritakunai }
   - null
