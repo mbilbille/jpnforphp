@@ -14,30 +14,30 @@ te_form:
   - null
   - null
 potential:
-  - { kanji: 困ずれる, kana: こうずれる, romaji: kōzureru }
-  - { kanji: 困ずれます, kana: こうずれます, romaji: kōzuremasu }
-  - { kanji: 困ずれない, kana: こうずれない, romaji: kōzurenai }
-  - { kanji: 困ずれません, kana: こうずれません, romaji: kōzuremasen }
+  - { kanji: 困ぜられる, kana: こうぜられる, romaji: kōzerareru }
+  - { kanji: 困ぜられます, kana: こうぜられます, romaji: kōzeraremasu }
+  - { kanji: 困ぜられない, kana: こうぜられない, romaji: kōzerarenai }
+  - { kanji: 困ぜられません, kana: こうぜられません, romaji: kōzeraremasen }
 passive:
-  - { kanji: 困ぜられる, kana: こうぜられる, romaji: kōzarareru }
-  - { kanji: 困ぜられます, kana: こうぜられます, romaji: kōzararemasu }
-  - { kanji: 困ぜられない, kana: こうぜられない, romaji: kōzararenai }
-  - { kanji: 困ぜられません, kana: こうぜられません, romaji: kōzararemasen }
+  - { kanji: 困ぜられる, kana: こうぜられる, romaji: kōzerareru }
+  - { kanji: 困ぜられます, kana: こうぜられます, romaji: kōzeraremasu }
+  - { kanji: 困ぜられない, kana: こうぜられない, romaji: kōzerarenai }
+  - { kanji: 困ぜられません, kana: こうぜられません, romaji: kōzeraremasen }
 causative:
-  - { kanji: 困ぜらせる, kana: こうぜらせる, romaji: kōzaraseru }
-  - { kanji: 困ぜらせます, kana: こうぜらせます, romaji: kōzarasemasu }
-  - { kanji: 困ぜらせない, kana: こうぜらせない, romaji: kōzarasenai }
-  - { kanji: 困ぜらせません, kana: こうぜらせません, romaji: kōzarasemasen }
+  - { kanji: 困ぜさせる, kana: こうぜさせる, romaji: kōzesaseru }
+  - { kanji: 困ぜさせます, kana: こうぜさせます, romaji: kōzesasemasu }
+  - { kanji: 困ぜさせない, kana: こうぜさせない, romaji: kōzesasenai }
+  - { kanji: 困ぜさせません, kana: こうぜさせません, romaji: kōzesasemasen }
 causative_alternative:
-  - { kanji: 困ぜす, kana: こうぜす, romaji: kōzasu }
+  - { kanji: 困ぜす, kana: こうぜす, romaji: kōzesu }
   - null
   - null
   - null
 causative_passive:
-  - { kanji: 困ぜらせられる, kana: こうぜらせられる, romaji: kōzaraserareru }
-  - { kanji: 困ぜらせられます, kana: こうぜらせられます, romaji: kōzaraseraremasu }
-  - { kanji: 困ぜらせられない, kana: こうぜらせられない, romaji: kōzaraserarenai }
-  - { kanji: 困ぜらせられません, kana: こうぜらせられません, romaji: kōzaraseraremasen }
+  - { kanji: 困ぜせられる, kana: こうぜせられる, romaji: kōzeserareru }
+  - { kanji: 困ぜせられます, kana: こうぜせられます, romaji: kōzeseraremasu }
+  - { kanji: 困ぜせられない, kana: こうぜせられない, romaji: kōzeserarenai }
+  - { kanji: 困ぜせられません, kana: こうぜせられません, romaji: kōzeseraremasen }
 provisional_conditional:
   - { kanji: 困ずれば, kana: こうずれば, romaji: kōzureba }
   - null
