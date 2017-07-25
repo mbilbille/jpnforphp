@@ -17,7 +17,7 @@ use JpnForPhp\Inflector\Inflector;
 use JpnForPhp\Inflector\Entry;
 
 /**
- * Irregular conjugation of the verb "kuru" (カ行変格活用).
+ * Irregular conjugation of "suru" verb (サ行変格活用).
  *
  * @author Matthieu Bilbille (@mbibille)
  */
