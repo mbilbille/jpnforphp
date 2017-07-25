@@ -139,8 +139,9 @@ class Inflector
             case 'vs-i':
             case 'vs-s':
                 $group = new Verb\IrregularSuru($entry);
+                break;
             case 'vz':
-                // @TODO
+                $group = new Verb\IrregularZuru($entry);
                 break;
             default:
                 throw new Exception('Unknown verb type : ' . $entry->getType());
