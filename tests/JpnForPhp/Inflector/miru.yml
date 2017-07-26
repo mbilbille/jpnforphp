@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 見る, kana: みる, romaji: miru }
+  - { kanji: 見ます, kana: みます, romaji: mimasu }
+  - { kanji: 見ない, kana: みない, romaji: minai }
+  - { kanji: 見ません, kana: みません, romaji: mimasen }
+past:
+  - { kanji: 見た, kana: みた, romaji: mita }
+  - { kanji: 見ました, kana: みました, romaji: mimashita }
+  - { kanji: 見なかった, kana: みなかった, romaji: minakatta }
+  - { kanji: 見ませんでした, kana: みませんでした, romaji: mimasendeshita }
+te_form:
+  - { kanji: 見て, kana: みて, romaji: mite }
+  - { kanji: 見まして, kana: みまして, romaji: mimashite }
+  - null
+  - null
+potential:
+  - { kanji: 見られる, kana: みられる, romaji: mirareru }
+  - { kanji: 見られます, kana: みられます, romaji: miraremasu }
+  - { kanji: 見られない, kana: みられない, romaji: mirarenai }
+  - { kanji: 見られません, kana: みられません, romaji: miraremasen }
+passive:
+  - { kanji: 見られる, kana: みられる, romaji: mirareru }
+  - { kanji: 見られます, kana: みられます, romaji: miraremasu }
+  - { kanji: 見られない, kana: みられない, romaji: mirarenai }
+  - { kanji: 見られません, kana: みられません, romaji: miraremasen }
+causative:
+  - { kanji: 見させる, kana: みさせる, romaji: misaseru }
+  - { kanji: 見させます, kana: みさせます, romaji: misasemasu }
+  - { kanji: 見させない, kana: みさせない, romaji: misasenai }
+  - { kanji: 見させません, kana: みさせません, romaji: misasemasen }
+causative_alternative:
+  - { kanji: 見さす, kana: みさす, romaji: misasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 見させられる, kana: みさせられる, romaji: misaserareru }
+  - { kanji: 見させられます, kana: みさせられます, romaji: misaseraremasu }
+  - { kanji: 見させられない, kana: みさせられない, romaji: misaserarenai }
+  - { kanji: 見させられません, kana: みさせられません, romaji: misaseraremasen }
+provisional_conditional:
+  - { kanji: 見れば, kana: みれば, romaji: mireba }
+  - null
+  - { kanji: 見なければ, kana: みなければ, romaji: minakereba }
+  - null
+conditional:
+  - { kanji: 見たら, kana: みたら, romaji: mitara }
+  - { kanji: 見ましたら, kana: みましたら, romaji: mimashitara }
+  - { kanji: 見なかったら, kana: みなかったら, romaji: minakattara }
+  - { kanji: 見ませんでしたら, kana: みませんでしたら, romaji: mimasendeshitara }
+imperative:
+  - { kanji: 見ろ, kana: みろ, romaji: miro }
+  - { kanji: 見てください, kana: みてください, romaji: mitekudasai }
+  - { kanji: 見ませ, kana: みませ, romaji: mimase }
+  - { kanji: 見ないでください, kana: みないでください, romaji: minaidekudasai }
+command:
+  - { kanji: 見なさい, kana: みなさい, romaji: minasai }
+  - null
+  - { kanji: 見るな, kana: みるな, romaji: miruna }
+  - null
+volitional:
+  - { kanji: 見よう, kana: みよう, romaji: miyō }
+  - { kanji: 見ましょう, kana: みましょう, romaji: mimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 見ながら, kana: みながら, romaji: minagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 見たい, kana: みたい, romaji: mitai }
+  - null
+  - { kanji: 見たくない, kana: みたくない, romaji: mitakunai }
+  - null

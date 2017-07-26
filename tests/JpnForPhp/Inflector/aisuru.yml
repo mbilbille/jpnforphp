@@ -1,0 +1,76 @@
+non_past:
+  - { kanji: 愛する, kana: あいする, romaji: aisuru }
+  - { kanji: 愛します, kana: あいします, romaji: aishimasu }
+  - { kanji: 愛しない, kana: あいしない, romaji: aishinai }
+  - { kanji: 愛しません, kana: あいしません, romaji: aishimasen }
+past:
+  - { kanji: 愛した, kana: あいした, romaji: aishita }
+  - { kanji: 愛しました, kana: あいしました, romaji: aishimashita }
+  - { kanji: 愛しなかった, kana: あいしなかった, romaji: aishinakatta }
+  - { kanji: 愛しませんでした, kana: あいしませんでした, romaji: aishimasendeshita }
+te_form:
+  - { kanji: 愛して, kana: あいして, romaji: aishite }
+  - { kanji: 愛しまして, kana: あいしまして, romaji: aishimashite }
+  - null
+  - null
+potential:
+  - { kanji: 愛できる, kana: あいできる, romaji: aidekiru }
+  - { kanji: 愛できます, kana: あいできます, romaji: aidekimasu }
+  - { kanji: 愛できない, kana: あいできない, romaji: aidekinai }
+  - { kanji: 愛できません, kana: あいできません, romaji: aidekimasen }
+passive:
+  - { kanji: 愛される, kana: あいされる, romaji: aisareru }
+  - { kanji: 愛されます, kana: あいされます, romaji: aisaremasu }
+  - { kanji: 愛されない, kana: あいされない, romaji: aisarenai }
+  - { kanji: 愛されません, kana: あいされません, romaji: aisaremasen }
+causative:
+  - { kanji: 愛させる, kana: あいさせる, romaji: aisaseru }
+  - { kanji: 愛させます, kana: あいさせます, romaji: aisasemasu }
+  - { kanji: 愛させない, kana: あいさせない, romaji: aisasenai }
+  - { kanji: 愛させません, kana: あいさせません, romaji: aisasemasen }
+causative_alternative:
+  - { kanji: 愛さす, kana: あいさす, romaji: aisasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 愛させられる, kana: あいさせられる, romaji: aisaserareru }
+  - { kanji: 愛させられます, kana: あいさせられます, romaji: aisaseraremasu }
+  - { kanji: 愛させられない, kana: あいさせられない, romaji: aisaserarenai }
+  - { kanji: 愛させられません, kana: あいさせられません, romaji: aisaseraremasen }
+provisional_conditional:
+  - { kanji: 愛すれば, kana: あいすれば, romaji: aisureba }
+  - null
+  - { kanji: 愛しなければ, kana: あいしなければ, romaji: aishinakereba }
+  - null
+conditional:
+  - { kanji: 愛したら, kana: あいしたら, romaji: aishitara }
+  - { kanji: 愛しましたら, kana: あいしましたら, romaji: aishimashitara }
+  - { kanji: 愛しなかったら, kana: あいしなかったら, romaji: aishinakattara }
+  - { kanji: 愛しませんでしたら, kana: あいしませんでしたら, romaji: aishimasendeshitara }
+imperative:
+  - { kanji: 愛しろ, kana: あいしろ, romaji: aishiro }
+  - { kanji: 愛してください, kana: あいしてください, romaji: aishitekudasai }
+  - { kanji: 愛しませ, kana: あいしませ, romaji: aishimase }
+  - { kanji: 愛しないでください, kana: あいしないでください, romaji: aishinaidekudasai }
+command:
+  - { kanji: 愛しなさい, kana: あいしなさい, romaji: aishinasai }
+  - null
+  - { kanji: 愛するな, kana: あいするな, romaji: aisuruna }
+  - null
+volitional:
+  - { kanji: 愛しよう, kana: あいしよう, romaji: aishiyō }
+  - { kanji: 愛しましょう, kana: あいしましょう, romaji: aishimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 愛しながら, kana: あいしながら, romaji: aishinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 愛したい, kana: あいしたい, romaji: aishitai }
+  - null
+  - { kanji: 愛したくない, kana: あいしたくない, romaji: aishitakunai }
+  - null
+

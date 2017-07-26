@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 泳ぐ, kana: およぐ, romaji: oyogu }
+  - { kanji: 泳ぎます, kana: およぎます, romaji: oyogimasu }
+  - { kanji: 泳がない, kana: およがない, romaji: oyoganai }
+  - { kanji: 泳ぎません, kana: およぎません, romaji: oyogimasen }
+past:
+  - { kanji: 泳いだ, kana: およいだ, romaji: oyoida }
+  - { kanji: 泳ぎました, kana: およぎました, romaji: oyogimashita }
+  - { kanji: 泳がなかった, kana: およがなかった, romaji: oyoganakatta }
+  - { kanji: 泳ぎませんでした, kana: およぎませんでした, romaji: oyogimasendeshita }
+te_form:
+  - { kanji: 泳いで, kana: およいで, romaji: oyoide }
+  - { kanji: 泳ぎまして, kana: およぎまして, romaji: oyogimashite }
+  - null
+  - null
+potential:
+  - { kanji: 泳げる, kana: およげる, romaji: oyogeru }
+  - { kanji: 泳げます, kana: およげます, romaji: oyogemasu }
+  - { kanji: 泳げない, kana: およげない, romaji: oyogenai }
+  - { kanji: 泳げません, kana: およげません, romaji: oyogemasen }
+passive:
+  - { kanji: 泳がれる, kana: およがれる, romaji: oyogareru }
+  - { kanji: 泳がれます, kana: およがれます, romaji: oyogaremasu }
+  - { kanji: 泳がれない, kana: およがれない, romaji: oyogarenai }
+  - { kanji: 泳がれません, kana: およがれません, romaji: oyogaremasen }
+causative:
+  - { kanji: 泳がせる, kana: およがせる, romaji: oyogaseru }
+  - { kanji: 泳がせます, kana: およがせます, romaji: oyogasemasu }
+  - { kanji: 泳がせない, kana: およがせない, romaji: oyogasenai }
+  - { kanji: 泳がせません, kana: およがせません, romaji: oyogasemasen }
+causative_alternative:
+  - { kanji: 泳がす, kana: およがす, romaji: oyogasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 泳がせられる, kana: およがせられる, romaji: oyogaserareru }
+  - { kanji: 泳がせられます, kana: およがせられます, romaji: oyogaseraremasu }
+  - { kanji: 泳がせられない, kana: およがせられない, romaji: oyogaserarenai }
+  - { kanji: 泳がせられません, kana: およがせられません, romaji: oyogaseraremasen }
+provisional_conditional:
+  - { kanji: 泳げば, kana: およげば, romaji: oyogeba }
+  - null
+  - { kanji: 泳がなければ, kana: およがなければ, romaji: oyoganakereba }
+  - null
+conditional:
+  - { kanji: 泳いだら, kana: およいだら, romaji: oyoidara }
+  - { kanji: 泳ぎましたら, kana: およぎましたら, romaji: oyogimashitara }
+  - { kanji: 泳がなかったら, kana: およがなかったら, romaji: oyoganakattara }
+  - { kanji: 泳ぎませんでしたら, kana: およぎませんでしたら, romaji: oyogimasendeshitara }
+imperative:
+  - { kanji: 泳げ, kana: およげ, romaji: oyoge }
+  - { kanji: 泳いでください, kana: およいでください, romaji: oyoidekudasai }
+  - { kanji: 泳ぎませ, kana: およぎませ, romaji: oyogimase }
+  - { kanji: 泳がないでください, kana: およがないでください, romaji: oyoganaidekudasai }
+command:
+  - { kanji: 泳ぎなさい, kana: およぎなさい, romaji: oyoginasai }
+  - null
+  - { kanji: 泳ぐな, kana: およぐな, romaji: oyoguna }
+  - null
+volitional:
+  - { kanji: 泳ごう, kana: およごう, romaji: oyogō }
+  - { kanji: 泳ぎましょう, kana: およぎましょう, romaji: oyogimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 泳ぎながら, kana: およぎながら, romaji: oyoginagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 泳ぎたい, kana: およぎたい, romaji: oyogitai }
+  - null
+  - { kanji: 泳ぎたくない, kana: およぎたくない, romaji: oyogitakunai }
+  - null

@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 持ってくる, kana: もってくる, romaji: mottekuru }
+  - { kanji: 持ってきます, kana: もってきます, romaji: mottekimasu }
+  - { kanji: 持ってこない, kana: もってこない, romaji: mottekonai }
+  - { kanji: 持ってきません, kana: もってきません, romaji: mottekimasen }
+past:
+  - { kanji: 持ってきた, kana: もってきた, romaji: mottekita }
+  - { kanji: 持ってきました, kana: もってきました, romaji: mottekimashita }
+  - { kanji: 持ってこなかった, kana: もってこなかった, romaji: mottekonakatta }
+  - { kanji: 持ってきませんでした, kana: もってきませんでした, romaji: mottekimasendeshita }
+te_form:
+  - { kanji: 持ってきて, kana: もってきて, romaji: mottekite }
+  - { kanji: 持ってきまして, kana: もってきまして, romaji: mottekimashite }
+  - null
+  - null
+potential:
+  - { kanji: 持ってこられる, kana: もってこられる, romaji: mottekorareru }
+  - { kanji: 持ってこられます, kana: もってこられます, romaji: mottekoraremasu }
+  - { kanji: 持ってこられない, kana: もってこられない, romaji: mottekorarenai }
+  - { kanji: 持ってこられません, kana: もってこられません, romaji: mottekoraremasen }
+passive:
+  - { kanji: 持ってこられる, kana: もってこられる, romaji: mottekorareru }
+  - { kanji: 持ってこられます, kana: もってこられます, romaji: mottekoraremasu }
+  - { kanji: 持ってこられない, kana: もってこられない, romaji: mottekorarenai }
+  - { kanji: 持ってこられません, kana: もってこられません, romaji: mottekoraremasen }
+causative:
+  - { kanji: 持ってこさせる, kana: もってこさせる, romaji: mottekosaseru }
+  - { kanji: 持ってこさせます, kana: もってこさせます, romaji: mottekosasemasu }
+  - { kanji: 持ってこさせない, kana: もってこさせない, romaji: mottekosasenai }
+  - { kanji: 持ってこさせません, kana: もってこさせません, romaji: mottekosasemasen }
+causative_alternative:
+  - { kanji: 持ってこさす, kana: もってこさす, romaji: mottekosasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 持ってこさせられる, kana: もってこさせられる, romaji: mottekosaserareru }
+  - { kanji: 持ってこさせられます, kana: もってこさせられます, romaji: mottekosaseraremasu }
+  - { kanji: 持ってこさせられない, kana: もってこさせられない, romaji: mottekosaserarenai }
+  - { kanji: 持ってこさせられません, kana: もってこさせられません, romaji: mottekosaseraremasen }
+provisional_conditional:
+  - { kanji: 持ってくれば, kana: もってくれば, romaji: mottekureba }
+  - null
+  - { kanji: 持ってこなければ, kana: もってこなければ, romaji: mottekonakereba }
+  - null
+conditional:
+  - { kanji: 持ってきたら, kana: もってきたら, romaji: mottekitara }
+  - { kanji: 持ってきましたら, kana: もってきましたら, romaji: mottekimashitara }
+  - { kanji: 持ってこなかったら, kana: もってこなかったら, romaji: mottekonakattara }
+  - { kanji: 持ってきませんでしたら, kana: もってきませんでしたら, romaji: mottekimasendeshitara }
+imperative:
+  - { kanji: 持ってこい, kana: もってこい, romaji: mottekoi }
+  - { kanji: 持ってきてください, kana: もってきてください, romaji: mottekitekudasai }
+  - { kanji: 持ってきませ, kana: もってきませ, romaji: mottekimase }
+  - { kanji: 持ってこないでください, kana: もってこないでください, romaji: mottekonaidekudasai }
+command:
+  - { kanji: 持ってきなさい, kana: もってきなさい, romaji: mottekinasai }
+  - null
+  - { kanji: 持ってくるな, kana: もってくるな, romaji: mottekuruna }
+  - null
+volitional:
+  - { kanji: 持ってこよう, kana: もってこよう, romaji: mottekoyō }
+  - { kanji: 持ってきましょう, kana: もってきましょう, romaji: mottekimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 持ってきながら, kana: もってきながら, romaji: mottekinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 持ってきたい, kana: もってきたい, romaji: mottekitai }
+  - null
+  - { kanji: 持ってきたくない, kana: もってきたくない, romaji: mottekitakunai }
+  - null

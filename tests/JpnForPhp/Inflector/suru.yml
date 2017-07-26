@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: する, kana: する, romaji: suru }
+  - { kanji: します, kana: します, romaji: shimasu }
+  - { kanji: しない, kana: しない, romaji: shinai }
+  - { kanji: しません, kana: しません, romaji: shimasen }
+past:
+  - { kanji: した, kana: した, romaji: shita }
+  - { kanji: しました, kana: しました, romaji: shimashita }
+  - { kanji: しなかった, kana: しなかった, romaji: shinakatta }
+  - { kanji: しませんでした, kana: しませんでした, romaji: shimasendeshita }
+te_form:
+  - { kanji: して, kana: して, romaji: shite }
+  - { kanji: しまして, kana: しまして, romaji: shimashite }
+  - null
+  - null
+potential:
+  - { kanji: できる, kana: できる, romaji: dekiru }
+  - { kanji: できます, kana: できます, romaji: dekimasu }
+  - { kanji: できない, kana: できない, romaji: dekinai }
+  - { kanji: できません, kana: できません, romaji: dekimasen }
+passive:
+  - { kanji: される, kana: される, romaji: sareru }
+  - { kanji: されます, kana: されます, romaji: saremasu }
+  - { kanji: されない, kana: されない, romaji: sarenai }
+  - { kanji: されません, kana: されません, romaji: saremasen }
+causative:
+  - { kanji: させる, kana: させる, romaji: saseru }
+  - { kanji: させます, kana: させます, romaji: sasemasu }
+  - { kanji: させない, kana: させない, romaji: sasenai }
+  - { kanji: させません, kana: させません, romaji: sasemasen }
+causative_alternative:
+  - { kanji: さす, kana: さす, romaji: sasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: させられる, kana: させられる, romaji: saserareru }
+  - { kanji: させられます, kana: させられます, romaji: saseraremasu }
+  - { kanji: させられない, kana: させられない, romaji: saserarenai }
+  - { kanji: させられません, kana: させられません, romaji: saseraremasen }
+provisional_conditional:
+  - { kanji: すれば, kana: すれば, romaji: sureba }
+  - null
+  - { kanji: しなければ, kana: しなければ, romaji: shinakereba }
+  - null
+conditional:
+  - { kanji: したら, kana: したら, romaji: shitara }
+  - { kanji: しましたら, kana: しましたら, romaji: shimashitara }
+  - { kanji: しなかったら, kana: しなかったら, romaji: shinakattara }
+  - { kanji: しませんでしたら, kana: しませんでしたら, romaji: shimasendeshitara }
+imperative:
+  - { kanji: しろ, kana: しろ, romaji: shiro }
+  - { kanji: してください, kana: してください, romaji: shitekudasai }
+  - { kanji: しませ, kana: しませ, romaji: shimase }
+  - { kanji: しないでください, kana: しないでください, romaji: shinaidekudasai }
+command:
+  - { kanji: しなさい, kana: しなさい, romaji: shinasai }
+  - null
+  - { kanji: するな, kana: するな, romaji: suruna }
+  - null
+volitional:
+  - { kanji: しよう, kana: しよう, romaji: shiyō }
+  - { kanji: しましょう, kana: しましょう, romaji: shimashō }
+  - null
+  - null
+gerund:
+  - { kanji: しながら, kana: しながら, romaji: shinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: したい, kana: したい, romaji: shitai }
+  - null
+  - { kanji: したくない, kana: したくない, romaji: shitakunai }
+  - null

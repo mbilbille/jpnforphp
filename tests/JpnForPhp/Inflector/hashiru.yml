@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 走る, kana: はしる, romaji: hashiru }
+  - { kanji: 走ります, kana: はしります, romaji: hashirimasu }
+  - { kanji: 走らない, kana: はしらない, romaji: hashiranai }
+  - { kanji: 走りません, kana: はしりません, romaji: hashirimasen }
+past:
+  - { kanji: 走った, kana: はしった, romaji: hashitta }
+  - { kanji: 走りました, kana: はしりました, romaji: hashirimashita }
+  - { kanji: 走らなかった, kana: はしらなかった, romaji: hashiranakatta }
+  - { kanji: 走りませんでした, kana: はしりませんでした, romaji: hashirimasendeshita }
+te_form:
+  - { kanji: 走って, kana: はしって, romaji: hashitte }
+  - { kanji: 走りまして, kana: はしりまして, romaji: hashirimashite }
+  - null
+  - null
+potential:
+  - { kanji: 走れる, kana: はしれる, romaji: hashireru }
+  - { kanji: 走れます, kana: はしれます, romaji: hashiremasu }
+  - { kanji: 走れない, kana: はしれない, romaji: hashirenai }
+  - { kanji: 走れません, kana: はしれません, romaji: hashiremasen }
+passive:
+  - { kanji: 走られる, kana: はしられる, romaji: hashirareru }
+  - { kanji: 走られます, kana: はしられます, romaji: hashiraremasu }
+  - { kanji: 走られない, kana: はしられない, romaji: hashirarenai }
+  - { kanji: 走られません, kana: はしられません, romaji: hashiraremasen }
+causative:
+  - { kanji: 走らせる, kana: はしらせる, romaji: hashiraseru }
+  - { kanji: 走らせます, kana: はしらせます, romaji: hashirasemasu }
+  - { kanji: 走らせない, kana: はしらせない, romaji: hashirasenai }
+  - { kanji: 走らせません, kana: はしらせません, romaji: hashirasemasen }
+causative_alternative:
+  - { kanji: 走らす, kana: はしらす, romaji: hashirasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 走らせられる, kana: はしらせられる, romaji: hashiraserareru }
+  - { kanji: 走らせられます, kana: はしらせられます, romaji: hashiraseraremasu }
+  - { kanji: 走らせられない, kana: はしらせられない, romaji: hashiraserarenai }
+  - { kanji: 走らせられません, kana: はしらせられません, romaji: hashiraseraremasen }
+provisional_conditional:
+  - { kanji: 走れば, kana: はしれば, romaji: hashireba }
+  - null
+  - { kanji: 走らなければ, kana: はしらなければ, romaji: hashiranakereba }
+  - null
+conditional:
+  - { kanji: 走ったら, kana: はしったら, romaji: hashittara }
+  - { kanji: 走りましたら, kana: はしりましたら, romaji: hashirimashitara }
+  - { kanji: 走らなかったら, kana: はしらなかったら, romaji: hashiranakattara }
+  - { kanji: 走りませんでしたら, kana: はしりませんでしたら, romaji: hashirimasendeshitara }
+imperative:
+  - { kanji: 走れ, kana: はしれ, romaji: hashire }
+  - { kanji: 走ってください, kana: はしってください, romaji: hashittekudasai }
+  - { kanji: 走りませ, kana: はしりませ, romaji: hashirimase }
+  - { kanji: 走らないでください, kana: はしらないでください, romaji: hashiranaidekudasai }
+command:
+  - { kanji: 走りなさい, kana: はしりなさい, romaji: hashirinasai }
+  - null
+  - { kanji: 走るな, kana: はしるな, romaji: hashiruna }
+  - null
+volitional:
+  - { kanji: 走ろう, kana: はしろう, romaji: hashirō }
+  - { kanji: 走りましょう, kana: はしりましょう, romaji: hashirimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 走りながら, kana: はしりながら, romaji: hashirinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 走りたい, kana: はしりたい, romaji: hashiritai }
+  - null
+  - { kanji: 走りたくない, kana: はしりたくない, romaji: hashiritakunai }
+  - null

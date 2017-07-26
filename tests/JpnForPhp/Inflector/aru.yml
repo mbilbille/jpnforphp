@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 有る, kana: ある, romaji: aru }
+  - { kanji: 有ります, kana: あります, romaji: arimasu }
+  - { kanji: ない, kana: ない, romaji: nai }
+  - { kanji: 有りません, kana: ありません, romaji: arimasen }
+past:
+  - { kanji: 有った, kana: あった, romaji: atta }
+  - { kanji: 有りました, kana: ありました, romaji: arimashita }
+  - { kanji: なかった, kana: なかった, romaji: nakatta }
+  - { kanji: 有りませんでした, kana: ありませんでした, romaji: arimasendeshita }
+te_form:
+  - { kanji: 有って, kana: あって, romaji: atte }
+  - { kanji: 有りまして, kana: ありまして, romaji: arimashite }
+  - null
+  - null
+potential:
+  - { kanji: 有れる, kana: あれる, romaji: areru }
+  - { kanji: 有れます, kana: あれます, romaji: aremasu }
+  - { kanji: 有れない, kana: あれない, romaji: arenai }
+  - { kanji: 有れません, kana: あれません, romaji: aremasen }
+passive:
+  - { kanji: 有られる, kana: あられる, romaji: arareru }
+  - { kanji: 有られます, kana: あられます, romaji: araremasu }
+  - { kanji: 有られない, kana: あられない, romaji: ararenai }
+  - { kanji: 有られません, kana: あられません, romaji: araremasen }
+causative:
+  - { kanji: 有らせる, kana: あらせる, romaji: araseru }
+  - { kanji: 有らせます, kana: あらせます, romaji: arasemasu }
+  - { kanji: 有らせない, kana: あらせない, romaji: arasenai }
+  - { kanji: 有らせません, kana: あらせません, romaji: arasemasen }
+causative_alternative:
+  - { kanji: 有らす, kana: あらす, romaji: arasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 有らせられる, kana: あらせられる, romaji: araserareru }
+  - { kanji: 有らせられます, kana: あらせられます, romaji: araseraremasu }
+  - { kanji: 有らせられない, kana: あらせられない, romaji: araserarenai }
+  - { kanji: 有らせられません, kana: あらせられません, romaji: araseraremasen }
+provisional_conditional:
+  - { kanji: 有れば, kana: あれば, romaji: areba }
+  - null
+  - { kanji:なければ, kana: なければ, romaji: nakereba }
+  - null
+conditional:
+  - { kanji: 有ったら, kana: あったら, romaji: attara }
+  - { kanji: 有りましたら, kana: ありましたら, romaji: arimashitara }
+  - { kanji: なかったら, kana: なかったら, romaji: nakattara }
+  - { kanji: 有りませんでしたら, kana: ありませんでしたら, romaji: arimasendeshitara }
+imperative:
+  - { kanji: 有れ, kana: あれ, romaji: are }
+  - { kanji: 有ってください, kana: あってください, romaji: attekudasai }
+  - { kanji: 有りませ, kana: ありませ, romaji: arimase }
+  - { kanji: ないでください, kana: ないでください, romaji: naidekudasai }
+command:
+  - { kanji: 有りなさい, kana: ありなさい, romaji: arinasai }
+  - null
+  - { kanji: 有るな, kana: あるな, romaji: aruna }
+  - null
+volitional:
+  - { kanji: 有ろう, kana: あろう, romaji: arō }
+  - { kanji: 有りましょう, kana: ありましょう, romaji: arimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 有りながら, kana: ありながら, romaji: arinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 有りたい, kana: ありたい, romaji: aritai }
+  - null
+  - { kanji: 有りたくない, kana: ありたくない, romaji: aritakunai }
+  - null

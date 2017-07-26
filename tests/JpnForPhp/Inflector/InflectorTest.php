@@ -12,6 +12,9 @@
 namespace JpnForPhp\Tests\Inflector;
 
 use JpnForPhp\Inflector\Inflector;
+use JpnForPhp\Inflector\InflectorUtils;
+use JpnForPhp\Inflector\Verb;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * JpnForPhp Testcase for Inflector component
@@ -19,158 +22,121 @@ use JpnForPhp\Inflector\Inflector;
 class InflectorTest extends \PHPUnit_Framework_TestCase
 {
 
-    private function inflectVerbFromFile($verb, $file)
-    {
-        $verbs = Inflector::getVerb($verb);
-        $this->assertNotEmpty($verbs);
-        $results = Inflector::inflect($verbs[0]);
-        $fileName = __DIR__ . DIRECTORY_SEPARATOR . $file . '.csv';
-        $this->assertFileExists($fileName);
-        $lines = file($fileName);
-        $this->assertNotEmpty($lines);
-        foreach ($lines as $line) {
-            $parts = explode(',', trim($line));
-            $this->assertArrayHasKey($parts[0], $results);
-            $kanji = $results[$parts[0]]['kanji'];
-            $kana = $results[$parts[0]]['kana'];
-            $this->assertEquals($parts[1], $kanji);
-            $this->assertEquals($parts[2], $kana);
-        }
-    }
-
     protected function setUp()
     {
         parent::setUp();
     }
 
+    private function assertInflectionFromFile($verb, $file)
+    {
+        $entries = InflectorUtils::getEntriesFromDatabase($verb);
+        $actual = Inflector::inflect($entries[0]);
+
+        $fileName = __DIR__ . DIRECTORY_SEPARATOR . $file;
+        $this->assertFileExists($fileName);
+        $expected = Yaml::parse(file_get_contents($fileName));
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testInflectMiruExistsKanji()
     {
-        $this->assertNotEmpty(Inflector::getVerb('見る'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('見る'));
     }
 
     public function testInflectMiruExistsKana()
     {
-        $this->assertNotEmpty(Inflector::getVerb('みる'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('みる'));
     }
 
     public function testInflectMiruExistsRomaji()
     {
-        $this->assertNotEmpty(Inflector::getVerb('miru'));
+        $this->assertNotEmpty(InflectorUtils::getEntriesFromDatabase('miru'));
     }
 
-    public function testInflectMiruType()
+    public function testInflect_v1()
     {
-        $verbs = Inflector::getVerb('見る');
-        $this->assertEquals($verbs[0]['type'], '1');
+        $this->assertInflectionFromFile('見る', 'miru.yml');
+        $this->assertInflectionFromFile('食べる', 'taberu.yml');
     }
 
-    public function testInflectHanasuType()
+    public function testInflect_v5k()
     {
-        $verbs = Inflector::getVerb('hanasu');
-        $this->assertEquals($verbs[0]['type'], '5s');
+        $this->assertInflectionFromFile('焼く', 'yaku.yml');
     }
 
-    public function testInflectMiruNonPastPoliteKana()
+    public function testInflect_v5ks()
     {
-        $verbs = Inflector::getVerb('見る');
-        $results = Inflector::inflect($verbs[0], Inflector::NON_PAST_POLITE);
-        $this->assertEquals($results['kana'], 'みます');
+        $this->assertInflectionFromFile('行く', 'iku.yml');
     }
 
-    public function testInflectMiruPastPastPoliteKana()
+    public function testInflect_v5g()
     {
-        $verbs = Inflector::getVerb('見る');
-        $results = Inflector::inflect($verbs[0], array(Inflector::PAST, Inflector::PAST_POLITE));
-        $this->assertEquals($results[Inflector::PAST]['kana'], 'みた');
-        $this->assertEquals($results[Inflector::PAST_POLITE]['kana'], 'みました');
+        $this->assertInflectionFromFile('泳ぐ', 'oyogu.yml');
     }
 
-    public function testInflectHanasuNonPastPoliteKanji()
+    public function testInflect_v5s()
     {
-        $verbs = Inflector::getVerb('はなす');
-        $results = Inflector::inflect($verbs[0], Inflector::NON_PAST_POLITE);
-        $this->assertEquals($results['kanji'], '放します');
+        $this->assertInflectionFromFile('放す', 'hanasu.yml');
     }
 
-    public function testInflect1()
+    public function testInflect_v5t()
     {
-        $this->inflectVerbFromFile('見る', 'miru');
+        $this->assertInflectionFromFile('待つ', 'matsu.yml');
     }
 
-    public function testInflect5s()
+    public function testInflect_v5n()
     {
-        $this->inflectVerbFromFile('放す', 'hanasu');
+        $this->assertInflectionFromFile('死ぬ', 'shinu.yml');
     }
 
-    public function testInflect5k()
+    public function testInflect_v5b()
     {
-        $this->inflectVerbFromFile('焼く', 'yaku');
+        $this->assertInflectionFromFile('呼ぶ', 'yobu.yml');
     }
 
-    public function testInflect5ks()
+    public function testInflect_v5m()
     {
-        $this->inflectVerbFromFile('行く', 'iku');
+      $this->assertInflectionFromFile('読む', 'yomu.yml');
     }
 
-    public function testInflect5g()
+    public function testInflect_v5r()
     {
-        $this->inflectVerbFromFile('泳ぐ', 'oyogu');
+      $this->assertInflectionFromFile('走る', 'hashiru.yml');
     }
 
-    public function testInflect5r()
+    public function testInflect_v5aru()
     {
-        $this->inflectVerbFromFile('走る', 'hashiru');
+      $this->assertInflectionFromFile('いらっしゃる', 'irassharu.yml');
     }
 
-    public function testInflect5u()
+    public function testInflect_v5ri()
     {
-        $this->inflectVerbFromFile('使う', 'tsukau');
+      $this->assertInflectionFromFile('有る', 'aru.yml');
     }
 
-    public function testInflect5t()
+    public function testInflect_v5u()
     {
-        $this->inflectVerbFromFile('待つ', 'matsu');
+      $this->assertInflectionFromFile('使う', 'tsukau.yml');
     }
 
-    public function testInflect5aru()
+    public function testInflect_v5us()
     {
-        $this->inflectVerbFromFile('いらっしゃる', 'irassharu');
+      $this->assertInflectionFromFile('請う', 'kou.yml');
     }
 
-    public function testInflect5m()
+    public function testInflect_vs()
     {
-        $this->inflectVerbFromFile('読む', 'yomu');
+      $this->assertInflectionFromFile('する', 'suru.yml');
     }
 
-    public function testInflect5b()
+    public function testInflect_vss()
     {
-        $this->inflectVerbFromFile('呼ぶ', 'yobu');
+      $this->assertInflectionFromFile('愛する', 'aisuru.yml');
     }
 
-    public function testInflect5n()
+    public function testInflect_vz()
     {
-        $this->inflectVerbFromFile('死ぬ', 'shinu');
-    }
-
-    public function testInflectK()
-    {
-        $this->inflectVerbFromFile('来る', 'kuru');
-    }
-
-    public function testInflectSI()
-    {
-        $this->inflectVerbFromFile('する', 'suru');
-    }
-
-    // Fix s-s verb support #58
-    public function testInflectSS()
-    {
-        $this->inflectVerbFromFile('愛する', 'aisuru');
-    }
-
-    // Fix z verb support #59
-    public function testInflectZ()
-    {
-        $this->inflectVerbFromFile('困ずる', 'kouzuru');
+      $this->assertInflectionFromFile('困ずる', 'kouzuru.yml');
     }
 }

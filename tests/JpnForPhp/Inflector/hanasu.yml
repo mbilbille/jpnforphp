@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 放す, kana: はなす, romaji: hanasu }
+  - { kanji: 放します, kana: はなします, romaji: hanashimasu }
+  - { kanji: 放さない, kana: はなさない, romaji: hanasanai }
+  - { kanji: 放しません, kana: はなしません, romaji: hanashimasen }
+past:
+  - { kanji: 放した, kana: はなした, romaji: hanashita }
+  - { kanji: 放しました, kana: はなしました, romaji: hanashimashita }
+  - { kanji: 放さなかった, kana: はなさなかった, romaji: hanasanakatta }
+  - { kanji: 放しませんでした, kana: はなしませんでした, romaji: hanashimasendeshita }
+te_form:
+  - { kanji: 放して, kana: はなして, romaji: hanashite }
+  - { kanji: 放しまして, kana: はなしまして, romaji: hanashimashite }
+  - null
+  - null
+potential:
+  - { kanji: 放せる, kana: はなせる, romaji: hanaseru }
+  - { kanji: 放せます, kana: はなせます, romaji: hanasemasu }
+  - { kanji: 放せない, kana: はなせない, romaji: hanasenai }
+  - { kanji: 放せません, kana: はなせません, romaji: hanasemasen }
+passive:
+  - { kanji: 放される, kana: はなされる, romaji: hanasareru }
+  - { kanji: 放されます, kana: はなされます, romaji: hanasaremasu }
+  - { kanji: 放されない, kana: はなされない, romaji: hanasarenai }
+  - { kanji: 放されません, kana: はなされません, romaji: hanasaremasen }
+causative:
+  - { kanji: 放させる, kana: はなさせる, romaji: hanasaseru }
+  - { kanji: 放させます, kana: はなさせます, romaji: hanasasemasu }
+  - { kanji: 放させない, kana: はなさせない, romaji: hanasasenai }
+  - { kanji: 放させません, kana: はなさせません, romaji: hanasasemasen }
+causative_alternative:
+  - { kanji: 放さす, kana: はなさす, romaji: hanasasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 放させられる, kana: はなさせられる, romaji: hanasaserareru }
+  - { kanji: 放させられます, kana: はなさせられます, romaji: hanasaseraremasu }
+  - { kanji: 放させられない, kana: はなさせられない, romaji: hanasaserarenai }
+  - { kanji: 放させられません, kana: はなさせられません, romaji: hanasaseraremasen }
+provisional_conditional:
+  - { kanji: 放せば, kana: はなせば, romaji: hanaseba }
+  - null
+  - { kanji: 放さなければ, kana: はなさなければ, romaji: hanasanakereba }
+  - null
+conditional:
+  - { kanji: 放したら, kana: はなしたら, romaji: hanashitara }
+  - { kanji: 放しましたら, kana: はなしましたら, romaji: hanashimashitara }
+  - { kanji: 放さなかったら, kana: はなさなかったら, romaji: hanasanakattara }
+  - { kanji: 放しませんでしたら, kana: はなしませんでしたら, romaji: hanashimasendeshitara }
+imperative:
+  - { kanji: 放せ, kana: はなせ, romaji: hanase }
+  - { kanji: 放してください, kana: はなしてください, romaji: hanashitekudasai }
+  - { kanji: 放しませ, kana: はなしませ, romaji: hanashimase }
+  - { kanji: 放さないでください, kana: はなさないでください, romaji: hanasanaidekudasai }
+command:
+  - { kanji: 放しなさい, kana: はなしなさい, romaji: hanashinasai }
+  - null
+  - { kanji: 放すな, kana: はなすな, romaji: hanasuna }
+  - null
+volitional:
+  - { kanji: 放そう, kana: はなそう, romaji: hanasō }
+  - { kanji: 放しましょう, kana: はなしましょう, romaji: hanashimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 放しながら, kana: はなしながら, romaji: hanashinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 放したい, kana: はなしたい, romaji: hanashitai }
+  - null
+  - { kanji: 放したくない, kana: はなしたくない, romaji: hanashitakunai }
+  - null

@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 死ぬ, kana: しぬ, romaji: shinu }
+  - { kanji: 死にます, kana: しにます, romaji: shinimasu }
+  - { kanji: 死なない, kana: しなない, romaji: shinanai }
+  - { kanji: 死にません, kana: しにません, romaji: shinimasen }
+past:
+  - { kanji: 死んだ, kana: しんだ, romaji: shinda }
+  - { kanji: 死にました, kana: しにました, romaji: shinimashita }
+  - { kanji: 死ななかった, kana: しななかった, romaji: shinanakatta }
+  - { kanji: 死にませんでした, kana: しにませんでした, romaji: shinimasendeshita }
+te_form:
+  - { kanji: 死んで, kana: しんで, romaji: shinde }
+  - { kanji: 死にまして, kana: しにまして, romaji: shinimashite }
+  - null
+  - null
+potential:
+  - { kanji: 死ねる, kana: しねる, romaji: shineru }
+  - { kanji: 死ねます, kana: しねます, romaji: shinemasu }
+  - { kanji: 死ねない, kana: しねない, romaji: shinenai }
+  - { kanji: 死ねません, kana: しねません, romaji: shinemasen }
+passive:
+  - { kanji: 死なれる, kana: しなれる, romaji: shinareru }
+  - { kanji: 死なれます, kana: しなれます, romaji: shinaremasu }
+  - { kanji: 死なれない, kana: しなれない, romaji: shinarenai }
+  - { kanji: 死なれません, kana: しなれません, romaji: shinaremasen }
+causative:
+  - { kanji: 死なせる, kana: しなせる, romaji: shinaseru }
+  - { kanji: 死なせます, kana: しなせます, romaji: shinasemasu }
+  - { kanji: 死なせない, kana: しなせない, romaji: shinasenai }
+  - { kanji: 死なせません, kana: しなせません, romaji: shinasemasen }
+causative_alternative:
+  - { kanji: 死なす, kana: しなす, romaji: shinasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 死なせられる, kana: しなせられる, romaji: shinaserareru }
+  - { kanji: 死なせられます, kana: しなせられます, romaji: shinaseraremasu }
+  - { kanji: 死なせられない, kana: しなせられない, romaji: shinaserarenai }
+  - { kanji: 死なせられません, kana: しなせられません, romaji: shinaseraremasen }
+provisional_conditional:
+  - { kanji: 死ねば, kana: しねば, romaji: shineba }
+  - null
+  - { kanji: 死ななければ, kana: しななければ, romaji: shinanakereba }
+  - null
+conditional:
+  - { kanji: 死んだら, kana: しんだら, romaji: shindara }
+  - { kanji: 死にましたら, kana: しにましたら, romaji: shinimashitara }
+  - { kanji: 死ななかったら, kana: しななかったら, romaji: shinanakattara }
+  - { kanji: 死にませんでしたら, kana: しにませんでしたら, romaji: shinimasendeshitara }
+imperative:
+  - { kanji: 死ね, kana: しね, romaji: shine }
+  - { kanji: 死んでください, kana: しんでください, romaji: shindekudasai }
+  - { kanji: 死にませ, kana: しにませ, romaji: shinimase }
+  - { kanji: 死なないでください, kana: しなないでください, romaji: shinanaidekudasai }
+command:
+  - { kanji: 死になさい, kana: しになさい, romaji: shininasai }
+  - null
+  - { kanji: 死ぬな, kana: しぬな, romaji: shinuna }
+  - null
+volitional:
+  - { kanji: 死のう, kana: しのう, romaji: shinō }
+  - { kanji: 死にましょう, kana: しにましょう, romaji: shinimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 死にながら, kana: しにながら, romaji: shininagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 死にたい, kana: しにたい, romaji: shinitai }
+  - null
+  - { kanji: 死にたくない, kana: しにたくない, romaji: shinitakunai }
+  - null

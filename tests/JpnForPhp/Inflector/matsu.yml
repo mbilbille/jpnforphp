@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 待つ, kana: まつ, romaji: matsu }
+  - { kanji: 待ちます, kana: まちます, romaji: machimasu }
+  - { kanji: 待たない, kana: またない, romaji: matanai }
+  - { kanji: 待ちません, kana: まちません, romaji: machimasen }
+past:
+  - { kanji: 待った, kana: まった, romaji: matta }
+  - { kanji: 待ちました, kana: まちました, romaji: machimashita }
+  - { kanji: 待たなかった, kana: またなかった, romaji: matanakatta }
+  - { kanji: 待ちませんでした, kana: まちませんでした, romaji: machimasendeshita }
+te_form:
+  - { kanji: 待って, kana: まって, romaji: matte }
+  - { kanji: 待ちまして, kana: まちまして, romaji: machimashite }
+  - null
+  - null
+potential:
+  - { kanji: 待てる, kana: まてる, romaji: materu }
+  - { kanji: 待てます, kana: まてます, romaji: matemasu }
+  - { kanji: 待てない, kana: まてない, romaji: matenai }
+  - { kanji: 待てません, kana: まてません, romaji: matemasen }
+passive:
+  - { kanji: 待たれる, kana: またれる, romaji: matareru }
+  - { kanji: 待たれます, kana: またれます, romaji: mataremasu }
+  - { kanji: 待たれない, kana: またれない, romaji: matarenai }
+  - { kanji: 待たれません, kana: またれません, romaji: mataremasen }
+causative:
+  - { kanji: 待たせる, kana: またせる, romaji: mataseru }
+  - { kanji: 待たせます, kana: またせます, romaji: matasemasu }
+  - { kanji: 待たせない, kana: またせない, romaji: matasenai }
+  - { kanji: 待たせません, kana: またせません, romaji: matasemasen }
+causative_alternative:
+  - { kanji: 待たす, kana: またす, romaji: matasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 待たせられる, kana: またせられる, romaji: mataserareru }
+  - { kanji: 待たせられます, kana: またせられます, romaji: mataseraremasu }
+  - { kanji: 待たせられない, kana: またせられない, romaji: mataserarenai }
+  - { kanji: 待たせられません, kana: またせられません, romaji: mataseraremasen }
+provisional_conditional:
+  - { kanji: 待てば, kana: まてば, romaji: mateba }
+  - null
+  - { kanji: 待たなければ, kana: またなければ, romaji: matanakereba }
+  - null
+conditional:
+  - { kanji: 待ったら, kana: まったら, romaji: mattara }
+  - { kanji: 待ちましたら, kana: まちましたら, romaji: machimashitara }
+  - { kanji: 待たなかったら, kana: またなかったら, romaji: matanakattara }
+  - { kanji: 待ちませんでしたら, kana: まちませんでしたら, romaji: machimasendeshitara }
+imperative:
+  - { kanji: 待て, kana: まて, romaji: mate }
+  - { kanji: 待ってください, kana: まってください, romaji: mattekudasai }
+  - { kanji: 待ちませ, kana: まちませ, romaji: machimase }
+  - { kanji: 待たないでください, kana: またないでください, romaji: matanaidekudasai }
+command:
+  - { kanji: 待ちなさい, kana: まちなさい, romaji: machinasai }
+  - null
+  - { kanji: 待つな, kana: まつな, romaji: matsuna }
+  - null
+volitional:
+  - { kanji: 待とう, kana: まとう, romaji: matō }
+  - { kanji: 待ちましょう, kana: まちましょう, romaji: machimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 待ちながら, kana: まちながら, romaji: machinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 待ちたい, kana: まちたい, romaji: machitai }
+  - null
+  - { kanji: 待ちたくない, kana: まちたくない, romaji: machitakunai }
+  - null

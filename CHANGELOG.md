@@ -2,6 +2,12 @@
 
 This changelog references the relevant changes (bug and security fixes) done
 
+* 0.7.0 (2017-05-25)
+  * 2fca1f7 Drop support of PHP 5.3
+  * 3a4364f `Transliterator` refactoring
+  * 403eb84 Bug fix #62
+  * 8fe5d6b Bug fix #59
+
 * 0.6.2 (2017-05-10)
   * 7b943f9 `Converter`: Fix toWesternYear on Windows
   * 3dcbee8 3ddfc86 `Converter`: support large integer

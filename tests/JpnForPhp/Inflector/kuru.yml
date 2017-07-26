@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 来る, kana: くる, romaji: kuru }
+  - { kanji: 来ます, kana: きます, romaji: kimasu }
+  - { kanji: 来ない, kana: こない, romaji: konai }
+  - { kanji: 来ません, kana: きません, romaji: kimasen }
+past:
+  - { kanji: 来た, kana: きた, romaji: kita }
+  - { kanji: 来ました, kana: きました, romaji: kimashita }
+  - { kanji: 来なかった, kana: こなかった, romaji: konakatta }
+  - { kanji: 来ませんでした, kana: きませんでした, romaji: kimasendeshita }
+te_form:
+  - { kanji: 来て, kana: きて, romaji: kite }
+  - { kanji: 来まして, kana: きまして, romaji: kimashite }
+  - null
+  - null
+potential:
+  - { kanji: 来られる, kana: こられる, romaji: korareru }
+  - { kanji: 来られます, kana: こられます, romaji: koraremasu }
+  - { kanji: 来られない, kana: こられない, romaji: korarenai }
+  - { kanji: 来られません, kana: こられません, romaji: koraremasen }
+passive:
+  - { kanji: 来られる, kana: こられる, romaji: korareru }
+  - { kanji: 来られます, kana: こられます, romaji: koraremasu }
+  - { kanji: 来られない, kana: こられない, romaji: korarenai }
+  - { kanji: 来られません, kana: こられません, romaji: koraremasen }
+causative:
+  - { kanji: 来させる, kana: こさせる, romaji: kosaseru }
+  - { kanji: 来させます, kana: こさせます, romaji: kosasemasu }
+  - { kanji: 来させない, kana: こさせない, romaji: kosasenai }
+  - { kanji: 来させません, kana: こさせません, romaji: kosasemasen }
+causative_alternative:
+  - { kanji: 来さす, kana: こさす, romaji: kosasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 来させられる, kana: こさせられる, romaji: kosaserareru }
+  - { kanji: 来させられます, kana: こさせられます, romaji: kosaseraremasu }
+  - { kanji: 来させられない, kana: こさせられない, romaji: kosaserarenai }
+  - { kanji: 来させられません, kana: こさせられません, romaji: kosaseraremasen }
+provisional_conditional:
+  - { kanji: 来れば, kana: くれば, romaji: kureba }
+  - null
+  - { kanji: 来なければ, kana: こなければ, romaji: konakereba }
+  - null
+conditional:
+  - { kanji: 来たら, kana: きたら, romaji: kitara }
+  - { kanji: 来ましたら, kana: きましたら, romaji: kimashitara }
+  - { kanji: 来なかったら, kana: こなかったら, romaji: konakattara }
+  - { kanji: 来ませんでしたら, kana: きませんでしたら, romaji: kimasendeshitara }
+imperative:
+  - { kanji: 来い, kana: こい, romaji: koi }
+  - { kanji: 来てください, kana: きてください, romaji: kitekudasai }
+  - { kanji: 来ませ, kana: きませ, romaji: kimase }
+  - { kanji: 来ないでください, kana: こないでください, romaji: konaidekudasai }
+command:
+  - { kanji: 来なさい, kana: きなさい, romaji: kinasai }
+  - null
+  - { kanji: 来るな, kana: くるな, romaji: kuruna }
+  - null
+volitional:
+  - { kanji: 来よう, kana: こよう, romaji: koyō }
+  - { kanji: 来ましょう, kana: きましょう, romaji: kimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 来ながら, kana: きながら, romaji: kinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 来たい, kana: きたい, romaji: kitai }
+  - null
+  - { kanji: 来たくない, kana: きたくない, romaji: kitakunai }
+  - null

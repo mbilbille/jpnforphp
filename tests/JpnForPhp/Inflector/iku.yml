@@ -1,0 +1,75 @@
+non_past:
+  - { kanji: 行く, kana: いく, romaji: iku }
+  - { kanji: 行きます, kana: いきます, romaji: ikimasu }
+  - { kanji: 行かない, kana: いかない, romaji: ikanai }
+  - { kanji: 行きません, kana: いきません, romaji: ikimasen }
+past:
+  - { kanji: 行った, kana: いった, romaji: itta }
+  - { kanji: 行きました, kana: いきました, romaji: ikimashita }
+  - { kanji: 行かなかった, kana: いかなかった, romaji: ikanakatta }
+  - { kanji: 行きませんでした, kana: いきませんでした, romaji: ikimasendeshita }
+te_form:
+  - { kanji: 行って, kana: いって, romaji: itte }
+  - { kanji: 行きまして, kana: いきまして, romaji: ikimashite }
+  - null
+  - null
+potential:
+  - { kanji: 行ける, kana: いける, romaji: ikeru }
+  - { kanji: 行けます, kana: いけます, romaji: ikemasu }
+  - { kanji: 行けない, kana: いけない, romaji: ikenai }
+  - { kanji: 行けません, kana: いけません, romaji: ikemasen }
+passive:
+  - { kanji: 行かれる, kana: いかれる, romaji: ikareru }
+  - { kanji: 行かれます, kana: いかれます, romaji: ikaremasu }
+  - { kanji: 行かれない, kana: いかれない, romaji: ikarenai }
+  - { kanji: 行かれません, kana: いかれません, romaji: ikaremasen }
+causative:
+  - { kanji: 行かせる, kana: いかせる, romaji: ikaseru }
+  - { kanji: 行かせます, kana: いかせます, romaji: ikasemasu }
+  - { kanji: 行かせない, kana: いかせない, romaji: ikasenai }
+  - { kanji: 行かせません, kana: いかせません, romaji: ikasemasen }
+causative_alternative:
+  - { kanji: 行かす, kana: いかす, romaji: ikasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 行かせられる, kana: いかせられる, romaji: ikaserareru }
+  - { kanji: 行かせられます, kana: いかせられます, romaji: ikaseraremasu }
+  - { kanji: 行かせられない, kana: いかせられない, romaji: ikaserarenai }
+  - { kanji: 行かせられません, kana: いかせられません, romaji: ikaseraremasen }
+provisional_conditional:
+  - { kanji: 行けば, kana: いけば, romaji: ikeba }
+  - null
+  - { kanji: 行かなければ, kana: いかなければ, romaji: ikanakereba }
+  - null
+conditional:
+  - { kanji: 行ったら, kana: いったら, romaji: ittara }
+  - { kanji: 行きましたら, kana: いきましたら, romaji: ikimashitara }
+  - { kanji: 行かなかったら, kana: いかなかったら, romaji: ikanakattara }
+  - { kanji: 行きませんでしたら, kana: いきませんでしたら, romaji: ikimasendeshitara }
+imperative:
+  - { kanji: 行け, kana: いけ, romaji: ike }
+  - { kanji: 行ってください, kana: いってください, romaji: ittekudasai }
+  - { kanji: 行きませ, kana: いきませ, romaji: ikimase }
+  - { kanji: 行かないでください, kana: いかないでください, romaji: ikanaidekudasai }
+command:
+  - { kanji: 行きなさい, kana: いきなさい, romaji: ikinasai }
+  - null
+  - { kanji: 行くな, kana: いくな, romaji: ikuna }
+  - null
+volitional:
+  - { kanji: 行こう, kana: いこう, romaji: ikō }
+  - { kanji: 行きましょう, kana: いきましょう, romaji: ikimashō }
+  - null
+  - null
+gerund:
+  - { kanji: 行きながら, kana: いきながら, romaji: ikinagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 行きたい, kana: いきたい, romaji: ikitai }
+  - null
+  - { kanji: 行きたくない, kana: いきたくない, romaji: ikitakunai }
+  - null

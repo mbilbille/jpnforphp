@@ -1,0 +1,76 @@
+non_past:
+  - { kanji: 食べる, kana: たべる, romaji: taberu }
+  - { kanji: 食べます, kana: たべます, romaji: tabemasu }
+  - { kanji: 食べない, kana: たべない, romaji: tabenai }
+  - { kanji: 食べません, kana: たべません, romaji: tabemasen }
+past:
+  - { kanji: 食べた, kana: たべた, romaji: tabeta }
+  - { kanji: 食べました, kana: たべました, romaji: tabemashita }
+  - { kanji: 食べなかった, kana: たべなかった, romaji: tabenakatta }
+  - { kanji: 食べませんでした, kana: たべませんでした, romaji: tabemasendeshita }
+te_form:
+  - { kanji: 食べて, kana: たべて, romaji: tabete }
+  - { kanji: 食べまして, kana: たべまして, romaji: tabemashite }
+  - null
+  - null
+potential:
+  - { kanji: 食べられる, kana: たべられる, romaji: taberareru }
+
+  - { kanji: 食べられます, kana: たべられます, romaji: taberaremasu }
+  - { kanji: 食べられない, kana: たべられない, romaji: taberarenai }
+  - { kanji: 食べられません, kana: たべられません, romaji: taberaremasen }
+passive:
+  - { kanji: 食べられる, kana: たべられる, romaji: taberareru }
+  - { kanji: 食べられます, kana: たべられます, romaji: taberaremasu }
+  - { kanji: 食べられない, kana: たべられない, romaji: taberarenai }
+  - { kanji: 食べられません, kana: たべられません, romaji: taberaremasen }
+causative:
+  - { kanji: 食べさせる, kana: たべさせる, romaji: tabesaseru }
+  - { kanji: 食べさせます, kana: たべさせます, romaji: tabesasemasu }
+  - { kanji: 食べさせない, kana: たべさせない, romaji: tabesasenai }
+  - { kanji: 食べさせません, kana: たべさせません, romaji: tabesasemasen }
+causative_alternative:
+  - { kanji: 食べさす, kana: たべさす, romaji: tabesasu }
+  - null
+  - null
+  - null
+causative_passive:
+  - { kanji: 食べさせられる, kana: たべさせられる, romaji: tabesaserareru }
+  - { kanji: 食べさせられます, kana: たべさせられます, romaji: tabesaseraremasu }
+  - { kanji: 食べさせられない, kana: たべさせられない, romaji: tabesaserarenai }
+  - { kanji: 食べさせられません, kana: たべさせられません, romaji: tabesaseraremasen }
+provisional_conditional:
+  - { kanji: 食べれば, kana: たべれば, romaji: tabereba }
+  - null
+  - { kanji: 食べなければ, kana: たべなければ, romaji: tabenakereba }
+  - null
+conditional:
+  - { kanji: 食べたら, kana: たべたら, romaji: tabetara }
+  - { kanji: 食べましたら, kana: たべましたら, romaji: tabemashitara }
+  - { kanji: 食べなかったら, kana: たべなかったら, romaji: tabenakattara }
+  - { kanji: 食べませんでしたら, kana: たべませんでしたら, romaji: tabemasendeshitara }
+imperative:
+  - { kanji: 食べろ, kana: たべろ, romaji: tabero }
+  - { kanji: 食べてください, kana: たべてください, romaji: tabetekudasai }
+  - { kanji: 食べませ, kana: たべませ, romaji: tabemase }
+  - { kanji: 食べないでください, kana: たべないでください, romaji: tabenaidekudasai }
+command:
+  - { kanji: 食べなさい, kana: たべなさい, romaji: tabenasai }
+  - null
+  - { kanji: 食べるな, kana: たべるな, romaji: taberuna }
+  - null
+volitional:
+  - { kanji: 食べよう, kana: たべよう, romaji: tabeyō }
+  - { kanji: 食べましょう, kana: たべましょう, romaji: tabemashō }
+  - null
+  - null
+gerund:
+  - { kanji: 食べながら, kana: たべながら, romaji: tabenagara }
+  - null
+  - null
+  - null
+optative:
+  - { kanji: 食べたい, kana: たべたい, romaji: tabetai }
+  - null
+  - { kanji: 食べたくない, kana: たべたくない, romaji: tabetakunai }
+  - null
