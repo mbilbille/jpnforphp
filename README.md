@@ -39,7 +39,7 @@ The recommended way to install JpnForPhp is through [Composer](http://getcompose
 
 #### Transliterator
 
-JpnForPhp supports all mainstream romanization systems:
+JpnForPhp Transliterator component supports all mainstream romanization systems:
 
 * [Hepburn](http://en.wikipedia.org/wiki/Hepburn_romanization)
 * [Kunrei](http://en.wikipedia.org/wiki/Kunrei-shiki_romanization)
@@ -64,9 +64,41 @@ JpnForPhp supports all mainstream romanization systems:
 
 #### Inflector
 
-JpnForPhp supports many verbal form.
-[List of all verbal forms](https://github.com/mbilbille/jpnforphp/blob/develop/src/JpnForPhp/Inflector/Inflector.php#L28)
+JpnForPhp Inflector component supports many verbal and language forms which are all exposed in kanji, kana and romaji.
 
+| Verbal form             | Plain | Polite | Plain negative | Polite negative |
+| ----------------------- |:-----:|:------:|:--------------:|:---------------:|
+| Past                    | •     | •      | •              | •               |
+| -te form                | •     | •      | •              | •               |
+| Potential               | •     | •      |                |                 |
+| Passive                 | •     | •      | •              | •               |
+| Causative               | •     | •      | •              | •               |
+| Causative alternative   | •     |        |                |                 |
+| Causative passive       | •     | •      | •              | •               |
+| Provisional conditional | •     |        | •              |                 |
+| Conditional             | •     | •      | •              | •               |
+| Imperative              | •     | •      | •              | •               |
+| Command                 | •     |        | •              |                 |
+| Volitional              | •     | •      |                |                 |
+| Gerund                  | •     |        |                |                 |
+| Optative                | •     |        | •              |                 |
+
+
+:warning: Component `Inflector` has been rewritten in 0.8, use it as below:
+
+```php
+  $entries = InflectorUtils::getEntriesFromDatabase('食べる');
+  Inflector::inflect($entries[0]);
+
+  or
+
+  $entry = new Entry();
+  $entry->setKanji('食べる');
+  $entry->setKana('たべる');
+  $entry->setType('v1');
+  Inflector::inflect($entry);
+
+```
 
 ## Examples
 
