@@ -2,6 +2,13 @@
 
 This changelog references the relevant changes (bug and security fixes) done
 
+* 0.8.0 (2017-07-26)
+  * b61aed3 `Inflector` refactoring
+  * d202abc 2c49a53 8db78f3 Bug fix #67
+  * d202abc 2c49a53 8db78f3 Bug fix #66
+  * 29f84bc Bug fix #65
+  * 29f84bc Bug fix #64
+
 * 0.7.0 (2017-05-25)
   * 2fca1f7 Drop support of PHP 5.3
   * 3a4364f `Transliterator` refactoring
