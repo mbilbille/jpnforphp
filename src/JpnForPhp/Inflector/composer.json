@@ -17,7 +17,7 @@
     "issues": "https://github.com/mbilbille/jpnforphp/issues"
     },
   "require": {
-    "php": ">=5.3.0",
+    "php": ">=5.4.0",
     "jpnforphp/analyzer": ">=0.4",
     "jpnforphp/helper": ">=0.5",
     "jpnforphp/transliterator": ">=0.7"
@@ -28,7 +28,7 @@
   "target-dir": "JpnForPhp/Inflector",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.7-dev"
+      "dev-master": "0.8-dev"
     }
   }
 }
