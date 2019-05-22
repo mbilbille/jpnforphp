@@ -20,7 +20,7 @@
     "issues": "https://github.com/mbilbille/jpnforphp/issues"
   },
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=7.1"
   },
   "require-dev": {
     "phpunit/phpunit": "7.*",
