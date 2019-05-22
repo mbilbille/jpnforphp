@@ -11,12 +11,14 @@
 
 namespace JpnForPhp\Tests\Converter;
 
+use InvalidArgumentException;
 use JpnForPhp\Converter\Converter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * JpnForPhp Testcase for Converter component
  */
-class ConverterTest extends \PHPUnit_Framework_TestCase
+class ConverterTest extends TestCase
 {
     protected function setUp()
     {
@@ -169,9 +171,8 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testConversionToJapaneseYearDefault600()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException(InvalidArgumentException::class);
         Converter::toJapaneseYear(600);
-        $this->setExpectedException(null);
     }
 
     public function testConversionToJapaneseYearDefault2015()
@@ -227,9 +228,8 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testConversionToWesternYearKanaMeiji46()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException(InvalidArgumentException::class);
         Converter::toWesternYear('めいじ46');
-        $this->setExpectedException(null);
     }
 
     public function testConversionToWesternYearKanaMeiji45()
@@ -240,15 +240,13 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
 
     public function testConversionToWesternYearKanaMeiji0()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException(InvalidArgumentException::class);
         Converter::toWesternYear('めいじ0');
-        $this->setExpectedException(null);
     }
 
     public function testConversionToWesternYearKanaMeji10()
     {
-        $this->setExpectedException('Exception');
+        $this->expectException(InvalidArgumentException::class);
         Converter::toWesternYear('めじ10');
-        $this->setExpectedException(null);
     }
 }

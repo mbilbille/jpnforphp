@@ -11,7 +11,7 @@
 
 namespace JpnForPhp\Converter;
 
-use Exception;
+use InvalidArgumentException;
 use JpnForPhp\Analyzer\Analyzer;
 use JpnForPhp\Helper\Helper;
 
@@ -415,7 +415,7 @@ class Converter
      *
      * @param int $type
      * @return string The Japanese numeral.
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public static function toJapaneseNumeral($number, $type = self::NUMERAL_KANJI)
     {
@@ -443,7 +443,7 @@ class Converter
                 $separator = ' ';
                 break;
             default:
-                throw new Exception('Unknown type');
+                throw new InvalidArgumentException('Unknown type');
         }
         $exponent = strlen($number) - 1;
         if ($exponent > 4) {
@@ -492,7 +492,7 @@ class Converter
      *
      * @param $year : kanji or hiragana era name followed by digits, or era name in romaji, space and digit. I.e. : 明治33, めいじ33, Meiji 33
      * @return string|array : The year(s) in Western format.
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public static function toWesternYear($year)
     {
@@ -515,7 +515,7 @@ class Converter
         }
 
         if (empty($eraName) || empty($eraValue)) {
-            throw new Exception('Invalid year ' . $year);
+            throw new InvalidArgumentException('Invalid year ' . $year);
         }
         $max = count(self::$mapEras);
         $westernYears = array();
@@ -542,7 +542,7 @@ class Converter
             }
         }
         if (empty($results)) {
-            throw new Exception('Year ' . $year . ' is invalid');
+            throw new InvalidArgumentException('Year ' . $year . ' is invalid');
         } elseif (count($results) == 1) {
             return $results[0];
         } else {
@@ -557,12 +557,12 @@ class Converter
      * @param int $yearType : era name output format (kanji, kana, romaji)
      * @param int $numeralType : the numeral type used
      * @return string The Japanese year.
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public static function toJapaneseYear($year, $yearType = self::YEAR_KANJI, $numeralType = null)
     {
         if ($year < self::$mapEras[0]['year']) {
-            throw new Exception('The year ' . $year . ' is before any of the known Japanese eras. The first era started in ' . self::$mapEras[0]['year'] . '.');
+            throw new InvalidArgumentException('The year ' . $year . ' is before any of the known Japanese eras. The first era started in ' . self::$mapEras[0]['year'] . '.');
         }
         $max = count(self::$mapEras);
         $era = self::$mapEras[$max - 1];
@@ -591,7 +591,7 @@ class Converter
                 $eraValue .= 'ねん';
                 break;
             default:
-                throw new Exception('Unknown year type');
+                throw new InvalidArgumentException('Unknown year type');
         }
         return $eraName . $eraValue;
     }
