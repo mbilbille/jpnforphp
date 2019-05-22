@@ -12,11 +12,12 @@
 namespace JpnForPhp\Tests\Analyzer;
 
 use JpnForPhp\Analyzer\Analyzer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * JpnForPhp Testcase for Analyzer component
  */
-class AnalyzerTest extends \PHPUnit_Framework_TestCase
+class AnalyzerTest extends TestCase
 {
     protected function setUp()
     {

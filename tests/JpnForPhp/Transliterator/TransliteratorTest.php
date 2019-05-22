@@ -11,13 +11,15 @@
 
 namespace JpnForPhp\Tests\Transliterator;
 
+use RuntimeException;
 use JpnForPhp\Transliterator\Transliterator;
 use JpnForPhp\Transliterator\System as System;
+use PHPUnit\Framework\TestCase;
 
 /**
  * JpnForPhp Testcase for Transliterator component
  */
-class TransliteratorTest extends \PHPUnit_Framework_TestCase
+class TransliteratorTest extends TestCase
 {
     protected static $hepburn;
     protected static $hepburn_traditional;
@@ -26,6 +28,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
     protected static $wapuro;
     protected static $hiragana;
     protected static $katakana;
+    protected static $unknown_system;
 
     public static function setUpBeforeClass()
     {
@@ -36,6 +39,7 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
         self::$wapuro = (new Transliterator())->setSystem(new System\Wapuro());
         self::$hiragana = (new Transliterator())->setSystem(new System\Hiragana());
         self::$katakana = (new Transliterator())->setSystem(new System\Katakana());
+        self::$unknown_system = new Transliterator();
     }
 
     public function testTransliterateToRomajiWithHepburn()
@@ -627,5 +631,11 @@ class TransliteratorTest extends \PHPUnit_Framework_TestCase
     {
         $result = self::$hiragana->transliterate('Tōkyō');
         $this->assertEquals('とうきょう', $result);
+    }
+    
+    public function testNoSystemDefined70()
+    {
+        $this->expectException(RuntimeException::class);
+        $result = self::$unknown_system->transliterate("くるま");
     }
 }

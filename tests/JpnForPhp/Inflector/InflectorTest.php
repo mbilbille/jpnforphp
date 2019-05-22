@@ -15,11 +15,12 @@ use JpnForPhp\Inflector\Inflector;
 use JpnForPhp\Inflector\InflectorUtils;
 use JpnForPhp\Inflector\Verb;
 use Symfony\Component\Yaml\Yaml;
+use PHPUnit\Framework\TestCase;
 
 /**
  * JpnForPhp Testcase for Inflector component
  */
-class InflectorTest extends \PHPUnit_Framework_TestCase
+class InflectorTest extends TestCase
 {
 
     protected function setUp()
