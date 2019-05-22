@@ -11,6 +11,7 @@
 
 namespace JpnForPhp\Transliterator;
 
+use RuntimeException;
 use JpnForPhp\Transliterator\System\System;
 
 /**

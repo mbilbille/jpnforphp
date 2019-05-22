@@ -11,6 +11,7 @@
 
 namespace JpnForPhp\Tests\Transliterator;
 
+use RuntimeException;
 use JpnForPhp\Transliterator\Transliterator;
 use JpnForPhp\Transliterator\System as System;
 use PHPUnit\Framework\TestCase;
@@ -630,5 +631,11 @@ class TransliteratorTest extends TestCase
     {
         $result = self::$hiragana->transliterate('Tōkyō');
         $this->assertEquals('とうきょう', $result);
+    }
+    
+    public function testNoSystemDefined70()
+    {
+        $this->expectException(RuntimeException::class);
+        $result = self::$unknown_system->transliterate("くるま");
     }
 }
