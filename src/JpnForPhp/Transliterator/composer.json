@@ -17,9 +17,9 @@
     "issues": "https://github.com/mbilbille/jpnforphp/issues"
     },
   "require": {
-    "php": ">=5.4.0",
-    "jpnforphp/analyzer": ">=0.4",
-    "jpnforphp/helper": ">=0.5"
+    "php": ">=7.1",
+    "jpnforphp/analyzer": ">=0.8",
+    "jpnforphp/helper": ">=0.8"
   },
   "autoload": {
     "psr-0": { "JpnForPhp\\Transliterator": "" }
@@ -27,7 +27,7 @@
   "target-dir": "JpnForPhp/Transliterator",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.8-dev"
+      "dev-master": "0.9-dev"
     }
   }
 }

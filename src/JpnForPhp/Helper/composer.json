@@ -17,8 +17,8 @@
     "issues": "https://github.com/mbilbille/jpnforphp/issues"
     },
   "require": {
-    "php": ">=5.4.0",
-    "jpnforphp/analyzer": ">=0.4"
+    "php": ">=7.1",
+    "jpnforphp/analyzer": ">=0.8"
   },
   "autoload": {
     "psr-0": { "JpnForPhp\\Helper": "" }
@@ -26,7 +26,7 @@
   "target-dir": "JpnForPhp/Helper",
   "extra": {
     "branch-alias": {
-      "dev-master": "0.8-dev"
+      "dev-master": "0.9-dev"
     }
   }
 }
