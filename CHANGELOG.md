@@ -3,16 +3,16 @@
 This changelog references the relevant changes (bug and security fixes) done
 
 * 0.8.1 (2019-05-23)
-  * 774f7100f8c76198b03de998be7daaaeebcb5b0b Bug fix #71
-  * e6853c1043107606f4671da88b6d8641f9dbcd0b Drop support of PHP version < 7.1
-  * d7823d456c7412892ef476e5dd74171d37e5ef9b Upgrade to PHPUnit 7.5
+  * 774f710 Bug fix #71
+  * e6853c1 Drop support of PHP version < 7.1
+  * d7823d4 Upgrade to PHPUnit 7.5
 
 * 0.8.0 (2017-07-26)
-  * b61aed35f99d1508414ffc02a66f42233bae7800 `Inflector` refactoring
-  * d202abcab072ed799937ce073c7b4468d6073d18 2c49a53f571bc429b15685e9729c720f87a158ae 8db78f3d60112ce455328afa995e6ad7e8386a79 Bug fix #67
-  * d202abcab072ed799937ce073c7b4468d6073d18 2c49a53f571bc429b15685e9729c720f87a158ae 8db78f3d60112ce455328afa995e6ad7e8386a79 Bug fix #66
-  * 29f84bc0379011404362acecef8caa49971d08ee Bug fix #65
-  * 29f84bc0379011404362acecef8caa49971d08ee Bug fix #64
+  * b61aed3 `Inflector` refactoring
+  * d202abc 2c49a53 8db78f3 Bug fix #67
+  * d202abc 2c49a53 8db78f3 Bug fix #66
+  * 29f84bc Bug fix #65
+  * 29f84bc Bug fix #64
 
 * 0.7.0 (2017-05-25)
   * 2fca1f7 Drop support of PHP 5.3
