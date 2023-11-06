@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  JpnForPhp provides support and many helpers to play with Japanese language in PHP - <a href="http://jpnforphpdemos.nebuleux.be">Demo</a>.
+  JpnForPhp provides support and many helpers to play with Japanese language in PHP.
 </p>
 
 <p align="center">
@@ -99,12 +99,6 @@ JpnForPhp Inflector component supports many verbal and language forms which are 
   Inflector::inflect($entry);
 
 ```
-
-## Examples
-
-See and test each features on this [demo website](http://jpnforphpdemos.nebuleux.be).
-This website is maintained by @Akeru.
-
 
 ## Tests
 
